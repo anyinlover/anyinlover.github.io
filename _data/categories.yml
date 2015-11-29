@@ -1,11 +1,11 @@
-- slug: Languages
-  name: Languages
+- slug: Language
+  name: Language
 
 - slug: Algorithm
   name: Algorithm
 
-- slug: Systems
-  name: Systems
+- slug: System
+  name: System
 
 - slug: Productivity
   name: Productivity
