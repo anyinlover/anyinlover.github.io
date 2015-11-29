@@ -9,3 +9,6 @@ github_username:  anyinlover
 
 # Build settings
 markdown: kramdown
+
+# Outputting
+permalink: date
