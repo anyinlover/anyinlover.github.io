@@ -1,0 +1,11 @@
+# Site settings
+title: A way to Data Scientist 
+email: anyinlover@gmail.com 
+description: > # this means to ignore newlines until "baseurl:"
+  Find a way to become a data scientist by self-study.
+baseurl: "/blog" # the subpath of your site, e.g. /blog/
+url: "http://anyinlover.github.io" # the base hostname & protocol for your site
+github_username:  anyinlover
+
+# Build settings
+markdown: kramdown

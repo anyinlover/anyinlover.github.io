@@ -1,0 +1,10 @@
+---
+layout: post
+title: "I'm in"
+date: 2015-11-29 15:43
+categories: others
+---
+
+This is the first day I move in the github pages. It take me several hours to finish the prepration. But I\'m here anyway~
+
+The pages are designed to record my self-study way to the data scientist. It\'s hard and I wish I will get the goal.
