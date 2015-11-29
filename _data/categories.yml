@@ -1,8 +1,14 @@
-- slug: design
-  name: Design
+- slug: Languages
+  name: Languages
 
-- slug: tools
-  name: Tools
+- slug: Algorithm
+  name: Algorithm
 
-- slug: productivity
+- slug: Systems
+  name: Systems
+
+- slug: Productivity
   name: Productivity
+
+- slug: Non-tech 
+  name: Non-tech 
