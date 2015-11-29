@@ -4,10 +4,10 @@
     <title>A way to Data Scientist</title>
     <description>Find a way to become a data scientist by self-study.
 </description>
-    <link>http://anyinlover.github.io/blog/</link>
-    <atom:link href="http://anyinlover.github.io/blog/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 29 Nov 2015 22:05:34 +0800</pubDate>
-    <lastBuildDate>Sun, 29 Nov 2015 22:05:34 +0800</lastBuildDate>
+    <link>http://anyinlover.github.io/</link>
+    <atom:link href="http://anyinlover.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sun, 29 Nov 2015 22:50:19 +0800</pubDate>
+    <lastBuildDate>Sun, 29 Nov 2015 22:50:19 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -28,8 +28,8 @@
 
 </description>
         <pubDate>Sun, 29 Nov 2015 22:52:20 +0800</pubDate>
-        <link>http://anyinlover.github.io/blog/jekyll/update/2015/11/29/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/blog/jekyll/update/2015/11/29/welcome-to-jekyll.html</guid>
+        <link>http://anyinlover.github.io/jekyll/update/2015/11/29/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/jekyll/update/2015/11/29/welcome-to-jekyll.html</guid>
         
         
         <category>jekyll</category>
@@ -45,8 +45,8 @@
 &lt;p&gt;The pages are designed to record my self-study way to the data scientist. It&#39;s hard and I wish I will get the goal.&lt;/p&gt;
 </description>
         <pubDate>Sun, 29 Nov 2015 15:43:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/blog/others/2015/11/29/Im-in.html</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/blog/others/2015/11/29/Im-in.html</guid>
+        <link>http://anyinlover.github.io/others/2015/11/29/Im-in.html</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/others/2015/11/29/Im-in.html</guid>
         
         
         <category>others</category>
