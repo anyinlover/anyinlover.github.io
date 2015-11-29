@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-subtitle: Just who the hell you think I am?
+subtitle: Need to be digged out
 permalink: /about/
 ---
 Live in China/Xi\'an.
