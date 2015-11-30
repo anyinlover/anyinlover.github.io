@@ -6,9 +6,327 @@
 </description>
     <link>http://anyinlover.github.io/</link>
     <atom:link href="http://anyinlover.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 30 Nov 2015 07:55:07 +0800</pubDate>
-    <lastBuildDate>Mon, 30 Nov 2015 07:55:07 +0800</lastBuildDate>
+    <pubDate>Tue, 01 Dec 2015 00:11:27 +0800</pubDate>
+    <lastBuildDate>Tue, 01 Dec 2015 00:11:27 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Chapter 01 - What Is The Shell?</title>
+        <description>&lt;ul&gt;
+  &lt;li&gt;date - Display the current time and date&lt;/li&gt;
+  &lt;li&gt;cal - Display a calendar of the current month&lt;/li&gt;
+  &lt;li&gt;df - Display the free space of disk drives&lt;/li&gt;
+  &lt;li&gt;free - Display the free memory&lt;/li&gt;
+  &lt;li&gt;exit - Ending a terminal&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Shell is a program that takes keyboard commands and passes them to the operating system to carry out.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;bash: Bourne Again Shell, an replacement of sh&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;terminal-emulators&quot;&gt;Terminal Emulators&lt;/h2&gt;
+&lt;p&gt;Give us access to the shell&lt;/p&gt;
+
+&lt;h2 id=&quot;your-first-keystrokes&quot;&gt;Your First Keystrokes&lt;/h2&gt;
+&lt;p&gt;Shell prompt: [me@linuxbox ~]$&lt;/p&gt;
+
+&lt;p&gt;if the last character is #, show it has superuser privileges&lt;/p&gt;
+
+&lt;h3 id=&quot;command-history&quot;&gt;Command History&lt;/h3&gt;
+&lt;p&gt;up-arrow, down-arrow&lt;/p&gt;
+
+&lt;h3 id=&quot;cursor-movement&quot;&gt;Cursor Movement&lt;/h3&gt;
+&lt;p&gt;Left-arrow, Right-arrow&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Highlight text by holding down the left mouse button and dragging down the mouse or double clicking on a word, it is copied into a buffer, pressing the middle mouse button to paste it.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;“Click to focus” and “focus follows mouse”&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;try-some-simple-commands&quot;&gt;Try Some Simple Commands&lt;/h2&gt;
+
+&lt;p&gt;Display the current time and date&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;date
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Display a calendar of the current month&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Display the free space of disk drives&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;df
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Display the free memory&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;free
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;ending-a-terminal-session&quot;&gt;Ending A Terminal Session&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;The Console Behind The Curtain&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Virtual terminals &lt;code&gt;Ctrl-Alt-F1&lt;/code&gt; ~ &lt;code&gt;Ctrl-Alt-F6&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Return graphical desktop &lt;code&gt;Alt-F7&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Mon, 30 Nov 2015 20:42:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/system/2015/11/30/Chap01-What-Is-The-Shell.html</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/system/2015/11/30/Chap01-What-Is-The-Shell.html</guid>
+        
+        
+        <category>system</category>
+        
+      </item>
+    
+      <item>
+        <title>Use Shadowsocks to over the GFW</title>
+        <description>&lt;p&gt;Live in China, learn how to over the GFW is the nesessary skill to google. As VPNs are expensive and risky to be blocked, and goagent is slow and not stable, shadowsocks is a great choice for explorers.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-shadowsocks&quot;&gt;What is shadowsocks&lt;/h2&gt;
+&lt;p&gt;Shadowsocks is a secure sock5 proxy that provides an encrypted tunnel to bypass the firewalls.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-set-up&quot;&gt;How to set up&lt;/h2&gt;
+&lt;p&gt;If you want to use shadowsocks, you need to have a VPS as your shadowsocks server. Here I use the DigitalOcean 512M/20G droplet. It has a moderate price and a good speed, which cost $5 per month and has 1000G Transfer.(If you are a student, github has a student package including $100 for DigitalOcean).
+Remember choose a good datacenter region. Most people recommend San Francisco for it’s in the America West.&lt;/p&gt;
+
+&lt;p&gt;I select Ubuntu 14.04 as my server os. How to install just refer DigitalOcean’s help.&lt;/p&gt;
+
+&lt;h3 id=&quot;set-up-the-server&quot;&gt;Set up the server&lt;/h3&gt;
+&lt;p&gt;In the Ubuntu os, install server is easy:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;apt-get install python-pip
+pip install shadowsocks
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Although it can be configurated by the command line, I prefer by the config file.&lt;/p&gt;
+
+&lt;p&gt;Create a config file &lt;code&gt;/etc/shadowsocks.json&lt;/code&gt; like the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+    &quot;server&quot;: &quot;192.241.219.20&quot;,
+    &quot;server_port&quot;: 8388,
+    &quot;local_address&quot;: &quot;127.0.0.1&quot;,
+    &quot;local_port&quot;: 1080,
+    &quot;password&quot;: &quot;overthegfw&quot;
+    &quot;timeout&quot;: 300,
+    &quot;method&quot;: &quot;aes-256-cfb&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then you can run the server in the backgroud:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ssserver -c /etc/shadowsocks.json -d start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you want to stop it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ssserver -c /etc/shadowsocks.json -d stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;if you want to check the log:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;less /var/log/shadowsocks.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;set-up-the-client&quot;&gt;Set up the client&lt;/h3&gt;
+&lt;p&gt;Personally I use a MBP, and &lt;a href=&quot;https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help&quot;&gt;Shadowsocks for OSX&lt;/a&gt; as the client.&lt;/p&gt;
+
+&lt;p&gt;In fact, Shadowsocks for OSX has a auto proxy mode with a GFWList PAC, in the most time you just open the auto proxy mode and surf the Internet without blocks. However, there are some websites are blocked and haven’t been updated in the GFWList. In such situation, we need the Chrome and its add-on &lt;a href=&quot;https://github.com/FelisCatus/SwitchyOmega&quot;&gt;SwitchyOmega&lt;/a&gt;. The project has a detailed introduction and installation and configuration.&lt;/p&gt;
+
+&lt;p&gt;OK, let’s enjoy the Internet rather than the Chinese Intranet!&lt;/p&gt;
+</description>
+        <pubDate>Mon, 30 Nov 2015 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/productivity/2015/11/30/shadowsocks.html</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/productivity/2015/11/30/shadowsocks.html</guid>
+        
+        
+        <category>productivity</category>
+        
+      </item>
+    
+      <item>
+        <title>Markdown&#39;s Usage</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I have known Markdown for a year. First use the Marxico as a supplement of evernote. But today I want to find a freedom way to write technical articles. Because the jekyll’s default markdown is Kramdown, and I research all the markdown syntaxs and find Kramdown is the most active and functional. So I just learn and review the basic syntaxs with the experience using Marxico.&lt;/p&gt;
+
+&lt;h2 id=&quot;block-level-elements&quot;&gt;Block-level Elements&lt;/h2&gt;
+
+&lt;h3 id=&quot;paragraphs&quot;&gt;Paragraphs&lt;/h3&gt;
+&lt;p&gt;You have to add a blank line to&lt;/p&gt;
+
+&lt;p&gt;separate different block level elements.&lt;/p&gt;
+
+&lt;p&gt;Explicit line breaks in a paragraph can be&lt;br /&gt;
+made by using two spaces at the end of a line.&lt;/p&gt;
+
+&lt;h3 id=&quot;headers&quot;&gt;Headers&lt;/h3&gt;
+
+&lt;p&gt;I prefer the “#” style headers.&lt;/p&gt;
+
+&lt;p&gt;Different numbers of “#” show the different level of headers just like this article.&lt;/p&gt;
+
+&lt;p&gt;A header must be preceded by a blank line.&lt;/p&gt;
+
+&lt;h3 id=&quot;blockquotes&quot;&gt;Blockquotes&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A blockquote is started using the “&amp;gt;” marker&lt;/p&gt;
+
+  &lt;h4 id=&quot;other-block-level-elements-can-be-used-in-a-blockquote&quot;&gt;Other block-level elements can be used in a blockquote&lt;/h4&gt;
+
+  &lt;blockquote&gt;
+    &lt;p&gt;Use the Nested blockquotes&lt;/p&gt;
+  &lt;/blockquote&gt;
+
+  &lt;p&gt;if there is no blank line
+even no “&amp;gt;” is OK.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;After a blank line it’s a separate paragraph.&lt;/p&gt;
+
+&lt;h3 id=&quot;code-blocks&quot;&gt;Code Blocks&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;Lines indented with one tab is the code block.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;use tilde characters to
+    specify a code block with a language.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;horizontal-rules&quot;&gt;Horizontal Rules&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Use three or more asterisks to insert a horizontal rule.&lt;/p&gt;
+
+&lt;h3 id=&quot;lists&quot;&gt;Lists&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Start with a number, a period, a space and the content.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;have a blockquote here&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;a paragraph
+here&lt;/li&gt;
+  &lt;li&gt;Nested list
+    &lt;ol&gt;
+      &lt;li&gt;hello&lt;/li&gt;
+      &lt;li&gt;hey&lt;/li&gt;
+      &lt;li&gt;hi&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;several elements&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;why-not&quot;&gt;Why not&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Look so ugly&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;* no number
+* equal treatment
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;tables&quot;&gt;Tables&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Name&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Address&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;Tel&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;mike&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Xi’an&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;110&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Alice&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Shanghai&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;120&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;John&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Beijing&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;119&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;span-level-elements&quot;&gt;Span-Level Elements&lt;/h2&gt;
+
+&lt;h3 id=&quot;emphasis&quot;&gt;Emphasis&lt;/h3&gt;
+
+&lt;p&gt;Use asterisks to &lt;em&gt;emphasized words&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Use double asterisks to &lt;strong&gt;strong emphasized words&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;links-and-images&quot;&gt;Links and Images&lt;/h3&gt;
+
+&lt;p&gt;Here is my &lt;a href=&quot;http://anyinlover.github.io&quot;&gt;homepage&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is my picture: &lt;img src=&quot;http://img4.douban.com/view/photo/photo/public/p1764440506.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;inline-code&quot;&gt;Inline Code&lt;/h3&gt;
+
+&lt;p&gt;Use &lt;code&gt;backticks to surrouding the inline code&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Use &lt;code&gt;`two backticks to express literal backticks in the code`&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h3&gt;
+
+&lt;p&gt;Set a footnote marker&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;p&gt;Need a better one&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;?&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;Consists of square brackets with a caret and the footnote name.  &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;blockquote&gt;
+        &lt;p&gt;Surprise!&lt;/p&gt;
+      &lt;/blockquote&gt;
+      &lt;p&gt;&lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Mon, 30 Nov 2015 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/productivity/2015/11/30/markdown-usage.html</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/productivity/2015/11/30/markdown-usage.html</guid>
+        
+        
+        <category>productivity</category>
+        
+      </item>
     
       <item>
         <title>I&#39;m in</title>
