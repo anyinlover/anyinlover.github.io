@@ -1,0 +1,171 @@
+<h2 id="concepts">Concepts</h2>
+
+<h3 id="modes">Modes</h3>
+
+<h4 id="three-basic-mode-in-vim">three basic mode in vim</h4>
+
+<ul>
+  <li>Normal mode: the default mode where we can run commands</li>
+  <li>Insert mode: where we can write text</li>
+  <li>Visual mode: where we can visually select a bunch of text to operate on</li>
+</ul>
+
+<h4 id="mode-switch">mode switch</h4>
+
+<ul>
+  <li>Normal to Insert: i I a A o O r R s S</li>
+  <li>Insert to Normal: <esc></esc></li>
+  <li>Normal to Visual: v V</li>
+  <li>Visual to Normal: <esc></esc></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Command</th>
+      <th style="text-align: left">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">i</td>
+      <td style="text-align: left">insert text just before the cursor</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">I</td>
+      <td style="text-align: left">insert text at the start of the line</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">a</td>
+      <td style="text-align: left">append text just after the cursor</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">A</td>
+      <td style="text-align: left">append text at the end of the line</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">o</td>
+      <td style="text-align: left">open a new line below</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">O</td>
+      <td style="text-align: left">open a new line above</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td style="text-align: center">Normal to Insert</td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p><em>Replace</em>
+|Command|Action|
+|:—-:|:—–|
+|s| substitute the current character|
+|S| substitute the current line|
+|r| replace the current character|
+|R| replace continuous characters|</p>
+
+<p>v Works on a character basis
+V Works on a line basis
+c Change the text</p>
+
+<h2 id="use-help">Use help</h2>
+<p>The reference manual:
+<code>:help usr_toc</code>
+To search for a particular topic in
+<code>:help index</code>
+### :helpgrep
+<code>:helpgrep beginning of a word</code>
+<code>:cnext</code>
+<code>:cprev</code>
+<code>:clist</code>
+### Online forum
+* Vim Group search page
+* Vim IRC forum</p>
+
+<h2 id="moving-around">Moving Around</h2>
+<p>|Command|Action|
+|:—:|:—–|
+|h| Go left|
+|j| Go down|
+|k| Go up|
+|l| Go right|
+|^| Go the start of the line|
+|$| Go the end of the line|
+|C-b| move one screen up|
+|C-f| move one screen down|
+|e| move to the next end of word|
+|ge| move to the last end of word|
+|w| move to the next start of word|
+|b| move to the last start of word|
+|(| move to the last start of line|
+|)| move to the next start of line|
+|{| move to the last start of paragraph|
+|}| move to the next start of paragraph|</p>
+
+<p><em>Move in visual mode</em>
+|Command|Action|
+|aw||
+|as||
+|ap||
+|ab||</p>
+
+<h2 id="mark">Mark</h2>
+<p><code>ma</code>
+<code>'a</code>
+``a`</p>
+
+<h2 id="jump">Jump</h2>
+<p>To the previous location: C-o
+To the next location: C-i
+To the link location: C-]</p>
+
+<h2 id="editing-basics">Editing Basics</h2>
+<p>### Some concepts
+* Buffers
+* Swap</p>
+
+<h3 id="directory-and-file">Directory and file</h3>
+<p><code>:w</code>
+<code>:e</code>
+<code>:cd ../tmp</code>
+<code>:pwd</code></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Command</th>
+      <th style="text-align: left">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">d</td>
+      <td style="text-align: left">delete</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">y</td>
+      <td style="text-align: left">yank</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">p</td>
+      <td style="text-align: left">paste</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">x</td>
+      <td style="text-align: left">delete one character</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="undo">Undo</h2>
+<p><code>:earlier 4m</code>
+<code>:later 45s</code>
+<code>:undo 5</code>
+<code>:undolist</code></p>
+
+<h2 id="search">Search</h2>
+<p><code>/patten</code></p>

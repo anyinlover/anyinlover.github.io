@@ -9,6 +9,11 @@ categories: productivity
 
 I have known Markdown for a year. First use the Marxico as a supplement of evernote. But today I want to find a freedom way to write technical articles. Because the jekyll's default markdown is Kramdown, and I research all the markdown syntaxs and find Kramdown is the most active and functional. So I just learn and review the basic syntaxs with the experience using Marxico.
 
+I use the [Kramdown Quick Reference] as the learning material.
+
+[kramdown Quick Reference]: http://kramdown.gettalong.org/quickref.html
+
+
 ## Block-level Elements
 
 ### Paragraphs

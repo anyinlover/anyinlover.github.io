@@ -6,90 +6,204 @@
 </description>
     <link>http://anyinlover.github.io/</link>
     <atom:link href="http://anyinlover.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 01 Dec 2015 00:11:27 +0800</pubDate>
-    <lastBuildDate>Tue, 01 Dec 2015 00:11:27 +0800</lastBuildDate>
+    <pubDate>Wed, 02 Dec 2015 09:05:10 +0800</pubDate>
+    <lastBuildDate>Wed, 02 Dec 2015 09:05:10 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
-        <title>Chapter 01 - What Is The Shell?</title>
-        <description>&lt;ul&gt;
-  &lt;li&gt;date - Display the current time and date&lt;/li&gt;
-  &lt;li&gt;cal - Display a calendar of the current month&lt;/li&gt;
-  &lt;li&gt;df - Display the free space of disk drives&lt;/li&gt;
-  &lt;li&gt;free - Display the free memory&lt;/li&gt;
-  &lt;li&gt;exit - Ending a terminal&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Shell is a program that takes keyboard commands and passes them to the operating system to carry out.&lt;/p&gt;
-
+        <title>Some concepts about ruby</title>
+        <description>&lt;h2 id=&quot;what-is-ruby&quot;&gt;What is Ruby&lt;/h2&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;bash: Bourne Again Shell, an replacement of sh&lt;/p&gt;
+  &lt;p&gt;A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;terminal-emulators&quot;&gt;Terminal Emulators&lt;/h2&gt;
-&lt;p&gt;Give us access to the shell&lt;/p&gt;
+&lt;h2 id=&quot;what-is-gem&quot;&gt;What is Gem&lt;/h2&gt;
 
-&lt;h2 id=&quot;your-first-keystrokes&quot;&gt;Your First Keystrokes&lt;/h2&gt;
-&lt;p&gt;Shell prompt: [me@linuxbox ~]$&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Gems are packages similar to Ebuilds. They contain package information along with files to install.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;if the last character is #, show it has superuser privileges&lt;/p&gt;
+&lt;h2 id=&quot;what-is-rubygems&quot;&gt;What is RubyGems&lt;/h2&gt;
 
-&lt;h3 id=&quot;command-history&quot;&gt;Command History&lt;/h3&gt;
-&lt;p&gt;up-arrow, down-arrow&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;RubyGems is a package manager for the Ruby programming language that provides a standard format for distributing Ruby programs and libraries (in a self-contained format called a “gem”), a tool designed to easily manage the installation of gems, and a server for distributing them. &lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;h3 id=&quot;cursor-movement&quot;&gt;Cursor Movement&lt;/h3&gt;
-&lt;p&gt;Left-arrow, Right-arrow&lt;/p&gt;
+&lt;h2 id=&quot;what-is-ruby-on-rails&quot;&gt;What is Ruby on Rails&lt;/h2&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Highlight text by holding down the left mouse button and dragging down the mouse or double clicking on a word, it is copied into a buffer, pressing the middle mouse button to paste it.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;“Click to focus” and “focus follows mouse”&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Ruby on Rails, or simply Rails, is a web application framework written in Ruby under MIT License. Rails is a model–view–controller (MVC) framework, providing default structures for a database, a web service, and web pages.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;h2 id=&quot;try-some-simple-commands&quot;&gt;Try Some Simple Commands&lt;/h2&gt;
+&lt;h2 id=&quot;what-is-bundler&quot;&gt;What is Bundler&lt;/h2&gt;
 
-&lt;p&gt;Display the current time and date&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Bundler provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed. &lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;date
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Display a calendar of the current month&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cal
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Display the free space of disk drives&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;df
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Display the free memory&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;free
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;ending-a-terminal-session&quot;&gt;Ending A Terminal Session&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;exit
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;The Console Behind The Curtain&lt;/em&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Virtual terminals &lt;code&gt;Ctrl-Alt-F1&lt;/code&gt; ~ &lt;code&gt;Ctrl-Alt-F6&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Return graphical desktop &lt;code&gt;Alt-F7&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+  &lt;p&gt;Bundler is an exit from dependency hell, and ensures that the gems you need are present in development, staging, and production. &lt;/p&gt;
+&lt;/blockquote&gt;
 </description>
-        <pubDate>Mon, 30 Nov 2015 20:42:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/system/2015/11/30/Chap01-What-Is-The-Shell.html</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/system/2015/11/30/Chap01-What-Is-The-Shell.html</guid>
+        <pubDate>Wed, 02 Dec 2015 08:48:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/language/2015/12/02/Concepts-about-ruby.html</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/language/2015/12/02/Concepts-about-ruby.html</guid>
         
+        
+        <category>language</category>
+        
+      </item>
+    
+      <item>
+        <title>rbenv Basic Usage</title>
+        <description>&lt;h2 id=&quot;what-is-rbenv&quot;&gt;What is rbenv&lt;/h2&gt;
+
+&lt;p&gt;rbenv is used to install and pick a ruby version for your applications.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-install&quot;&gt;How to install&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install rbenv ruby-build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In fact, rbenv is used to pick a ruby version, and ruby-build for install.&lt;/p&gt;
+
+&lt;h2 id=&quot;basic-usage&quot;&gt;Basic usage&lt;/h2&gt;
+
+&lt;h3 id=&quot;install-ruby-versions&quot;&gt;Install Ruby Versions&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;# list all available versions:
+rbenv install -l
+
+# install a Ruby version:
+rbenv install 2.2.3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;uninstall-ruby-versions&quot;&gt;Uninstall Ruby Versions&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;rbenv uninstall 2.2.3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;set-a-local-ruby-version&quot;&gt;Set a local Ruby version&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;rbenv local 2.2.3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;show-the-local-ruby-version&quot;&gt;Show the local Ruby version&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;rbenv local
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;set-a-global-ruby-version&quot;&gt;Set a global Ruby version&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;rbenv global 2.2.3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;show-the-global-ruby-version&quot;&gt;Show the global Ruby version&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;rbenv global
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;list-all-ruby-versions&quot;&gt;List all Ruby versions&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;rbenv versions
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;list-the-active-version&quot;&gt;List the active version&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;rbenv version
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;rehash-after-a-new-installation&quot;&gt;Rehash after a new installation&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;rbenv rehash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;rbenv-help&quot;&gt;rbenv help&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;rbenv help
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Wed, 02 Dec 2015 08:27:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/productivity/language/2015/12/02/Rbenv-usage.html</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/productivity/language/2015/12/02/Rbenv-usage.html</guid>
+        
+        
+        <category>productivity</category>
+        
+        <category>language</category>
+        
+      </item>
+    
+      <item>
+        <title>Homebrew basic usage</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;The missing package manager for OS X&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;what-is-homebrew&quot;&gt;What is Homebrew&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Homebrew installs the stuff you need that Apple didn’t.&lt;/li&gt;
+  &lt;li&gt;Homebrew installs packages to their own directory and then symlinks their files into /usr/local.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;how-to-install-homebrew&quot;&gt;How to install Homebrew&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Just following the script explains.&lt;/p&gt;
+
+&lt;h2 id=&quot;basic-usage&quot;&gt;Basic Usage&lt;/h2&gt;
+
+&lt;h3 id=&quot;install&quot;&gt;Install&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install wget
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;uninstall&quot;&gt;Uninstall&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;brew uninstall wget
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;list-what-have-been-installed&quot;&gt;List what have been installed&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;brew list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;search-which-can-be-installed&quot;&gt;Search which can be installed&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;brew search wget
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;update-homebrew&quot;&gt;Update Homebrew&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;brew update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;update-formulae&quot;&gt;Update formulae&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;brew upgrade
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;diagnose-homebrew&quot;&gt;Diagnose Homebrew&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;brew doctor
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;homebrew-help&quot;&gt;Homebrew help&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;brew help
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;homebrew-manual&quot;&gt;Homebrew manual&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;man brew
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Wed, 02 Dec 2015 07:29:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/productivity/system/2015/12/02/Homebrew-usage.html</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/productivity/system/2015/12/02/Homebrew-usage.html</guid>
+        
+        
+        <category>productivity</category>
         
         <category>system</category>
         
@@ -168,6 +282,8 @@ pip install shadowsocks
 &lt;/blockquote&gt;
 
 &lt;p&gt;I have known Markdown for a year. First use the Marxico as a supplement of evernote. But today I want to find a freedom way to write technical articles. Because the jekyll’s default markdown is Kramdown, and I research all the markdown syntaxs and find Kramdown is the most active and functional. So I just learn and review the basic syntaxs with the experience using Marxico.&lt;/p&gt;
+
+&lt;p&gt;I use the &lt;a href=&quot;http://kramdown.gettalong.org/quickref.html&quot;&gt;Kramdown Quick Reference&lt;/a&gt; as the learning material.&lt;/p&gt;
 
 &lt;h2 id=&quot;block-level-elements&quot;&gt;Block-level Elements&lt;/h2&gt;
 
