@@ -6,9 +6,229 @@
 </description>
     <link>http://anyinlover.github.io/</link>
     <atom:link href="http://anyinlover.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 02 Dec 2015 09:05:10 +0800</pubDate>
-    <lastBuildDate>Wed, 02 Dec 2015 09:05:10 +0800</lastBuildDate>
+    <pubDate>Thu, 03 Dec 2015 08:44:48 +0800</pubDate>
+    <lastBuildDate>Thu, 03 Dec 2015 08:44:48 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Chap1: Introduction</title>
+        <description>&lt;h1 id=&quot;why-date-mining&quot;&gt;Why Date Mining?&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Moving toward to Information Age&lt;/li&gt;
+  &lt;li&gt;Date Mining as the Evolution of Information Technology
+    &lt;ol&gt;
+      &lt;li&gt;Date Collection and Database Creation&lt;/li&gt;
+      &lt;li&gt;Database Management Systems&lt;/li&gt;
+      &lt;li&gt;Advanced Database Systems &amp;amp; Advanced Data Analysis&lt;/li&gt;
+      &lt;li&gt;Future Generation of Information Systems&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;what-is-data-mining&quot;&gt;What is Data Mining?&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Data cleaning&lt;/li&gt;
+  &lt;li&gt;Data integration&lt;/li&gt;
+  &lt;li&gt;Data selection&lt;/li&gt;
+  &lt;li&gt;Data transformation&lt;/li&gt;
+  &lt;li&gt;Data mining&lt;/li&gt;
+  &lt;li&gt;Pattern evaluation&lt;/li&gt;
+  &lt;li&gt;Knowledge presentation&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;what-kinds-of-data-can-be-mined&quot;&gt;What Kinds of Data Can Be Mined?&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Database Data&lt;/li&gt;
+  &lt;li&gt;Data Warehouses&lt;/li&gt;
+  &lt;li&gt;Transactional Data&lt;/li&gt;
+  &lt;li&gt;Other Kinds of Data&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;what-kinds-of-patterns-can-be-mined&quot;&gt;What kinds of Patterns Can Be Mined?&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Class/Concept Description: Characterization and Discrimination&lt;/li&gt;
+  &lt;li&gt;Mining Frequent Patterns, Associations, and Correlations&lt;/li&gt;
+  &lt;li&gt;Classification and Regression for Predictive Analysis&lt;/li&gt;
+  &lt;li&gt;Cluster Analysis&lt;/li&gt;
+  &lt;li&gt;Outlier Analysis&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;An interesting pattern represents knowledge.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;which-technologies-are-used&quot;&gt;Which Technologies Are Used?&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Statics&lt;/li&gt;
+  &lt;li&gt;Machine Learning
+    &lt;ul&gt;
+      &lt;li&gt;Supervised learing&lt;/li&gt;
+      &lt;li&gt;Unsupervised learning&lt;/li&gt;
+      &lt;li&gt;Semi-supervised learning&lt;/li&gt;
+      &lt;li&gt;Active learning&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Database Systems and Data Warehouses&lt;/li&gt;
+  &lt;li&gt;Information Retrieval&lt;/li&gt;
+  &lt;li&gt;Others
+    &lt;ul&gt;
+      &lt;li&gt;Pattern recognition&lt;/li&gt;
+      &lt;li&gt;Visualization&lt;/li&gt;
+      &lt;li&gt;Algorithms&lt;/li&gt;
+      &lt;li&gt;High-performance computing&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;which-kinds-of-applications-are-targeted&quot;&gt;Which Kinds of Applications Are Targeted?&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Business Intelligence&lt;/li&gt;
+  &lt;li&gt;Web Search Engines&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;major-issues-in-data-mining&quot;&gt;Major Issues in Data Mining&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Mining Methodology&lt;/li&gt;
+  &lt;li&gt;User Interaction&lt;/li&gt;
+  &lt;li&gt;Efficiency ans Scalability&lt;/li&gt;
+  &lt;li&gt;Diversity of Dababase Types&lt;/li&gt;
+  &lt;li&gt;Data Mining and Society&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Thu, 03 Dec 2015 08:23:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/algorithm/2015/12/03/Chap1.html</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/algorithm/2015/12/03/Chap1.html</guid>
+        
+        
+        <category>algorithm</category>
+        
+      </item>
+    
+      <item>
+        <title>Chap0: Begin to learn Data Mining</title>
+        <description>&lt;h2 id=&quot;why-learn-data-mining&quot;&gt;Why learn Data Mining&lt;/h2&gt;
+&lt;p&gt;I have to admit that I know nothing about data mining. But it’s the nesessary process in the data science. The occupation need it, the data contest need it. So I’m here.&lt;/p&gt;
+
+&lt;h2 id=&quot;which-material-do-i-choose&quot;&gt;Which material do I choose&lt;/h2&gt;
+&lt;p&gt;I search in zhihu and read some other blogs and several person recommend the «Date Mining: Concepts and Techniques» by Jiawei Han. It has updated to third edition and after reading the preface and chap1, I really believe it is what I want.&lt;/p&gt;
+
+&lt;h2 id=&quot;which-chaps-will-i-learn&quot;&gt;Which chaps will I learn&lt;/h2&gt;
+&lt;p&gt;I’m in a DataCastle contest, and need to know classification urgently. So I will just pick these chaps to learn first.
+* chap1 - Introduction
+* chap2 - Getting to Know your Data
+* Chap8 - Classification: Basic Concepts
+* Chap9 - Classification: Advanced Methods&lt;/p&gt;
+
+&lt;h2 id=&quot;how-long-to-take&quot;&gt;How long to take&lt;/h2&gt;
+&lt;p&gt;I plan to briefly read the chaps in this week, and take another week to practice with R or python.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 03 Dec 2015 07:15:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/algorithm/2015/12/03/Chap0.html</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/algorithm/2015/12/03/Chap0.html</guid>
+        
+        
+        <category>algorithm</category>
+        
+      </item>
+    
+      <item>
+        <title>Git Basic Usage</title>
+        <description>&lt;h2 id=&quot;what-is-git&quot;&gt;What is git&lt;/h2&gt;
+
+&lt;p&gt;One of the Distributed Version Control Systems (DVCSs)&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-install&quot;&gt;How to install&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;basic-usage&quot;&gt;Basic usage&lt;/h2&gt;
+
+&lt;h3 id=&quot;start-to-track-a-project&quot;&gt;Start to track a project&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;git init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;stage-new-files-or-midified-files&quot;&gt;Stage new files or midified files&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;git add filename
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;commit-the-changes&quot;&gt;Commit the changes&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;git commit -m &quot;commit message&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;check-the-files-status&quot;&gt;Check the files status&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;git status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;clone-an-existing-repository&quot;&gt;Clone an existing repository&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/anyinlover/anyinlover.github.io
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;pull-from-remote&quot;&gt;Pull from remote&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;git pull
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;push-to-remote&quot;&gt;Push to remote&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Wed, 02 Dec 2015 20:53:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/productivity/2015/12/02/Git-usage.html</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/productivity/2015/12/02/Git-usage.html</guid>
+        
+        
+        <category>productivity</category>
+        
+      </item>
+    
+      <item>
+        <title>Jekyll basic usage</title>
+        <description>&lt;h2 id=&quot;what-is-jekyll&quot;&gt;What is Jekyll&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Jekyll is a simple, blog-aware, static site generator. It takes a template directory containing raw text files in various formats, runs it through a converter (like Markdown) and our Liquid renderer, and spits out a complete, ready-to-publish static website suitable for serving with your favorite web server. &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;how-to-install&quot;&gt;How to install&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install jekyll
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Download a favorite theme from &lt;a href=&quot;http://jekyllthemes.org&quot;&gt;jekyllthemes&lt;/a&gt;, and unpack all the files into the github pages directory like &lt;code&gt;~/Documents/anyinlover.github.io&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;basic-usage&quot;&gt;Basic Usage&lt;/h2&gt;
+
+&lt;p&gt;Just write markdown files in _sites, and in the github pages directory input the following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then open the 0.0.0.0:4000 in a web browser, you’ll find your blogs.&lt;/p&gt;
+
+&lt;p&gt;Use git and push it to the github, you’ll read your blogs in the Internet like &lt;a href=&quot;anyinlover.github.io&quot;&gt;Anyinlovr’s blog&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 02 Dec 2015 20:03:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/productivity/2015/12/02/Jekyll-usage.html</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/productivity/2015/12/02/Jekyll-usage.html</guid>
+        
+        
+        <category>productivity</category>
+        
+      </item>
     
       <item>
         <title>Some concepts about ruby</title>
