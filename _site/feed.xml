@@ -6,9 +6,288 @@
 </description>
     <link>http://anyinlover.github.io/</link>
     <atom:link href="http://anyinlover.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 03 Dec 2015 08:44:48 +0800</pubDate>
-    <lastBuildDate>Thu, 03 Dec 2015 08:44:48 +0800</lastBuildDate>
+    <pubDate>Sun, 06 Dec 2015 00:37:07 +0800</pubDate>
+    <lastBuildDate>Sun, 06 Dec 2015 00:37:07 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Chap2: Getting to Know Your Data</title>
+        <description>&lt;h1 id=&quot;data-objects-and-attribute-types&quot;&gt;Data Objects and Attribute Types&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Nominal Attributes&lt;/li&gt;
+  &lt;li&gt;Binary Attributes&lt;/li&gt;
+  &lt;li&gt;Ordinal Attributes&lt;/li&gt;
+  &lt;li&gt;Numeric Attributes
+    &lt;ul&gt;
+      &lt;li&gt;Interval-Scaled Attributes&lt;/li&gt;
+      &lt;li&gt;Ratio-Scaled Attributes&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;basic-statistical-descriptions-of-data&quot;&gt;Basic Statistical Descriptions of Data&lt;/h1&gt;
+
+&lt;h2 id=&quot;measuring-the-central-tendency&quot;&gt;Measuring the Central Tendency&lt;/h2&gt;
+
+&lt;h3 id=&quot;mean&quot;&gt;Mean&lt;/h3&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\bar{x} = \frac{\displaystyle\sum_{i=1}^{N} x_i}{N} =\frac{x_1+x_2+\dots+x_N}{N}
+&lt;/script&gt;
+
+&lt;h3 id=&quot;median&quot;&gt;Median&lt;/h3&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+median = L_1 + \left(\frac{N/2-(\sum freq)_l}{freq_{median}}\right)width
+&lt;/script&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;L_1&lt;/script&gt; is the lower boundary of the median interval.&lt;/p&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;N&lt;/script&gt; is the number of values in the entire data set.&lt;/p&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;(\sum freq)_l&lt;/script&gt; is the sum of the frequencies of all of the intervals that lower than the median interval.&lt;/p&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;freq_{median}&lt;/script&gt; is the frequency of the median interval.
+&lt;script type=&quot;math/tex&quot;&gt;width&lt;/script&gt; is the width of the median interval.&lt;/p&gt;
+
+&lt;h3 id=&quot;mode&quot;&gt;Mode&lt;/h3&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+mean - mode \approx 3 \times (mean - median)
+&lt;/script&gt;
+
+&lt;p&gt;Applied to unimodal numeric data that are moderately skewed (asymmetrical).&lt;/p&gt;
+
+&lt;h3 id=&quot;midrange&quot;&gt;Midrange&lt;/h3&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+midrange = \frac{\max()+\min()}{2}
+&lt;/script&gt;
+
+&lt;h2 id=&quot;measuring-the-dispersion-of-data&quot;&gt;Measuring the Dispersion of Data&lt;/h2&gt;
+
+&lt;h3 id=&quot;range-quartiles-and-interquartile-range&quot;&gt;Range, Quartiles, and Interquartile Range&lt;/h3&gt;
+&lt;p&gt;#### Range
+The difference between the largest and smallest values.&lt;/p&gt;
+
+&lt;h4 id=&quot;quantiles&quot;&gt;Quantiles&lt;/h4&gt;
+&lt;p&gt;The points taken at regular intervals of a data distribution.&lt;/p&gt;
+
+&lt;h4 id=&quot;quartiles&quot;&gt;quartiles&lt;/h4&gt;
+&lt;p&gt;The 4-quantiles&lt;/p&gt;
+
+&lt;h4 id=&quot;interquartile-range&quot;&gt;Interquartile range&lt;/h4&gt;
+&lt;p&gt;The distance between the first and third quartiles.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+IQR = Q_3 - Q_1
+&lt;/script&gt;
+
+&lt;h3 id=&quot;five-number-summary-boxplots-and-outliers&quot;&gt;Five-Number Summary, Boxplots, and Outliers&lt;/h3&gt;
+
+&lt;h4 id=&quot;five-number-summary&quot;&gt;Five-Number Summary&lt;/h4&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+Minimum, Q_1, Median, Q_3, Maximum
+&lt;/script&gt;
+
+&lt;h4 id=&quot;boxplots&quot;&gt;Boxplots&lt;/h4&gt;
+&lt;p&gt;A way of visulizing a distribution using Five-Number Summary.&lt;/p&gt;
+
+&lt;h4 id=&quot;outliers&quot;&gt;Outliers&lt;/h4&gt;
+&lt;p&gt;The whiskers are extended to &lt;script type=&quot;math/tex&quot;&gt;1.5 \times IQR&lt;/script&gt; of the quartiles. Others are Outliers and plotted individually.&lt;/p&gt;
+
+&lt;h3 id=&quot;variance-and-standard-deviation&quot;&gt;Variance and Standard Deviation&lt;/h3&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\sigma^2 = \frac{1}{N}\sum_{i=1}^{N} (x_i - \bar{x})^2 =
+\left(\frac{1}{N}\sum_{i=1}^{N} x_i^2\right) - \bar{x}^2
+&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;\sigma&lt;/script&gt; meassures spread about the mean and should be considered onlu when the mean is chosen as the measure of center.&lt;/li&gt;
+  &lt;li&gt;Using Chebyshev’s inequality show that at least &lt;script type=&quot;math/tex&quot;&gt;(1-\frac{1}{k^2}) \times 100\% &lt;/script&gt; of the obesrvations are no more than &lt;em&gt;k&lt;/em&gt; standard deviations from the mean.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;graphic-display-of-basic-statistical-description-of-data&quot;&gt;Graphic Display of Basic Statistical Description of Data&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Quantile plot&lt;/li&gt;
+  &lt;li&gt;Quantile-Quantile plot&lt;/li&gt;
+  &lt;li&gt;Histograms&lt;/li&gt;
+  &lt;li&gt;Scatter plot&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;data-visualization&quot;&gt;Data Visualization&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Pixel-Oriented Visualization Techniques&lt;/li&gt;
+  &lt;li&gt;Geometric Projection Visualization Techniques&lt;/li&gt;
+  &lt;li&gt;Icon-Based Visualization Techniques&lt;/li&gt;
+  &lt;li&gt;Hierarchical Visualization Techniques&lt;/li&gt;
+  &lt;li&gt;Tag cloud and tree-map&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;measuring-data-similarity-and-dissimilarity&quot;&gt;Measuring Data Similarity and Dissimilarity&lt;/h1&gt;
+
+&lt;h2 id=&quot;data-matrix-versus-dissimilarity-matrix&quot;&gt;Data Matrix versus Dissimilarity Matrix&lt;/h2&gt;
+
+&lt;p&gt;Data Matrix&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{bmatrix}
+  x_{11} &amp; \dots &amp; x_{1f} &amp; \dots &amp; x_{1p} \\
+  \dots  &amp; \dots &amp; \dots  &amp; \dots &amp; \dots \\
+  x_{i1} &amp; \dots &amp; x_{if} &amp; \dots &amp; x_{ip} \\
+  \dots  &amp; \dots &amp; \dots  &amp; \dots &amp; \dots \\
+  x_{n1} &amp; \dots &amp; x_{nf} &amp; \dots &amp; x_{np}
+\end{bmatrix}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Dissimilarity Matrix&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{bmatrix}
+  0 \\
+  d(2,1) &amp; 0 \\
+  d(3,1) &amp; d(3,2) &amp; 0 \\
+  \vdots &amp; \vdots &amp; \vdots \\
+  d(n,1) &amp; d(n,2) &amp; \dots &amp; \dots &amp; 0
+\end{bmatrix}
+ %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+sim(i,j) = 1 - d(i,j)
+&lt;/script&gt;
+
+&lt;h2 id=&quot;proximity-measures-for-nominal-attributes&quot;&gt;Proximity Measures for Nominal Attributes&lt;/h2&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+d(i,j) = \frac{p-m}{p}
+&lt;/script&gt;
+
+&lt;p&gt;&lt;em&gt;m&lt;/em&gt; is the number of matches
+&lt;em&gt;p&lt;/em&gt; is the total number of attributes&lt;/p&gt;
+
+&lt;h2 id=&quot;proximity-measures-for-binary-attributes&quot;&gt;Proximity Measures for Binary Attributes&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;q: (i,j) = (1,1)&lt;/li&gt;
+  &lt;li&gt;r: (i,j) = (1,0)&lt;/li&gt;
+  &lt;li&gt;s: (i,j) = (0,1)&lt;/li&gt;
+  &lt;li&gt;t: (i,j) = (0,0)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Symmetric Binary Dissimilarity&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+d(i,j) = \frac{r+s}{q+r+s+t}
+&lt;/script&gt;
+
+&lt;p&gt;Asymmetric Binary Dissimilarity&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+d(i,j) = \frac{r+s}{q+r+s}
+&lt;/script&gt;
+
+&lt;h2 id=&quot;dissimilarity-of-numeric-data&quot;&gt;Dissimilarity of Numeric Data&lt;/h2&gt;
+
+&lt;h3 id=&quot;euclidean-distance&quot;&gt;Euclidean distance&lt;/h3&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+d(i,j) = \sqrt{(x_{i1} - x_{j1})^2 + (x_{i2}-x_{j2})^2
++ \dots + (x_{ip}-x_{jp})^2}
+&lt;/script&gt;
+
+&lt;p&gt;Weighted Euclidean distance&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+d(i,j) = \sqrt{\omega_1(x_{i1} - x_{j1})^2 + \omega_2(x_{i2}-x_{j2})^2
++ \dots + \omega_m(x_{ip}-x_{jp})^2}
+&lt;/script&gt;
+
+&lt;h3 id=&quot;manhattan-distance&quot;&gt;Manhattan distance&lt;/h3&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+d(i,j) = |x_{i1} - x_{j1}| + |x_{i2} - x_{j2}| + \dots + |x_{ip} - x_{jp}|
+&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Non-negativity: &lt;script type=&quot;math/tex&quot;&gt; d(i,j) \geq 0 &lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;Identity of indiscernibles: &lt;script type=&quot;math/tex&quot;&gt; d(i,i) = 0 &lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;Symmetry: d(i,j) = d(j,i)&lt;/li&gt;
+  &lt;li&gt;Triangle inequality: d(i,j) \leq d(i,k) + d(k,j)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;minkowski-distance&quot;&gt;Minkowski distance&lt;/h3&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+d(i,j) = \sqrt[h]{|x_{i1} - x_{j1}|^h + |x_{i2}-x_{j2}|^h
++ \dots + |x_{ip}-x_{jp}|^h}
+&lt;/script&gt;
+
+&lt;h3 id=&quot;supremum-distance-lmax-linfty-norm-chebyshev-distance&quot;&gt;Supremum distance (&lt;script type=&quot;math/tex&quot;&gt;L_{max}&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;L_{\infty}&lt;/script&gt; norm, Chebyshev distance)&lt;/h3&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+d(i,j)  = \lim_{h \to \infty} \left( \sum_{f=1}^{p} |x_{if} - x_{jf}|^h \right)^{\frac{1}{h}} = \max_{f}^{p}|x_{if} - x_{jf}|
+&lt;/script&gt;
+
+&lt;h2 id=&quot;proximity-measures-for-ordinal-attributes&quot;&gt;Proximity Measures for Ordinal Attributes&lt;/h2&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+z_{if} = \frac{r_{if} - 1}{M_f - 1}
+&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+r_{if} \in \{1, \dots, M_f\}
+&lt;/script&gt;
+
+&lt;h2 id=&quot;dissimilarity-for-attributes-of-mixed-types&quot;&gt;Dissimilarity for Attributes of Mixed Types&lt;/h2&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+d(i,j) = \frac{\sum_{f=1}^{p} \delta_{ij}^{(f)} d_{ij}^{(f)}}
+{\sum_{f=1}^{p} \delta_{ij}^{(f)}}
+&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;em&gt;f&lt;/em&gt; is numeric: $$d_{ij}^{(f)} = \frac{&lt;/td&gt;
+          &lt;td&gt;x&lt;em&gt;{if} - x&lt;/em&gt;{jf}&lt;/td&gt;
+          &lt;td&gt;}{\max_hx&lt;em&gt;{hf} - \min_hx&lt;/em&gt;{hf}}$$&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;f&lt;/em&gt; is nominal or binary: &lt;script type=&quot;math/tex&quot;&gt;d_{ij}^{(f)} = 0&lt;/script&gt; if &lt;script type=&quot;math/tex&quot;&gt;x_{if} = x_{jf}&lt;/script&gt;; otherwise, &lt;script type=&quot;math/tex&quot;&gt;d_{ij}^{(f)} = 1&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;f&lt;/em&gt; is ordinal: &lt;script type=&quot;math/tex&quot;&gt;
+z_{if} = \frac{r_{if} - 1}{M_f - 1}&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;cosine-similarity&quot;&gt;Cosine Similarity&lt;/h2&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+sim(x,y) = \frac{x^t \cdot y}{\|x\|\|y\|}
+&lt;/script&gt;
+
+&lt;p&gt;A simple variation frequently used in information retrieval and biology taxnomy.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+sim(x,y) = \frac{x \cdot y}{x \cdot x + y \cdot y - x \cdot y}
+&lt;/script&gt;
+</description>
+        <pubDate>Sat, 05 Dec 2015 16:04:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/algorithm/2015/12/05/Chap2.html</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/algorithm/2015/12/05/Chap2.html</guid>
+        
+        
+        <category>algorithm</category>
+        
+      </item>
     
       <item>
         <title>Chap1: Introduction</title>
@@ -113,22 +392,21 @@
     
       <item>
         <title>Chap0: Begin to learn Data Mining</title>
-        <description>&lt;h2 id=&quot;why-learn-data-mining&quot;&gt;Why learn Data Mining&lt;/h2&gt;
+        <description>&lt;h1 id=&quot;why-learn-data-mining&quot;&gt;Why learn Data Mining&lt;/h1&gt;
 &lt;p&gt;I have to admit that I know nothing about data mining. But it’s the nesessary process in the data science. The occupation need it, the data contest need it. So I’m here.&lt;/p&gt;
 
-&lt;h2 id=&quot;which-material-do-i-choose&quot;&gt;Which material do I choose&lt;/h2&gt;
+&lt;h1 id=&quot;which-material-do-i-choose&quot;&gt;Which material do I choose&lt;/h1&gt;
 &lt;p&gt;I search in zhihu and read some other blogs and several person recommend the «Date Mining: Concepts and Techniques» by Jiawei Han. It has updated to third edition and after reading the preface and chap1, I really believe it is what I want.&lt;/p&gt;
 
-&lt;h2 id=&quot;which-chaps-will-i-learn&quot;&gt;Which chaps will I learn&lt;/h2&gt;
+&lt;h1 id=&quot;which-chaps-will-i-learn&quot;&gt;Which chaps will I learn&lt;/h1&gt;
 &lt;p&gt;I’m in a DataCastle contest, and need to know classification urgently. So I will just pick these chaps to learn first.
 * chap1 - Introduction
 * chap2 - Getting to Know your Data
 * Chap8 - Classification: Basic Concepts
 * Chap9 - Classification: Advanced Methods&lt;/p&gt;
 
-&lt;h2 id=&quot;how-long-to-take&quot;&gt;How long to take&lt;/h2&gt;
+&lt;h1 id=&quot;how-long-to-take&quot;&gt;How long to take&lt;/h1&gt;
 &lt;p&gt;I plan to briefly read the chaps in this week, and take another week to practice with R or python.&lt;/p&gt;
-
 </description>
         <pubDate>Thu, 03 Dec 2015 07:15:00 +0800</pubDate>
         <link>http://anyinlover.github.io/algorithm/2015/12/03/Chap0.html</link>
@@ -661,21 +939,6 @@ here&lt;/li&gt;
         
         
         <category>productivity</category>
-        
-      </item>
-    
-      <item>
-        <title>I&#39;m in</title>
-        <description>&lt;p&gt;This is the first day I move in the github pages. It take me several hours to finish the prepration. But I&#39;m here anyway~&lt;/p&gt;
-
-&lt;p&gt;The pages are designed to record my self-study way to the data scientist. It&#39;s hard and I wish I will get the goal.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 29 Nov 2015 15:43:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/non-tech/2015/11/29/Im-in.html</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/non-tech/2015/11/29/Im-in.html</guid>
-        
-        
-        <category>non-tech</category>
         
       </item>
     
