@@ -82,7 +82,7 @@ MathJax.Hub.Config({
 <div class="content">
     <h2 id="what-is-jekyll">What is Jekyll</h2>
 <blockquote>
-  <p>Jekyll is a simple, blog-aware, static site generator. It takes a template directory containing raw text files in various formats, runs it through a converter (like Markdown) and our Liquid renderer, and spits out a complete, ready-to-publish static website suitable for serving with your favorite web server. </p>
+  <p>Jekyll is a simple, blog-aware, static site generator. It takes a template directory containing raw text files in various formats, runs it through a converter (like Markdown) and our Liquid renderer, and spits out a complete, ready-to-publish static website suitable for serving with your favorite web server.</p>
 </blockquote>
 
 <h2 id="how-to-install">How to install</h2>
@@ -102,6 +102,21 @@ MathJax.Hub.Config({
 <p>Then open the 0.0.0.0:4000 in a web browser, you’ll find your blogs.</p>
 
 <p>Use git and push it to the github, you’ll read your blogs in the Internet like <a href="anyinlover.github.io">Anyinlovr’s blog</a>.</p>
+
+<h2 id="use-mathjax-in-kramdown">Use mathjax in Kramdown</h2>
+<p>In <code>_include/header.html</code>, add following lines:</p>
+
+<pre><code>&lt;script type="text/x-mathjax-config"&gt;
+MathJax.Hub.Config({
+                tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+                        });
+&lt;/script&gt;
+&lt;script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;
+&lt;/script&gt;
+</code></pre>
+
+<p>Use a pair of $$ in the md file to express latex math.</p>
 
 </div>
 

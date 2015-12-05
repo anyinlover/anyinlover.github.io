@@ -6,8 +6,8 @@
 </description>
     <link>http://anyinlover.github.io/</link>
     <atom:link href="http://anyinlover.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 06 Dec 2015 00:37:07 +0800</pubDate>
-    <lastBuildDate>Sun, 06 Dec 2015 00:37:07 +0800</lastBuildDate>
+    <pubDate>Sun, 06 Dec 2015 01:07:15 +0800</pubDate>
+    <lastBuildDate>Sun, 06 Dec 2015 01:07:15 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -218,7 +218,7 @@ d(i,j) = |x_{i1} - x_{j1}| + |x_{i2} - x_{j2}| + \dots + |x_{ip} - x_{jp}|
   &lt;li&gt;Non-negativity: &lt;script type=&quot;math/tex&quot;&gt; d(i,j) \geq 0 &lt;/script&gt;&lt;/li&gt;
   &lt;li&gt;Identity of indiscernibles: &lt;script type=&quot;math/tex&quot;&gt; d(i,i) = 0 &lt;/script&gt;&lt;/li&gt;
   &lt;li&gt;Symmetry: d(i,j) = d(j,i)&lt;/li&gt;
-  &lt;li&gt;Triangle inequality: d(i,j) \leq d(i,k) + d(k,j)&lt;/li&gt;
+  &lt;li&gt;Triangle inequality: &lt;script type=&quot;math/tex&quot;&gt;d(i,j) \leq d(i,k) + d(k,j)&lt;/script&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;minkowski-distance&quot;&gt;Minkowski distance&lt;/h3&gt;
@@ -252,17 +252,14 @@ d(i,j) = \frac{\sum_{f=1}^{p} \delta_{ij}^{(f)} d_{ij}^{(f)}}
 &lt;/script&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;table&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;&lt;em&gt;f&lt;/em&gt; is numeric: $$d_{ij}^{(f)} = \frac{&lt;/td&gt;
-          &lt;td&gt;x&lt;em&gt;{if} - x&lt;/em&gt;{jf}&lt;/td&gt;
-          &lt;td&gt;}{\max_hx&lt;em&gt;{hf} - \min_hx&lt;/em&gt;{hf}}$$&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;f&lt;/em&gt; is numeric:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+d_{ij}^{(f)} = \frac{|x_{if}-x_{jf}|}{\max_{h} x_{hf} - \min_{h} x_{hf}}
+&lt;/script&gt;
+
+&lt;ul&gt;
   &lt;li&gt;&lt;em&gt;f&lt;/em&gt; is nominal or binary: &lt;script type=&quot;math/tex&quot;&gt;d_{ij}^{(f)} = 0&lt;/script&gt; if &lt;script type=&quot;math/tex&quot;&gt;x_{if} = x_{jf}&lt;/script&gt;; otherwise, &lt;script type=&quot;math/tex&quot;&gt;d_{ij}^{(f)} = 1&lt;/script&gt;&lt;/li&gt;
   &lt;li&gt;&lt;em&gt;f&lt;/em&gt; is ordinal: &lt;script type=&quot;math/tex&quot;&gt;
 z_{if} = \frac{r_{if} - 1}{M_f - 1}&lt;/script&gt;&lt;/li&gt;
@@ -478,7 +475,7 @@ sim(x,y) = \frac{x \cdot y}{x \cdot x + y \cdot y - x \cdot y}
         <title>Jekyll basic usage</title>
         <description>&lt;h2 id=&quot;what-is-jekyll&quot;&gt;What is Jekyll&lt;/h2&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;Jekyll is a simple, blog-aware, static site generator. It takes a template directory containing raw text files in various formats, runs it through a converter (like Markdown) and our Liquid renderer, and spits out a complete, ready-to-publish static website suitable for serving with your favorite web server. &lt;/p&gt;
+  &lt;p&gt;Jekyll is a simple, blog-aware, static site generator. It takes a template directory containing raw text files in various formats, runs it through a converter (like Markdown) and our Liquid renderer, and spits out a complete, ready-to-publish static website suitable for serving with your favorite web server.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;how-to-install&quot;&gt;How to install&lt;/h2&gt;
@@ -498,6 +495,21 @@ sim(x,y) = \frac{x \cdot y}{x \cdot x + y \cdot y - x \cdot y}
 &lt;p&gt;Then open the 0.0.0.0:4000 in a web browser, you’ll find your blogs.&lt;/p&gt;
 
 &lt;p&gt;Use git and push it to the github, you’ll read your blogs in the Internet like &lt;a href=&quot;anyinlover.github.io&quot;&gt;Anyinlovr’s blog&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;use-mathjax-in-kramdown&quot;&gt;Use mathjax in Kramdown&lt;/h2&gt;
+&lt;p&gt;In &lt;code&gt;_include/header.html&lt;/code&gt;, add following lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;script type=&quot;text/x-mathjax-config&quot;&amp;gt;
+MathJax.Hub.Config({
+                tex2jax: {inlineMath: [[&#39;$&#39;,&#39;$&#39;], [&#39;\\(&#39;,&#39;\\)&#39;]]}
+                        });
+&amp;lt;/script&amp;gt;
+&amp;lt;script type=&quot;text/javascript&quot;
+src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&amp;gt;
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Use a pair of $$ in the md file to express latex math.&lt;/p&gt;
 </description>
         <pubDate>Wed, 02 Dec 2015 20:03:00 +0800</pubDate>
         <link>http://anyinlover.github.io/productivity/2015/12/02/Jekyll-usage.html</link>

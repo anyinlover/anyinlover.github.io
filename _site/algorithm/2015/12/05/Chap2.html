@@ -286,7 +286,7 @@ d(i,j) = |x_{i1} - x_{j1}| + |x_{i2} - x_{j2}| + \dots + |x_{ip} - x_{jp}|
   <li>Non-negativity: <script type="math/tex"> d(i,j) \geq 0 </script></li>
   <li>Identity of indiscernibles: <script type="math/tex"> d(i,i) = 0 </script></li>
   <li>Symmetry: d(i,j) = d(j,i)</li>
-  <li>Triangle inequality: d(i,j) \leq d(i,k) + d(k,j)</li>
+  <li>Triangle inequality: <script type="math/tex">d(i,j) \leq d(i,k) + d(k,j)</script></li>
 </ul>
 
 <h3 id="minkowski-distance">Minkowski distance</h3>
@@ -320,17 +320,14 @@ d(i,j) = \frac{\sum_{f=1}^{p} \delta_{ij}^{(f)} d_{ij}^{(f)}}
 </script>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td><em>f</em> is numeric: $$d_{ij}^{(f)} = \frac{</td>
-          <td>x<em>{if} - x</em>{jf}</td>
-          <td>}{\max_hx<em>{hf} - \min_hx</em>{hf}}$$</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li><em>f</em> is numeric:</li>
+</ul>
+
+<script type="math/tex; mode=display">
+d_{ij}^{(f)} = \frac{|x_{if}-x_{jf}|}{\max_{h} x_{hf} - \min_{h} x_{hf}}
+</script>
+
+<ul>
   <li><em>f</em> is nominal or binary: <script type="math/tex">d_{ij}^{(f)} = 0</script> if <script type="math/tex">x_{if} = x_{jf}</script>; otherwise, <script type="math/tex">d_{ij}^{(f)} = 1</script></li>
   <li><em>f</em> is ordinal: <script type="math/tex">
 z_{if} = \frac{r_{if} - 1}{M_f - 1}</script></li>
