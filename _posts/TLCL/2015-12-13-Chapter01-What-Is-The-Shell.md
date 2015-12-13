@@ -5,7 +5,7 @@ date: 2015-12-13
 categories: system
 ---
 
->* date - Display the current time and date
+* date - Display the current time and date
 * cal - Display a calendar of the current month
 * df - Display the free space of disk drives
 * free - Display the free memory
@@ -38,22 +38,23 @@ Left-arrow, Right-arrow
 
 Display the current time and date
 
-	date
+		date
 
 Display a calendar of the current month
 
-	cal
+		cal
 
 Display the free space of disk drives
 
-	df
+		df
 
 Display the free memory
 
-	free
+		free
 
 #Ending A Terminal Session
-	exit
+
+		exit
 
 *The Console Behind The Curtain*
 

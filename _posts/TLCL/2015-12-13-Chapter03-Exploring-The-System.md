@@ -5,7 +5,7 @@ date: 2015-12-13
 categories: system
 ---
 
->* ls - List the files and directories in current working directory
+* ls - List the files and directories in current working directory
 * file - Determine a file's type with file
 * less - View file contents
 
@@ -13,20 +13,20 @@ categories: system
 
 specify multiple directories
 
-  ls ~ /usr
+    ls ~ /usr
 
 ## Options And Arguments
 
-  command -options arguments
+    command -options arguments
 
 short options and long options
 
-  ls -lt --reverse
+    ls -lt --reverse
 
 *Common ls Options*
 
 |Option   |    Long Option   |Description|
-| :------:| :-----------:| :------ |
+| :------| :-----------| :------ |
 | -a| --all     |  List all files  |
 | -A| --almost-all | Like -a except not list . and ..|
 |-d|--directory    |Use with -l to see detail about the directory|
@@ -40,12 +40,12 @@ short options and long options
 
 ## A Longer Look At Long Format
 
-  -rw-r--r-- 1 root root 32059 2007-04-03 11:05 oo-cd-cover.odf
+    -rw-r--r-- 1 root root 32059 2007-04-03 11:05 oo-cd-cover.odf
 
 *Is Long Listing Fields*
 
 |Field|Meaning|
-|:---:|:-----|
+|:---|:-----|
 |`-rw-r--r--`|Access rights to the file|
 |`1`|File's number of hard links|
 |`root`|The username of the file's owner|
@@ -56,20 +56,20 @@ short options and long options
 
 # Determining A File's Type With file
 
-  file filename
+    file filename
 
-  file picture.jpg
+    file picture.jpg
 
 # Viewing File Contents With less
 
-  less filename
+    less filename
 
-  less /etc/passwd
+    less /etc/passwd
 
 *less Commands*
 
 |Command|Action|
-|:------:|:----|
+|:------|:----|
 |Page Up or b|Scroll back one page|
 |Page Down or space|Scroll forward one page|
 |Up Arrow|Scroll up one line|
@@ -89,7 +89,7 @@ short options and long options
 *Directories Found On Linux Systems*
 
 |Directory|Comments|
-|:-----:|:------|
+|:-----|:------|
 |/|The root directory|
 |/bin|Contains binaries that must be present to boot and run|
 |/boot|Contains the Linux kernel, initial RAM and the boot loader|
@@ -108,7 +108,7 @@ short options and long options
 |/usr|Contains all the programs and support files used by regular users|
 |/usr/bin|Contains the executable programs installed by Linux distribution|
 |/usr/lib| The shared libraries for the programs in /usr/bin|
-|/usr/local| Contain programs compliled from source code|
+|/usr/local| Contain programs complied from source code|
 |/usr/sbin| Contains more system administration programs|
 |/usr/share|Contains all the shared data used by programs in /usr/bin|
 |/usr/share/doc|Contains package documentations|
@@ -117,7 +117,7 @@ short options and long options
 
 # Symbolic Links
 
-  lrwxrwxrwx 1 root root 11 2007-08-11 07:34 libc. so. 6 -> libc-2.6.so
+    lrwxrwxrwx 1 root root 11 2007-08-11 07:34 libc. so. 6 -> libc-2.6.so
 
 # Hard Links
 A second type of link

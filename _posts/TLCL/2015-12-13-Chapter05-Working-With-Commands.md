@@ -5,7 +5,7 @@ date: 2015-12-13
 categories: system
 ---
 
->* type - Display a command's type
+* type - Display a command's type
 * which - Display an executable's location
 * help - Get help for shell builtins
 * --help - Display usage information for an executable
@@ -26,30 +26,30 @@ categories: system
 
 ## type - Display A Command's Type
 
-  type command
+    type command
 
 ## which - Display An Executable's Location
 
-  which ls
+    which ls
 
 # Getting A Command's Documentation
 
 ## help - Get Help For Shell Builtins
 
-  help cd
+    help cd
 
 ## --help - Display Usage Information
 
-  mkdir --help
+    mkdir --help
 
 ## man - Display A Program's Manual Page
 
-  man ls
+    man ls
 
 *Man Page Organization*
 
 |Section|Contents|
-|:-----:|:------|
+|:-----|:------|
 |1|User commands|
 |2|Programming interfaces kernel system calls|
 |3|Programming interfaces to the C library|
@@ -59,26 +59,26 @@ categories: system
 |7|Miscellaneous|
 |8|System administration commands|
 
-  man section search_term
+    man section search_term
 
-  man 5 passwd
+    man 5 passwd
 
 ## apropos - Display Appropriate Commands
 
-  apropos floppy
+    apropos floppy
 
 ## whatis - Display A Very Brief Description Of A Command
 
-  whatis ls
+    whatis ls
 
 ## info - Display A GNU Program's Info Entry
 
-  info coreutils
+    info coreutils
 
 *info Commands*
 
 |Command|Action|
-|:----:|:----|
+|:----|:----|
 |?|Display command help|
 |PgUp or Backspace|Display previous page|
 |PgDn or Space|Display next page|
@@ -96,20 +96,20 @@ Files end with ".gz" can be opened by zless.
 
 put more than one command on a line by ;
 
-  command1; command2; command3...
+    command1; command2; command3...
 
-`cd /usr; ls; cd -`
+    cd /usr; ls; cd -
 
 Create an alias
 
-`alias name='string'`
+    alias name='string'
 
-`alias foo='cd /usr; ls; cd -'`
+    alias foo='cd /usr; ls; cd -'
 
 Remove an alias
 
-`unalias foo`
+    unalias foo
 
 See all the aliases defined in the environment
 
-`alias`
+    alias

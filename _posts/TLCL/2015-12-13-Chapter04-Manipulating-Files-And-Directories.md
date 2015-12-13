@@ -5,7 +5,7 @@ date: 2015-12-13
 categories: system
 ---
 
->* mkdir - Create directories
+* mkdir - Create directories
 * cp - Copy files and directories
 * mv - Move and rename files
 * rm - Remove files and directories
@@ -16,7 +16,7 @@ categories: system
 *Wildcard*
 
 |Wildcard|Meaning|
-|:-----:|:-----|
+|:-----|:-----|
 |*|Matches any characters|
 |?|Matches any single character|
 |[characters]|Matches any character that is a member of the set characters|
@@ -26,7 +26,7 @@ categories: system
 *Commonly Used Character Classes*
 
 |Character Class|Meaning|
-|:---:|:---:|
+|:---|:---:|
 |[:alnum:]| Matches any alphanumeric character|
 |[:alpha:]|Matches any alphabetic character|
 |[:digit:]|Matches any numeral|
@@ -36,7 +36,7 @@ categories: system
 *Wildcard Examples*
 
 |Pattern|Matches|
-|:----:|:-----|
+|:----|:-----|
 |*|All files|
 |g*|Any file beginning with "g"|
 |b*.txt|Any file beginning with "b" followed by any characters and ending with ".txt"|
@@ -49,19 +49,19 @@ categories: system
 
 # mkdir - Create Directories
 
-  mkdir directory ...
+    mkdir directory ...
 
 * When three periods follow an argument, it means the argument can be repeated
 
-  mkdir dir1
+    mkdir dir1
 
-  mkdir dir1 dir2 dir3
+    mkdir dir1 dir2 dir3
 
 # cp - Copy Files And Directories
 
 copy the single file or directory to file or directory
 
-  cp item1 item2
+    cp item1 item2
 
 copy multiple items(either files or directories) into a directory
 
@@ -70,7 +70,7 @@ copy multiple items(either files or directories) into a directory
 *cp Options*
 
 |Option|Meaning|
-|:---:|:---|
+|:---|:---|
 |-a, --archive|Copy the files and directories and all of their attributes|
 |-i, --interactive|Before overwriting an existing file, prompt the user for confirmation|
 |-r, --recursive|Recursively copy directories and their contents|
@@ -80,7 +80,7 @@ copy multiple items(either files or directories) into a directory
 *cp Examples*
 
 |Command|Results|
-|:----:|:----|
+|:----|:----|
 |cp file1 file2| If file2 exists, overwrite. Not exist, create|
 |cp -i file1 file2|Same as above, except prompt before overwrite|
 |cp file1 file2 dir1| Copy file1 and file2 into dir1|
@@ -90,17 +90,17 @@ copy multiple items(either files or directories) into a directory
 # mv - Move And Rename Files
 move or rename file or directory "item1" to "item2"
 
-  mv item1 item2
+    mv item1 item2
 move one or more items from one directory to another
 
-  mv item... directory
+    mv item... directory
 
 ## Useful Options And Examples
 
 *mc Options*
 
 |Option|Meaning|
-|:----:|:----|
+|:----|:----|
 |-i, --interactive| Before overwriting an existing file, prompt the user for confirmation|
 |-u, --update|Only move files that either don't exist, or are newer|
 |-v, --verbose| Display informative messages as the move is performed|
@@ -108,7 +108,7 @@ move one or more items from one directory to another
 *mv Examples*
 
 |Command|Results|
-|:-----:|:-----|
+|:-----|:-----|
 |mv file1 file2|If file2 exists, overwrite. Not exist, create|
 |mv -i file1 file2|Same as above, except prompt before overwrite|
 |mv file1 file2 dir1| Move file1 and file2 into dir1|
@@ -117,14 +117,15 @@ move one or more items from one directory to another
 # rm - Remove Files And Directories
 
 romove files and directories
-  rm item...
+
+    rm item...
 
 ## Useful Options And Examples
 
 *rm Options*
 
 |Option|Meaning|
-|:-----:|:-----|
+|:-----|:-----|
 |-i, --interactive| Before deleting an existing file, prompt the user for confirmation|
 |-r, --recursive| Recursively delete directories|
 |-f, --force|Ignore nonexisten files and do not prompt, overrides the -i option|
@@ -133,7 +134,7 @@ romove files and directories
 *rm Examples*
 
 |Command| Results|
-|:----:|:----|
+|:----|:----|
 |rm file1|Delete file1 silently|
 |rm -i file1| Same as above, except prompt before overwrite|
 |rm -r file1 dir1| Delete file1 and dir1 and its contents|
@@ -146,11 +147,11 @@ romove files and directories
 
 Create a hard link
 
-  ln file link
+    ln file link
 
 Create a symbolic link
 
-  ln -s item link
+    ln -s item link
 
 # Hard Links
 
@@ -160,7 +161,7 @@ Two limitations:
 
 Hard Link file has the same inode as the file, `-i`option can reveal inode information
 
-  ls -li
+    ls -li
 
 ## Symbolic Links
 
