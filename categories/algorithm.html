@@ -1,5 +1,0 @@
----
-layout: category
-category: algorithm
-permalink: /categories/algorithm/
----
