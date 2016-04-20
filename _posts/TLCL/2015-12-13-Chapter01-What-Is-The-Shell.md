@@ -1,8 +1,13 @@
 ---
 layout: post
 title: "Chapter 01 - What Is The Shell?"
+subtitle: "Linux命令行第一讲"
 date: 2015-12-13
-categories: system
+author: "Anyinlover"
+catalog: true
+tags:
+  - Linux
+  - Linux命令行
 ---
 
 * date - Display the current time and date
@@ -16,25 +21,25 @@ Shell is a program that takes keyboard commands and passes them to the operating
 
 > bash: Bourne Again Shell, an replacement of sh
 
-# Terminal Emulators
+## Terminal Emulators
 Give us access to the shell
 
-# Your First Keystrokes
+## Your First Keystrokes
 Shell prompt: [me@linuxbox ~]$
 
 if the last character is #, show it has superuser privileges
 
-## Command History
+### Command History
 up-arrow, down-arrow
 
-## Cursor Movement
+### Cursor Movement
 Left-arrow, Right-arrow
 
 * Highlight text by holding down the left mouse button and dragging down the mouse or double clicking on a word, it is copied into a buffer, pressing the middle mouse button to paste it.
 
 * "Click to focus" and "focus follows mouse"
 
-# Try Some Simple Commands
+## Try Some Simple Commands
 
 Display the current time and date
 
@@ -52,7 +57,7 @@ Display the free memory
 
 		free
 
-#Ending A Terminal Session
+## Ending A Terminal Session
 
 		exit
 

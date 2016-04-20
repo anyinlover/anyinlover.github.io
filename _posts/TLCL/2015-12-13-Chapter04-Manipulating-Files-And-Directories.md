@@ -1,8 +1,13 @@
 ---
 layout: post
 title: "Chapter 04 - Manipulating Files and Directories"
+subtitle: "Linux命令行第四讲"
 date: 2015-12-13
-categories: system
+author: "Anyinlover"
+catalog: true
+tags:
+  - Linux
+  - Linux命令行
 ---
 
 * mkdir - Create directories
@@ -11,7 +16,7 @@ categories: system
 * rm - Remove files and directories
 * ln - Create links
 
-# Wildcards
+## Wildcards
 
 *Wildcard*
 
@@ -47,7 +52,7 @@ categories: system
 |[![:digit:]]*| Any file not beginning with a numeral|
 |*[[:lower:]123]| Any file ending with a lowercase letter or the numerals "1", "2", "3"|
 
-# mkdir - Create Directories
+## mkdir - Create Directories
 
     mkdir directory ...
 
@@ -57,7 +62,7 @@ categories: system
 
     mkdir dir1 dir2 dir3
 
-# cp - Copy Files And Directories
+## cp - Copy Files And Directories
 
 copy the single file or directory to file or directory
 
@@ -65,7 +70,7 @@ copy the single file or directory to file or directory
 
 copy multiple items(either files or directories) into a directory
 
-## Useful Options And Examples
+### Useful Options And Examples
 
 *cp Options*
 
@@ -87,7 +92,7 @@ copy multiple items(either files or directories) into a directory
 |cp dir1/* dir2| Copy all the files in dir1 into dir2|
 |cp -r dir1 dir2| If dir2 exist, Copy dir1(and its contents)into dir2. If not, create a dir2 contain same contents as dir1|
 
-# mv - Move And Rename Files
+## mv - Move And Rename Files
 move or rename file or directory "item1" to "item2"
 
     mv item1 item2
@@ -95,7 +100,7 @@ move one or more items from one directory to another
 
     mv item... directory
 
-## Useful Options And Examples
+### Useful Options And Examples
 
 *mc Options*
 
@@ -114,13 +119,13 @@ move one or more items from one directory to another
 |mv file1 file2 dir1| Move file1 and file2 into dir1|
 |mv -r dir1 dir2| If dir2 exist, Move dir1(and its contents)into dir2. If not, create a dir2 contain same contents as dir1|
 
-# rm - Remove Files And Directories
+## rm - Remove Files And Directories
 
 romove files and directories
 
     rm item...
 
-## Useful Options And Examples
+### Useful Options And Examples
 
 *rm Options*
 
@@ -143,7 +148,7 @@ romove files and directories
 * Be Careful With rm!
 * A useful tip: use ls before rm
 
-## In - Create Links
+### In - Create Links
 
 Create a hard link
 
@@ -153,7 +158,7 @@ Create a symbolic link
 
     ln -s item link
 
-# Hard Links
+## Hard Links
 
 Two limitations:
 1. Cannot reference a file outside its own file system
@@ -163,11 +168,11 @@ Hard Link file has the same inode as the file, `-i`option can reveal inode infor
 
     ls -li
 
-## Symbolic Links
+### Symbolic Links
 
 Broken link: The file is deleted before the symbolic link
 
-# Let's Build A Playground
+## Let's Build A Playground
 
 See the << The Linux Command Line >>
 

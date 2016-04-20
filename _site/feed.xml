@@ -1,956 +1,1679 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>A way to Data Scientist</title>
-    <description>Find a way to become a data scientist by self-study.
-</description>
+    <title>Anyinlover Blog</title>
+    <description>在这里探索数据，发现真理</description>
     <link>http://anyinlover.github.io/</link>
-    <atom:link href="http://anyinlover.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 06 Dec 2015 01:07:15 +0800</pubDate>
-    <lastBuildDate>Sun, 06 Dec 2015 01:07:15 +0800</lastBuildDate>
+    <atom:link href="http://anyinlover.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 20 Apr 2016 22:32:51 +0800</pubDate>
+    <lastBuildDate>Wed, 20 Apr 2016 22:32:51 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
-        <title>Chap2: Getting to Know Your Data</title>
-        <description>&lt;h1 id=&quot;data-objects-and-attribute-types&quot;&gt;Data Objects and Attribute Types&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Nominal Attributes&lt;/li&gt;
-  &lt;li&gt;Binary Attributes&lt;/li&gt;
-  &lt;li&gt;Ordinal Attributes&lt;/li&gt;
-  &lt;li&gt;Numeric Attributes
-    &lt;ul&gt;
-      &lt;li&gt;Interval-Scaled Attributes&lt;/li&gt;
-      &lt;li&gt;Ratio-Scaled Attributes&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;basic-statistical-descriptions-of-data&quot;&gt;Basic Statistical Descriptions of Data&lt;/h1&gt;
-
-&lt;h2 id=&quot;measuring-the-central-tendency&quot;&gt;Measuring the Central Tendency&lt;/h2&gt;
-
-&lt;h3 id=&quot;mean&quot;&gt;Mean&lt;/h3&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\bar{x} = \frac{\displaystyle\sum_{i=1}^{N} x_i}{N} =\frac{x_1+x_2+\dots+x_N}{N}
-&lt;/script&gt;
-
-&lt;h3 id=&quot;median&quot;&gt;Median&lt;/h3&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-median = L_1 + \left(\frac{N/2-(\sum freq)_l}{freq_{median}}\right)width
-&lt;/script&gt;
-
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;L_1&lt;/script&gt; is the lower boundary of the median interval.&lt;/p&gt;
-
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;N&lt;/script&gt; is the number of values in the entire data set.&lt;/p&gt;
-
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;(\sum freq)_l&lt;/script&gt; is the sum of the frequencies of all of the intervals that lower than the median interval.&lt;/p&gt;
-
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;freq_{median}&lt;/script&gt; is the frequency of the median interval.
-&lt;script type=&quot;math/tex&quot;&gt;width&lt;/script&gt; is the width of the median interval.&lt;/p&gt;
-
-&lt;h3 id=&quot;mode&quot;&gt;Mode&lt;/h3&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-mean - mode \approx 3 \times (mean - median)
-&lt;/script&gt;
-
-&lt;p&gt;Applied to unimodal numeric data that are moderately skewed (asymmetrical).&lt;/p&gt;
-
-&lt;h3 id=&quot;midrange&quot;&gt;Midrange&lt;/h3&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-midrange = \frac{\max()+\min()}{2}
-&lt;/script&gt;
-
-&lt;h2 id=&quot;measuring-the-dispersion-of-data&quot;&gt;Measuring the Dispersion of Data&lt;/h2&gt;
-
-&lt;h3 id=&quot;range-quartiles-and-interquartile-range&quot;&gt;Range, Quartiles, and Interquartile Range&lt;/h3&gt;
-&lt;p&gt;#### Range
-The difference between the largest and smallest values.&lt;/p&gt;
-
-&lt;h4 id=&quot;quantiles&quot;&gt;Quantiles&lt;/h4&gt;
-&lt;p&gt;The points taken at regular intervals of a data distribution.&lt;/p&gt;
-
-&lt;h4 id=&quot;quartiles&quot;&gt;quartiles&lt;/h4&gt;
-&lt;p&gt;The 4-quantiles&lt;/p&gt;
-
-&lt;h4 id=&quot;interquartile-range&quot;&gt;Interquartile range&lt;/h4&gt;
-&lt;p&gt;The distance between the first and third quartiles.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-IQR = Q_3 - Q_1
-&lt;/script&gt;
-
-&lt;h3 id=&quot;five-number-summary-boxplots-and-outliers&quot;&gt;Five-Number Summary, Boxplots, and Outliers&lt;/h3&gt;
-
-&lt;h4 id=&quot;five-number-summary&quot;&gt;Five-Number Summary&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-Minimum, Q_1, Median, Q_3, Maximum
-&lt;/script&gt;
-
-&lt;h4 id=&quot;boxplots&quot;&gt;Boxplots&lt;/h4&gt;
-&lt;p&gt;A way of visulizing a distribution using Five-Number Summary.&lt;/p&gt;
-
-&lt;h4 id=&quot;outliers&quot;&gt;Outliers&lt;/h4&gt;
-&lt;p&gt;The whiskers are extended to &lt;script type=&quot;math/tex&quot;&gt;1.5 \times IQR&lt;/script&gt; of the quartiles. Others are Outliers and plotted individually.&lt;/p&gt;
-
-&lt;h3 id=&quot;variance-and-standard-deviation&quot;&gt;Variance and Standard Deviation&lt;/h3&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\sigma^2 = \frac{1}{N}\sum_{i=1}^{N} (x_i - \bar{x})^2 =
-\left(\frac{1}{N}\sum_{i=1}^{N} x_i^2\right) - \bar{x}^2
-&lt;/script&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;\sigma&lt;/script&gt; meassures spread about the mean and should be considered onlu when the mean is chosen as the measure of center.&lt;/li&gt;
-  &lt;li&gt;Using Chebyshev’s inequality show that at least &lt;script type=&quot;math/tex&quot;&gt;(1-\frac{1}{k^2}) \times 100\% &lt;/script&gt; of the obesrvations are no more than &lt;em&gt;k&lt;/em&gt; standard deviations from the mean.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;graphic-display-of-basic-statistical-description-of-data&quot;&gt;Graphic Display of Basic Statistical Description of Data&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Quantile plot&lt;/li&gt;
-  &lt;li&gt;Quantile-Quantile plot&lt;/li&gt;
-  &lt;li&gt;Histograms&lt;/li&gt;
-  &lt;li&gt;Scatter plot&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;data-visualization&quot;&gt;Data Visualization&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Pixel-Oriented Visualization Techniques&lt;/li&gt;
-  &lt;li&gt;Geometric Projection Visualization Techniques&lt;/li&gt;
-  &lt;li&gt;Icon-Based Visualization Techniques&lt;/li&gt;
-  &lt;li&gt;Hierarchical Visualization Techniques&lt;/li&gt;
-  &lt;li&gt;Tag cloud and tree-map&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;measuring-data-similarity-and-dissimilarity&quot;&gt;Measuring Data Similarity and Dissimilarity&lt;/h1&gt;
-
-&lt;h2 id=&quot;data-matrix-versus-dissimilarity-matrix&quot;&gt;Data Matrix versus Dissimilarity Matrix&lt;/h2&gt;
-
-&lt;p&gt;Data Matrix&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{bmatrix}
-  x_{11} &amp; \dots &amp; x_{1f} &amp; \dots &amp; x_{1p} \\
-  \dots  &amp; \dots &amp; \dots  &amp; \dots &amp; \dots \\
-  x_{i1} &amp; \dots &amp; x_{if} &amp; \dots &amp; x_{ip} \\
-  \dots  &amp; \dots &amp; \dots  &amp; \dots &amp; \dots \\
-  x_{n1} &amp; \dots &amp; x_{nf} &amp; \dots &amp; x_{np}
-\end{bmatrix}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;Dissimilarity Matrix&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{bmatrix}
-  0 \\
-  d(2,1) &amp; 0 \\
-  d(3,1) &amp; d(3,2) &amp; 0 \\
-  \vdots &amp; \vdots &amp; \vdots \\
-  d(n,1) &amp; d(n,2) &amp; \dots &amp; \dots &amp; 0
-\end{bmatrix}
- %]]&gt;&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-sim(i,j) = 1 - d(i,j)
-&lt;/script&gt;
-
-&lt;h2 id=&quot;proximity-measures-for-nominal-attributes&quot;&gt;Proximity Measures for Nominal Attributes&lt;/h2&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-d(i,j) = \frac{p-m}{p}
-&lt;/script&gt;
-
-&lt;p&gt;&lt;em&gt;m&lt;/em&gt; is the number of matches
-&lt;em&gt;p&lt;/em&gt; is the total number of attributes&lt;/p&gt;
-
-&lt;h2 id=&quot;proximity-measures-for-binary-attributes&quot;&gt;Proximity Measures for Binary Attributes&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;q: (i,j) = (1,1)&lt;/li&gt;
-  &lt;li&gt;r: (i,j) = (1,0)&lt;/li&gt;
-  &lt;li&gt;s: (i,j) = (0,1)&lt;/li&gt;
-  &lt;li&gt;t: (i,j) = (0,0)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Symmetric Binary Dissimilarity&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-d(i,j) = \frac{r+s}{q+r+s+t}
-&lt;/script&gt;
-
-&lt;p&gt;Asymmetric Binary Dissimilarity&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-d(i,j) = \frac{r+s}{q+r+s}
-&lt;/script&gt;
-
-&lt;h2 id=&quot;dissimilarity-of-numeric-data&quot;&gt;Dissimilarity of Numeric Data&lt;/h2&gt;
-
-&lt;h3 id=&quot;euclidean-distance&quot;&gt;Euclidean distance&lt;/h3&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-d(i,j) = \sqrt{(x_{i1} - x_{j1})^2 + (x_{i2}-x_{j2})^2
-+ \dots + (x_{ip}-x_{jp})^2}
-&lt;/script&gt;
-
-&lt;p&gt;Weighted Euclidean distance&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-d(i,j) = \sqrt{\omega_1(x_{i1} - x_{j1})^2 + \omega_2(x_{i2}-x_{j2})^2
-+ \dots + \omega_m(x_{ip}-x_{jp})^2}
-&lt;/script&gt;
-
-&lt;h3 id=&quot;manhattan-distance&quot;&gt;Manhattan distance&lt;/h3&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-d(i,j) = |x_{i1} - x_{j1}| + |x_{i2} - x_{j2}| + \dots + |x_{ip} - x_{jp}|
-&lt;/script&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Non-negativity: &lt;script type=&quot;math/tex&quot;&gt; d(i,j) \geq 0 &lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;Identity of indiscernibles: &lt;script type=&quot;math/tex&quot;&gt; d(i,i) = 0 &lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;Symmetry: d(i,j) = d(j,i)&lt;/li&gt;
-  &lt;li&gt;Triangle inequality: &lt;script type=&quot;math/tex&quot;&gt;d(i,j) \leq d(i,k) + d(k,j)&lt;/script&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;minkowski-distance&quot;&gt;Minkowski distance&lt;/h3&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-d(i,j) = \sqrt[h]{|x_{i1} - x_{j1}|^h + |x_{i2}-x_{j2}|^h
-+ \dots + |x_{ip}-x_{jp}|^h}
-&lt;/script&gt;
-
-&lt;h3 id=&quot;supremum-distance-lmax-linfty-norm-chebyshev-distance&quot;&gt;Supremum distance (&lt;script type=&quot;math/tex&quot;&gt;L_{max}&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;L_{\infty}&lt;/script&gt; norm, Chebyshev distance)&lt;/h3&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-d(i,j)  = \lim_{h \to \infty} \left( \sum_{f=1}^{p} |x_{if} - x_{jf}|^h \right)^{\frac{1}{h}} = \max_{f}^{p}|x_{if} - x_{jf}|
-&lt;/script&gt;
-
-&lt;h2 id=&quot;proximity-measures-for-ordinal-attributes&quot;&gt;Proximity Measures for Ordinal Attributes&lt;/h2&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-z_{if} = \frac{r_{if} - 1}{M_f - 1}
-&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-r_{if} \in \{1, \dots, M_f\}
-&lt;/script&gt;
-
-&lt;h2 id=&quot;dissimilarity-for-attributes-of-mixed-types&quot;&gt;Dissimilarity for Attributes of Mixed Types&lt;/h2&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-d(i,j) = \frac{\sum_{f=1}^{p} \delta_{ij}^{(f)} d_{ij}^{(f)}}
-{\sum_{f=1}^{p} \delta_{ij}^{(f)}}
-&lt;/script&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;em&gt;f&lt;/em&gt; is numeric:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-d_{ij}^{(f)} = \frac{|x_{if}-x_{jf}|}{\max_{h} x_{hf} - \min_{h} x_{hf}}
-&lt;/script&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;em&gt;f&lt;/em&gt; is nominal or binary: &lt;script type=&quot;math/tex&quot;&gt;d_{ij}^{(f)} = 0&lt;/script&gt; if &lt;script type=&quot;math/tex&quot;&gt;x_{if} = x_{jf}&lt;/script&gt;; otherwise, &lt;script type=&quot;math/tex&quot;&gt;d_{ij}^{(f)} = 1&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;f&lt;/em&gt; is ordinal: &lt;script type=&quot;math/tex&quot;&gt;
-z_{if} = \frac{r_{if} - 1}{M_f - 1}&lt;/script&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;cosine-similarity&quot;&gt;Cosine Similarity&lt;/h2&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-sim(x,y) = \frac{x^t \cdot y}{\|x\|\|y\|}
-&lt;/script&gt;
-
-&lt;p&gt;A simple variation frequently used in information retrieval and biology taxnomy.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-sim(x,y) = \frac{x \cdot y}{x \cdot x + y \cdot y - x \cdot y}
-&lt;/script&gt;
-</description>
-        <pubDate>Sat, 05 Dec 2015 16:04:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/algorithm/2015/12/05/Chap2.html</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/algorithm/2015/12/05/Chap2.html</guid>
-        
-        
-        <category>algorithm</category>
-        
-      </item>
-    
-      <item>
-        <title>Chap1: Introduction</title>
-        <description>&lt;h1 id=&quot;why-date-mining&quot;&gt;Why Date Mining?&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Moving toward to Information Age&lt;/li&gt;
-  &lt;li&gt;Date Mining as the Evolution of Information Technology
-    &lt;ol&gt;
-      &lt;li&gt;Date Collection and Database Creation&lt;/li&gt;
-      &lt;li&gt;Database Management Systems&lt;/li&gt;
-      &lt;li&gt;Advanced Database Systems &amp;amp; Advanced Data Analysis&lt;/li&gt;
-      &lt;li&gt;Future Generation of Information Systems&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;what-is-data-mining&quot;&gt;What is Data Mining?&lt;/h1&gt;
+        <title>K均值聚类与混合高斯模型</title>
+        <description>&lt;h2 id=&quot;k&quot;&gt;K均值聚类算法&lt;/h2&gt;
+&lt;p&gt;在聚类问题中，我们给定一个训练集&lt;script type=&quot;math/tex&quot;&gt;\{x^{(1)},\cdots,x^{(m)}\}&lt;/script&gt;，标签&lt;script type=&quot;math/tex&quot;&gt;y^{(i)}&lt;/script&gt;没有给出，我们的目标还是把数据分类。这是一个非监督学习问题。&lt;/p&gt;
+
+&lt;p&gt;K均值聚类算法给出了下面的方法：&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Data cleaning&lt;/li&gt;
-  &lt;li&gt;Data integration&lt;/li&gt;
-  &lt;li&gt;Data selection&lt;/li&gt;
-  &lt;li&gt;Data transformation&lt;/li&gt;
-  &lt;li&gt;Data mining&lt;/li&gt;
-  &lt;li&gt;Pattern evaluation&lt;/li&gt;
-  &lt;li&gt;Knowledge presentation&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&quot;what-kinds-of-data-can-be-mined&quot;&gt;What Kinds of Data Can Be Mined?&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Database Data&lt;/li&gt;
-  &lt;li&gt;Data Warehouses&lt;/li&gt;
-  &lt;li&gt;Transactional Data&lt;/li&gt;
-  &lt;li&gt;Other Kinds of Data&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;what-kinds-of-patterns-can-be-mined&quot;&gt;What kinds of Patterns Can Be Mined?&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Class/Concept Description: Characterization and Discrimination&lt;/li&gt;
-  &lt;li&gt;Mining Frequent Patterns, Associations, and Correlations&lt;/li&gt;
-  &lt;li&gt;Classification and Regression for Predictive Analysis&lt;/li&gt;
-  &lt;li&gt;Cluster Analysis&lt;/li&gt;
-  &lt;li&gt;Outlier Analysis&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;An interesting pattern represents knowledge.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;which-technologies-are-used&quot;&gt;Which Technologies Are Used?&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Statics&lt;/li&gt;
-  &lt;li&gt;Machine Learning
-    &lt;ul&gt;
-      &lt;li&gt;Supervised learing&lt;/li&gt;
-      &lt;li&gt;Unsupervised learning&lt;/li&gt;
-      &lt;li&gt;Semi-supervised learning&lt;/li&gt;
-      &lt;li&gt;Active learning&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Database Systems and Data Warehouses&lt;/li&gt;
-  &lt;li&gt;Information Retrieval&lt;/li&gt;
-  &lt;li&gt;Others
-    &lt;ul&gt;
-      &lt;li&gt;Pattern recognition&lt;/li&gt;
-      &lt;li&gt;Visualization&lt;/li&gt;
-      &lt;li&gt;Algorithms&lt;/li&gt;
-      &lt;li&gt;High-performance computing&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;which-kinds-of-applications-are-targeted&quot;&gt;Which Kinds of Applications Are Targeted?&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Business Intelligence&lt;/li&gt;
-  &lt;li&gt;Web Search Engines&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;major-issues-in-data-mining&quot;&gt;Major Issues in Data Mining&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Mining Methodology&lt;/li&gt;
-  &lt;li&gt;User Interaction&lt;/li&gt;
-  &lt;li&gt;Efficiency ans Scalability&lt;/li&gt;
-  &lt;li&gt;Diversity of Dababase Types&lt;/li&gt;
-  &lt;li&gt;Data Mining and Society&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Thu, 03 Dec 2015 08:23:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/algorithm/2015/12/03/Chap1.html</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/algorithm/2015/12/03/Chap1.html</guid>
-        
-        
-        <category>algorithm</category>
-        
-      </item>
-    
-      <item>
-        <title>Chap0: Begin to learn Data Mining</title>
-        <description>&lt;h1 id=&quot;why-learn-data-mining&quot;&gt;Why learn Data Mining&lt;/h1&gt;
-&lt;p&gt;I have to admit that I know nothing about data mining. But it’s the nesessary process in the data science. The occupation need it, the data contest need it. So I’m here.&lt;/p&gt;
-
-&lt;h1 id=&quot;which-material-do-i-choose&quot;&gt;Which material do I choose&lt;/h1&gt;
-&lt;p&gt;I search in zhihu and read some other blogs and several person recommend the «Date Mining: Concepts and Techniques» by Jiawei Han. It has updated to third edition and after reading the preface and chap1, I really believe it is what I want.&lt;/p&gt;
-
-&lt;h1 id=&quot;which-chaps-will-i-learn&quot;&gt;Which chaps will I learn&lt;/h1&gt;
-&lt;p&gt;I’m in a DataCastle contest, and need to know classification urgently. So I will just pick these chaps to learn first.
-* chap1 - Introduction
-* chap2 - Getting to Know your Data
-* Chap8 - Classification: Basic Concepts
-* Chap9 - Classification: Advanced Methods&lt;/p&gt;
-
-&lt;h1 id=&quot;how-long-to-take&quot;&gt;How long to take&lt;/h1&gt;
-&lt;p&gt;I plan to briefly read the chaps in this week, and take another week to practice with R or python.&lt;/p&gt;
-</description>
-        <pubDate>Thu, 03 Dec 2015 07:15:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/algorithm/2015/12/03/Chap0.html</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/algorithm/2015/12/03/Chap0.html</guid>
-        
-        
-        <category>algorithm</category>
-        
-      </item>
-    
-      <item>
-        <title>Git Basic Usage</title>
-        <description>&lt;h2 id=&quot;what-is-git&quot;&gt;What is git&lt;/h2&gt;
-
-&lt;p&gt;One of the Distributed Version Control Systems (DVCSs)&lt;/p&gt;
-
-&lt;h2 id=&quot;how-to-install&quot;&gt;How to install&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;brew install git
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;basic-usage&quot;&gt;Basic usage&lt;/h2&gt;
-
-&lt;h3 id=&quot;start-to-track-a-project&quot;&gt;Start to track a project&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;git init
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;stage-new-files-or-midified-files&quot;&gt;Stage new files or midified files&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;git add filename
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;commit-the-changes&quot;&gt;Commit the changes&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;git commit -m &quot;commit message&quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;check-the-files-status&quot;&gt;Check the files status&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;git status
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;clone-an-existing-repository&quot;&gt;Clone an existing repository&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;git clone https://github.com/anyinlover/anyinlover.github.io
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;pull-from-remote&quot;&gt;Pull from remote&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;git pull
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;push-to-remote&quot;&gt;Push to remote&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;git push origin master
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-        <pubDate>Wed, 02 Dec 2015 20:53:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/productivity/2015/12/02/Git-usage.html</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/productivity/2015/12/02/Git-usage.html</guid>
-        
-        
-        <category>productivity</category>
-        
-      </item>
-    
-      <item>
-        <title>Jekyll basic usage</title>
-        <description>&lt;h2 id=&quot;what-is-jekyll&quot;&gt;What is Jekyll&lt;/h2&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;Jekyll is a simple, blog-aware, static site generator. It takes a template directory containing raw text files in various formats, runs it through a converter (like Markdown) and our Liquid renderer, and spits out a complete, ready-to-publish static website suitable for serving with your favorite web server.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;how-to-install&quot;&gt;How to install&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;gem install jekyll
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Download a favorite theme from &lt;a href=&quot;http://jekyllthemes.org&quot;&gt;jekyllthemes&lt;/a&gt;, and unpack all the files into the github pages directory like &lt;code&gt;~/Documents/anyinlover.github.io&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;basic-usage&quot;&gt;Basic Usage&lt;/h2&gt;
-
-&lt;p&gt;Just write markdown files in _sites, and in the github pages directory input the following command:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;jekyll serve
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then open the 0.0.0.0:4000 in a web browser, you’ll find your blogs.&lt;/p&gt;
-
-&lt;p&gt;Use git and push it to the github, you’ll read your blogs in the Internet like &lt;a href=&quot;anyinlover.github.io&quot;&gt;Anyinlovr’s blog&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;use-mathjax-in-kramdown&quot;&gt;Use mathjax in Kramdown&lt;/h2&gt;
-&lt;p&gt;In &lt;code&gt;_include/header.html&lt;/code&gt;, add following lines:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;script type=&quot;text/x-mathjax-config&quot;&amp;gt;
-MathJax.Hub.Config({
-                tex2jax: {inlineMath: [[&#39;$&#39;,&#39;$&#39;], [&#39;\\(&#39;,&#39;\\)&#39;]]}
-                        });
-&amp;lt;/script&amp;gt;
-&amp;lt;script type=&quot;text/javascript&quot;
-src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&amp;gt;
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Use a pair of $$ in the md file to express latex math.&lt;/p&gt;
-</description>
-        <pubDate>Wed, 02 Dec 2015 20:03:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/productivity/2015/12/02/Jekyll-usage.html</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/productivity/2015/12/02/Jekyll-usage.html</guid>
-        
-        
-        <category>productivity</category>
-        
-      </item>
-    
-      <item>
-        <title>Some concepts about ruby</title>
-        <description>&lt;h2 id=&quot;what-is-ruby&quot;&gt;What is Ruby&lt;/h2&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;what-is-gem&quot;&gt;What is Gem&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Gems are packages similar to Ebuilds. They contain package information along with files to install.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;what-is-rubygems&quot;&gt;What is RubyGems&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;RubyGems is a package manager for the Ruby programming language that provides a standard format for distributing Ruby programs and libraries (in a self-contained format called a “gem”), a tool designed to easily manage the installation of gems, and a server for distributing them. &lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;what-is-ruby-on-rails&quot;&gt;What is Ruby on Rails&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Ruby on Rails, or simply Rails, is a web application framework written in Ruby under MIT License. Rails is a model–view–controller (MVC) framework, providing default structures for a database, a web service, and web pages.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;what-is-bundler&quot;&gt;What is Bundler&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Bundler provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed. &lt;/p&gt;
-
-  &lt;p&gt;Bundler is an exit from dependency hell, and ensures that the gems you need are present in development, staging, and production. &lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Wed, 02 Dec 2015 08:48:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/language/2015/12/02/Concepts-about-ruby.html</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/language/2015/12/02/Concepts-about-ruby.html</guid>
-        
-        
-        <category>language</category>
-        
-      </item>
-    
-      <item>
-        <title>rbenv Basic Usage</title>
-        <description>&lt;h2 id=&quot;what-is-rbenv&quot;&gt;What is rbenv&lt;/h2&gt;
-
-&lt;p&gt;rbenv is used to install and pick a ruby version for your applications.&lt;/p&gt;
-
-&lt;h2 id=&quot;how-to-install&quot;&gt;How to install&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;brew install rbenv ruby-build
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In fact, rbenv is used to pick a ruby version, and ruby-build for install.&lt;/p&gt;
-
-&lt;h2 id=&quot;basic-usage&quot;&gt;Basic usage&lt;/h2&gt;
-
-&lt;h3 id=&quot;install-ruby-versions&quot;&gt;Install Ruby Versions&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;# list all available versions:
-rbenv install -l
-
-# install a Ruby version:
-rbenv install 2.2.3
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;uninstall-ruby-versions&quot;&gt;Uninstall Ruby Versions&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;rbenv uninstall 2.2.3
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;set-a-local-ruby-version&quot;&gt;Set a local Ruby version&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;rbenv local 2.2.3
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;show-the-local-ruby-version&quot;&gt;Show the local Ruby version&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;rbenv local
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;set-a-global-ruby-version&quot;&gt;Set a global Ruby version&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;rbenv global 2.2.3
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;show-the-global-ruby-version&quot;&gt;Show the global Ruby version&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;rbenv global
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;list-all-ruby-versions&quot;&gt;List all Ruby versions&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;rbenv versions
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;list-the-active-version&quot;&gt;List the active version&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;rbenv version
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;rehash-after-a-new-installation&quot;&gt;Rehash after a new installation&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;rbenv rehash
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;rbenv-help&quot;&gt;rbenv help&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;rbenv help
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-        <pubDate>Wed, 02 Dec 2015 08:27:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/productivity/language/2015/12/02/Rbenv-usage.html</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/productivity/language/2015/12/02/Rbenv-usage.html</guid>
-        
-        
-        <category>productivity</category>
-        
-        <category>language</category>
-        
-      </item>
-    
-      <item>
-        <title>Homebrew basic usage</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;The missing package manager for OS X&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;what-is-homebrew&quot;&gt;What is Homebrew&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Homebrew installs the stuff you need that Apple didn’t.&lt;/li&gt;
-  &lt;li&gt;Homebrew installs packages to their own directory and then symlinks their files into /usr/local.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;how-to-install-homebrew&quot;&gt;How to install Homebrew&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Just following the script explains.&lt;/p&gt;
-
-&lt;h2 id=&quot;basic-usage&quot;&gt;Basic Usage&lt;/h2&gt;
-
-&lt;h3 id=&quot;install&quot;&gt;Install&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;brew install wget
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;uninstall&quot;&gt;Uninstall&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;brew uninstall wget
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;list-what-have-been-installed&quot;&gt;List what have been installed&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;brew list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;search-which-can-be-installed&quot;&gt;Search which can be installed&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;brew search wget
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;update-homebrew&quot;&gt;Update Homebrew&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;brew update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;update-formulae&quot;&gt;Update formulae&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;brew upgrade
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;diagnose-homebrew&quot;&gt;Diagnose Homebrew&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;brew doctor
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;homebrew-help&quot;&gt;Homebrew help&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;brew help
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;homebrew-manual&quot;&gt;Homebrew manual&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;man brew
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-        <pubDate>Wed, 02 Dec 2015 07:29:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/productivity/system/2015/12/02/Homebrew-usage.html</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/productivity/system/2015/12/02/Homebrew-usage.html</guid>
-        
-        
-        <category>productivity</category>
-        
-        <category>system</category>
-        
-      </item>
-    
-      <item>
-        <title>Use Shadowsocks to over the GFW</title>
-        <description>&lt;p&gt;Live in China, learn how to over the GFW is the nesessary skill to google. As VPNs are expensive and risky to be blocked, and goagent is slow and not stable, shadowsocks is a great choice for explorers.&lt;/p&gt;
-
-&lt;h2 id=&quot;what-is-shadowsocks&quot;&gt;What is shadowsocks&lt;/h2&gt;
-&lt;p&gt;Shadowsocks is a secure sock5 proxy that provides an encrypted tunnel to bypass the firewalls.&lt;/p&gt;
-
-&lt;h2 id=&quot;how-to-set-up&quot;&gt;How to set up&lt;/h2&gt;
-&lt;p&gt;If you want to use shadowsocks, you need to have a VPS as your shadowsocks server. Here I use the DigitalOcean 512M/20G droplet. It has a moderate price and a good speed, which cost $5 per month and has 1000G Transfer.(If you are a student, github has a student package including $100 for DigitalOcean).
-Remember choose a good datacenter region. Most people recommend San Francisco for it’s in the America West.&lt;/p&gt;
-
-&lt;p&gt;I select Ubuntu 14.04 as my server os. How to install just refer DigitalOcean’s help.&lt;/p&gt;
-
-&lt;h3 id=&quot;set-up-the-server&quot;&gt;Set up the server&lt;/h3&gt;
-&lt;p&gt;In the Ubuntu os, install server is easy:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;apt-get install python-pip
-pip install shadowsocks
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Although it can be configurated by the command line, I prefer by the config file.&lt;/p&gt;
-
-&lt;p&gt;Create a config file &lt;code&gt;/etc/shadowsocks.json&lt;/code&gt; like the following:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-    &quot;server&quot;: &quot;192.241.219.20&quot;,
-    &quot;server_port&quot;: 8388,
-    &quot;local_address&quot;: &quot;127.0.0.1&quot;,
-    &quot;local_port&quot;: 1080,
-    &quot;password&quot;: &quot;overthegfw&quot;
-    &quot;timeout&quot;: 300,
-    &quot;method&quot;: &quot;aes-256-cfb&quot;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then you can run the server in the backgroud:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ssserver -c /etc/shadowsocks.json -d start
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If you want to stop it:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ssserver -c /etc/shadowsocks.json -d stop
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;if you want to check the log:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;less /var/log/shadowsocks.log
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;set-up-the-client&quot;&gt;Set up the client&lt;/h3&gt;
-&lt;p&gt;Personally I use a MBP, and &lt;a href=&quot;https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help&quot;&gt;Shadowsocks for OSX&lt;/a&gt; as the client.&lt;/p&gt;
-
-&lt;p&gt;In fact, Shadowsocks for OSX has a auto proxy mode with a GFWList PAC, in the most time you just open the auto proxy mode and surf the Internet without blocks. However, there are some websites are blocked and haven’t been updated in the GFWList. In such situation, we need the Chrome and its add-on &lt;a href=&quot;https://github.com/FelisCatus/SwitchyOmega&quot;&gt;SwitchyOmega&lt;/a&gt;. The project has a detailed introduction and installation and configuration.&lt;/p&gt;
-
-&lt;p&gt;OK, let’s enjoy the Internet rather than the Chinese Intranet!&lt;/p&gt;
-</description>
-        <pubDate>Mon, 30 Nov 2015 00:00:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/productivity/2015/11/30/shadowsocks.html</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/productivity/2015/11/30/shadowsocks.html</guid>
-        
-        
-        <category>productivity</category>
-        
-      </item>
-    
-      <item>
-        <title>Markdown&#39;s Usage</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I have known Markdown for a year. First use the Marxico as a supplement of evernote. But today I want to find a freedom way to write technical articles. Because the jekyll’s default markdown is Kramdown, and I research all the markdown syntaxs and find Kramdown is the most active and functional. So I just learn and review the basic syntaxs with the experience using Marxico.&lt;/p&gt;
-
-&lt;p&gt;I use the &lt;a href=&quot;http://kramdown.gettalong.org/quickref.html&quot;&gt;Kramdown Quick Reference&lt;/a&gt; as the learning material.&lt;/p&gt;
-
-&lt;h2 id=&quot;block-level-elements&quot;&gt;Block-level Elements&lt;/h2&gt;
-
-&lt;h3 id=&quot;paragraphs&quot;&gt;Paragraphs&lt;/h3&gt;
-&lt;p&gt;You have to add a blank line to&lt;/p&gt;
-
-&lt;p&gt;separate different block level elements.&lt;/p&gt;
-
-&lt;p&gt;Explicit line breaks in a paragraph can be&lt;br /&gt;
-made by using two spaces at the end of a line.&lt;/p&gt;
-
-&lt;h3 id=&quot;headers&quot;&gt;Headers&lt;/h3&gt;
-
-&lt;p&gt;I prefer the “#” style headers.&lt;/p&gt;
-
-&lt;p&gt;Different numbers of “#” show the different level of headers just like this article.&lt;/p&gt;
-
-&lt;p&gt;A header must be preceded by a blank line.&lt;/p&gt;
-
-&lt;h3 id=&quot;blockquotes&quot;&gt;Blockquotes&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;A blockquote is started using the “&amp;gt;” marker&lt;/p&gt;
-
-  &lt;h4 id=&quot;other-block-level-elements-can-be-used-in-a-blockquote&quot;&gt;Other block-level elements can be used in a blockquote&lt;/h4&gt;
-
-  &lt;blockquote&gt;
-    &lt;p&gt;Use the Nested blockquotes&lt;/p&gt;
-  &lt;/blockquote&gt;
-
-  &lt;p&gt;if there is no blank line
-even no “&amp;gt;” is OK.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;After a blank line it’s a separate paragraph.&lt;/p&gt;
-
-&lt;h3 id=&quot;code-blocks&quot;&gt;Code Blocks&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;Lines indented with one tab is the code block.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;use tilde characters to
-    specify a code block with a language.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;horizontal-rules&quot;&gt;Horizontal Rules&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Use three or more asterisks to insert a horizontal rule.&lt;/p&gt;
-
-&lt;h3 id=&quot;lists&quot;&gt;Lists&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Start with a number, a period, a space and the content.&lt;/li&gt;
+  &lt;li&gt;随机初始化聚类中心&lt;script type=&quot;math/tex&quot;&gt;\mu_1,\mu_2,\cdots,\mu_k \in \mathbb{R}^n&lt;/script&gt;&lt;/li&gt;
   &lt;li&gt;
-    &lt;blockquote&gt;
-      &lt;p&gt;have a blockquote here&lt;/p&gt;
-    &lt;/blockquote&gt;
+    &lt;p&gt;不断迭代直到收敛：{&lt;/p&gt;
+
+    &lt;p&gt;对所有i，令：&lt;/p&gt;
+
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;c^{(i)} := \arg \min_j\|x^{(i)}-\mu_j\|^2&lt;/script&gt;
+
+    &lt;p&gt;对所有j，令：&lt;/p&gt;
+
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_j := \frac{\sum_{i=1}^m 1\{c^{(i)}=j\}x^{(i)}}{\sum_{i=1}^m 1\{c^{(i)}=j\}}&lt;/script&gt;
+
+    &lt;p&gt;}&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;a paragraph
-here&lt;/li&gt;
-  &lt;li&gt;Nested list
-    &lt;ol&gt;
-      &lt;li&gt;hello&lt;/li&gt;
-      &lt;li&gt;hey&lt;/li&gt;
-      &lt;li&gt;hi&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;several elements&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&quot;why-not&quot;&gt;Why not&lt;/h2&gt;
+&lt;p&gt;算法的内循环不停的在执行两个步骤，先把每个训练样本归给最近的聚类中心所代表的类，然后将某类的所有点计算平均值作为新的聚类中心。&lt;/p&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;Look so ugly&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;现在有一个问题，如何保证K均值聚类算法一定会收敛？定义失真函数为：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;* no number
-* equal treatment
-&lt;/code&gt;&lt;/pre&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;J(c,\mu)=\sum_{i=1}^m\|x^{(i)}-\mu_{c^{(i)}}\|^2&lt;/script&gt;
 
-&lt;h3 id=&quot;tables&quot;&gt;Tables&lt;/h3&gt;
+&lt;p&gt;失真函数定义了所有训练集离其聚类中心平方距离和。对于算法的内循环的两步而言，每一步都是朝着J下降的方向进行。实际上K均值聚类算法就是一类坐标下降法。最终J会达到收敛。&lt;/p&gt;
+
+&lt;p&gt;失真函数J是一个非凸函数，所以坐标下降法不能保证J能收敛到全局最小值。为了不限于局部最小值，可以多次跑K均值聚类算法（使用不同的随机初始值），取最低失真函数。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;混合高斯模型&lt;/h2&gt;
+&lt;p&gt;同样假设下面的非监督学习问题，给定一组训练集&lt;script type=&quot;math/tex&quot;&gt;\{x^{(i)},\cdots,x^{(m)}\}&lt;/script&gt;，没有标签。&lt;/p&gt;
+
+&lt;p&gt;我们用一个联合分布&lt;script type=&quot;math/tex&quot;&gt;p(x^{(i)},z^{(i)})=p(x^{(i)} \mid z^{(i)})p(z^{(i)})&lt;/script&gt;来对数据进行建模。这里，&lt;script type=&quot;math/tex&quot;&gt;z^{(i)} \sim \text{Multinomial}(\phi)（\phi_j \geq 0, \sum_{j=1}^k \phi_j = 1, \phi_j=p(z^{(i)}=j))&lt;/script&gt;，&lt;script type=&quot;math/tex&quot;&gt;x^{(i)} \mid z^{(i)}=j \sim \mathcal{N}(\mu_j,\Sigma_j)&lt;/script&gt;。因此我们的模型是随机从&lt;script type=&quot;math/tex&quot;&gt;\{1,\cdots,k\}&lt;/script&gt;中选择&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;，然后从对应&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;的高斯分布中选择&lt;script type=&quot;math/tex&quot;&gt;x^{(i)}&lt;/script&gt;。这被称为混合高斯模型。此外由于&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;是潜在的随机变量，这使我们的评估变得困难。&lt;/p&gt;
+
+&lt;p&gt;混合高斯模型的参数有&lt;script type=&quot;math/tex&quot;&gt;\phi,\mu,\Sigma&lt;/script&gt;，最大似然函数是：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\ell(\phi,\mu,\Sigma) &amp;= \sum_{i=1}^m \log p(x^{(i)};\phi,\mu,\Sigma) \\
+&amp;= \sum_{i=1}^m \log \sum_{z^{(i)}=1}^k p(x^{(i)}\mid z^{(i)};\mu,\Sigma)p(z^{(i)};\phi)
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;然而上式无法用梯度来计算，因此也无法解得最大似然估计。&lt;/p&gt;
+
+&lt;p&gt;注意上式中&lt;script type=&quot;math/tex&quot;&gt;\sum_{z^{(i)}=1}^k&lt;/script&gt;产生的原因在于&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;是未知的，假如&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;是已知的，那么最大似然函数可以简化为：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\ell(\phi,\mu,\Sigma)=\sum_{i=1}^m\log p(x^{(i)}\mid z^{(i)};\mu,\Sigma)+p(z^{(i)};\phi)&lt;/script&gt;
+
+&lt;p&gt;做最大似然估计可以解出：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\phi_j &amp;= \frac{1}{m} \sum_{i=1}^m 1 \{z^{(i)}=j\}  \\
+\mu_j &amp;= \frac{\sum_{i=1}^m 1\{z^{(i)}=j\}x^{(i)}}{\sum_{i=1}^m 1\{z^{(i)}=j\}} \\
+\Sigma_j &amp;= \frac{\sum_{i=1}^m 1\{z^{(i)}=j\}(x^{(i)}-\mu_j)(x^{(i)}-\mu_j)^T}{\sum_{i=1}^m 1\{z^{(i)}=j\}}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;事实上，假如&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;是已知的，那么最大似然估计和之前的高斯判别分析非常类似，只是&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;表示了标签。&lt;/p&gt;
+
+&lt;p&gt;然而&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;是未知的，这里就引出了最大期望算法。最大期望算法主要由两步构成，E步尝试猜测&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;的值，M步根据我们猜测的&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;更新模型参数。&lt;/p&gt;
+
+&lt;p&gt;迭代直到收敛：{&lt;/p&gt;
+
+&lt;p&gt;（E步）对每个i,j，令：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\omega_j^{(i)} := p(z^{(i)}=j\mid x^{(i)}; \phi, \mu, \Sigma)&lt;/script&gt;
+
+&lt;p&gt;（M步）更新参数：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\phi_j &amp;:= \frac{1}{m} \sum_{i=1}^m \omega_j^{(i)}  \\
+\mu_j &amp;:= \frac{\sum_{i=1}^m \omega_j^{(i)}x^{(i)}}{\sum_{i=1}^m \omega_j^{(i)}} \\
+\Sigma_j &amp;= \frac{\sum_{i=1}^m \omega_j^{(i)}(x^{(i)}-\mu_j)(x^{(i)}-\mu_j)^T}{\sum_{i=1}^m \omega_j^{(i)}}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;}&lt;/p&gt;
+
+&lt;p&gt;在E步，我们通过计算后验概率来得到：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(z^{(i)}=j\mid x^{(i)}; \phi, \mu, \Sigma)=\frac{p(x^{(i)}|z^{(i)}=j;\mu,\Sigma)p(z^{(i)}=j;\phi)}{\sum_{l=1}^kp(x^{(i)}|z^{(i)}=l;\mu,\Sigma)p(z^{(i)}=l;\phi)}&lt;/script&gt;
+
+&lt;p&gt;EM算法和K均值聚类算法有很多相似的地方，都是两步走，都是可能陷入局部最优解，需要多次不同的初始值进行计算。&lt;/p&gt;
+
+&lt;p&gt;EM算法是否确保收敛等性质放到下一章证明。&lt;/p&gt;
+</description>
+        <pubDate>Mon, 18 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/04/18/K%E5%9D%87%E5%80%BC%E8%81%9A%E7%B1%BB%E4%B8%8E%E6%B7%B7%E5%90%88%E9%AB%98%E6%96%AF%E6%A8%A1%E5%9E%8B/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/18/K%E5%9D%87%E5%80%BC%E8%81%9A%E7%B1%BB%E4%B8%8E%E6%B7%B7%E5%90%88%E9%AB%98%E6%96%AF%E6%A8%A1%E5%9E%8B/</guid>
+        
+        <category>Ng机器学习系列</category>
+        
+        <category>机器学习算法</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>规则化与模型选择</title>
+        <description>&lt;p&gt;对于有限个模型&lt;script type=&quot;math/tex&quot;&gt;\mathcal{M}=\{M_1,\cdots,M_d\}&lt;/script&gt;，我们如何选择最优的模型。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;交叉验证&lt;/h2&gt;
+&lt;p&gt;对于整个训练集进行训练，从中挑选最小训练误差来评价模型并不是一个好方法，因为这样往往选出高方差的模型。&lt;/p&gt;
+
+&lt;p&gt;因此有下面的交叉验证法：把训练数据分S成&lt;script type=&quot;math/tex&quot;&gt;S_{train}&lt;/script&gt;和&lt;script type=&quot;math/tex&quot;&gt;S_{cv}&lt;/script&gt;两部分，一般分成七三开。&lt;script type=&quot;math/tex&quot;&gt;S_{train}&lt;/script&gt;用来训练数据，&lt;script type=&quot;math/tex&quot;&gt;S_{cv}&lt;/script&gt;用来验证数据。从中挑出验证误差最小的模型作为最优模型，再进行全数据集重训练。&lt;/p&gt;
+
+&lt;p&gt;交叉验证避免了一味选择复杂的模型，但也造成了数据的浪费，特别在数据量不足时可能影响模型的训练精度。下面是一种更改良的方法，称为k折交叉验证。&lt;/p&gt;
+
+&lt;p&gt;把数据集S分为k份，在评估某一个模型时，每一次将其中一份作为验证集，其他k-1份作为训练集，计算出平均的验证误差。最后挑选出最优模型进行全数据集重训练。&lt;/p&gt;
+
+&lt;p&gt;交叉验证除了使用于模型选择上，还可用以评估单个模型的预测准确度上。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;特征选择&lt;/h2&gt;
+&lt;p&gt;有些时候会遇到特征过多的情况，这种情况下很容易造成过拟合。这时我们就需要采取特征选择算法来降低特征的数量。&lt;/p&gt;
+
+&lt;p&gt;一种算法称为前向搜索。从零开始，每次增加一个特征，利用交叉验证计算误差，选择误差最小的增加，直到达到阈值。&lt;/p&gt;
+
+&lt;p&gt;与之相对的另一种算法称为后向搜索。这两种算法的时间复杂度都比较高，需要&lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt;。&lt;/p&gt;
+
+&lt;p&gt;第二种算法称为过滤特征选择。本质就是简单计算每个特征&lt;script type=&quot;math/tex&quot;&gt;x_i&lt;/script&gt;和&lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt;的相关度&lt;script type=&quot;math/tex&quot;&gt;S(i)&lt;/script&gt;。选择得分最高的k个特征。&lt;/p&gt;
+
+&lt;p&gt;在实际中，最常见的就是用互信息&lt;script type=&quot;math/tex&quot;&gt;MI(x_i,y)&lt;/script&gt;来衡量相关度：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;MI(x_i,y)=\sum_{x_i \in \{0,1\}} \sum_{y \in \{0,1\}} p(x_i,y) \log \frac{p(x_i,y)}{p(x_i)p(y)}&lt;/script&gt;
+
+&lt;p&gt;互信息还可以用KL距离来表示:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;MI(x_i,y)=KL(p(x_i,y)\|p(x_i)p(y))&lt;/script&gt;
+
+&lt;p&gt;最后一点是如何确定k的取值，标准做法就是采用交叉验证。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;贝叶斯统计和规则化&lt;/h2&gt;
+&lt;p&gt;回顾根据最大似然函数选择参数：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\theta_{ML}=\arg \max_{\theta} \prod_{i=1}^m p(y^{(i)}\mid x^{(i)}; \theta)&lt;/script&gt;
+
+&lt;p&gt;从频率学派角度来看，&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;不是随机的，而是确定而未知的值。我们的任务就是通过统计方法（比如最大似然函数）来找出它的值。&lt;/p&gt;
+
+&lt;p&gt;从贝叶斯学派角度来看，&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;是随机未知的值，我们可以给定一个先验分布&lt;script type=&quot;math/tex&quot;&gt;p(\theta)&lt;/script&gt;，给定训练集&lt;script type=&quot;math/tex&quot;&gt;S=\{(x^{(i)},y^{(i)})\}_{i=1}^m&lt;/script&gt;，我们可以计算后验概率：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+p(\theta\mid S) &amp;= \frac{p(S\mid \theta)p(\theta)}{p(S)} \\
+&amp;= \frac{(\prod_{i=1}^mp(y^{(i)}\mid x^{(i)},\theta))p(\theta)}{\int_\theta(\prod_{i=1}^mp(y^{(i)}\mid x^{(i)},\theta))p(\theta)d\theta}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;这里的&lt;script type=&quot;math/tex&quot;&gt;p(y^{(i)}\mid x^{(i)},\theta)&lt;/script&gt;可以从学习模型中得到。比如对于贝叶斯逻辑回归而言，&lt;script type=&quot;math/tex&quot;&gt;p(y^{(i)}\mid x^{(i)},\theta)=h_\theta(x^{(i)})^{y^{(i)}}(1-h_\theta(x^{(i)}))^{(1-y^{(i)})}&lt;/script&gt;，其中&lt;script type=&quot;math/tex&quot;&gt;h_\theta(x^{(i)})=1/(1+\exp(-\theta^Tx^{(i)}))。&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;给定新的测试样本，我们可以计算对于标签的后验概率：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(y|x,S)=\int_\theta p(y\mid x,\theta)p(\theta\mid S)d\theta&lt;/script&gt;
+
+&lt;p&gt;但事实上后验概率公式中的分母积分很难计算，我们常常最大后验概率估计代替，只比最大似然估计函数多了一个&lt;script type=&quot;math/tex&quot;&gt;p(\theta)&lt;/script&gt;：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\theta_{MAP}=\arg \max_\theta \prod_{i=1}^mp(y^{(i)}\mid x^{(i)},\theta))p(\theta)&lt;/script&gt;
+
+&lt;p&gt;在实际应用中,常常假定先验概率&lt;script type=&quot;math/tex&quot;&gt;p(\theta)&lt;/script&gt;满足&lt;script type=&quot;math/tex&quot;&gt;\theta \sim \mathcal{N}(0, \tau^2I)&lt;/script&gt;。贝叶斯最大后验概率估计往往比最大似然估计更容易克服过拟合问题。&lt;/p&gt;
+</description>
+        <pubDate>Sun, 17 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/04/17/%E8%A7%84%E5%88%99%E5%8C%96%E4%B8%8E%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/17/%E8%A7%84%E5%88%99%E5%8C%96%E4%B8%8E%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9/</guid>
+        
+        <category>Ng机器学习系列</category>
+        
+        <category>机器学习理论</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>机器学习原理</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;偏差和方差&lt;/h2&gt;
+&lt;p&gt;还是从房价预测的例子入手，我们可以分别用一次函数，三次函数和五次函数去拟合测试集。但不是三个模型都是好模型，第一个和第三个都存在着泛化误差，即测试集的拟合误差要大于训练集的期望误差。&lt;/p&gt;
+
+&lt;p&gt;对于一次函数模型，我们认为模型有偏差，即使给出足够大的训练集也会使数据欠拟合。而对于五次函数模型，我们认为模型有方差，仅仅是很好的吻合了小范围的测试集，对数据过拟合，不能准确反映更一般的输入输出关系。&lt;/p&gt;
+
+&lt;p&gt;很多时候都需要在偏差和方差之间做权衡。假如我们的模型过于简单只有很少的几个参数，那很可能有大的偏差；假如模型过于复杂有很多的参数，那可能会有大的方差。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;预备知识&lt;/h2&gt;
+&lt;p&gt;我们开始学习一些机器学习原理中最基石的规则。最终希望能够回答三个问题：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;我们是否可以把偏差和方差公式化？最终引出模型选择方法。&lt;/li&gt;
+  &lt;li&gt;为何从测试集中可以获得泛化误差？测试集误差和泛化误差是否有联系？&lt;/li&gt;
+  &lt;li&gt;是否能在某些条件下证明算法一定有效？&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;首先介绍两个引理（这里没有证明，可以直观感受）。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;联合界定理&lt;/strong&gt;：存在&lt;script type=&quot;math/tex&quot;&gt;A_1,A_2,\cdots,A_k&lt;/script&gt;共k个不同事件（可能独立也可能非独立），必然有：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(A_1 \cup \cdots \cup A_k) \leq P(A_1)+\cdots + P(A_k)&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;霍夫丁不等式&lt;/strong&gt;：令&lt;script type=&quot;math/tex&quot;&gt;Z_1,\cdots,Z_m&lt;/script&gt;是m个服从伯努利分布的独立同分布随机变量，令&lt;script type=&quot;math/tex&quot;&gt;\hat{\phi}=(1/m)\sum_{i=1}^m Z_i&lt;/script&gt;作为随机变量的均值，令任意&lt;script type=&quot;math/tex&quot;&gt;\gamma&gt;0&lt;/script&gt;固定，有下面的关系：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(|\phi - \hat{\phi}| &gt; \gamma) \leq 2\exp(-2\gamma^2m)&lt;/script&gt;
+
+&lt;p&gt;为了简化解释，我们再以二元分类为例。假设给定一个训练集&lt;script type=&quot;math/tex&quot;&gt;S=\{(x^{(i)},y^{(i)};i=1,\cdots,m\}&lt;/script&gt;，训练样本&lt;script type=&quot;math/tex&quot;&gt;(x^{(i)},y^{(i)})&lt;/script&gt;满足可能性分布&lt;script type=&quot;math/tex&quot;&gt;\mathcal{D}&lt;/script&gt;，对于假说h，定义训练误差（经验误差）为：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat{\epsilon}(h)=\frac{1}{m} \sum_{i=1}^m1\{h(x^{(i)} \neq y^{(i)}\}&lt;/script&gt;
+
+&lt;p&gt;定义泛化误差为：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\epsilon(h)=P_{(x,y) \sim \mathcal{D}}(h(x) \neq y)&lt;/script&gt;
+
+&lt;p&gt;PAC是一组构建机器学习原理的假定。其中最重要的两条就是训练集和测试集满足同分布，训练样本具备独立性。&lt;/p&gt;
+
+&lt;p&gt;考虑线性分类，令&lt;script type=&quot;math/tex&quot;&gt;h_\theta(x)=1\{\theta^Tx \geq 0\}&lt;/script&gt;，评估参数&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;拟合的一种方式就是让训练误差最小化：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat{\theta} = \arg \min_{\theta} \hat{\epsilon}(h_{\theta})&lt;/script&gt;
+
+&lt;p&gt;这个过程被称为经验风险最小化，它被视为是最基础的学习算法。ERM本身是非凸不能用一般优化算法求解的，逻辑回归和支持向量机被看做对这种算法的凸性近似。&lt;/p&gt;
+
+&lt;p&gt;更一般化，我们用假设集&lt;script type=&quot;math/tex&quot;&gt;\mathcal{H}&lt;/script&gt;来定义一组分类器。比如对于线性分类法，&lt;script type=&quot;math/tex&quot;&gt;\mathcal{H}=\{h_{\theta}: h_{\theta}(x)=1\{\theta^Tx \geq 0\}, \theta \in \mathbb{R}^{n+1}\}&lt;/script&gt;。经验风险最小化可以写成下式：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat{h}=\arg \min_{h \in \mathcal{H}} \hat{\epsilon}(h)&lt;/script&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;有限假设集&lt;/h2&gt;
+&lt;p&gt;我们先来考虑假说集有限的情况，即&lt;script type=&quot;math/tex&quot;&gt;\mathcal{H}=\{h_1,\cdots,h_k\}&lt;/script&gt;，假设集由k个假说构成。经验风险最小化算法选择其中使训练误差最小的假说作为&lt;script type=&quot;math/tex&quot;&gt;\hat{h}&lt;/script&gt;。&lt;/p&gt;
+
+&lt;p&gt;考虑一个伯努利随机变量Z，样本&lt;script type=&quot;math/tex&quot;&gt;(x,y) \sim \mathcal{D}&lt;/script&gt;，令&lt;script type=&quot;math/tex&quot;&gt;Z=1\{h_i(x) \neq y\}&lt;/script&gt;。对训练样本我们同样定义&lt;script type=&quot;math/tex&quot;&gt;Z_j=1\{h_i(x^{(j)}) \neq y^{(j)}\}&lt;/script&gt;。训练样本和测试样本服从同分布。&lt;/p&gt;
+
+&lt;p&gt;可以看到误分类的可能性&lt;script type=&quot;math/tex&quot;&gt;\epsilon(h)&lt;/script&gt;就等于&lt;script type=&quot;math/tex&quot;&gt;Z(Z_j)&lt;/script&gt;的期望值，此外，训练误差可表示成：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat{\epsilon}(h_i)=\frac{1}{m}\sum_{j=1}^m Z_j&lt;/script&gt;
+
+&lt;p&gt;因此我们在这里可以应用霍夫丁不等式：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(|\epsilon(h_i)-\hat{\epsilon}(h_i)| &gt; \gamma) \leq 2\exp(-2\gamma^2m)&lt;/script&gt;
+
+&lt;p&gt;这显示了当m足够大时，对特定的&lt;script type=&quot;math/tex&quot;&gt;h_i&lt;/script&gt;训练误差有极高的可能性与泛化误差接近。下面我们要证明对于所有&lt;script type=&quot;math/tex&quot;&gt;h \in \mathcal{H}&lt;/script&gt;，上面的特性也成立。&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+P(\exists h \in \mathcal{H}.|\epsilon(h_i)-\hat{\epsilon}(h_i)| &gt; \gamma) &amp;= P(A_1 \cup \cdots \cup A_k) \\
+&amp;\leq \sum_{i=1}^k P(A_i) \\
+&amp;\leq \sum_{i=1}^k 2 \exp(-2\gamma^2m) \\
+&amp;=2k \exp(-2\gamma^2m)
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;这个结果被称为一致收敛，对于所有h都满足。&lt;/p&gt;
+
+&lt;p&gt;令&lt;script type=&quot;math/tex&quot;&gt;\delta=2k\exp(-2\gamma^2m)&lt;/script&gt;，我们可以计算出为达到概率在&lt;script type=&quot;math/tex&quot;&gt;1-\delta&lt;/script&gt;，精确度在&lt;script type=&quot;math/tex&quot;&gt;\pm\gamma&lt;/script&gt;内要求所需的样本复杂度m：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt; m \geq \frac{1}{2\gamma^2} \log \frac{2k}{\delta}&lt;/script&gt;
+
+&lt;p&gt;同样，我们也可以求得精确度：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;|\hat{\epsilon}(h)-\epsilon(h)| \leq \sqrt{\frac{1}{2m} \log{\frac{2k}{\delta}}}&lt;/script&gt;
+
+&lt;p&gt;现在还有一个问题，模型的泛化误差和最小训练误差&lt;script type=&quot;math/tex&quot;&gt;\hat{h}=\arg \min_{h \in \mathcal{H}} \hat{\epsilon}(h)&lt;/script&gt;存在什么联系？&lt;/p&gt;
+
+&lt;p&gt;令&lt;script type=&quot;math/tex&quot;&gt;h^*=\arg \min_{h \in \mathcal{H}} \epsilon(h)&lt;/script&gt;作为假设集&lt;script type=&quot;math/tex&quot;&gt;\mathcal{H}&lt;/script&gt;中最好的一个，它与训练误差最小的假设存在以下关系：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\epsilon(\hat{h}) &amp;\leq \hat{\epsilon}(\hat{h})+\gamma \\
+&amp;\leq \hat{\epsilon}(h^*)+\gamma \\
+&amp;\leq \epsilon(h^*)+2\gamma
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;在&lt;script type=&quot;math/tex&quot;&gt;\mid \mathcal{H}\mid =k&lt;/script&gt;，&lt;script type=&quot;math/tex&quot;&gt;m,\delta&lt;/script&gt;固定，至少有&lt;script type=&quot;math/tex&quot;&gt;1-\delta&lt;/script&gt;的可能性：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\epsilon(\hat{h}) \leq (\min_{h\in\mathcal{H}} \epsilon(h)) + 2 \sqrt{\frac{1}{2m} \log \frac{2k}{\delta}}&lt;/script&gt;
+
+&lt;p&gt;这也从另一面证明了偏差和方差的矛盾性。假设我们的假设集扩大了，则前一项下降，后一项增加。反之亦然。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;无限假设集&lt;/h2&gt;
+&lt;p&gt;在有限假设集中我们得出了一些有用的定理。但对于参数是实数的假设集来说，有无限个假设。我们是否能得出类似的结论？&lt;/p&gt;
+
+&lt;p&gt;首先做一个不是很正确的解释。因为实数在计算机中也是由有限位组成，因此所谓的无限假设实际上也是有限的，因此可以套用上一节的结论来处理。&lt;/p&gt;
+
+&lt;p&gt;为得出无限假设集的结果，我们需要定义VC维。给定样本点集合&lt;script type=&quot;math/tex&quot;&gt;S=\{x^{(i)},\cdots,x^{(d)}\}, x^{(i)} \in \mathcal{X}&lt;/script&gt;，我们说&lt;script type=&quot;math/tex&quot;&gt;\mathcal{H}&lt;/script&gt;粉碎&lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;假如&lt;script type=&quot;math/tex&quot;&gt;\mathcal{H}&lt;/script&gt;可以识别任意的标签。我们定义VC维，&lt;script type=&quot;math/tex&quot;&gt;VC(\mathcal{H})&lt;/script&gt;是最大的可粉碎样本大小。例如对于有两个维度的线性分类而言，&lt;script type=&quot;math/tex&quot;&gt;VC(\mathcal{H})=3&lt;/script&gt;。&lt;/p&gt;
+
+&lt;p&gt;下式展示了对于无限假设集的定理，对于给定&lt;script type=&quot;math/tex&quot;&gt;\mathcal{H}&lt;/script&gt;，令&lt;script type=&quot;math/tex&quot;&gt;d=VC(\mathcal{H})&lt;/script&gt;，至少有&lt;script type=&quot;math/tex&quot;&gt;1-\delta&lt;/script&gt;的可能性：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;|\epsilon(h)-\hat{\epsilon}(h)| \leq O\left(\sqrt{\frac{d}{m} \log \frac{m}{d} + \frac{1}{m} \log \frac{1}{\delta}}\right)&lt;/script&gt;
 
 &lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Name&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Address&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;Tel&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;mike&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Xi’an&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;110&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Alice&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Shanghai&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;120&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;John&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Beijing&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;119&lt;/td&gt;
+      &lt;td&gt;同样还有下面的结论：对$$&lt;/td&gt;
+      &lt;td&gt;\epsilon(h)-\hat{\epsilon}(h)&lt;/td&gt;
+      &lt;td&gt;\leq \gamma&lt;script type=&quot;math/tex&quot;&gt; 要求至少&lt;/script&gt;1-\delta&lt;script type=&quot;math/tex&quot;&gt;概率对所有&lt;/script&gt;h \in \mathcal{H}&lt;script type=&quot;math/tex&quot;&gt;成立，需要满足&lt;/script&gt;m=O_{\gamma,\delta}(d)$$。即对于最小化训练误差的算法，所需的训练样本数和算法参数个数几乎成线性关系。&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-
-&lt;h2 id=&quot;span-level-elements&quot;&gt;Span-Level Elements&lt;/h2&gt;
-
-&lt;h3 id=&quot;emphasis&quot;&gt;Emphasis&lt;/h3&gt;
-
-&lt;p&gt;Use asterisks to &lt;em&gt;emphasized words&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Use double asterisks to &lt;strong&gt;strong emphasized words&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;links-and-images&quot;&gt;Links and Images&lt;/h3&gt;
-
-&lt;p&gt;Here is my &lt;a href=&quot;http://anyinlover.github.io&quot;&gt;homepage&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Here is my picture: &lt;img src=&quot;http://img4.douban.com/view/photo/photo/public/p1764440506.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;inline-code&quot;&gt;Inline Code&lt;/h3&gt;
-
-&lt;p&gt;Use &lt;code&gt;backticks to surrouding the inline code&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Use &lt;code&gt;`two backticks to express literal backticks in the code`&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h3&gt;
-
-&lt;p&gt;Set a footnote marker&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-
-&lt;p&gt;Need a better one&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;?&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;Consists of square brackets with a caret and the footnote name.  &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;blockquote&gt;
-        &lt;p&gt;Surprise!&lt;/p&gt;
-      &lt;/blockquote&gt;
-      &lt;p&gt;&lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
 </description>
-        <pubDate>Mon, 30 Nov 2015 00:00:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/productivity/2015/11/30/markdown-usage.html</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/productivity/2015/11/30/markdown-usage.html</guid>
+        <pubDate>Sun, 17 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/04/17/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8E%9F%E7%90%86/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/17/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8E%9F%E7%90%86/</guid>
+        
+        <category>Ng机器学习系列</category>
+        
+        <category>机器学习理论</category>
         
         
-        <category>productivity</category>
+      </item>
+    
+      <item>
+        <title>支持向量机</title>
+        <description>&lt;p&gt;这一章主要学习支持向量机。支持向量机是目前最好的监督学习算法之一。但支持向量机本身难度较大，需要较强的数学基础。假如抛开数学部分，其本质就是用拉格朗日对偶法计算最大间隔，利用核函数简化高维映射的计算，用SMO算法更新参数。本文也将根据NG讲义的这一顺序展开。此外，&lt;a href=&quot;http://blog.csdn.net/macyang/article/details/38782399&quot;&gt;这里&lt;/a&gt;有一份比较完善的中文入门资料。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;间隔入门&lt;/h2&gt;
+&lt;p&gt;回顾之前的逻辑回归，&lt;script type=&quot;math/tex&quot;&gt;h_\theta(x)=g(\theta^Tx)&lt;/script&gt;，当&lt;script type=&quot;math/tex&quot;&gt;\theta^Tx \geq 0&lt;/script&gt;时预测为1，否则为0。这里存在一个预测的可信度问题，假如&lt;script type=&quot;math/tex&quot;&gt;\theta^Tx \gg 0&lt;/script&gt;或者&lt;script type=&quot;math/tex&quot;&gt;\theta^Tx \ll 0&lt;/script&gt;，那么预测的可信度就高。换一个角度，预测点离分割面越远，预测可信度就越高。把训练集离分割面最近的点到分割面的距离称为间隔，支持向量机的使命就是找到有最大间隔得分割面，使预测可信度提到最高。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;标记&lt;/h2&gt;
+&lt;p&gt;为了讨论支持向量机，需要引入一套新的标记符号。&lt;script type=&quot;math/tex&quot;&gt;y\in \{-1,1\}&lt;/script&gt;而不再是&lt;script type=&quot;math/tex&quot;&gt;\{0,1\}&lt;/script&gt;。分类器的表示也发生了变化：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;h_{\omega,b}(x)=g(\omega^Tx+b)&lt;/script&gt;
+
+&lt;p&gt;这里用的g是感知机算法，即&lt;script type=&quot;math/tex&quot;&gt;g(z)=1,z\geq0&lt;/script&gt;，否则取-1。b是单独的截距，即之前的&lt;script type=&quot;math/tex&quot;&gt;\theta_0&lt;/script&gt;。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;函数间隔和几何间隔&lt;/h2&gt;
+&lt;p&gt;根据一个训练样本&lt;script type=&quot;math/tex&quot;&gt;(x^{(i)},y^{(i)})&lt;/script&gt;，定义函数间隔如下：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat{\gamma}^{(i)}=y^{(i)}(\omega^Tx+b)&lt;/script&gt;
+
+&lt;p&gt;函数间隔越大，可信度就越高。&lt;/p&gt;
+
+&lt;p&gt;给定训练集&lt;script type=&quot;math/tex&quot;&gt;S=\{(x^{(i)},y^{(i)});i=1,\cdots,m\}&lt;/script&gt;，定义函数间隔是所有函数间隔中最小的那个：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat{\gamma}=\min_{i=1,\cdots,m}\hat{\gamma}^{(i)}&lt;/script&gt;
+
+&lt;p&gt;下面的问题是如何找出&lt;script type=&quot;math/tex&quot;&gt;\gamma^{(i)}&lt;/script&gt;的表达式，分割面与&lt;script type=&quot;math/tex&quot;&gt;\omega&lt;/script&gt;永远是正交的。对于训练样本在分割面上的投影，可以表示成 &lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x^{(i)}-\gamma^{(i)} \cdot \frac{\omega}{\|\omega\|}&lt;/script&gt;
+
+&lt;p&gt;又因为投影点在分割面上，所以有：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\omega^T(x^{(i)}-\gamma^{(i)}\frac{\omega}{\|\omega\|})+b=0&lt;/script&gt;
+
+&lt;p&gt;解得：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\gamma^{(i)}=\frac{\omega^Tx^{(i)}+b}{\|\omega\|}=(\frac{\omega}{\|\omega\|})^Tx^{(i)}+\frac{b}{\|\omega\|}&lt;/script&gt;
+
+&lt;p&gt;结合y的取值可以得到几何间隔：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\gamma^{(i)}=y^{(i)}((\frac{\omega}{\|\omega\|})^Tx^{(i)}+\frac{b}{\|\omega\|})&lt;/script&gt;
+
+&lt;p&gt;我们发现几何间隔与函数间隔相比只是除了&lt;script type=&quot;math/tex&quot;&gt;\|\omega\|&lt;/script&gt;，当&lt;script type=&quot;math/tex&quot;&gt;\|\omega\|=1&lt;/script&gt;时函数间隔等于几何间隔。而且几何间隔不会受到比例系数的影响。
+## 最优间隔分类器&lt;/p&gt;
+
+&lt;p&gt;对于一个可以线性分割的训练集来说，现在我们的任务就是要找到一个最大几何间隔。问题就转化成下面的优化问题：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\max_{\gamma,\omega,b}  \quad  &amp;\gamma \\
+\text{s.t.}  \quad &amp; y^{(i)}(\omega^Tx^{(i)}+b)\geq \gamma, i=1,\cdots,m \\
+&amp; \|\omega\|=1
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;对于&lt;script type=&quot;math/tex&quot;&gt;\|\omega\|=1&lt;/script&gt;这样的约束条件很难处理，把几何间隔用函数间隔替换了，优化问题转化为：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\max_{\hat{\gamma},\omega,b}  \quad  &amp; \frac{\hat{\gamma}}{\|\omega\|} \\
+\text{s.t.}  \quad &amp; y^{(i)}(\omega^Tx^{(i)}+b)\geq \hat{\gamma}, i=1,\cdots,m 
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;进一步，利用&lt;script type=&quot;math/tex&quot;&gt;\hat{\gamma}&lt;/script&gt;的可伸缩性质，令&lt;script type=&quot;math/tex&quot;&gt;\hat{\gamma}=1&lt;/script&gt;，求&lt;script type=&quot;math/tex&quot;&gt;1/\|\omega\|&lt;/script&gt;相当于求&lt;script type=&quot;math/tex&quot;&gt;\|\omega\|^2&lt;/script&gt;的最小值。&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\min_{\omega,b}  \quad  &amp; \frac{1}{2}\|\omega\|^2 \\
+\text{s.t.}  \quad &amp; y^{(i)}(\omega^Tx^{(i)}+b)\geq 1, i=1,\cdots,m 
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;现在优化问题转变成了一个凸二次函数带一个线性约束，这样的优化问题可以用QP软件来处理。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;拉格朗日对偶&lt;/h2&gt;
+&lt;p&gt;我们到了支持向量机的难点之一，拉格朗日对偶。这其实就是一种把多元约束优化问题转换为一元约束优化问题的思想。
+考虑下面这样的问题形式：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\min_\omega \quad &amp; f(\omega) \\
+\text{s.t.} \quad &amp; h_i(\omega)=0, i=1,\cdots,l
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;我们定义拉格朗日公式为：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathcal{L}(\omega,\beta)=f(\omega)+\sum_{i=1}^l \beta_ih_i(\omega)&lt;/script&gt;
+
+&lt;p&gt;这里&lt;script type=&quot;math/tex&quot;&gt;\beta_i&lt;/script&gt;被称为拉格朗日算子。通过求偏导可以求解得到&lt;script type=&quot;math/tex&quot;&gt;\omega&lt;/script&gt;和&lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt;：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{\partial\mathcal{L}}{\partial\omega_i}=0; \frac{\partial \mathcal{L}}{\partial\beta_i}=0&lt;/script&gt;
+
+&lt;p&gt;将上面的形式进行拓展，把不等约束也包含在内，考虑下面的问题形式，称为原始优化问题：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\min_\omega \quad &amp; f(\omega) \\
+\text{s.t.} \quad &amp; g_i(\omega) \leq 0, i=1,\cdots,k \\
+&amp; h_i(\omega)=0, i=1,\cdots,l
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;为了解决上述问题，我们定义了一般化的拉格朗日方程：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathcal{L}(\omega,\alpha,\beta)=f(\omega)+\sum_{i=1}^k\alpha_ig_i(\omega)+\sum_{i=1}^l\beta_ih_i(\omega)&lt;/script&gt;
+
+&lt;p&gt;考虑以下方程：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\theta_{\mathcal{p}}(\omega)=\max_{\alpha,\beta:\alpha_i \geq 0}\mathcal{L}(\omega,\alpha,\beta)&lt;/script&gt;
+
+&lt;p&gt;假如&lt;script type=&quot;math/tex&quot;&gt;g_i(\omega)&gt;0&lt;/script&gt; 或者&lt;script type=&quot;math/tex&quot;&gt;h_i(\omega) \neq 0&lt;/script&gt;，都会使得&lt;script type=&quot;math/tex&quot;&gt;\theta_{\mathcal{p}}(\omega)=\infty&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\theta_{\mathcal{p}}(\omega)=
+\begin{cases}
+f(\omega) \quad &amp; \text{if }\omega \text{ satisfies primal constraints}\\
+\infty \quad &amp; \text{otherwise}
+\end{cases}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;考虑最小化问题：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\min_{\omega} \theta_{\mathcal{p}}(\omega)=\min_{\omega} \max_{\alpha,\beta:\alpha_i \geq 0} \mathcal{L}(\omega,\alpha,\beta)&lt;/script&gt;
+
+&lt;p&gt;这就是我们的原始优化问题。最后定义优化值&lt;script type=&quot;math/tex&quot;&gt;p^*=\min_{\omega} \theta_p(\omega)&lt;/script&gt;，称为原始问题的值。&lt;/p&gt;
+
+&lt;p&gt;再来看一个有些不同的问题。定义：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\theta_{\mathcal{D}}(\alpha,\beta)=\min_{\omega} \mathcal{L}(\omega,\alpha,\beta)&lt;/script&gt;
+
+&lt;p&gt;我们可以得到对偶优化问题：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\max_{\alpha,\beta:\alpha_i \geq 0} \theta_{\mathcal{D}}(\alpha,\beta)=\max_{\alpha,\beta:\alpha_i \geq 0} \min_{\omega} \mathcal{L}(\omega,\alpha,\beta)&lt;/script&gt;
+
+&lt;p&gt;对偶优化问题相当于和初始优化问题交换了max和min的顺序，我们定义对偶优化问题的优化值为&lt;script type=&quot;math/tex&quot;&gt;d^*=\max_{\alpha,\beta:\alpha_i \geq 0} \theta_{\mathcal{D}} (\omega)&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;关于max和min有下面的结论：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\max_x \min_y f(x,y) \leq \min_y \max_x f(x,y)&lt;/script&gt;
+
+&lt;p&gt;简要证明：对于任意x,y，下式成立：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\min_s f(x,s) \leq f(x,y) \leq\max_tf(t,y)&lt;/script&gt;
+
+&lt;p&gt;因此下式成立，得到证明：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt; \max_x \min_s f(x,s) \leq \min_y \max_t f(t,y)&lt;/script&gt;
+
+&lt;p&gt;回到我们的拉格朗日对偶问题：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;d^*=\max_{\alpha,\beta:\alpha_i \geq 0} \min_{\omega} \mathcal{L}(\omega,\alpha,\beta) \leq \min_{\omega} \max_{\alpha,\beta:\alpha_i \geq 0} \mathcal{L}(\omega,\alpha,\beta) = p^*&lt;/script&gt;
+
+&lt;p&gt;在满足一定的条件下，上式中等号成立，因此我们可以用求解对偶问题来求解原始问题。&lt;/p&gt;
+
+&lt;p&gt;假设&lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt;和&lt;script type=&quot;math/tex&quot;&gt;g_i&lt;/script&gt;是凸函数，&lt;script type=&quot;math/tex&quot;&gt;h_i&lt;/script&gt;是线性的，约束&lt;script type=&quot;math/tex&quot;&gt;g_i&lt;/script&gt;是可满足的。那必然会存在&lt;script type=&quot;math/tex&quot;&gt;\omega^*, \alpha^*, \beta^*&lt;/script&gt;满足&lt;script type=&quot;math/tex&quot;&gt;p^*=d^*=\mathcal{L}(\omega^*,\alpha^*,\beta^*)&lt;/script&gt;，他们满足下面的KKT条件：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\frac{\partial}{\partial \omega_i}\mathcal{L}(\omega^*, \alpha^*, \beta^*) &amp;= 0, i=1,\cdots,n \\
+\frac{\partial}{\partial \beta_i}\mathcal{L}(\omega^*, \alpha^*, \beta^*) &amp;= 0, i=1,\cdots,l \\
+\alpha_i^*g_i(\omega^*) &amp;= 0, i=1,\cdots,k \\
+g_i(\omega^*) &amp; \leq 0, i=1,\cdots,k \\
+\alpha^* &amp; \geq 0, i=1,\cdots,k
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;相反的，假如存在&lt;script type=&quot;math/tex&quot;&gt;\omega^*, \alpha^*, \beta^*&lt;/script&gt;满足KKT条件，那它也是拉格朗日问题的解。&lt;/p&gt;
+
+&lt;p&gt;在KKT条件的第三式中我们还发现，必须满足&lt;script type=&quot;math/tex&quot;&gt;\alpha_i^*&gt;0&lt;/script&gt;当&lt;script type=&quot;math/tex&quot;&gt;g_i(\omega^*) = 0&lt;/script&gt;。&lt;/p&gt;
+
+&lt;p&gt;（本来以为拉格朗日对偶会很困难，啃下来发现更多的是心理作用，233）&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;优化间隔分类器&lt;/h2&gt;
+
+&lt;p&gt;回到我们的优化间隔分类器，我们可以把约束写成标准形式：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;g_i(\omega)=-y^{(i)}(\omega^Tx^{(i)}+b)+1 \leq 0&lt;/script&gt;
+
+&lt;p&gt;根据KKT条件，只有在函数间隔是1时才能&lt;script type=&quot;math/tex&quot;&gt;\alpha_i^*&gt;0&lt;/script&gt;。实际上只有很少量的点决定了最大间隔。这些点被称为支持向量。&lt;/p&gt;
+
+&lt;p&gt;把优化问题写成下面的拉格朗日形式，注意我们这里不带&lt;script type=&quot;math/tex&quot;&gt;\beta_i&lt;/script&gt;：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathcal{L}(\omega,b,\alpha)=\frac{1}{2}\|\omega\|^2-\sum_{i=1}^m \alpha_i[y^{(i)}(\omega^Tx^{(i)}+b)-1]&lt;/script&gt;
+
+&lt;p&gt;我们首先找出拉格朗日对偶问题，即先固定&lt;script type=&quot;math/tex&quot;&gt;\alpha&lt;/script&gt;，求对于&lt;script type=&quot;math/tex&quot;&gt;\omega,b&lt;/script&gt;的最小值。分别求&lt;script type=&quot;math/tex&quot;&gt;\mathcal{L}&lt;/script&gt;对&lt;script type=&quot;math/tex&quot;&gt;\omega,b&lt;/script&gt;的偏导：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\nabla_{\omega} \mathcal{L}(\omega,b,\alpha)=\omega - \sum_{i=1}^m\alpha_iy^{(i)}x^{(i)}=0&lt;/script&gt;
+
+&lt;p&gt;由此得到：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\omega=\sum_{i=1}^m \alpha_iy^{(i)}x^{(i)}&lt;/script&gt;
+
+&lt;p&gt;对b求偏导，我们得到：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{\partial}{\partial b} \mathcal{L}(\omega, b, \alpha)=\sum_{i=1}^m \alpha_iy^{(i)}=0&lt;/script&gt;
+
+&lt;p&gt;将&lt;script type=&quot;math/tex&quot;&gt;\omega,b&lt;/script&gt;代回&lt;script type=&quot;math/tex&quot;&gt;\mathcal{L}&lt;/script&gt;表达式，我们得到：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathcal{L}(\omega,b,\alpha)=\sum_{i=1}^m\alpha_i-\frac{1}{2}\sum_{i,j=1}^my^{(i)}y^{(j)}\alpha_i\alpha_j(x^{(i)})^Tx^{(j)}&lt;/script&gt;
+
+&lt;p&gt;最终，我们得到下面的拉格朗日对偶问题：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\max_{\alpha} \quad &amp; W(\alpha)=\sum_{i=1}^m\alpha_i-\frac{1}{2}\sum_{i,j=1}^my^{(i)}y^{(j)}\alpha_i\alpha_j\langle x^{(i)},x^{(j)} \rangle \\
+s.t. \quad &amp; \alpha_i \geq 0, i=1,\cdots,m \\
+&amp; \sum_{i=1}^m \alpha_iy^{(i)}=0
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;因为我们满足KKT条件，因此可以通过解答拉格朗日对偶问题来解决原始问题。对偶问题需要用下面的核函数解决。&lt;/p&gt;
+
+&lt;p&gt;在得到&lt;script type=&quot;math/tex&quot;&gt;\alpha^*&lt;/script&gt;后，也就能得到&lt;script type=&quot;math/tex&quot;&gt;\omega^*&lt;/script&gt;，&lt;script type=&quot;math/tex&quot;&gt;b^*&lt;/script&gt;可以通过下式得到：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;b^*=-\frac{\max_{i:y^{(i)}=-1} \omega^{*T}x^{(i)}+\min_{i:y^{(i)}=1}\omega^{*T}x^{(i)}}{2}&lt;/script&gt;
+
+&lt;p&gt;进一步讨论一下预测问题，对于新输入的x，我们要计算&lt;script type=&quot;math/tex&quot;&gt;\omega^Tx+b&lt;/script&gt;：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\omega^Tx+b=(\sum_{i=1}^m \alpha_iy^{(i)}x^{(i)})^Tx+b=\sum_{i=1}^m \alpha_iy^{(i)}\langle x^{(i)}, x \rangle + b&lt;/script&gt;
+
+&lt;p&gt;我们注意到预测时也只用到了x的内积，对偶问题中同样只用了内积。此外，只有支持向量的&lt;script type=&quot;math/tex&quot;&gt;\alpha_i&lt;/script&gt;不为0，因此这一步运算花费很少。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;核函数&lt;/h2&gt;
+&lt;p&gt;在房价预测中，我们用&lt;script type=&quot;math/tex&quot;&gt;x,x^2,x^3&lt;/script&gt;来得到一个三次方函数。这里我们把原始&lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;称为属性，把&lt;script type=&quot;math/tex&quot;&gt;x,x^2,x^3&lt;/script&gt;称为特征。用&lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt;记为特征映射。在我们的例子里，有：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi(x)=\begin{bmatrix}x \\ x^2 \\ x^3\end{bmatrix}&lt;/script&gt;
+
+&lt;p&gt;将内积&lt;script type=&quot;math/tex&quot;&gt;\langle x,z\rangle&lt;/script&gt;用&lt;script type=&quot;math/tex&quot;&gt;\langle \phi(x), \phi(z) \rangle&lt;/script&gt;代替，定义对应的核函数为：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;K(x,z)=\phi(x)^T \phi(z)&lt;/script&gt;
+
+&lt;p&gt;巧妙的地方在于可能&lt;script type=&quot;math/tex&quot;&gt;\phi(x)&lt;/script&gt;的计算量很大，但&lt;script type=&quot;math/tex&quot;&gt;K(x,z)&lt;/script&gt;却很容易。实际在算法中我们只需要应用到&lt;script type=&quot;math/tex&quot;&gt;K(x,z)&lt;/script&gt;，却不必知道&lt;script type=&quot;math/tex&quot;&gt;\phi(x)&lt;/script&gt;是多少。举下面两个例子。&lt;/p&gt;
+
+&lt;p&gt;考虑核函数&lt;script type=&quot;math/tex&quot;&gt;K(x,z)=(x^Tz)^2&lt;/script&gt;：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+K(x,z) &amp;= (\sum_{i=1}^n x_iz_i)(\sum_{j=1}^n x_iz_i) \\
+&amp;= \sum_{i=1}^n \sum_{j=1}^n x_i x_j z_i z_j \\
+&amp;= \sum_{i,j=1}^n (x_ix_j)(z_iz_j)
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;因此特征映射函数为下式，需要&lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt;时间，而核函数只需要&lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi(x)=\begin{bmatrix}x_1x_1 \\ x_1x_2 \\ x_1x_3 \\ x_2x_1 \\ x_2x_2 \\ x_2x_3 \\ x_3x_1 \\ x_3x_2 \\ x_3x_3\end{bmatrix}&lt;/script&gt;
+
+&lt;p&gt;再考虑一个相关的核函数：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;K(x,z)=(x^Tz+c)^2=\sum_{i,j=1}^n (x_ix_j)(z_iz_j)+ \sum_{i=1}^n( \sqrt{2c}x_i)(\sqrt{2c}z_i) + c^2&lt;/script&gt;
+
+&lt;p&gt;此时的特征函数为：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi(x)=\begin{bmatrix}x_1x_1 \\ x_1x_2 \\ x_1x_3 \\ x_2x_1 \\ x_2x_2 \\ x_2x_3 \\ x_3x_1 \\ x_3x_2 \\ x_3x_3 \\ \sqrt{2c}x_1 \\ \sqrt{2c}x_2 \\ \sqrt{2c}x_3 \\ c\end{bmatrix}&lt;/script&gt;
+
+&lt;p&gt;更一般的，核函数&lt;script type=&quot;math/tex&quot;&gt;K(x,z)=(x^Tz+c)^d&lt;/script&gt;把特征映射到了&lt;script type=&quot;math/tex&quot;&gt;\binom{n+d}{d}&lt;/script&gt;维特征空间。需要&lt;script type=&quot;math/tex&quot;&gt;O(n^d)&lt;/script&gt;时间，而核函数仍只需要&lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;。&lt;/p&gt;
+
+&lt;p&gt;从另一个角度粗略的讲，&lt;script type=&quot;math/tex&quot;&gt;K(x,z)=\phi(x)^T \phi(z)&lt;/script&gt;体现了&lt;script type=&quot;math/tex&quot;&gt;\phi(x)&lt;/script&gt;和&lt;script type=&quot;math/tex&quot;&gt;\phi(z)&lt;/script&gt;之间的接近关系，越接近核函数越大，越远离核函数越小。比如下面的高斯核函数，很好的衡量了x和z之间的关系：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;K(x,z)=\exp(- \frac{\|x-z\|^2}{2\sigma^2})&lt;/script&gt;
+
+&lt;p&gt;但现在有一个问题，我怎么知道这个核函数是有意义的，即能找出特征映射&lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt;满足&lt;script type=&quot;math/tex&quot;&gt;K(x,z)=\phi(x)^T \phi(z)&lt;/script&gt;。&lt;/p&gt;
+
+&lt;p&gt;假设K是一个有效的核函数，给定有限点集&lt;script type=&quot;math/tex&quot;&gt;\{x^{(1)},\cdots,x^{(m)}\}&lt;/script&gt;，令一个核函数矩阵&lt;script type=&quot;math/tex&quot;&gt;K \in \mathbb{R}^{m \times m}, K_{ij}=K(x^{(i)},x^{(j)})&lt;/script&gt;。&lt;/p&gt;
+
+&lt;p&gt;假如K是个有效核函数，则有：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;K_{ij}=K(x^{(i)},x^{(j)})=\phi(x^{(i)})^T\phi(x^{(j)})=\phi(x^{(j)})^T\phi(x^{(i)})=K(x^{(j)},x^{(i)})=K_{ji}&lt;/script&gt;
+
+&lt;p&gt;还能证明核函数矩阵是半正定的：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+z^TKz &amp;= \sum_i\sum_jz_iK_{ij}z_j \\
+&amp;=\sum_i\sum_jz_i\phi(x^{(i)})^T\phi(x^{(j)})z_j \\
+&amp;=\sum_i\sum_jz_i\sum_k\phi_k(x^{(i)})\phi_k(x^{(j)})z_j\\
+&amp;=\sum_k\sum_i\sum_jz_i\phi_k(x^{(i)})\phi_k(x^{(j)})z_j \\
+&amp;= \sum_k(\sum_iz_i\phi_k(x^{(i)}))^2 \\
+&amp;\geq 0
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;因此当核函数是有效的，核函数矩阵是对称半正定的。事实上这不仅仅是一个必要条件，还是一个充分条件。归纳为Mercer定理。&lt;/p&gt;
+
+&lt;p&gt;除了应用在支持向量机中，核函数还在其他算法中大量应用。这种应用被称为核方法。（个人粗浅的理解，核方法看起来像是小技巧，实际上体现事物的内在本质）。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;规则化和不可分情况&lt;/h2&gt;
+&lt;p&gt;之前推导支持向量机时我们假定数据是线性可分割的，通过特征映射我们也能完成非线性分割，但有时候仍然会发生训练结果不好的情况，因为数据中会有噪音或离群点影响。&lt;/p&gt;
+
+&lt;p&gt;为此，我们引入规则化和松弛变量，将优化问题转化为下面的问题：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\min_{\omega,b, \xi}  \quad  &amp; \frac{1}{2}\|\omega\|^2 + C\sum_{i=1}^m \xi_i\\
+\text{s.t.}  \quad &amp; y^{(i)}(\omega^Tx^{(i)}+b)\geq 1-\xi_i, i=1,\cdots,m \\
+&amp; \xi_i \geq 0, i=1,\cdots,m
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;构造拉格朗日方程：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathcal{L}(\omega,b,\xi,\alpha,r)=\frac{1}{2}\omega^T\omega+C\sum_{i=1}^m \xi_i - \sum_{i=1}^m \alpha_i[y^{(i)}(x^T\omega+b)-1+\xi_i]-\sum_{i=1}^m r_i\xi_i&lt;/script&gt;
+
+&lt;p&gt;采用对&lt;script type=&quot;math/tex&quot;&gt;\omega,b, \xi&lt;/script&gt;求偏导的方法，可以得到对偶方程：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\max_{\alpha} \quad &amp; W(\alpha)=\sum_{i=1}^m\alpha_i-\frac{1}{2}\sum_{i,j=1}^my^{(i)}y^{(j)}\alpha_i\alpha_j\langle x^{(i)},x^{(j)} \rangle \\
+s.t. \quad &amp; 0 \leq \alpha_i \leq C, i=1,\cdots,m \\
+&amp; \sum_{i=1}^m \alpha_iy^{(i)}=0
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;我们注意到对偶方程和未引入松弛变量前几乎一致，除了&lt;script type=&quot;math/tex&quot;&gt;\alpha&lt;/script&gt;取值范围有变化。因为&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{\partial}{\partial \xi_i} \mathcal{L}(\omega,b,\xi,\alpha,r)=C-\alpha_i-r_i=0&lt;/script&gt;
+
+&lt;p&gt;根据KKT条件，还能得出以下结果：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\alpha_i=0 &amp;\Rightarrow y^{(i)}(\omega^Tx^{(i)}+b) \geq 1 \\
+\alpha_i=C &amp;\Rightarrow y^{(i)}(\omega^Tx^{(i)}+b) \leq 1 \\
+0 \leq \alpha_i \leq C &amp;\Rightarrow y^{(i)}(\omega^Tx^{(i)}+b) = 1 
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;smo&quot;&gt;SMO算法&lt;/h2&gt;
+&lt;p&gt;SMO算法专门用来高效解决支持向量机中推导出来的拉格朗日对偶问题。在讨论SMO算法之前先讲讲坐标上升法。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;坐标上升法&lt;/h3&gt;
+&lt;p&gt;坐标上升法是另一种优化方法，类似于前面的梯度下降法和牛顿法。其实质是每次只在一个坐标方向优化，考虑以下的无约束优化问题：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\max_{\alpha} W(\alpha_1, \alpha_2, \cdots, \alpha_m)&lt;/script&gt;
+
+&lt;p&gt;使用以下的算法进行递归直到达到最优解：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt; \text{For }i=1,\cdots,m:\\
+\alpha_i := \arg \max_{\hat{\alpha_i}} W(\alpha_1,\cdots,\alpha_{i-1},\hat{\alpha_i},\alpha_{i+1},\cdots,\alpha_m)
+&lt;/script&gt;
+
+&lt;p&gt;按顺序每一次固定其他，更新一个变量。（更复杂的版本是每一次更新使W增加最快的变量）。&lt;/p&gt;
+
+&lt;p&gt;当函数W是类似于 arg max 这样高效运算的函数时，坐标上升法是一种很有效的算法。&lt;/p&gt;
+
+&lt;h3 id=&quot;smo-1&quot;&gt;SMO&lt;/h3&gt;
+&lt;p&gt;我们回到SMO算法来解决拉格朗日对偶问题。
+观察约束&lt;script type=&quot;math/tex&quot;&gt;\sum_{i=1}^m \alpha_i y^{(i)}=0&lt;/script&gt;，我们发现&lt;script type=&quot;math/tex&quot;&gt;\alpha&lt;/script&gt;并不完全独立，&lt;script type=&quot;math/tex&quot;&gt;\alpha_1=-y^{(1)}\sum_{i=2}^m\alpha_iy^{(i)}&lt;/script&gt;。&lt;/p&gt;
+
+&lt;p&gt;受坐标上升法的启发，SMO算法的核心就是选择一对参数（使W增长最快的两个）进行更新，直到优化结束。&lt;/p&gt;
+
+&lt;p&gt;假设选择&lt;script type=&quot;math/tex&quot;&gt;\alpha_1,\alpha_2&lt;/script&gt;进行更新：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\alpha_1y^{(1)}+\alpha_2y^{(2)}=-\sum_{i=3}^m \alpha_iy^{(i)}=\zeta&lt;/script&gt;
+
+&lt;p&gt;结合&lt;script type=&quot;math/tex&quot;&gt;0\leq \alpha_i \leq C&lt;/script&gt;的约束，&lt;script type=&quot;math/tex&quot;&gt;\alpha_2&lt;/script&gt;的真实取值范围是&lt;script type=&quot;math/tex&quot;&gt;L \leq \alpha_2 \leq H&lt;/script&gt;。最终更新结果是：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\alpha_2^{new}=
+\begin{cases}
+H \quad &amp;\text{if } \alpha_2^{new, unclipped} &gt; H \\
+\alpha_2^{new, unclipped} \quad &amp;\text{if } L \leq \alpha_2^{new, unclipped} \leq H \\
+L 
+\end{cases}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\alpha_1^{new}&lt;/script&gt;值可以通过前面的线性关系求得。&lt;/p&gt;
+
+&lt;p&gt;SMO这里讲的还是比较粗略，需要后续再补充。不过支持向量机到此终于完结了，花了三天半时间，也是值得。&lt;/p&gt;
+</description>
+        <pubDate>Thu, 14 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/04/14/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/14/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/</guid>
+        
+        <category>Ng机器学习系列</category>
+        
+        <category>机器学习算法</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>生成学习算法</title>
+        <description>&lt;p&gt;前面的回归算法和感知机算法都属于判别学习算法，这一章聊聊另一类算法：生成学习算法。这两者的区别可以用以下的比喻，判别学习算法是根据所有猫猫狗狗的特征，建立一个模型，区分出两类动物的分界线。生成学习算法则是分别对猫和狗建立一个模型，然后去对照看跟哪个模型更像。&lt;/p&gt;
+
+&lt;p&gt;生成学习算法的理论依据就是贝叶斯公式，体现了后验概率&lt;script type=&quot;math/tex&quot;&gt;p({y \mid x})&lt;/script&gt;和先验概率&lt;script type=&quot;math/tex&quot;&gt;p(y)&lt;/script&gt;之间的关系：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+p(y \mid x)=\frac{p(x \mid y)p(y)}{p(x)}
+&lt;/script&gt;
+
+&lt;p&gt;对于生成学习算法而言，实际分母一致，不需要计算，只需要比较分子大小：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\arg \max_y p(y \mid x) &amp;= \arg \max_y \frac{p(x \mid y)p(y)}{p(x)}\\
+&amp;=\arg \max_y p(x \mid y)p(y)
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;高斯判别分析&lt;/h2&gt;
+&lt;p&gt;当假设p(x \mid y)分布遵循多元正态分布时，我们可以使用高斯判别分析算法。在这之前先简要介绍多元正态分布。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;多元正态分布&lt;/h3&gt;
+&lt;p&gt;当正态分布从一元拓展到多元时，正态分布概率密度函数也需要做出相应的改变：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+p(x;\mu,\Sigma)=\frac{1}{(2\pi)^{n/2} \mid  \Sigma  \mid ^{1/2}} \exp\left(-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu)\right)
+&lt;/script&gt;
+
+&lt;p&gt;其中，&lt;script type=&quot;math/tex&quot;&gt;\mu \in \mathbb{R}^n&lt;/script&gt; 是一个平均数向量，&lt;script type=&quot;math/tex&quot;&gt;\Sigma \in \mathbb{R}^{n\times n}&lt;/script&gt;是一个协方差矩阵。粗略一看，多元正态分布的表达式和一元正态分布还是有几分神似的。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;高斯判别分布模型&lt;/h3&gt;
+&lt;p&gt;对于二元分类问题，满足以下假设时可以使用高斯判别分布模型：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+y &amp;\sim Bernoulli(\phi) \\
+x \mid y=0 &amp;\sim \mathcal{N}(\mu_0,\Sigma)\\
+x \mid y=1 &amp;\sim \mathcal{N}(\mu_1,\Sigma)
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;即下列分布函数：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+p(y) &amp;= \phi^y(1-\phi)^{1-y} \\
+p(x \mid y=0) &amp;= \frac{1}{(2\pi)^{n/2} \mid  \Sigma  \mid ^{1/2}} \exp\left(-\frac{1}{2}(x-\mu_0)^T\Sigma^{-1}(x-\mu_0)\right)\\
+p(x \mid y=1) &amp;= \frac{1}{(2\pi)^{n/2} \mid  \Sigma  \mid ^{1/2}} \exp\left(-\frac{1}{2}(x-\mu_1)^T\Sigma^{-1}(x-\mu_1)\right)
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;注意两个多元正态分布的平均数向量不同，协方差矩阵是一致的。然后我们就可以求解最大似然函数了：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\ell(\phi,\mu_0,\mu_1,\Sigma) &amp;= \log \prod_{i=1}^m p(x^{(i)},y^{(i)};\phi,\mu_0,\mu_1,\Sigma)\\
+&amp;= \log \prod_{i=1}^m p(x^{(i)} \mid y^{(i)};\mu_0,\mu_1,\Sigma)p(y^{(i)};\phi)
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;各参数可解得：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\phi &amp;= \frac{1}{m}\sum_{i=1}^m1\{y^{(1)}\} \\
+\mu_0 &amp;= \frac{\sum_{i=1}^m1\{y^{i}=0\}x^{(i)}}{\sum_{i=1}^m1\{y^{i}=0\}}\\
+\mu_1 &amp;= \frac{\sum_{i=1}^m1\{y^{i}=1\}x^{(i)}}{\sum_{i=1}^m1\{y^{i}=1\}}\\
+\Sigma &amp;= \frac{1}{m}\sum_{i=1}^m(x^{(i)}-\mu_{y^{(i)}})(x^{(i)}-\mu_{y^{(i)}})^T
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;高斯判别分布和逻辑回归&lt;/h3&gt;
+&lt;p&gt;从高斯判别分布可以推出逻辑回归（表问我怎么推~）：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(y=1 \mid x;\phi,\Sigma,\mu_0,\mu_1)=\frac{1}{1+\exp(-\theta^Tx)}&lt;/script&gt;
+
+&lt;p&gt;实际上高斯判别分布应用了更强的假设，即p(x \mid y)是一个多元高斯分布。因此可以从高斯判别分布可以推导到逻辑回归，但满足逻辑回归的不一定满足高斯判别分布，比如泊松判别分布也能推导到高斯分布。&lt;/p&gt;
+
+&lt;p&gt;这也造成了高斯判别分布的性质，当原始数据吻合高斯分布时，这是一种很有效很精确的算法。但更多时候数据不能很好的满足高斯分布，这时候高斯判别分布就失效了，相比而言，逻辑回归更稳定，也更常用。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;朴素贝叶斯&lt;/h2&gt;
+&lt;p&gt;朴素贝叶斯是个大名鼎鼎的算法，不同于高斯判别分布应用于连续型输入，朴素贝叶斯应用于离散型输入，其最常用于文本分类中，比如判别是否为垃圾邮件。&lt;/p&gt;
+
+&lt;p&gt;在文本分类中，一张词汇表作为一个特征向量，文本中含这个词则为1，不含则为0，最后的结果示例如下：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x=\begin{bmatrix}1\\0\\0\\\vdots\\1\\\vdots\\0\end{bmatrix}&lt;/script&gt;
+
+&lt;p&gt;要实现朴素贝叶斯算法，需要朴素贝叶斯假设成立。即特征值取值概率是完全相互独立的：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(x_1,\cdots,x_n \mid y)=\prod_{i=1}^n p(x_i \mid y)&lt;/script&gt;
+
+&lt;p&gt;即使建立在这种强假设上，朴素贝叶斯经常很好使。&lt;/p&gt;
+
+&lt;p&gt;根据贝叶斯法则，需要确定的模型参数有&lt;script type=&quot;math/tex&quot;&gt;\phi_{i \mid y=1}=p(x_i=1 \mid y=1),\phi_{i \mid y=0}=p(x_i=1 \mid y=0),\phi_y=p(y=1)&lt;/script&gt;。计算最大似然函数：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathcal{L}(\phi_y,\phi_{j \mid y=0},\phi_{j \mid y=1})=\prod_{i=1}^m p(x^{(i)},y^{(i)})
+&lt;/script&gt;
+
+&lt;p&gt;求最大值可以解出各参数值。&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\phi_{j \mid y=1}&amp;=\frac{\sum_{i=1}^m1\{x_j^{(i)}=1\wedge y^{(i)}=1\}}{\sum_{i=1}^m1\{y^{(i)}=1\}}\\
+\phi_{j \mid y=0}&amp;=\frac{\sum_{i=1}^m1\{x_j^{(i)}=1\wedge y^{(i)}=0\}}{\sum_{i=1}^m1\{y^{(i)}=0\}}\\
+\phi_y&amp;= \frac{\sum_{i=1}^m1\{y^{(i)}=1\}}{m}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\wedge&lt;/script&gt;表示与运算，两边都满足才为真。这三个表达式其实都很直观，就是计数。总数里为1占得比例。&lt;/p&gt;
+
+&lt;p&gt;预测函数也可以给出来：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+p(y=1 \mid x)&amp;=\frac{p(x \mid y=1)p(y=1)}{p(x)}\\
+&amp;=\frac{(\prod_{i=1}^np(x_i \mid y=1))p(y=1)}{(\prod_{i=1}^np(x_i \mid y=1))p(y=1)+(\prod_{i=1}^np(x_i \mid y=0))p(y=0)}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;对于连续型输入，也可以通过分段处理来离散化，然后使用朴素贝叶斯算法。&lt;/p&gt;
+
+&lt;p&gt;朴素贝叶斯算法这一块缺少实践感悟，后续需要再来研究。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;拉普拉斯平滑处理&lt;/h3&gt;
+&lt;p&gt;朴素贝叶斯算法存在一个问题，对于稀疏数据敏感。比如文本分类时有从未出现过的词，则&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\phi_{j \mid y=1}=\phi_{j \mid y=0}=0
+&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(y=1 \mid x)=\frac{0}{0}&lt;/script&gt;
+
+&lt;p&gt;这样计算就会出问题，换一个角度，从未出现过的词不代表以后也不会出现。因此简单把其概率置为0是不合理的。&lt;/p&gt;
+
+&lt;p&gt;对于多元分类问题，假设z取值{1,…,k}，进行m次独立观察，则根据朴素贝叶斯算法：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\phi_j=\frac{\sum_{i=1}^m 1\{z^{(i)}=j\}}{m}
+&lt;/script&gt;
+
+&lt;p&gt;利用拉普拉斯平滑处理，可以解决这个问题，保证了每种情况至少有一个大于0的概率。同时保证&lt;script type=&quot;math/tex&quot;&gt;\sum_{j=1}^k \phi_j=1&lt;/script&gt;。&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\phi_j=\frac{\sum_{i=1}^k 1\{z^{(i)}=j\}+1}{m+k}
+&lt;/script&gt;
+
+&lt;p&gt;回头看上一节的垃圾邮件朴素贝叶斯，应用拉普拉斯平滑处理后：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\phi_{j \mid y=1}&amp;=\frac{\sum_{i=1}^m1\{x_j^{(i)}=1\wedge y^{(i)}=1\}+1}{\sum_{i=1}^m1\{y^{(i)}=1\}+2}\\
+\phi_{j \mid y=0}&amp;=\frac{\sum_{i=1}^m1\{x_j^{(i)}=1\wedge y^{(i)}=0\}+1}{\sum_{i=1}^m1\{y^{(i)}=0\}+2}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;注意在垃圾邮件的实践应用中，&lt;script type=&quot;math/tex&quot;&gt;\phi_y&lt;/script&gt;可以不用拉普拉斯平滑处理，因为一般正常邮件和垃圾邮件会有一个比较合理的比例。不可能出现为0的情况。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;文本分类事件模型&lt;/h3&gt;
+&lt;p&gt;前面使用的朴素贝叶斯模型被称为多元伯努利事件模型，在文本分类中，还有另一种针对邮件而不是词汇表处理的朴素贝叶斯模型，称为多项式事件模型。&lt;/p&gt;
+
+&lt;p&gt;我们让&lt;script type=&quot;math/tex&quot;&gt;x_i&lt;/script&gt;表示邮件中第i个词，在{1,…, \mid V \mid }中取值， \mid V \mid 代表词汇表大小。每一个词取值可能性相同，即满足多项式分布。&lt;/p&gt;
+
+&lt;p&gt;模型的参数有&lt;script type=&quot;math/tex&quot;&gt;\phi_y=p(y),\phi_{k \mid y=1}=p(x_j=k \mid y=1),\phi_{k \mid y=0}=p(x_j=k \mid y=0)&lt;/script&gt;，对于训练集&lt;script type=&quot;math/tex&quot;&gt;\{(x^{(i)},y^{(i)});i=1,...,m\}, x^{(i)}=(x_1^{(i)},x_2^{(i)},\cdots,x_{n_i}^{(i)}),n_i&lt;/script&gt;代表第i个训练集中单词总量。得出最大似然函数：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\mathcal{L}(\phi_y,\phi_{k \mid y=0},\phi_{k \mid y=1})&amp;=\prod_{i=1}^m p(x^{(i)},y^{(i)})\\
+&amp;=\prod_{i=1}^m\left(\prod_{j=1}^mp(x_j^{(i)} \mid y;\phi_{k \mid y=0},\phi_{k \mid y=1})\right)p(y^{(i)};\phi_y)
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;求最大值求解得到：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\phi_{k \mid y=1}&amp;=\frac{\sum_{i=1}^m\sum_{j=1}^{n_i}1\{x_j^{(i)}=k\wedge y^{(i)}=1\}}{\sum_{i=1}^m1\{y^{(i)}=1\}n_i}\\
+\phi_{k \mid y=0}&amp;=\frac{\sum_{i=1}^m\sum_{j=1}^{n_i}1\{x_j^{(i)}=k\wedge y^{(i)}=0\}}{\sum_{i=1}^m1\{y^{(i)}=0\}n_i}\\
+\phi_y&amp;= \frac{\sum_{i=1}^m1\{y^{(i)}=1\}}{m}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;对其使用拉普拉斯平滑：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\phi_{k \mid y=1}&amp;=\frac{\sum_{i=1}^m\sum_{j=1}^{n_i}1\{x_j^{(i)}=k\wedge y^{(i)}=1\}+1}{\sum_{i=1}^m1\{y^{(i)}=1\}n_i+ \mid V \mid }\\
+\phi_{k \mid y=0}&amp;=\frac{\sum_{i=1}^m\sum_{j=1}^{n_i}1\{x_j^{(i)}=k\wedge y^{(i)}=0\}+1}{\sum_{i=1}^m1\{y^{(i)}=0\}n_i+ \mid V \mid }
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;朴素贝叶斯不是最好的分类方法，但常常很有效。由于其简洁简单，朴素贝叶斯经常值得一试。 \mid &lt;/p&gt;
+</description>
+        <pubDate>Tue, 12 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/04/12/%E7%94%9F%E6%88%90%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/12/%E7%94%9F%E6%88%90%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/</guid>
+        
+        <category>Ng机器学习系列</category>
+        
+        <category>机器学习算法</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>随机分布</title>
+        <description>&lt;p&gt;随机分布属于概率统计的内容，同样在机器学习中经常遇到，线性回归被视为高斯分布，逻辑回归则是伯努利分布，因此在这里专列一篇介绍七个常见的随机分布，分成离散随机分布和连续随机分布两大块。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;离散随机分布&lt;/h2&gt;
+&lt;p&gt;介绍四种离散随机分布，分别是伯努利分布，二项分布，几何分布和泊松分布。离散随机分布用概率表达。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;伯努利分布&lt;/h3&gt;
+&lt;p&gt;伯努利分布是最简单的一种分布，抛一枚头向上概率为p的硬币，最终结果的分布。&lt;script type=&quot;math/tex&quot;&gt;X\sim Bernoulli(p),0\leq p\leq1&lt;/script&gt;：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+p(x)=
+\begin{cases}
+p &amp; \quad \text{if }x=1\\
+1-p &amp; \quad \text{if }x=0
+\end{cases}
+ %]]&gt;&lt;/script&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;二项分布&lt;/h3&gt;
+&lt;p&gt;独立抛n次头向上概率为p的硬币，最终有x次头向上的概率。&lt;script type=&quot;math/tex&quot;&gt;X\sim Binomial(n,p), 0\leq \ p\leq 1&lt;/script&gt;：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+p(x)=\binom{n}{x}p^x(1-p)^{n-x}
+&lt;/script&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;几何分布&lt;/h3&gt;
+&lt;p&gt;连续抛头向上概率为p的硬币，直到第x次头向上的概率。&lt;script type=&quot;math/tex&quot;&gt;X\sim Geometric(p), 0\leq \ p\leq 1&lt;/script&gt;：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+p(x)=p(1-p)^{x-1}
+&lt;/script&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;泊松分布&lt;/h3&gt;
+&lt;p&gt;终于到了泊松分布，说实话这个分布一直听到，却一直没有了解其本质。这里先给出泊松分布的公式，再尝试做一个推导，加深一下对泊松分布的理解。&lt;script type=&quot;math/tex&quot;&gt;X\sim Poisson(\lambda), \lambda &gt; 0&lt;/script&gt;：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+p(x)=e^{-\lambda}\frac{\lambda^x}{x!}
+&lt;/script&gt;
+
+&lt;p&gt;泊松分布可以从二项分布推演出来。在二项分布中，期望&lt;script type=&quot;math/tex&quot;&gt;\lambda=np&lt;/script&gt;，在p固定的情况下，&lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;会随着n的增大而增大。现在考虑期望固定，n无限大的情况，二项分布的公式就会发生很大的变化：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+p_{\lambda}(x)&amp;=\lim_{n \to \infty}\frac{n!}{x!(n-x)!}p^x(1-p)^{n-x} \\
+&amp;=\lim_{n \to \infty}\frac{n!}{x!(n-x)!}(\frac{\lambda}{n})^x(1-\frac{\lambda}{n})^{n-x}\\
+&amp;=\frac{\lambda^x}{x!}\lim_{n \to \infty}\frac{n(n-1)\cdots(n-x+1)}{n^x}(1-\frac{\lambda}{n})^x\lim_{n \to \infty}(1-\frac{\lambda}{n})^n\\
+&amp;=\frac{\lambda^x}{x!}\cdot1\cdot e^{-\lambda}\\
+&amp;=e^{-\lambda}\frac{\lambda^x}{x!}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;泊松分布必须满足下面三个性质，和上面的假设和推导相互印证。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;任意单位时间长度内，到达率稳定。即&lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;固定。&lt;/li&gt;
+  &lt;li&gt;未来与过去无关。即n永远为无穷次。&lt;/li&gt;
+  &lt;li&gt;在极小的时间内，1次发生的概率很小，0次发生的概率很大。即p很小。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;连续随机分布&lt;/h2&gt;
+&lt;p&gt;介绍三种连续随机分布，分别是均匀分布，指数分布和正态分布。注意连续分布是用概率密度表示的。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;均匀分布&lt;/h3&gt;
+&lt;p&gt;均匀分布也好理解，在取值区间内概率相等。&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+X\sim Uniform(a,b), a&lt;b %]]&gt;&lt;/script&gt;：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+f(x)=
+\begin{cases}
+\frac{1}{b-a} &amp; \quad \text{if }a\leq x \leq b \\
+0 &amp; \quad \text{otherwise}
+\end{cases}
+ %]]&gt;&lt;/script&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;指数分布&lt;/h3&gt;
+&lt;p&gt;指数分布是另一个神奇的分布，它和泊松分布是一对好基友。先给出表达式，后面再给解释。&lt;script type=&quot;math/tex&quot;&gt;X\sim Exponential(\lambda), \lambda&gt;0&lt;/script&gt;：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+f(x)=
+\begin{cases}
+\lambda e^{-\lambda x} &amp; \quad \text{if }x\geq 0 \\
+0 &amp; \quad \text{otherwise}
+\end{cases}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;当泊松分布用来衡量事件随时间分布时，指数分布可以用来描述事件间时间段长度。令&lt;script type=&quot;math/tex&quot;&gt;\lambda=\lambda&#39;t&lt;/script&gt;，&lt;script type=&quot;math/tex&quot;&gt;\lambda&#39;&lt;/script&gt;表示单位时间的平均到达率。此时&lt;script type=&quot;math/tex&quot;&gt;p(x)=e^{-\lambda&#39;t}(\lambda&#39;t)^x/x!&lt;/script&gt;，在t时间内一次都没发生的概率是&lt;script type=&quot;math/tex&quot;&gt;e^{-\lambda&#39; t}&lt;/script&gt;，因此事件发生的概率是：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+p(T\leq t)=1-e^{-\lambda&#39; t}
+&lt;/script&gt;
+
+&lt;p&gt;事件间时长描述可求导得到：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+f(t)=p&#39;(T\leq t)=\lambda&#39; e^{-\lambda&#39; t}
+&lt;/script&gt;
+
+&lt;p&gt;这就是我们的指数分布！同时我们也注意到两个分布原表达式中的&lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;是不一致的。也难怪，前者是用来表达概率的，后者是用来表达概率密度的。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-8&quot;&gt;正态分布&lt;/h3&gt;
+&lt;p&gt;正态分布是老相识了，也就是高斯分布。正态分布也有很多神奇的性质，限于时间，下次有机会再写。&lt;script type=&quot;math/tex&quot;&gt;X \sim Normal(\mu,\sigma^2)&lt;/script&gt;：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2\sigma^2}(x-\mu)^2}
+&lt;/script&gt;
+
+&lt;p&gt;七种常见的随机分布暂时写到这里，其实还有很多可以补充。比如图表，均值和方差。这点内容花了我两个半小时，水还是深啊。&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 11 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/04/11/%E9%9A%8F%E6%9C%BA%E5%88%86%E5%B8%83/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/11/%E9%9A%8F%E6%9C%BA%E5%88%86%E5%B8%83/</guid>
+        
+        <category>Ng机器学习系列</category>
+        
+        <category>数学基础</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>广义线性模型</title>
+        <description>&lt;p&gt;这一章讲讲广义线性模型。我刚看到这一章的时候，觉得很神奇。知识的境界不就是归一么。能把具体的模型一般化了，这本身就是件美丽的事。这里就是把线性回归和逻辑回归都归入了广义线性模型（GLMs)。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;指数分布族&lt;/h2&gt;
+&lt;p&gt;在讲广义线性模型前，需要先了解指数分布族。凡是能表达成下面的形式的，都属于指数分布族。&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(y;\eta)=b(y)\exp(\eta^TT(y)-a(\eta))&lt;/script&gt;
+
+&lt;p&gt;其中&lt;script type=&quot;math/tex&quot;&gt;\eta&lt;/script&gt;被称为自然参数，&lt;script type=&quot;math/tex&quot;&gt;T(y)&lt;/script&gt;是充分统计量，对机器学习来说一般&lt;script type=&quot;math/tex&quot;&gt;T(y)=y&lt;/script&gt;，&lt;script type=&quot;math/tex&quot;&gt;a(\eta)&lt;/script&gt;是对数部分函数，其作用是做一个正态化常量。&lt;/p&gt;
+
+&lt;p&gt;下面可以证明伯努利分布和高斯分布都属于指数分布族。&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+p(y;\phi)&amp;=\phi^y(1-\phi)^{1-y}\\
+&amp;=\exp(y\log\phi+(1-y)\log(1-\phi))\\
+&amp;=\exp((\log(\frac{\phi}{1-\phi}))y+\log(1-\phi))
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;因此有&lt;script type=&quot;math/tex&quot;&gt;\eta=\log(\frac{\phi}{1-\phi})&lt;/script&gt;，得到&lt;script type=&quot;math/tex&quot;&gt;\phi=1/(1+e^{-\eta})&lt;/script&gt;。
+其他几个参数也水到渠成：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+T(y) &amp;= y \\
+a(\eta) &amp;= -\log(1-\phi)\\
+&amp;= \log(1+e^\eta)\\
+b(y) &amp;= 1
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;对于高斯分布而言，因为&lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt;对于最终的结果没有影响，因此取&lt;script type=&quot;math/tex&quot;&gt;\sigma^2=1&lt;/script&gt;。&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+p(y;\mu)&amp;=\frac{1}{\sqrt{2\pi}}\exp(-\frac{1}{2}(y-\mu)^2)\\
+&amp;=\frac{1}{\sqrt{2\pi}}\exp(-\frac{1}{2}y^2)\cdot\exp(\mu y-\frac{1}{2}\mu^2)
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;因此有：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\eta &amp;= \mu \\
+T(y) &amp;= y \\
+a(\eta) &amp;= \mu^2/2=\eta^2/2\\
+b(y) &amp;=(1/\sqrt(2\pi))\exp(-y^2/2)
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;此外还有多种分布也是属于指数分布族：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;多项式分布：多个离散输出建模&lt;/li&gt;
+  &lt;li&gt;泊松分布：对计数过程建模&lt;/li&gt;
+  &lt;li&gt;伽马分布和指数分布：对连续非负随机变量建模，如时间间隔&lt;/li&gt;
+  &lt;li&gt;贝塔分布和狄利克雷分布：对概率分布建模&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这么一看上次总结的七个分布完全不够用啊，逃~&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;构建广义线性模型&lt;/h2&gt;
+&lt;p&gt;针对分类问题或回归问题，需要构造一个关于x的函数来预测y的值。满足三个假设可以构建广义线性模型：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;y\mid x;\theta \sim ExponentialFamily(\eta)&lt;/script&gt; 即y的分布要满足某些指数分布族。&lt;/li&gt;
+  &lt;li&gt;给定x，目标是预测&lt;script type=&quot;math/tex&quot;&gt;T(y)&lt;/script&gt;的期望值，大多数情况下即y的期望值。&lt;script type=&quot;math/tex&quot;&gt;h(x)=E[y \mid  x]&lt;/script&gt;。&lt;/li&gt;
+  &lt;li&gt;自然参数&lt;script type=&quot;math/tex&quot;&gt;\eta&lt;/script&gt;和输入x成线性关系：&lt;script type=&quot;math/tex&quot;&gt;\eta=\theta^Tx&lt;/script&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这三个假说很容易理解，下面对线性回归和逻辑回归的推导也应用了三个假说，同时也证明了我们的构造的正确性。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;线性回归&lt;/h3&gt;
+&lt;p&gt;对于线性回归而言，其满足高斯分布，预测函数构造如下：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+h_{\theta}(x)&amp;=E[y \mid x;\theta]\\
+&amp;=\mu\\
+&amp;=\eta\\
+&amp;=\theta^Tx
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;逻辑回归&lt;/h3&gt;
+&lt;p&gt;对于逻辑回归而言，其满足伯努利分布，预测函数构造如下：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+h_{\theta}(x)&amp;=E[y \mid x;\theta]\\
+&amp;=\theta\\
+&amp;=1/(1+e^{-\eta})\\
+&amp;=1/(1+e^{-\theta^Tx})
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;所以，前面逻辑回归时用逻辑斯蒂函数不是没有道理的。&lt;/p&gt;
+
+&lt;h3 id=&quot;softmax-&quot;&gt;Softmax 回归&lt;/h3&gt;
+&lt;p&gt;Softmax回归是逻辑回归的一般化，当输出有k个离散值时，y呈多项式分布，可以用Softmax回归刻画。&lt;/p&gt;
+
+&lt;p&gt;y可以取k个值，每一个取值的概率为&lt;script type=&quot;math/tex&quot;&gt;\theta_1,\cdots,\theta_k&lt;/script&gt;，但实际上这k个概率不是相互独立的，&lt;script type=&quot;math/tex&quot;&gt;\theta_k=1-\sum_{i=1}^{k-1}\theta_i&lt;/script&gt;。&lt;/p&gt;
+
+&lt;p&gt;为把多项式分布表示成指数分布族，定义&lt;script type=&quot;math/tex&quot;&gt;T(y)\in \mathbb{R}^{k-1}&lt;/script&gt;，而不再是y了：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;T(1)=\begin{bmatrix}1\\0\\0\\\vdots\\0\end{bmatrix}, T(2)=\begin{bmatrix}0\\1\\0\\\vdots\\0\end{bmatrix}, T(3)=\begin{bmatrix}0\\0\\1\\\vdots\\0\end{bmatrix}, \cdots, T(k-1)=\begin{bmatrix}0\\0\\0\\\vdots\\1\end{bmatrix},T(k)=\begin{bmatrix}0\\0\\0\\\vdots\\0\end{bmatrix}&lt;/script&gt;
+
+&lt;p&gt;用一种新的表达式来表示上式，&lt;script type=&quot;math/tex&quot;&gt;(T(y))_i=1\{y=i\}&lt;/script&gt;。我们可以开始证明Softmax分布也是指数分布族的一种了：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+p(y;\phi)&amp;=\phi_1^{1\{y=1\}}\phi_2^{1\{y=2\}}\cdots\phi_k^{1\{y=k\}}\\
+&amp;=\phi_1^{(T(y))_1}\phi_2^{(T(y))_2}\cdots\phi_k^{1-\sum_{i=1}^{k-1}(T(y))_i}\\
+&amp;=\exp((T(y))_1\log(\phi_1)+(T(y))_2\log(\phi_2)+\cdots+(1-\sum_{i=1}^{k-1}(T(y))_i)\log(\phi_k))\\
+&amp;=\exp((T(y))_1\log(\phi_1/\phi_k)+(T(y))_2\log(\phi_2/\phi_k)+\cdots+(T(y))_{k-1}\log(\phi_{k-1}/\phi_k)+\log(\phi_k))\\
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;可以得出指数分布族的各参数：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\eta &amp;= \begin{bmatrix}\log(\phi_1/\phi_k)\\\log(\phi_2/\phi_k)\\\vdots\\\log(\phi_{k-1}/\phi_k)\end{bmatrix}\\
+a(\eta)&amp;=-\log(\eta_k)\\
+b(y)&amp;=1
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;下面需要推导从&lt;script type=&quot;math/tex&quot;&gt;\eta&lt;/script&gt;到&lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt;的映射。
+由上面可知，&lt;script type=&quot;math/tex&quot;&gt;\eta_i=\log(\phi_i/\phi_k)&lt;/script&gt;，同时定义&lt;script type=&quot;math/tex&quot;&gt;\eta_k=\log(\phi_k/\phi_k)=0&lt;/script&gt;。&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+e^{\eta_i}&amp;=\frac{\phi_i}{\phi_k}\\
+\phi_ke^{\eta_i}&amp;=\phi_k\\
+\phi_k\sum_{i=1}^ke^{\eta_i}&amp;=\sum_{i=1}^k\phi_i=1\\
+\phi_i&amp;=\frac{e^{\eta_i}}{\sum_{j=1}^k e^{\eta_j}}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;上面的表达式可以求解&lt;script type=&quot;math/tex&quot;&gt;\phi_1,\cdots,\phi_{k-1}&lt;/script&gt;，&lt;script type=&quot;math/tex&quot;&gt;\phi_k=1/\sum_{i=1}^ke^{\eta_i}&lt;/script&gt;，这个从&lt;script type=&quot;math/tex&quot;&gt;\eta&lt;/script&gt;到&lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt;的映射函数称为softmax函数。&lt;/p&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\eta&lt;/script&gt;和x还是线性关系，&lt;script type=&quot;math/tex&quot;&gt;\eta_i=\theta_i^Tx,(i=1,\cdots,k-1)&lt;/script&gt;，其中&lt;script type=&quot;math/tex&quot;&gt;\theta_1,\cdots,\theta_{k-1}\in \mathbb{R}^{n+1}&lt;/script&gt;是我们模型的参数，定义&lt;script type=&quot;math/tex&quot;&gt;\theta_k=0&lt;/script&gt;，则&lt;script type=&quot;math/tex&quot;&gt;\eta_k=\theta_k^Tx=0&lt;/script&gt;，因此分布概率可表达成下式：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+p(y=i \mid x;\theta) &amp;= \phi_i\\
+&amp;=\frac{e^{\eta_i}}{\sum_{j=1}^ke^{\eta_j}}\\
+&amp;=\frac{e^{\theta_i^Tx}}{\sum_{j=1}^ke^{\theta_j^Tx}}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;我们的预测函数则可以表达为下式：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+h_{\theta}(x) &amp;= E[T(y) \mid x;\theta]\\
+&amp;= \begin{bmatrix}\phi_1\\\phi_2\\\vdots\\\phi_{k-1}\end{bmatrix}\\
+&amp;=\begin{bmatrix}\frac{e^{\theta_1^Tx}}{\sum_{j=1}^ke^{\theta_j^Tx}}\\
+\frac{e^{\theta_2^Tx}}{\sum_{j=1}^ke^{\theta_j^Tx}}\\
+\vdots\\
+\frac{e^{\theta_{k-1}^Tx}}{\sum_{j=1}^ke^{\theta_j^Tx}}\end{bmatrix}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;最后讨论一下参数拟合。还是采用和逻辑回归同样的方法，求最大似然函数的最大值，可以使用梯度下降法或牛顿法：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\ell(\theta)&amp;=\sum_{i=1}^m\log p(y^{(i)} \mid x^{(i)};\theta)\\
+&amp;=\sum_{i=1}^m\log \prod_{i=1}^k(\frac{e^{\theta_l^Tx}}{\sum_{j=1}^ke^{\theta_j^Tx}})^{1\{y^{(i)}=l\}}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+</description>
+        <pubDate>Mon, 11 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/04/11/%E5%B9%BF%E4%B9%89%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/11/%E5%B9%BF%E4%B9%89%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/</guid>
+        
+        <category>Ng机器学习系列</category>
+        
+        <category>机器学习算法</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>逻辑回归</title>
+        <description>&lt;p&gt;线性回归是一种连续型模型，对于y值是离散的情况就无能为力了。对于分类问题而言，很常用的是另一种算法：逻辑回归。逻辑回归虽然是名为回归，实际却是解决分类问题的，这也是有趣的地方。我们这里仅限讨论二元分类，对于多元分类，原理一致。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;分类与逻辑回归&lt;/h2&gt;
+&lt;p&gt;在逻辑回归中，由于y取值只有0和1两种可能性，很自然的一个做法是先把X做一个映射，映射到（0，1）空间，而logistic函数很好的满足了这个性质：两侧很快的趋于边界。（注意logistic也不是唯一的选择）逻辑回归的模型就是在线性回归外又做了一个logistic计算：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+h(x)=g(\theta^Tx)=\frac{1}{1+e^{-\theta^Tx}}
+&lt;/script&gt;
+
+&lt;p&gt;对于离散情况我们不能再用损失函数去衡量模型的拟合度，只能从最大似然性角度去衡量。逻辑回归和线性回归的似然性表示也有很大区别，线性回归通过引入一个误差的高斯分布来表示，逻辑回归则可以直接用&lt;script type=&quot;math/tex&quot;&gt;h_\theta(x)&lt;/script&gt;来表示：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+&amp;P(y=1\mid x;\theta)=h_\theta(x)\\
+&amp;P(y=0\mid x;\theta)=1-h_\theta(x)
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;把两式归纳起来可以写成：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+p(y\mid x;\theta)=(h_\theta(x))^y(1-h_\theta(x))^{1-y}
+&lt;/script&gt;
+
+&lt;p&gt;所以有最大似然函数：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+L(\theta)&amp;=\prod_{i=1}^m p(y^{(i)}\mid x^{(i)};\theta) \\
+&amp;= \prod_{i=1}^m(h_\theta(x^{(i)}))^{y^{(i)}}(1-h_\theta(x^{(i)}))^{1-y^{(i)}}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;后面的套路都是一样的，两边求对数，用梯度下降法求对数最大似然函数最大值。&lt;/p&gt;
+
+&lt;p&gt;对数最大似然函数：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\ell(\theta)&amp;=\log L(\theta)\\
+&amp;=\sum_{i=1}^m y^{(i)}\log h(x^{(i)})+(1-y^{(i)})\log (1-h(x^{(i)}))
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;对于单个训练集来说，对其对数最大似然函数求导：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\frac{\partial}{\partial\theta_j}&amp;=(y\frac{1}{g(\theta^Tx)}-(1-y)\frac{1}{1-g(\theta^Tx)})\frac{\partial}{\partial\theta_j}g(\theta^Tx) \\
+&amp;=(y\frac{1}{g(\theta^Tx)}-(1-y)\frac{1}{1-g(\theta^Tx)})g(\theta^Tx)(1-g(\theta^Tx))\frac{\partial}{\partial\theta_j}\theta^Tx\\
+&amp;=(y(1-g(\theta^Tx))-(1-y)g(\theta^Tx))x_j\\
+&amp;=(y-h_\theta(x))x_j
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;利用增量梯度下降法：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\theta_j:=\theta_j+\alpha(y^{(i)}-h_\theta(x^{(i)}))x_j^{(i)}
+&lt;/script&gt;
+
+&lt;p&gt;这个式子和线性回归竟然一模一样！当然这里的&lt;script type=&quot;math/tex&quot;&gt;h_\theta(x)&lt;/script&gt;是不同的，其实后面可以证明，这可不仅仅是巧合哦。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;题外话：感知机&lt;/h2&gt;
+&lt;p&gt;感知机是个历史悠久的模型，刚开始用来模型神经元的原理。后来被用在机器学习中，虽然简单，但却非常有效。至今仍是神经网络算法的基石。&lt;/p&gt;
+
+&lt;p&gt;感知机和逻辑回归不同的地方在于把logistic函数用域函数替代了：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+g(z)=
+\begin{cases}
+1 \quad\text{if }z\geq0 \\
+0 \quad\text{if }z&lt;0
+\end{cases}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;仍然使用上面的梯度下降法进行迭代。&lt;/p&gt;
+
+&lt;p&gt;乍看之下感知机和逻辑回归非常相像，其实有很多的区别。感知机模型的输出也是离散量，而逻辑回归的输出是连续量。特别的，感知机没法用概率去解释，黑白分明，自然也没法用最大似然函数去衡量拟合情况。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;牛顿法&lt;/h2&gt;
+&lt;p&gt;牛顿法是另一种可以求解对数似然函数最大值得方法。注意牛顿法也必须应用在凸函数上。想要求得&lt;script type=&quot;math/tex&quot;&gt;f(\theta)=0&lt;/script&gt;，可以用下式迭代：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\theta:=\theta-\frac{f(\theta)}{f&#39;(\theta)}
+&lt;/script&gt;
+
+&lt;p&gt;使用在求最大值上，即&lt;script type=&quot;math/tex&quot;&gt;f&#39;(\theta)=0&lt;/script&gt;，则使用下式迭代：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\theta:=\theta-\frac{\ell&#39;(\theta)}{\ell&#39; &#39;(\theta)}
+&lt;/script&gt;
+
+&lt;p&gt;对于向量化的&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;，比较复杂，需要使用到海森矩阵（一个1+n,1+n的矩阵）：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\theta:=\theta-H^{-1}\nabla_{\theta}\ell(\theta)
+&lt;/script&gt;
+
+&lt;p&gt;海森矩阵（一个1+n,1+n的矩阵）的计算方法如下，还是另篇专述：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+H_{ij}=\frac{\partial^2 \ell(\theta)}{\partial \theta_i \partial \theta_j}
+&lt;/script&gt;
+
+&lt;p&gt;牛顿方法通常比梯度下降法更快的收敛，这个可以从他们的迭代步子中也可以粗略的感知。但和直接计算法类似，牛顿法也使用了矩阵的逆，当特征数很大时，这一步的计算会很费时。所以，天下没有免费的午餐。&lt;/p&gt;
+</description>
+        <pubDate>Sun, 10 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/04/10/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/10/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</guid>
+        
+        <category>Ng机器学习系列</category>
+        
+        <category>机器学习算法</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>线性回归</title>
+        <description>&lt;p&gt;几乎所有的机器学习书籍都以线性回归为起点，这是有道理的。第一，线性回归比较容易入门，第二，线性回归是后续很多现代算法的基础，第三，线性回归是一种应用非常广泛的算法。&lt;/p&gt;
+
+&lt;p&gt;简单线性回归的模型很简单，可以下面的公式表示：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+h(x)=\displaystyle\sum_{i=0}^{n} \theta_ix_i=\theta^Tx
+&lt;/script&gt;
+
+&lt;p&gt;其中&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;称为参数或权重。上式实现从X空间到Y空间的映射。&lt;/p&gt;
+
+&lt;p&gt;拟合程度的好坏可以用下面的函数表示：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+J(\theta)=\frac{1}{2}\displaystyle\sum_{i=1}^{m} (h_\theta(x^{(i)})-y^{(i)})^2
+&lt;/script&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;J(\theta)&lt;/script&gt;被称为损失函数，这里的损失函数用估计值与实际值差的平方和来表示，是一种最常见的表示误差的方法。我们的目标就是使这个损失函数降到最小，实现最佳拟合。求最小二乘常用的有梯度下降法和举证计算法。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;梯度下降法&lt;/h2&gt;
+
+&lt;p&gt;梯度下降法的本质就是用迭代的思想，每一次都沿着最陡的方向（梯度）下降一小步，最终到达最小值。注意梯度下降法本身只能求局部最优解，但由于线性回归的J是个凸二次函数，因此局部最小值就是全局最小值。&lt;/p&gt;
+
+&lt;p&gt;先对&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;给出一个原始猜测值（一般可以取0），然后执行下面的迭代，其中&lt;script type=&quot;math/tex&quot;&gt;\alpha&lt;/script&gt;是个固定值，称为学习率：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\theta_j:=\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta)
+&lt;/script&gt;
+
+&lt;p&gt;对&lt;script type=&quot;math/tex&quot;&gt;J(\theta)&lt;/script&gt;求偏导可得下式：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\frac{\partial}{\partial\theta_j}J(\theta)&amp;=\frac{\partial}{\partial\theta_j}\frac{1}2(h_\theta(x)-y)^2 \\&amp;=2\cdot\frac{1}2(h_\theta(x)-y)\cdot\frac{\partial}{\partial\theta_j}(h_\theta-y)\\&amp;=(h_\theta(x)-y)\cdot\frac{\partial}{\partial\theta_j}(\displaystyle\sum_{i=0}^n \theta_ix_i-y)\\&amp;=(h_\theta(x)-y)x_j
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;所以有最终迭代的方程：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\theta_j:=\theta_j+\alpha(y-h_\theta(x))x_j
+&lt;/script&gt;
+
+&lt;p&gt;直观理解，二次函数的导数就是个一次函数，沿着导数方向下降，就是上面这式子。&lt;/p&gt;
+
+&lt;p&gt;上述式子是在只有一个训练样本时的情况，实际肯定会有大量的训练样本。对于多个训练样本，可以有两种变式。
+第一种方法叫批梯度下降，每一次迭代时，我把所有训练样本的误差都跑一遍，叠加后对&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;进行更新。&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\theta_j:=\theta_j+\alpha\sum_{i=1}^m(y^{(i)}-h_\theta(x^{(i)}))x_j^{(i)}
+&lt;/script&gt;
+
+&lt;p&gt;另一种方法叫增量梯度下降，每跑一个样本，我就迭代一次。&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\text{for }i=1\text{ to }m:\\
+\theta_j:=\theta_j+\alpha(y^{(i)}-h_\theta(x^{(i)}))x_j^{(i)}
+&lt;/script&gt;
+
+&lt;p&gt;显然增量梯度下降会比批梯度下降跑的快，由于每一次迭代都要计算所有样本，批梯度非常耗时。另一方面，增量梯度很可能无法达到最小值，而是在最小值左右徘徊。因此对大数据集我们倾向于选择增量梯度，而对于小数据集则选择批梯度。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;矩阵计算法&lt;/h2&gt;
+
+&lt;p&gt;对于损失函数最小值的求解，除了上面的梯度下降法，还可以用矩阵直接进行计算。但其过程涉及到很多的矩阵推导，需要具备较高的数学基础。这种算法的本质就是利用了函数最小值处导数等于0的性质。&lt;/p&gt;
+
+&lt;p&gt;把上面的损失函数向量化，就是下面的表达式：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+J(\theta)=\frac{1}2(X\theta-\overrightarrow{y})^T(X\theta-\overrightarrow{y})
+&lt;/script&gt;
+
+&lt;p&gt;将上面的损失函数对&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;求导，可以得到：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\nabla_{\theta}J(\theta)&amp;=\nabla_{\theta}\frac{1}2(X\theta-\overrightarrow{y})^T(X\theta-\overrightarrow{y})\\&amp;=\frac{1}2\nabla_{\theta}(\theta^TX^TX\theta-\theta^TX^T\overrightarrow{y}-\overrightarrow{y}X\theta+\overrightarrow{y}^T\overrightarrow{y})\\&amp;=\frac{1}2\nabla_{\theta}tr(\theta^TX^TX\theta-\theta^TX^T\overrightarrow{y}-\overrightarrow{y}X\theta+\overrightarrow{y}^T\overrightarrow{y})\\&amp;=\frac{1}2\nabla_{\theta}(tr\theta^TX^TX\theta-2tr\overrightarrow{y}X\theta)\\&amp;=\frac{1}2(X^TX\theta+X^TX\theta-2X^T\overrightarrow{y}）\\&amp;=X^TX\theta-X^T\overrightarrow{y}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;上述推导利用了矩阵的迹及相关性质，另篇专述。&lt;/p&gt;
+
+&lt;p&gt;令等式等于0，可以得到：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+X^TX\theta=X^T\overrightarrow{y}
+&lt;/script&gt;
+
+&lt;p&gt;容易求出&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\theta = (X^TX)^{-1}X^T\overrightarrow{y}
+&lt;/script&gt;
+
+&lt;p&gt;注意当训练集和特征值很多时，求矩阵的逆会很耗时，此时算法的性能不如前面的梯度下降法。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;概率解释&lt;/h2&gt;
+
+&lt;p&gt;这一节从概率的角度出发，论证了为什么把最小二乘作为损失函数是令人信服的选择。个人觉得这是一个比较有趣的角度。&lt;/p&gt;
+
+&lt;p&gt;假设我们的模型估计值和y真实值存在一个偏差&lt;script type=&quot;math/tex&quot;&gt;\epsilon&lt;/script&gt;，表示未被模型考虑的因素或者是随机的噪音。进一步假设&lt;script type=&quot;math/tex&quot;&gt;\epsilon^{(i)}&lt;/script&gt;是独立同分布的，服从&lt;script type=&quot;math/tex&quot;&gt;\epsilon^{(i)}\sim\mathcal{N}(0,\sigma^2)&lt;/script&gt;的高斯分布：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+p(\epsilon^{(i)})=\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2})
+&lt;/script&gt;
+
+&lt;p&gt;似然性函数等于：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+L(\theta)&amp;=\prod_{i=1}^m p(y^{(i)}\mid x^{(i)};\theta) \\
+&amp;=\prod_{i=1}^m\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2})
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;根据最大似然性准则，我们需要选择&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;使似然性函数取到最大值。&lt;/p&gt;
+
+&lt;p&gt;两边同取log函数，得到对数似然性函数：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\ell(\theta)&amp;=\log{L(\theta)}\\
+&amp;=\log\prod_{i=1}^m\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2})\\
+&amp;=\sum_{i=1}^m \log\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2})\\
+&amp;=m\log\frac{1}{\sqrt{2\pi}\sigma}-\frac{1}{\sigma^2}\cdot\frac{1}{2}\displaystyle\sum_{i=1}^{m} (h_\theta(x^{(i)})-y^{(i)})^2
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;可以看出为了让&lt;script type=&quot;math/tex&quot;&gt;\ell(\theta)&lt;/script&gt;最大，必须让&lt;script type=&quot;math/tex&quot;&gt;\frac{1}{2}\displaystyle\sum_{i=1}^{m} (h_\theta(x^{(i)})-y^{(i)})^2&lt;/script&gt;最小，这就是前面的损失函数&lt;script type=&quot;math/tex&quot;&gt;h(\theta)&lt;/script&gt;。还可以发现&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;的取值和&lt;script type=&quot;math/tex&quot;&gt;\sigma&lt;/script&gt;是无关的。&lt;/p&gt;
+
+&lt;p&gt;需要注意的是最小二乘并不是唯一合理的损失函数，最大似然性作为一种假设也不是推导损失函数的必要条件。我们还有其他合理的损失函数可以选择。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;局部加权线性回归&lt;/h2&gt;
+
+&lt;p&gt;局部加权线性回归的本质在于考虑了预测样本，对于训练集中和预测样本相似的训练样本，给予其更高的权值。&lt;/p&gt;
+
+&lt;p&gt;局部加权线性回归修改了简单线性回归的损失函数，添加了一个权值函数&lt;script type=&quot;math/tex&quot;&gt;w^{(i)}&lt;/script&gt;：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+h(\theta)=\frac{1}{2}\sum_{i=1}^{m}w^{(i)} (h_\theta(x^{(i)})-y^{(i)})^2
+&lt;/script&gt;
+
+&lt;p&gt;这个权值函数又是和预测样本相关联的，下面是一种标准的选择，x是预测样本的输入，&lt;script type=&quot;math/tex&quot;&gt;\tau&lt;/script&gt;称为带宽，可以调整：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+w^{(i)}=\exp(-\frac{(x^{(i)}-x)^2}{2\tau^2})
+&lt;/script&gt;
+
+&lt;p&gt;局部加权线性回归显然是一种比简单线性回归优化的算法，但他也被称为非参数算法，因为模型参数会随着预测样本变化，因此需要每一次进行即时计算。&lt;/p&gt;
+</description>
+        <pubDate>Sun, 10 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/04/10/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/10/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
+        
+        <category>Ng机器学习系列</category>
+        
+        <category>机器学习算法</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>矩阵参考</title>
+        <description>&lt;p&gt;矩阵运算是各类算法的基础，虽然大学的线代都学过，但不用则废，现在还是需要捡起来。知识点略多，之前已经过了一遍，至于总结，准备采取需要什么总结什么的方式。增量补充吧，哈哈。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;单位矩阵&lt;/h2&gt;
+&lt;p&gt;单位矩阵就是对角为1，其余为0的矩阵，常常用作无中生有，当一个路人甲。因为它的脾气好：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;AI=A=IA&lt;/script&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;转置&lt;/h2&gt;
+&lt;p&gt;矩阵所谓的转置就是行列互换，转置的产生，往往是由于运算的需要。比如向量的平方和表示。转置有如下三个性质：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;：&lt;script type=&quot;math/tex&quot;&gt;(A^T)^T=A&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;：&lt;script type=&quot;math/tex&quot;&gt;(AB)^T=B^TA^T&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;：&lt;script type=&quot;math/tex&quot;&gt;(A+B)^T=A^T+B^T&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;其中第一第三条很明显，第二条略作证明。&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+(AB)_{ij}^T&amp;=(AB)_{ji}=\sum_{k=1}^nA_{jk}B_{ki}\\
+&amp;=\sum_{k=1}^nB_{ki}A_{jk}=\sum_{k=1}^nB_{ik}^TA_{kj}^T\\
+&amp;=(B^TA^T)_{ij}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;迹&lt;/h2&gt;
+&lt;p&gt;矩阵的迹是方形矩阵的对角和，虽然它本身没什么作用，但常常被用作推演的中间步骤。对于迹，有如下五个性质：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;For &lt;script type=&quot;math/tex&quot;&gt;A\in\mathbb{R}^{n\times n},trA=trA^T&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;For &lt;script type=&quot;math/tex&quot;&gt;A, B\in \mathbb{R}^{n\times n}, tr(A+B)=trA+trB&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;For &lt;script type=&quot;math/tex&quot;&gt;A\in\mathbb{R}^{n\times n},t\in \mathbb{R}, tr(tA)=t\,trA&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;For &lt;script type=&quot;math/tex&quot;&gt;A, B\text{ such that }AB\text{ is square}, trAB=trBA&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;For &lt;script type=&quot;math/tex&quot;&gt;A, B, C\text{ such that }ABC\text{ is square}, trABC=trBCA=trCAB&lt;/script&gt;, and so on&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;以上性质中，第1，2，3条都是显而易见的，第五条可以由第四条推导得到，因此只需要证明第4条。&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+trAB &amp;= \sum_{i=1}^m(AB)_{ii}=\sum_{i=1}^m(\sum_{j=1}^nA_{ij}B_{ji})\\
+&amp;=\sum_{j=1}^n\sum_{i=1}^mB_{ji}A_{ij}=\sum_{j=1}^n(BA)_{jj}\\
+&amp;=trBA
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;梯度&lt;/h2&gt;
+&lt;p&gt;梯度就是函数对矩阵求偏导，结果和原矩阵形状相同。梯度在机器学习中极为常用，需要牢牢掌握。&lt;/p&gt;
+
+&lt;p&gt;梯度原始的性质只有简单的两条：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;：&lt;script type=&quot;math/tex&quot;&gt;\nabla_{x}(f(x)+g(x))=\nabla_{x}f(x)+\nabla_{x}g(x)&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;：For &lt;script type=&quot;math/tex&quot;&gt;t\in \mathbb{R}, \nabla_{x}(tf(x))=t\nabla_{x}f(x)&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;但梯度还有其他延伸的性质，之前在线性规划推导直接计算法时就用到过。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;：&lt;script type=&quot;math/tex&quot;&gt;\nabla_{A}trAB=B^T&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;：&lt;script type=&quot;math/tex&quot;&gt;\nabla_{A^T}f(A)=(\nabla_Af(A))^T&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;：&lt;script type=&quot;math/tex&quot;&gt;\nabla_{A}trABA^TC=CAB+C^TAB^T&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;下面分别予以证明：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\frac{\partial}{\partial A_{ij}}trAB&amp;=\frac{\partial}{\partial A_{ij}}\sum_{i=1}^m(AB)_{ii}\\
+&amp;=\frac{\partial}{\partial A_{ij}}\sum_{i=1}^m\sum_{j=1}^NA_{ij}B_{ji}\\
+&amp;=B_{ji}=B_{ij}^T
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+(\nabla_{A^T}f(A))_{ij}&amp;=\frac{\partial}{\partial A_{ij}^T}f(A)=\frac{\partial}{\partial A_{ji}}f(A)\\
+&amp;=(\nabla_{A}f(A))_{ji}=(\nabla_{A}f(A))_{ij}^T
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\frac{\partial}{\partial A_{ij}}trABA^TC&amp;=tr(\frac{\partial AB}{\partial A_{ij}}A^TC+AB\frac{\partial A^TC}{\partial A_{ij}})\\
+&amp;=tr(BA^TC\frac{\partial A}{\partial A_{ij}})+tr(CAB\frac{\partial A^T}{\partial A_{ij}})\\
+&amp;=tr(BA^TC\frac{\partial A}{\partial A_{ij}})+tr(B^TA^TC^T\frac{\partial A}{\partial A_{ij}})\\
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\frac{\partial}{\partial A}trABA^TC&amp;=(BA^TC)^T+(B^TA^TC^T)^T\\
+&amp;=C^TAB^T+CAB
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;海森矩阵&lt;/h2&gt;
+&lt;p&gt;一个粗略的类比是，梯度是对矩阵求一阶导，海森是对向量求二阶导。这样方便我们理解海森的实质。有一个式子可以表达这个概念：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\nabla_x^2f(x)=\nabla_x(\nabla_xf(x))^T
+&lt;/script&gt;
+
+&lt;p&gt;注意第二次求导实际上是对&lt;script type=&quot;math/tex&quot;&gt;\nabla_xf(x)&lt;/script&gt;每一个元素求导。因为没有定义向量的求导运算。&lt;/p&gt;
+
+&lt;p&gt;海森矩阵是一个对称矩阵。即&lt;script type=&quot;math/tex&quot;&gt;H_{ij}=H_{ji}&lt;/script&gt;。&lt;/p&gt;
+</description>
+        <pubDate>Sun, 10 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/04/10/%E7%9F%A9%E9%98%B5%E5%8F%82%E8%80%83/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/10/%E7%9F%A9%E9%98%B5%E5%8F%82%E8%80%83/</guid>
+        
+        <category>Ng机器学习系列</category>
+        
+        <category>数学基础</category>
+        
         
       </item>
     

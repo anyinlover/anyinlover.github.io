@@ -1,190 +1,786 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title> Blog — A desire to the unknown &raquo;  A way to Data Scientist</title>
-<meta name="description" content="Find a way to become a data scientist by self-study.
-">
 
-<link rel="canonical" href="http://anyinlover.github.io/">
-          
-  
-  
-  
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="在这里探索数据，发现真理">
+    <meta name="keyword"  content="Anyinlover, 机器学习, 数据挖掘">
+    <link rel="shortcut icon" href="/img/favicon.ico">
 
-<!-- Twitter Cards -->
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Blog" />
-<meta name="twitter:description" content="Find a way to become a data scientist by self-study.
-" />
-<meta name="twitter:image" content="http://anyinlover.github.io" />
+    <title>木公的博客 | Anyinlover Blog</title>
 
-<!-- Google plus -->
-<meta name="author" content="">
-<link rel="author" href="">
+    <link rel="canonical" href="http://anyinlover.github.io/">
 
-<!-- Open Graph -->
-<meta property="og:locale" content="">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Blog">
-<meta property="og:description" content="Find a way to become a data scientist by self-study.
-">
-<meta property="og:url" content="http://anyinlover.github.io/">
-<meta property="og:site_name" content="A way to Data Scientist">
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 
-        <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="/assets/vendor/normalize-css/normalize.css">
-<link rel="stylesheet" href="/css/main.css">
-<link rel="stylesheet" href="/assets/vendor/highlight/styles/solarized_dark.css">
-<link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.css">
-    </head>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
 
-    <body>
-        <div class="wrapper">
-            <header class="header">
-    <div class="navigation">
-        <a href="/" class="logo">A way to Data Scientist</a>
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
 
-        <ul class="menu">
-            <li class="menu__entry"><a href="/about">About</a></li>
-            <li class="menu__entry"><a href="/">Blog</a></li>
-        </ul>
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Anyinlover Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
 
-    <ul class="social-links">
-        
-            <a href="https://github.com/anyinlover" class="social-links__entry" target="_blank">
-                <i class="fa fa-github"></i>
-            </a>
-        
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
 
-        
-    </ul>
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Anyinlover Blog</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">让世界变得更美好</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-                  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-                          });
-</script>
-<script type="text/javascript"
-  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- PostList Container -->
+    		<div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                postlist-container
+            ">
+    			
+<div class="post-preview">
+    <a href="/2016/04/18/K%E5%9D%87%E5%80%BC%E8%81%9A%E7%B1%BB%E4%B8%8E%E6%B7%B7%E5%90%88%E9%AB%98%E6%96%AF%E6%A8%A1%E5%9E%8B/">
+        <h2 class="post-title">
+            K均值聚类与混合高斯模型
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习第八讲
+        </h3>
+        
+        <div class="post-content-preview">
+            K均值聚类算法
+在聚类问题中，我们给定一个训练集，标签没有给出，我们的目标还是把数据分类。这是一个非监督学习问题。
+
+K均值聚类算法给出了下面的方法：
 
 
-            <h1 class="page-title">
-    <div class="page-title__text">Blog</div>
-    <div class="page-title__subtitle">A desire to the unknown</div>
-</h1>
+  随机初始化聚类中心
+  
+    不断迭代直到收敛：{
 
-<ul class="list-posts">
+    对所有i，令：
+
     
-        <li class="post-teaser">
-            <a href="/algorithm/2015/12/05/Chap2.html">
-                <span class="post-teaser__title">Chap2: Getting to Know Your Data</span>
-                <span class="post-teaser__date">05 December 2015</span>
-            </a>
-        </li>
+
+    对所有j，令：
+
     
-        <li class="post-teaser">
-            <a href="/algorithm/2015/12/03/Chap1.html">
-                <span class="post-teaser__title">Chap1: Introduction</span>
-                <span class="post-teaser__date">03 December 2015</span>
-            </a>
-        </li>
+
+    }
+  
+
+
+算法的内循环不停的在执行两个步骤，先把每个训练样本归给最近的聚类中心所代表的类...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on April 18, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/04/17/%E8%A7%84%E5%88%99%E5%8C%96%E4%B8%8E%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9/">
+        <h2 class="post-title">
+            规则化与模型选择
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习第七讲
+        </h3>
+        
+        <div class="post-content-preview">
+            对于有限个模型，我们如何选择最优的模型。
+
+交叉验证
+对于整个训练集进行训练，从中挑选最小训练误差来评价模型并不是一个好方法，因为这样往往选出高方差的模型。
+
+因此有下面的交叉验证法：把训练数据分S成和两部分，一般分成七三开。用来训练数据，用来验证数据。从中挑出验证误差最小的模型作为最优模型，再进行全数据集重训练。
+
+交叉验证避免了一味选择复杂的模型，但也造成了数据的浪费，特别在数据量不足时...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on April 17, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/04/17/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8E%9F%E7%90%86/">
+        <h2 class="post-title">
+            机器学习原理
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习第六讲
+        </h3>
+        
+        <div class="post-content-preview">
+            偏差和方差
+还是从房价预测的例子入手，我们可以分别用一次函数，三次函数和五次函数去拟合测试集。但不是三个模型都是好模型，第一个和第三个都存在着泛化误差，即测试集的拟合误差要大于训练集的期望误差。
+
+对于一次函数模型，我们认为模型有偏差，即使给出足够大的训练集也会使数据欠拟合。而对于五次函数模型，我们认为模型有方差，仅仅是很好的吻合了小范围的测试集，对数据过拟合，不能准确反映更一般的输入输出关...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on April 17, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/04/14/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/">
+        <h2 class="post-title">
+            支持向量机
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习第五讲
+        </h3>
+        
+        <div class="post-content-preview">
+            这一章主要学习支持向量机。支持向量机是目前最好的监督学习算法之一。但支持向量机本身难度较大，需要较强的数学基础。假如抛开数学部分，其本质就是用拉格朗日对偶法计算最大间隔，利用核函数简化高维映射的计算，用SMO算法更新参数。本文也将根据NG讲义的这一顺序展开。此外，这里有一份比较完善的中文入门资料。
+
+间隔入门
+回顾之前的逻辑回归，，当时预测为1，否则为0。这里存在一个预测的可信度问题，假如或...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on April 14, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/04/12/%E7%94%9F%E6%88%90%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/">
+        <h2 class="post-title">
+            生成学习算法
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习第四讲
+        </h3>
+        
+        <div class="post-content-preview">
+            前面的回归算法和感知机算法都属于判别学习算法，这一章聊聊另一类算法：生成学习算法。这两者的区别可以用以下的比喻，判别学习算法是根据所有猫猫狗狗的特征，建立一个模型，区分出两类动物的分界线。生成学习算法则是分别对猫和狗建立一个模型，然后去对照看跟哪个模型更像。
+
+生成学习算法的理论依据就是贝叶斯公式，体现了后验概率和先验概率之间的关系：
+
+
+
+对于生成学习算法而言，实际分母一致，不需要计算，只...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on April 12, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/04/11/%E9%9A%8F%E6%9C%BA%E5%88%86%E5%B8%83/">
+        <h2 class="post-title">
+            随机分布
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习补遗二
+        </h3>
+        
+        <div class="post-content-preview">
+            随机分布属于概率统计的内容，同样在机器学习中经常遇到，线性回归被视为高斯分布，逻辑回归则是伯努利分布，因此在这里专列一篇介绍七个常见的随机分布，分成离散随机分布和连续随机分布两大块。
+
+离散随机分布
+介绍四种离散随机分布，分别是伯努利分布，二项分布，几何分布和泊松分布。离散随机分布用概率表达。
+
+伯努利分布
+伯努利分布是最简单的一种分布，抛一枚头向上概率为p的硬币，最终结果的分布。：
+
+
+
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on April 11, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/04/11/%E5%B9%BF%E4%B9%89%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/">
+        <h2 class="post-title">
+            广义线性模型
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习第三讲
+        </h3>
+        
+        <div class="post-content-preview">
+            这一章讲讲广义线性模型。我刚看到这一章的时候，觉得很神奇。知识的境界不就是归一么。能把具体的模型一般化了，这本身就是件美丽的事。这里就是把线性回归和逻辑回归都归入了广义线性模型（GLMs)。
+
+指数分布族
+在讲广义线性模型前，需要先了解指数分布族。凡是能表达成下面的形式的，都属于指数分布族。
+
+
+
+其中被称为自然参数，是充分统计量，对机器学习来说一般，是对数部分函数，其作用是做一个正态化常量...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on April 11, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/04/10/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/">
+        <h2 class="post-title">
+            逻辑回归
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习第二讲
+        </h3>
+        
+        <div class="post-content-preview">
+            线性回归是一种连续型模型，对于y值是离散的情况就无能为力了。对于分类问题而言，很常用的是另一种算法：逻辑回归。逻辑回归虽然是名为回归，实际却是解决分类问题的，这也是有趣的地方。我们这里仅限讨论二元分类，对于多元分类，原理一致。
+
+分类与逻辑回归
+在逻辑回归中，由于y取值只有0和1两种可能性，很自然的一个做法是先把X做一个映射，映射到（0，1）空间，而logistic函数很好的满足了这个性质：...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on April 10, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/04/10/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">
+        <h2 class="post-title">
+            线性回归
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习第一讲
+        </h3>
+        
+        <div class="post-content-preview">
+            几乎所有的机器学习书籍都以线性回归为起点，这是有道理的。第一，线性回归比较容易入门，第二，线性回归是后续很多现代算法的基础，第三，线性回归是一种应用非常广泛的算法。
+
+简单线性回归的模型很简单，可以下面的公式表示：
+
+
+
+其中称为参数或权重。上式实现从X空间到Y空间的映射。
+
+拟合程度的好坏可以用下面的函数表示：
+
+
+
+被称为损失函数，这里的损失函数用估计值与实际值差的平方和来表示，是一种最...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on April 10, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/04/10/%E7%9F%A9%E9%98%B5%E5%8F%82%E8%80%83/">
+        <h2 class="post-title">
+            矩阵参考
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习补遗一
+        </h3>
+        
+        <div class="post-content-preview">
+            矩阵运算是各类算法的基础，虽然大学的线代都学过，但不用则废，现在还是需要捡起来。知识点略多，之前已经过了一遍，至于总结，准备采取需要什么总结什么的方式。增量补充吧，哈哈。
+
+单位矩阵
+单位矩阵就是对角为1，其余为0的矩阵，常常用作无中生有，当一个路人甲。因为它的脾气好：
+
+
+
+转置
+矩阵所谓的转置就是行列互换，转置的产生，往往是由于运算的需要。比如向量的平方和表示。转置有如下三个性质：
+
+
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on April 10, 2016
+    </p>
+</div>
+<hr>
+
+
+<!-- Pager -->
+
+<ul class="pager">
     
-        <li class="post-teaser">
-            <a href="/algorithm/2015/12/03/Chap0.html">
-                <span class="post-teaser__title">Chap0: Begin to learn Data Mining</span>
-                <span class="post-teaser__date">03 December 2015</span>
-            </a>
-        </li>
     
-        <li class="post-teaser">
-            <a href="/productivity/2015/12/02/Git-usage.html">
-                <span class="post-teaser__title">Git Basic Usage</span>
-                <span class="post-teaser__date">02 December 2015</span>
-            </a>
-        </li>
-    
-        <li class="post-teaser">
-            <a href="/productivity/2015/12/02/Jekyll-usage.html">
-                <span class="post-teaser__title">Jekyll basic usage</span>
-                <span class="post-teaser__date">02 December 2015</span>
-            </a>
-        </li>
-    
-        <li class="post-teaser">
-            <a href="/language/2015/12/02/Concepts-about-ruby.html">
-                <span class="post-teaser__title">Some concepts about ruby</span>
-                <span class="post-teaser__date">02 December 2015</span>
-            </a>
-        </li>
-    
-        <li class="post-teaser">
-            <a href="/productivity/language/2015/12/02/Rbenv-usage.html">
-                <span class="post-teaser__title">rbenv Basic Usage</span>
-                <span class="post-teaser__date">02 December 2015</span>
-            </a>
-        </li>
-    
-        <li class="post-teaser">
-            <a href="/productivity/system/2015/12/02/Homebrew-usage.html">
-                <span class="post-teaser__title">Homebrew basic usage</span>
-                <span class="post-teaser__date">02 December 2015</span>
-            </a>
-        </li>
-    
-        <li class="post-teaser">
-            <a href="/productivity/2015/11/30/shadowsocks.html">
-                <span class="post-teaser__title">Use Shadowsocks to over the GFW</span>
-                <span class="post-teaser__date">30 November 2015</span>
-            </a>
-        </li>
-    
-        <li class="post-teaser">
-            <a href="/productivity/2015/11/30/markdown-usage.html">
-                <span class="post-teaser__title">Markdown's Usage</span>
-                <span class="post-teaser__date">30 November 2015</span>
-            </a>
-        </li>
-    
-        <li class="post-teaser">
-            <a href="/non-tech/2015/11/29/Im-in.html">
-                <span class="post-teaser__title">I'm in</span>
-                <span class="post-teaser__date">29 November 2015</span>
-            </a>
-        </li>
+    <li class="next">
+        <a href="/page2">Older Posts &rarr;</a>
+    </li>
     
 </ul>
 
 
-<div class="explore">
-    <div class="explore__devider">*****</div>
-    <div class="explore__label">Explore the different categories</div>
-    <ul class="categories">
+    		</div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                            
+                        
+                            
+                                <a href="/tags/#工具" title="工具" rel="3">
+                                    工具
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#机器学习" title="机器学习" rel="2">
+                                    机器学习
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#Linux" title="Linux" rel="6">
+                                    Linux
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#Linux命令行" title="Linux命令行" rel="6">
+                                    Linux命令行
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#Ng机器学习系列" title="Ng机器学习系列" rel="10">
+                                    Ng机器学习系列
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#数学基础" title="数学基础" rel="2">
+                                    数学基础
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#机器学习算法" title="机器学习算法" rel="6">
+                                    机器学习算法
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#机器学习理论" title="机器学习理论" rel="2">
+                                    机器学习理论
+                                </a>
+                            
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+                        
+                            <img src="/img/me.jpg" />
+                        
+                        
+                            <p>从一滴水中见到海洋</p>
+                        
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            
+                            
+                            <li>
+                                <a target="_blank" href="https://www.zhihu.com/people/guguoshenqi">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa  fa-stack-1x fa-inverse">知</i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            <li>
+                                <a target="_blank" href="https://www.douban.com/people/48573787">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa  fa-stack-1x fa-inverse">豆</i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            <li>
+                                <a target="_blank" href="http://jianshu.com/users/33ab62821c57/timeline">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-stack-1x fa-inverse">简</i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            
+                            
+                            <li>
+                                <a target="_blank" href="https://github.com/anyinlover">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </section>
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://blog.csdn.net/stdcoutzyx">雨石</a></li>
+                    
+                        <li><a href="https://www.52ml.net">我爱机器学习</a></li>
+                    
+                        <li><a href="http://blog.csdn.net/v_july_v">结构之法 算法之道</a></li>
+                    
+                </ul>
+                
+    		</div>
         
-            <li class="categories__item"><a href="/categories/language">Language</a></li>
-        
-            <li class="categories__item"><a href="/categories/algorithm">Algorithm</a></li>
-        
-            <li class="categories__item"><a href="/categories/system">System</a></li>
-        
-            <li class="categories__item"><a href="/categories/productivity">Productivity</a></li>
-        
-            <li class="categories__item"><a href="/categories/non-tech">Non-tech</a></li>
-        
-		<li class="categories__item"><a href="/">All</a></li>
-    </ul>
+	</div>
 </div>
 
 
-        </div>
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
 
-        <script src="/assets/vendor/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-        
-    </body>
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/guguoshenqi">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.douban.com/people/48573787">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">豆</i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href="http://jianshu.com/users/33ab62821c57/timeline">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-stack-1x fa-inverse">简</i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/anyinlover">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Anyinlover Blog 2016
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'cb4a2ada21ce8a422b1001c28652f082';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
 </html>

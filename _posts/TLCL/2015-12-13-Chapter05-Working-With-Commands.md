@@ -1,8 +1,13 @@
 ---
 layout: post
 title: "Chapter 05 - Working with Commands"
+subtitle: "Linux命令行第五讲"
 date: 2015-12-13
-categories: system
+author: "Anyinlover"
+catalog: true
+tags:
+  - Linux
+  - Linux命令行
 ---
 
 * type - Display a command's type
@@ -15,34 +20,34 @@ categories: system
 * info - Display a CNU program's info entry
 * alias - Create a alias for commands
 
-# What Exactly Are Commands?
+## What Exactly Are Commands?
 
 1. An executable program
 2. A command built into the shell itself
 3. A shell function
 4. An alias
 
-# Identifying Commands
+## Identifying Commands
 
-## type - Display A Command's Type
+### type - Display A Command's Type
 
     type command
 
-## which - Display An Executable's Location
+### which - Display An Executable's Location
 
     which ls
 
-# Getting A Command's Documentation
+## Getting A Command's Documentation
 
-## help - Get Help For Shell Builtins
+### help - Get Help For Shell Builtins
 
     help cd
 
-## --help - Display Usage Information
+### --help - Display Usage Information
 
     mkdir --help
 
-## man - Display A Program's Manual Page
+### man - Display A Program's Manual Page
 
     man ls
 
@@ -63,15 +68,15 @@ categories: system
 
     man 5 passwd
 
-## apropos - Display Appropriate Commands
+### apropos - Display Appropriate Commands
 
     apropos floppy
 
-## whatis - Display A Very Brief Description Of A Command
+### whatis - Display A Very Brief Description Of A Command
 
     whatis ls
 
-## info - Display A GNU Program's Info Entry
+### info - Display A GNU Program's Info Entry
 
     info coreutils
 
@@ -88,11 +93,11 @@ categories: system
 |Enter|Follow the hyperlink at the cursor lacation|
 |q|Quit|
 
-## README And Other Program Documentation Files
+### README And Other Program Documentation Files
 
 Files end with ".gz" can be opened by zless.
 
-# Creating Your Own Commands With alias
+## Creating Your Own Commands With alias
 
 put more than one command on a line by ;
 

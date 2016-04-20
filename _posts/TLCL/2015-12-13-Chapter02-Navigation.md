@@ -1,8 +1,13 @@
 ---
 layout: post
 title: "Chapter 02 - Navigation"
+subtitle: "Linux命令行第二讲"
 date: 2015-12-13
-categories: system
+author: "Anyinlover"
+catalog: true
+tags:
+  - Linux
+  - Linux命令行
 ---
 
 * pwd - Display the current working directory
@@ -10,29 +15,29 @@ categories: system
 * cd - Change the current working directory
 
 
-# Understanding The File System Tree
+## Understanding The File System Tree
 * Hierarchical directory structure
 * Linux always have a single file system tree
 
-# The Current Working Directory
+## The Current Working Directory
 Display the current working directory
 
     pwd
 
 Home directory: the only place a regular user is allowed to write files
 
-# Listing The Contents Of A Directory
+## Listing The Contents Of A Directory
 List the files and directories in the current working directory
 
     ls
 
-# Changing The Current Working Directory
+## Changing The Current Working Directory
 
-## Absolute Pathnames
+### Absolute Pathnames
 
     cd /usr/bin
 
-## Relative Pathnames
+### Relative Pathnames
 `..` refers to the parent directory
 
     cd ..
@@ -41,7 +46,7 @@ List the files and directories in the current working directory
 
 `cd ./bin` or `cd bin`
 
-# Some Helpful Shortcuts
+## Some Helpful Shortcuts
 Changes to home directory
 
     cd

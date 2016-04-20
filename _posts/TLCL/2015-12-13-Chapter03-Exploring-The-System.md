@@ -1,21 +1,26 @@
 ---
 layout: post
 title: "Chapter 03 - Explore the System"
+subtitle: "Linux命令行第三讲"
 date: 2015-12-13
-categories: system
+author: "Anyinlover"
+catalog: true
+tags:
+  - Linux
+  - Linux命令行
 ---
 
 * ls - List the files and directories in current working directory
 * file - Determine a file's type with file
 * less - View file contents
 
-# More Fun With ls
+## More Fun With ls
 
 specify multiple directories
 
     ls ~ /usr
 
-## Options And Arguments
+### Options And Arguments
 
     command -options arguments
 
@@ -38,7 +43,7 @@ short options and long options
 |-s||Sort results by file size|
 |-t||Sort by modification time|
 
-## A Longer Look At Long Format
+### A Longer Look At Long Format
 
     -rw-r--r-- 1 root root 32059 2007-04-03 11:05 oo-cd-cover.odf
 
@@ -54,13 +59,13 @@ short options and long options
 |`2007-04-03 11:05`|Date and time of the file's last modification|
 |`oo-cd-cover.odf`|Name of the file|
 
-# Determining A File's Type With file
+## Determining A File's Type With file
 
     file filename
 
     file picture.jpg
 
-# Viewing File Contents With less
+## Viewing File Contents With less
 
     less filename
 
@@ -84,7 +89,7 @@ short options and long options
 
 * Less Is More
 
-# A Guided Tour
+## A Guided Tour
 
 *Directories Found On Linux Systems*
 
@@ -115,9 +120,9 @@ short options and long options
 |/var|Where data that is likely to change is stored|
 |/var/log| contains log files records of various system activity|
 
-# Symbolic Links
+## Symbolic Links
 
     lrwxrwxrwx 1 root root 11 2007-08-11 07:34 libc. so. 6 -> libc-2.6.so
 
-# Hard Links
+## Hard Links
 A second type of link

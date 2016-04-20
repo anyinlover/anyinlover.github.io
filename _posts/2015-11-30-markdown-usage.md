@@ -1,8 +1,12 @@
 ---
 layout: post
 title: "Markdown's Usage"
-data: 2015-11-30 22:39
-categories: productivity
+subtitle: "书写整个世界"
+data: 2015-11-30
+author: "Anyinlover"
+catalog: true
+tags:
+  - 工具
 ---
 
 > Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).
@@ -102,7 +106,7 @@ Here is my [homepage]
 
 [homepage]: http://anyinlover.github.io
 
-Here is my picture: ![](http://img4.douban.com/view/photo/photo/public/p1764440506.jpg)
+Here is my picture: ![](\img\me.jpg)
 
 ### Inline Code
 
