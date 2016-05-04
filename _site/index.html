@@ -173,6 +173,96 @@
             ">
     			
 <div class="post-preview">
+    <a href="/2016/04/24/factor-analysis/">
+        <h2 class="post-title">
+            因子分析
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习第十讲
+        </h3>
+        
+        <div class="post-content-preview">
+            在前面的混合高斯模型中，我们常常假定我们有充足的样本去发现数据的内在结构。也就是样本数m远远大于特征数n。
+
+现在考虑的情况，在这样的条件下，单高斯模型都无法拟合，更不论混合高斯模型了。根据最大似然估计，高斯模型的拟合参数如下：
+
+
+
+我们会发现是奇异阵，不存在。这样就无法计算模型的密度函数了。
+
+进一步讲，要通过最大似然估计来拟合高斯模型，必须让m远大于n，才能有比较好的结果。
+
+那么我们...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on April 24, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/04/21/em-algorithm/">
+        <h2 class="post-title">
+            最大期望算法
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习第九讲
+        </h3>
+        
+        <div class="post-content-preview">
+            在前一讲中，我们谈到最大期望算法应用于混合高斯模型中，在这一讲，我们给出最大期望算法的一般形式，展示其如何能运用于求解潜在变量的预测问题。
+
+琴生不等式
+
+假如是一个凸函数，即，或者。恒取大于号是称为严格凸函数。X是随机分布，琴生不等式可表达如下：
+
+
+
+当等号成立时必须有恒成立，即X是常量。
+
+琴生不等式可以用图形直观的去解释。
+
+同理，当f时一个凹函数时，不等式反向成立。
+
+最大期望算法...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on April 21, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/04/21/build-the-blog/">
+        <h2 class="post-title">
+            技术博客搭建
+        </h2>
+        
+        <h3 class="post-subtitle">
+            感谢gitpage，jekyll和hux模板
+        </h3>
+        
+        <div class="post-content-preview">
+            搭建一个属于自己的博客是我一直都有的梦想。作为一个有技术的人，当然应该选择gitpage。使用git来管理，用markdown来撰写，不担心内容丢失，也不用为繁杂的语法困扰，十分合我心意。下面就记录一下我的博客搭建过程，操作系统是OS X。
+
+申请gitpage账号，建立仓库。
+想要用gitpage，首先得有个github账号。
+
+github建立博客仓库
+在github上建立一个仓库，仓库...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on April 21, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/04/18/K%E5%9D%87%E5%80%BC%E8%81%9A%E7%B1%BB%E4%B8%8E%E6%B7%B7%E5%90%88%E9%AB%98%E6%96%AF%E6%A8%A1%E5%9E%8B/">
         <h2 class="post-title">
             K均值聚类与混合高斯模型
@@ -370,92 +460,6 @@ K均值聚类算法给出了下面的方法：
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/04/10/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/">
-        <h2 class="post-title">
-            逻辑回归
-        </h2>
-        
-        <h3 class="post-subtitle">
-            斯坦福大学机器学习第二讲
-        </h3>
-        
-        <div class="post-content-preview">
-            线性回归是一种连续型模型，对于y值是离散的情况就无能为力了。对于分类问题而言，很常用的是另一种算法：逻辑回归。逻辑回归虽然是名为回归，实际却是解决分类问题的，这也是有趣的地方。我们这里仅限讨论二元分类，对于多元分类，原理一致。
-
-分类与逻辑回归
-在逻辑回归中，由于y取值只有0和1两种可能性，很自然的一个做法是先把X做一个映射，映射到（0，1）空间，而logistic函数很好的满足了这个性质：...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Anyinlover on April 10, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/04/10/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">
-        <h2 class="post-title">
-            线性回归
-        </h2>
-        
-        <h3 class="post-subtitle">
-            斯坦福大学机器学习第一讲
-        </h3>
-        
-        <div class="post-content-preview">
-            几乎所有的机器学习书籍都以线性回归为起点，这是有道理的。第一，线性回归比较容易入门，第二，线性回归是后续很多现代算法的基础，第三，线性回归是一种应用非常广泛的算法。
-
-简单线性回归的模型很简单，可以下面的公式表示：
-
-
-
-其中称为参数或权重。上式实现从X空间到Y空间的映射。
-
-拟合程度的好坏可以用下面的函数表示：
-
-
-
-被称为损失函数，这里的损失函数用估计值与实际值差的平方和来表示，是一种最...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Anyinlover on April 10, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/04/10/%E7%9F%A9%E9%98%B5%E5%8F%82%E8%80%83/">
-        <h2 class="post-title">
-            矩阵参考
-        </h2>
-        
-        <h3 class="post-subtitle">
-            斯坦福大学机器学习补遗一
-        </h3>
-        
-        <div class="post-content-preview">
-            矩阵运算是各类算法的基础，虽然大学的线代都学过，但不用则废，现在还是需要捡起来。知识点略多，之前已经过了一遍，至于总结，准备采取需要什么总结什么的方式。增量补充吧，哈哈。
-
-单位矩阵
-单位矩阵就是对角为1，其余为0的矩阵，常常用作无中生有，当一个路人甲。因为它的脾气好：
-
-
-
-转置
-矩阵所谓的转置就是行列互换，转置的产生，往往是由于运算的需要。比如向量的平方和表示。转置有如下三个性质：
-
-
-...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Anyinlover on April 10, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -488,7 +492,7 @@ K均值聚类算法给出了下面的方法：
                             
                         
                             
-                                <a href="/tags/#工具" title="工具" rel="3">
+                                <a href="/tags/#工具" title="工具" rel="4">
                                     工具
                                 </a>
                             
@@ -514,7 +518,7 @@ K均值聚类算法给出了下面的方法：
                             
                         
                             
-                                <a href="/tags/#Ng机器学习系列" title="Ng机器学习系列" rel="10">
+                                <a href="/tags/#Ng机器学习系列" title="Ng机器学习系列" rel="12">
                                     Ng机器学习系列
                                 </a>
                             
@@ -526,13 +530,13 @@ K均值聚类算法给出了下面的方法：
                             
                         
                             
-                                <a href="/tags/#机器学习算法" title="机器学习算法" rel="6">
+                                <a href="/tags/#机器学习算法" title="机器学习算法" rel="7">
                                     机器学习算法
                                 </a>
                             
                         
                             
-                                <a href="/tags/#机器学习理论" title="机器学习理论" rel="2">
+                                <a href="/tags/#机器学习理论" title="机器学习理论" rel="3">
                                     机器学习理论
                                 </a>
                             

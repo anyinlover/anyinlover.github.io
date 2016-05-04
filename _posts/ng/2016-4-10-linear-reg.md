@@ -62,16 +62,16 @@ $$
 \theta_j:=\theta_j+\alpha\sum_{i=1}^m(y^{(i)}-h_\theta(x^{(i)}))x_j^{(i)}
 $$
 
-另一种方法叫增量梯度下降，每跑一个样本，我就迭代一次。
+另一种方法叫随机梯度下降，每跑一个样本，我就迭代一次。
 
 $$
 \text{for }i=1\text{ to }m:\\
 \theta_j:=\theta_j+\alpha(y^{(i)}-h_\theta(x^{(i)}))x_j^{(i)}
 $$
 
-显然增量梯度下降会比批梯度下降跑的快，由于每一次迭代都要计算所有样本，批梯度非常耗时。另一方面，增量梯度很可能无法达到最小值，而是在最小值左右徘徊。因此对大数据集我们倾向于选择增量梯度，而对于小数据集则选择批梯度。
+显然随机梯度下降会比批梯度下降跑的快，由于每一次迭代都要计算所有样本，批梯度非常耗时。另一方面，随机梯度很可能无法达到最小值，而是在最小值左右徘徊。因此对大数据集我们倾向于选择随机梯度，而对于小数据集则选择批梯度。
 
-## 矩阵计算法
+## 标准方程法
 
 对于损失函数最小值的求解，除了上面的梯度下降法，还可以用矩阵直接进行计算。但其过程涉及到很多的矩阵推导，需要具备较高的数学基础。这种算法的本质就是利用了函数最小值处导数等于0的性质。
 
@@ -85,7 +85,12 @@ $$
 
 $$
 \begin{align}
-\nabla_{\theta}J(\theta)&=\nabla_{\theta}\frac{1}2(X\theta-\overrightarrow{y})^T(X\theta-\overrightarrow{y})\\&=\frac{1}2\nabla_{\theta}(\theta^TX^TX\theta-\theta^TX^T\overrightarrow{y}-\overrightarrow{y}X\theta+\overrightarrow{y}^T\overrightarrow{y})\\&=\frac{1}2\nabla_{\theta}tr(\theta^TX^TX\theta-\theta^TX^T\overrightarrow{y}-\overrightarrow{y}X\theta+\overrightarrow{y}^T\overrightarrow{y})\\&=\frac{1}2\nabla_{\theta}(tr\theta^TX^TX\theta-2tr\overrightarrow{y}X\theta)\\&=\frac{1}2(X^TX\theta+X^TX\theta-2X^T\overrightarrow{y}）\\&=X^TX\theta-X^T\overrightarrow{y}
+\nabla_{\theta}J(\theta)&=\nabla_{\theta}\frac{1}2(X\theta-\overrightarrow{y})^T(X\theta-\overrightarrow{y})\\
+&=\frac{1}2\nabla_{\theta}(\theta^TX^TX\theta-\theta^TX^T\overrightarrow{y}-\overrightarrow{y}^TX\theta+\overrightarrow{y}^T\overrightarrow{y})\\
+&=\frac{1}2\nabla_{\theta}tr(\theta^TX^TX\theta-\theta^TX^T\overrightarrow{y}-\overrightarrow{y}^TX\theta+\overrightarrow{y}^T\overrightarrow{y})\\
+&=\frac{1}2\nabla_{\theta}(tr\theta^TX^TX\theta-2tr\overrightarrow{y}^TX\theta)\\
+&=\frac{1}2(X^TX\theta+X^TX\theta-2X^T\overrightarrow{y}）\\
+&=X^TX\theta-X^T\overrightarrow{y}
 \end{align}
 $$
 

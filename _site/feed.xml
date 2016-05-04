@@ -5,9 +5,512 @@
     <description>在这里探索数据，发现真理</description>
     <link>http://anyinlover.github.io/</link>
     <atom:link href="http://anyinlover.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 20 Apr 2016 22:32:51 +0800</pubDate>
-    <lastBuildDate>Wed, 20 Apr 2016 22:32:51 +0800</lastBuildDate>
+    <pubDate>Sun, 24 Apr 2016 23:10:32 +0800</pubDate>
+    <lastBuildDate>Sun, 24 Apr 2016 23:10:32 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>因子分析</title>
+        <description>&lt;p&gt;在前面的混合高斯模型中，我们常常假定我们有充足的样本去发现数据的内在结构。也就是样本数m远远大于特征数n。&lt;/p&gt;
+
+&lt;p&gt;现在考虑&lt;script type=&quot;math/tex&quot;&gt;n \gg n&lt;/script&gt;的情况，在这样的条件下，单高斯模型都无法拟合，更不论混合高斯模型了。根据最大似然估计，高斯模型的拟合参数如下：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\mu &amp;= \frac {1} {m} \sum_{i=1}^m x^{(i)} \\
+\Sigma &amp;= \frac {1} {m} \sum_{i=1}^m (x^{(i)}-\mu) (x^{(i)}-\mu)^T
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;我们会发现&lt;script type=&quot;math/tex&quot;&gt;\Sigma&lt;/script&gt;是奇异阵，&lt;script type=&quot;math/tex&quot;&gt;\Sigma^{-1}&lt;/script&gt;不存在。这样就无法计算模型的密度函数了。&lt;/p&gt;
+
+&lt;p&gt;进一步讲，要通过最大似然估计来拟合高斯模型，必须让m远大于n，才能有比较好的结果。&lt;/p&gt;
+
+&lt;p&gt;那么我们如何解决这个样本数不足的问题呢？&lt;/p&gt;
+
+&lt;h2 id=&quot;sigma&quot;&gt;限制&lt;script type=&quot;math/tex&quot;&gt;\Sigma&lt;/script&gt;&lt;/h2&gt;
+&lt;p&gt;如果我们没有足够的数据来拟合一个协方差矩阵，我们可以为其添加一些限制。比如考虑协方差矩阵是对角的，也就是特征间是相互独立的，在这种情况下：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Sigma_{jj} = \frac {1} {m} \sum_{i=1}^m (x_j^{(i)}-\mu_j)^2&lt;/script&gt;
+
+&lt;p&gt;二元高斯分布在平面的投影是个椭圆，对角阵意味着椭圆轴线与坐标轴平行。&lt;/p&gt;
+
+&lt;p&gt;进一步，我们还能控制&lt;script type=&quot;math/tex&quot;&gt;\Sigma&lt;/script&gt;不仅是对角的，而且对角元素相同。&lt;script type=&quot;math/tex&quot;&gt;\Sigma= \sigma^2 I&lt;/script&gt;，&lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt;可以通过最大似然估计得到：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\sigma^2 = \frac {1}{mn} \sum_{j=1}^n \sum_{i=1}^m (x_j^{(i)}-\mu_j)^2 &lt;/script&gt;
+
+&lt;p&gt;在高斯分布平面投影上椭圆变成了圆。&lt;/p&gt;
+
+&lt;p&gt;假如不对&lt;script type=&quot;math/tex&quot;&gt;\Sigma&lt;/script&gt;做限制，我们必须在&lt;script type=&quot;math/tex&quot;&gt;m \geq n+1&lt;/script&gt;的条件下才能保证&lt;script type=&quot;math/tex&quot;&gt;\Sigma&lt;/script&gt;不是一个奇异阵，在上面的约束下，只需要&lt;script type=&quot;math/tex&quot;&gt;m \geq 2&lt;/script&gt;就能保证非奇异。&lt;/p&gt;
+
+&lt;p&gt;但上述的假设太强，意味着特征之间完全相互独立，假如我们想要挖掘数据内部的关系时，就需要使用到因子分析模型。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;边缘和条件高斯分布&lt;/h2&gt;
+&lt;p&gt;在描述因子分析之前，我们先来讨论一下如何找到联合多元高斯分布的条件分布和边缘分布。&lt;/p&gt;
+
+&lt;p&gt;假定我们有一个随机变量：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+x = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}
+&lt;/script&gt;
+
+&lt;p&gt;这里&lt;script type=&quot;math/tex&quot;&gt;x_1 \in \mathbb{R}^r, x_2 \in \mathbb{R}^s, \Sigma_{11} \in \mathbb{R}^{r\times r}, \Sigma_{12} \in \mathbb{R}^{r \times s}&lt;/script&gt; 假定 &lt;script type=&quot;math/tex&quot;&gt; x \sim \mathcal{N} (\mu, \Sigma) &lt;/script&gt;，有：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+ \mu = \begin{bmatrix} \mu_1 \\ \mu_2 \end{bmatrix}, 
+\Sigma = \begin{bmatrix} \Sigma_{11} &amp; \Sigma_{12} \\ \Sigma_{21} &amp; \Sigma_{22} \end{bmatrix}  %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;x_1&lt;/script&gt; 和&lt;script type=&quot;math/tex&quot;&gt;x_2&lt;/script&gt;被称为联合多元分布，那么&lt;script type=&quot;math/tex&quot;&gt;x_1&lt;/script&gt;的边缘分布是什么？很容易可以看到&lt;script type=&quot;math/tex&quot;&gt;E[x_1]=\mu_1&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;Cov(x_1) = E[(x_1-\mu_1)(x_1-\mu_1)]=\Sigma_{11}&lt;/script&gt;
+。因为根据协方差的定义：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+Cov(x) &amp;= \Sigma \\
+&amp;= \begin{bmatrix} \Sigma_{11} &amp; \Sigma_{12} \\ \Sigma_{21} &amp; \Sigma_{22}
+    \end{bmatrix} \\
+&amp;= E[(x-\mu)(x-\mu)^T] \\
+&amp;= E[\begin{pmatrix} x_1-\mu_1 \\ x_2-\mu_2 \end{pmatrix}
+{\begin{pmatrix} x_1-\mu_1 \\ x_2-\mu_2 \end{pmatrix}}^T] \\
+&amp;= E \begin{pmatrix} (x_1-\mu_1)(x_1-\mu_1)^T (x_1-\mu_1)(x_2-\mu_2)^T \\
+(x_2 - \mu_2)(x_1 - \mu_1)^T (x_2-\mu_2)(x_2-\mu_2)^T \end{pmatrix}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;因此可以得出&lt;script type=&quot;math/tex&quot;&gt;x_1&lt;/script&gt;的边缘分布是&lt;script type=&quot;math/tex&quot;&gt;x_1 \sim \mathcal{N} (\mu_1, \Sigma_{11})&lt;/script&gt;。&lt;/p&gt;
+
+&lt;p&gt;下面再来考虑在&lt;script type=&quot;math/tex&quot;&gt;x_2&lt;/script&gt;给定下&lt;script type=&quot;math/tex&quot;&gt;x_1&lt;/script&gt;的条件分布。可以记作&lt;script type=&quot;math/tex&quot;&gt;x_1 \mid x_2 \sim \mathcal{N} (\mu_{1\mid 2}, \Sigma_{1 \mid 2})&lt;/script&gt;，可以计算如下：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\mu_{1 \mid 2} &amp;= \mu_1 + \Sigma_{12} \Sigma_{22}^{-1} (x_2 - \mu_2) \\
+\Sigma_{1 \mid 2} &amp;= \Sigma_{11} - \Sigma_{12} \Sigma_{22}^{-1} \Sigma_{21}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;因子分析模型&lt;/h2&gt;
+&lt;p&gt;在因子分析模型中，我们定义(x,z)的联合分布如下，其中&lt;script type=&quot;math/tex&quot;&gt;z \in \mathbb{R}^k &lt;/script&gt;是一个潜在随机变量：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+z &amp; \sim \mathcal{N}(0, I) \\
+x \mid z &amp; \sim \mathcal{N} (\mu + \Lambda z, \Psi)
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;其中向量&lt;script type=&quot;math/tex&quot;&gt;\mu \in \mathcal{R}^n &lt;/script&gt;，矩阵 &lt;script type=&quot;math/tex&quot;&gt; \Lambda \in \mathcal{R}^{n \times k} &lt;/script&gt;， 对角阵&lt;script type=&quot;math/tex&quot;&gt;\Psi \in \mathcal{R}^{n \times n}&lt;/script&gt;，k的取值一般都要小于n。&lt;/p&gt;
+
+&lt;p&gt;我们相当于把数据从k维映射到n维&lt;script type=&quot;math/tex&quot;&gt;\mu+ \Lambda z&lt;/script&gt;，最后再填上一个噪音&lt;script type=&quot;math/tex&quot;&gt;\Psi&lt;/script&gt;。上面的因子分析模型也可以表示成下面的形式：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+z &amp; \sim \mathcal{N} (0, I) \\
+\epsilon &amp; \sim \mathcal{N} (0, \Psi) \\
+x &amp; = \mu + \Lambda z + \epsilon
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;我们的随机变量z，x构成了一个联合高斯分布：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\begin{bmatrix} z \\ x \end{bmatrix} \sim \mathcal{N} (\mu_{zx}, \Sigma)
+&lt;/script&gt;
+
+&lt;p&gt;下面来找到&lt;script type=&quot;math/tex&quot;&gt;\mu_{zx}&lt;/script&gt;和&lt;script type=&quot;math/tex&quot;&gt;\Sigma&lt;/script&gt;。&lt;/p&gt;
+
+&lt;p&gt;容易直到&lt;script type=&quot;math/tex&quot;&gt;E[z]=0&lt;/script&gt;，因为z满足标准正态分布。&lt;script type=&quot;math/tex&quot;&gt;E[x]=\mu&lt;/script&gt;可有下式求解：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+E[x] &amp;= E[\mu+ \Psi z + \epsilon] \\
+&amp;= \mu + \Psi E[z] + E[\epsilon] \\
+&amp;= \mu
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;因此可以得到&lt;script type=&quot;math/tex&quot;&gt;\mu_{zx}&lt;/script&gt;:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_{zx} =
+\begin{bmatrix}
+\overrightarrow{0} \\
+\mu
+\end{bmatrix}
+&lt;/script&gt;
+
+&lt;p&gt;下面继续计算&lt;script type=&quot;math/tex&quot;&gt;\Sigma&lt;/script&gt;，因为&lt;script type=&quot;math/tex&quot;&gt;\Sigma_{zz} = Cov(z) = I&lt;/script&gt;，&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\Sigma_{zx} &amp;= E[(z - E[z])(x - E[x])^T] \\
+&amp;= E[z (\mu + \Lambda z + \epsilon - \mu)^T ] \\
+&amp;= E[zz^T] \Lambda^T + E [z \epsilon^T] \\
+&amp;= \Lambda^T
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\Sigma_{xx} &amp;= E[(x - E[x])(x - E[x])^T] \\
+&amp;= E[(\mu + \Lambda z + \epsilon - \mu)(\mu + \Lambda z + \epsilon - \mu)^T ] \\
+&amp;= E[ \Lambda z z^T \Lambda^T + \epsilon z^T \Lambda^T + \Lambda z \epsilon^T + \epsilon \epsilon^T] \\
+&amp;= \Lambda E[z z^t] \Lambda^T + E [\epsilon \epsilon^T] \\
+\Lambda \Lambda^T + \Psi
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;最终我们得到联合分布如下：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{bmatrix}
+z \\ x
+\end{bmatrix}
+\sim \mathcal{N} \left (
+\begin{bmatrix}
+\overrightarrow{0} \\ \mu
+\end{bmatrix},
+\begin{bmatrix}
+I &amp; \Lambda^T \\
+\Lambda &amp; \Lambda \Lambda^T + \Psi
+\end{bmatrix}
+\right)
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;x的边缘分布是&lt;script type=&quot;math/tex&quot;&gt;x \sim \mathcal{N} (\mu, \Lambda \Lambda^T + \Psi) &lt;/script&gt;，因此可以得出其最大似然函数的表达式：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\ell (\mu, \Lambda, \Psi) = \log \prod_{i=1}^m \frac {1} {2\pi)^{n/2}
+{| \Lambda\Lambda^T + \Psi |}^{1/2} } \exp \left( - \frac{1}{2}
+(x^{(i)}-\mu)^T (\Lambda \Lambda^T + \Psi)^{-1} (x^{(i)} - \mu) \right) &lt;/script&gt;
+
+&lt;p&gt;对于上述的最大似然函数估计，同样的无法直接求解，需要用最大期望算法来解决。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;因子分析的最大期望算法&lt;/h2&gt;
+
+&lt;p&gt;在E步，我们需要计算&lt;script type=&quot;math/tex&quot;&gt;Q_i(z^{(i)}) = p(z^{(i)} \mid x^{(i)}; \mu, \Lambda, \Psi)。根据前面条件分布的公式，我们知道&lt;/script&gt; z^{(i)} \mid x^{(i)}; \mu, \Lambda, \Psi \sim \mathcal{N} (\mu&lt;em&gt;{z^{(i)} \mid x^{(i)}}, \Sigma&lt;/em&gt;{z^{(i)} \mid x^{(i)}})，其中：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\mu_{z^{(i)} \mid x^{(i)}} &amp;= \Lambda^T (\Lambda\Lambda^T + \Psi)^{-1} (x^{(i)} - \mu) \\
+\Sigma_{z^{(i)} \mid x^{(i)}} &amp;= I - \Lambda^T (\Lambda\Lambda^T + \Psi)^{-1} \Lambda
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;后面的推导偷懒不写了~一句话就是用EM算法去求解，感觉更多的是考验数学水平。&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 24 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/04/24/factor-analysis/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/24/factor-analysis/</guid>
+        
+        <category>Ng机器学习系列</category>
+        
+        <category>机器学习理论</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>最大期望算法</title>
+        <description>&lt;p&gt;在前一讲中，我们谈到最大期望算法应用于混合高斯模型中，在这一讲，我们给出最大期望算法的一般形式，展示其如何能运用于求解潜在变量的预测问题。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;琴生不等式&lt;/h2&gt;
+
+&lt;p&gt;假如是一个凸函数，即&lt;script type=&quot;math/tex&quot;&gt;f&#39;&#39;(x) \geq 0&lt;/script&gt;，或者&lt;script type=&quot;math/tex&quot;&gt;H \geq 0&lt;/script&gt;。恒取大于号是称为严格凸函数。X是随机分布，琴生不等式可表达如下：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt; E|f(X)| \geq f(EX)&lt;/script&gt;
+
+&lt;p&gt;当等号成立时必须有&lt;script type=&quot;math/tex&quot;&gt;X=E \mid X \mid &lt;/script&gt;恒成立，即X是常量。&lt;/p&gt;
+
+&lt;p&gt;琴生不等式可以用图形直观的去解释。&lt;/p&gt;
+
+&lt;p&gt;同理，当f时一个凹函数时，不等式反向成立。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;最大期望算法&lt;/h2&gt;
+
+&lt;p&gt;给定训练集&lt;script type=&quot;math/tex&quot;&gt;\{x^{(1)},\cdots,x^{(m)}\}&lt;/script&gt;由m个独立样本构成。我们需要针对数据拟合模型&lt;script type=&quot;math/tex&quot;&gt;p(x,z)&lt;/script&gt;的参数，最大似然函数由下式给出：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\ell(\theta) &amp;= \sum_{i=1}^m \log p(x;\theta) \\
+&amp;= \sum_{i=1}^m \log \sum_z p(x,z;\theta)
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;对上式直接求偏导计算无法得到解析解。因为&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;是一个潜在变量，只有&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;是已知的条件下，才可能解出，因此引出了最大期望算法。它的策略就是分两步走，E步首先给出&lt;script type=&quot;math/tex&quot;&gt;\ell&lt;/script&gt;的下限，然后在M步优化这个下限。&lt;/p&gt;
+
+&lt;p&gt;对每个i，令&lt;script type=&quot;math/tex&quot;&gt;Q_i&lt;/script&gt;是对z的分布（&lt;script type=&quot;math/tex&quot;&gt;\sum_z Q_i(z) = 1, Q_i(z) \geq 0&lt;/script&gt;）运用琴生不等式，有下面的关系：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\sum_i \log p(x^{(i)}; \theta) &amp;= \sum_i \log \sum_{z^{(i)}} p(x^{(i)}, z^{(i)}; \theta) \\
+&amp;= \sum_i \log \sum_{z^{(i)}} Q_i(z^{(i)}) \frac {p(x^{(i)}, z^{(i)}; \theta)} {Q_i(z^{(i)})} \\
+&amp;\geq \sum_i \sum_{z^{(i)}} Q_i(z^{(i)}) \log \frac {p(x^{(i)}, z^{(i)}; \theta)} {Q_i(z^{(i)})}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;我们可以看出分布&lt;script type=&quot;math/tex&quot;&gt;[p(x^{(i)}，z^{(i)};\theta)/Q_i(z^{(i)})]&lt;/script&gt;针对&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;关于&lt;script type=&quot;math/tex&quot;&gt;Q_i&lt;/script&gt;的期望值就是&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\sum_{z^{(i)}} Q_i(z^{(i)}) \frac {p(x^{(i)}, z^{(i)}; \theta)} {Q_i(z^{(i)})}&lt;/script&gt;
+
+&lt;p&gt;又由于对数函数是一个凹函数，因此有：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f\left(E_{z^{(i)} \sim Q_i} \left[ \frac {p(x^{(i)}, z^{(i)}; \theta)} {Q_i(z^{(i)})} \right] \right) \geq E_{z^{(i)} \sim Q_i} \left[ f \left( \frac {p(x^{(i)}, z^{(i)}; \theta)} {Q_i(z^{(i)})} \right) \right] &lt;/script&gt;
+
+&lt;p&gt;因此对于任意分布&lt;script type=&quot;math/tex&quot;&gt;Q_i&lt;/script&gt;，上式给出了对&lt;script type=&quot;math/tex&quot;&gt;\ell(\theta)&lt;/script&gt;的下限。在选择&lt;script type=&quot;math/tex&quot;&gt;Q_i&lt;/script&gt;时，一个很自然的做法是l令琴生不等式等号成立。即变量为常量：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac {p(x^{(i)}, z^{(i)}; \theta)} {Q_i(z^{(i)}    )} = c&lt;/script&gt;
+
+&lt;p&gt;其中c是独立于&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;的常量。又因为&lt;script type=&quot;math/tex&quot;&gt;\sum_z Q_i(z^{(i)})=1&lt;/script&gt;，所以有：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+Q_i(z^{(i)}) &amp;= \frac {p(x^{(i)}, z^{(i)}; \theta)} {\sum_z p(x^{(i)}, z^{(i)}; \theta)} \\
+&amp;= \frac {p(x^{(i)}, z^{(i)}; \theta)} {p(x^{(i)}; \theta)} \\
+&amp;= p(z^{(i)} \mid x^{(i)}; \theta)
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;也就是&lt;script type=&quot;math/tex&quot;&gt;Q_i&lt;/script&gt;是在&lt;script type=&quot;math/tex&quot;&gt;x^{(i)}&lt;/script&gt;给定下&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;的后验分布。现在我们可以得出最大期望算法的数学表达：
+重复下面的步骤直到收敛：{&lt;/p&gt;
+
+&lt;p&gt;E步，对每个i，令：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;Q_i(z^{(i)}) := p(z^{(i)} \mid x^{(i)}; \theta) &lt;/script&gt;
+
+&lt;p&gt;M步，令：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\theta := \arg \max_\theta \sum_i \sum_{z^{(i)}} Q_i(z^{(i)}) \log \frac {p(x^{(i)}, z^{(i)}; \theta)} {Q_i(z^{(i)})} &lt;/script&gt;
+
+&lt;p&gt;}&lt;/p&gt;
+
+&lt;p&gt;但我们如何能证明最大期望算法一定能收敛呢？通过下式可以得到：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+\ell(\theta^{(t+1)}) &amp; \geq \sum_i \sum_{z^{(i)}} Q_i^{(t)} (z^{(i)}) \log \frac {p(x^{(i)}, z^{(i)}; \theta^{(t+1)})} {Q^{(t)}_i(z^{(i)})} \\
+&amp; \geq \sum_i \sum_{z^{(i)}} Q_i^{(t)} (z^{(i)}) \log \frac {p(x^{(i)}, z^{(    i)}; \theta^{(t)})} {Q^{(t)}_i(z^{(i)})} \\
+&amp;= \ell(\theta^{(t)})
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;因此最大期望算法一定是逐渐收敛的，在实际应用中，我们常常是给定一个容忍系数来终止算法拟合。&lt;/p&gt;
+
+&lt;p&gt;假如我们定义：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;J(Q, \theta) = 
+\sum_i \sum_{z^{(i)}} Q_i(z^{(i)}) \log \frac {p(x^{(i)}, z^{(i)}; \theta)} {Q_i(z^{(i)})} &lt;/script&gt;
+
+&lt;p&gt;最大期望算法可以被视作对于J的坐标上升法。在E步优化Q，在M步优化&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;混合高斯模型再回顾&lt;/h2&gt;
+
+&lt;p&gt;有了最大期望算法的一般定义，我们再回头来拟合混合高斯模型的参数。&lt;/p&gt;
+
+&lt;p&gt;E步很简单：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\omega_j^{(i)}=Q_i(z^{(i)}=j)=P(z^{(i)}=j \mid x^{(i)}; \phi, \mu, \Sigma)&lt;/script&gt;
+
+&lt;p&gt;在M步，我们需要分别对参数&lt;script type=&quot;math/tex&quot;&gt;\phi, \mu, \Sigma&lt;/script&gt;求目标函数的最大化:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+&amp; \sum_{i=1}^m \sum_{z^{(i)}} Q_i(z^{(i)}) \log \frac {p(x^{(i)},z^{(i)}; \phi, \mu, \Sigma)}
+{Q_i(z^{(i)})} \\
+=&amp; \sum_{i=1}^m \sum_{j=1}^k Q_i(z^{(i)}=j) \log \frac {p(x^{(i)} \mid z^{(i)}=j; \mu, \Sigma)
+p(z^{(i)}=j; \phi)} {Q_i(z^{(i)}=j)} \\
+=&amp; \sum_{i=1}^m \sum_{j=1}^k \omega_j^{(i)} \log \frac {\frac{1} {(2\pi)^{n/2} |\Sigma_j|^{1/2}}
+\exp (-\frac{1}{2} (x^{(i)}-\mu_j)^T \Sigma_j^{-1} (x^{(i)}-\mu_j)) \cdot \phi_j} { \omega_j^{(i)}} \\
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;首先来求解&lt;script type=&quot;math/tex&quot;&gt;\mu_j&lt;/script&gt;，对其求梯度可以得到：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+
+\begin{align}
+&amp; \nabla_{\mu_j} \sum_{i=1}^m \sum_{j=1}^k \omega_j^{(i)} \log \frac {\frac{1} {(2\pi)^{n/2} |\Sigma_j|^{1/2}}
+121 \exp (-\frac{1}{2} (x^{(i)}-\mu_j)^T \Sigma_j^{-1} (x^{(i)}-\mu_j)) \cdot \phi_j} { \omega_j^{(i)    }} \\
+=&amp; -\nabla_{\mu_j}\sum_{i=1}^m \sum_{j=1}^k \omega_j^{(i)} \frac{1}{2} (x^{(i)}-\mu_j)^T \Sigma_j^{-1} (x^{(i)}-\mu_j) \\
+=&amp; \frac{1}{2} \sum_{i=1}^m \omega_j^{(i)} \nabla_{\mu_j} (2\mu_j^T\Sigma_j^{-1}x^{(i)} -\mu_j^T\Sigma_j^T \mu_j) \\
+=&amp; \sum_{i=1}^m \omega_j^{(i)} (\Sigma_j^{-1}x^{(i)}-\Sigma_j^T \mu_j)
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;将上式等于0可以得到：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_j := \frac {\sum_{i=1}^m \omega_j^{(i)}x^{(i)}} {\sum_{i=1}^m \omega_j^{(i)}}&lt;/script&gt;
+
+&lt;p&gt;再来考虑&lt;script type=&quot;math/tex&quot;&gt;\phi_j&lt;/script&gt;，我们需要最大化：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt; \sum_{i=1}^m \sum_{j=1}^k \omega_j^{(i)} \log \phi_j &lt;/script&gt;
+
+&lt;p&gt;但认识到&lt;script type=&quot;math/tex&quot;&gt;\phi_j&lt;/script&gt;并不是完全独立的，存在&lt;script type=&quot;math/tex&quot;&gt; \sum_{j=1}^k \phi_j = 1 &lt;/script&gt;的关系，因此我们可以构造拉格朗日方程：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt; \mathcal{L} (\phi) = \sum_{i=1}^m \sum_{j=1}^k \omega_j^{(i)} \log \phi_j + \beta (\sum_{j=1}^k \phi_j - 1) &lt;/script&gt;
+
+&lt;p&gt;求偏导我们得到：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt; \frac {\partial} {\partial \phi_j} \mathcal{L} (\phi) = \sum_{i=1}^m \frac {\omega_j^{(i)}} {\phi_j} + \beta &lt;/script&gt;
+
+&lt;p&gt;因此有：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt; \phi_j = \frac { \sum_{i=1}^m \omega_j^{(i)} } { -\beta } &lt;/script&gt;
+
+&lt;p&gt;根据&lt;script type=&quot;math/tex&quot;&gt; \sum_{j} \phi_j = 1 &lt;/script&gt;的约束关系，&lt;script type=&quot;math/tex&quot;&gt; -\beta = \sum_{i=1}^m \sum_{j=1}^k \omega_j^{(i)} = \sum_{i=1}^m 1 = m &lt;/script&gt;，最终我们可以得到：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi_j := \frac {1} {m} \sum_{i=1}^m \omega_j^{(i)} &lt;/script&gt;
+
+&lt;p&gt;关于&lt;script type=&quot;math/tex&quot;&gt;\Sigma_j&lt;/script&gt; 也可以通过类似方法得到，不过让我自己推出来还是蛮困难的~&lt;/p&gt;
+</description>
+        <pubDate>Thu, 21 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/04/21/em-algorithm/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/21/em-algorithm/</guid>
+        
+        <category>机器学习算法</category>
+        
+        <category>Ng机器学习系列</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>技术博客搭建</title>
+        <description>&lt;p&gt;搭建一个属于自己的博客是我一直都有的梦想。作为一个有技术的人，当然应该选择gitpage。使用git来管理，用markdown来撰写，不担心内容丢失，也不用为繁杂的语法困扰，十分合我心意。下面就记录一下我的博客搭建过程，操作系统是OS X。&lt;/p&gt;
+
+&lt;h2 id=&quot;gitpage&quot;&gt;申请gitpage账号，建立仓库。&lt;/h2&gt;
+&lt;p&gt;想要用gitpage，首先得有个github账号。&lt;/p&gt;
+
+&lt;h3 id=&quot;github&quot;&gt;github建立博客仓库&lt;/h3&gt;
+&lt;p&gt;在github上建立一个仓库，仓库命名是有规范的。比如我的github用户名是anyinlover，那么仓库必须命名为anyinlover.github.io。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;远程仓库同步到本地&lt;/h3&gt;
+&lt;p&gt;找个合适的文件夹防止本地目录，比如Documents下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone anyinlover.github.io
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;假如还没有安装git，需要先装上git。&lt;/p&gt;
+
+&lt;h2 id=&quot;jekyll&quot;&gt;安装jekyll并绑定文件夹&lt;/h2&gt;
+
+&lt;h3 id=&quot;jekyll-1&quot;&gt;安装jekyll&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install jekyll
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;绑定文件夹&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;cd anyinlover.github.io
+jekyll build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;安装配置模板&lt;/h2&gt;
+
+&lt;p&gt;网上有挺多jekyll模板，除了&lt;a href=&quot;http://jekyllthemes.org&quot;&gt;官方模板网站&lt;/a&gt;，我更喜欢&lt;a href=&quot;https://drjekyllthemes.github.io&quot;&gt;dr. jekyll themes&lt;/a&gt;。如果要足够简单，&lt;a href=&quot;http://getpoole.com&quot;&gt;poole&lt;/a&gt;是个不错的选择，本次我使用的是一位中国人做的模板&lt;a href=&quot;https://github.com/Huxpro/huxpro.github.io&quot;&gt;hux&lt;/a&gt;，功能强大，在各方面都很趁意。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;安装模板&lt;/h3&gt;
+
+&lt;p&gt;从模板网站上把文件夹下载下来，解压到本地的博客文件夹。可以在本地打开jekyll先看一下，在浏览器输入0.0.0.0:4000：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;配置模板&lt;/h3&gt;
+
+&lt;p&gt;配置模板是件比较烦的事情。特别是hux这个模板，虽然好看，但也意味着可配置的东西太多。配置文件主要是_config.xml这个文件，其他地方就需要修改html代码了。&lt;/p&gt;
+
+&lt;h4 id=&quot;configxml&quot;&gt;配置_config.xml&lt;/h4&gt;
+&lt;p&gt;前面的title啥的不必提了，看几个特别的地方。&lt;/p&gt;
+
+&lt;p&gt;SNS设置那里我添加了豆瓣和简书的支持。增加douban_username和jianshu_username两行。&lt;/p&gt;
+
+&lt;p&gt;anchorjs那里我把默认的true改成了false，因为正文中标题前莫名出现一个#看起来很难受，锚定的功能也用不上。&lt;/p&gt;
+
+&lt;p&gt;评论系统我选择了disqus，注释了默认的duoshuo。&lt;/p&gt;
+
+&lt;p&gt;kramdown那里作者配置了输入GFM，我也把它去掉了，我需要用latex语法输入数学公式，这是GFM不支持的。&lt;/p&gt;
+
+&lt;h4 id=&quot;abouthtml&quot;&gt;配置about.html&lt;/h4&gt;
+&lt;p&gt;作者把about.html直接写成了html，我觉得更合适的还是用md文件来表示。修改其中的description，删除秀恩爱照片。在正文中去掉了中英文版本（按钮略丑）。替换内容，只留下一段自己的介绍。&lt;/p&gt;
+
+&lt;h4 id=&quot;indexhtmltagshtml&quot;&gt;配置index.html和tags.html&lt;/h4&gt;
+&lt;p&gt;作者把这两页的描述都写进了html文件里，打开修改成自己要说的description,删除默认图片&lt;/p&gt;
+
+&lt;h4 id=&quot;pagehtml&quot;&gt;配置page.html&lt;/h4&gt;
+&lt;p&gt;在page.html中添加了豆瓣和简书的支持，在143行插入：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;li&amp;gt;
+    &amp;lt;a target=&quot;_blank&quot; href=&quot;https://www.douban.com/people/48573787&quot;&amp;gt;
+       &amp;lt;span class=&quot;fa-stack fa-lg&quot;&amp;gt;
+            &amp;lt;i class=&quot;fa fa-circle fa-stack-2x&quot;&amp;gt;&amp;lt;/i&amp;gt;
+            &amp;lt;i class=&quot;fa  fa-stack-1x fa-inverse&quot;&amp;gt;豆&amp;lt;/i&amp;gt;
+       &amp;lt;/span&amp;gt;
+     &amp;lt;/a&amp;gt;
+&amp;lt;/li&amp;gt;
+
+
+&amp;lt;li&amp;gt;
+    &amp;lt;a target=&quot;_blank&quot; href=&quot;http://jianshu.com/users/33ab62821c57/timeline&quot;&amp;gt;
+       &amp;lt;span class=&quot;fa-stack fa-lg&quot;&amp;gt;
+            &amp;lt;i class=&quot;fa fa-circle fa-stack-2x&quot;&amp;gt;&amp;lt;/i&amp;gt;
+            &amp;lt;i class=&quot;fa fa-stack-1x fa-inverse&quot;&amp;gt;简&amp;lt;/i&amp;gt;
+       &amp;lt;/span&amp;gt;
+    &amp;lt;/a&amp;gt;
+&amp;lt;/li&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I
+#### 配置footer.html
+在footer.html中也要添加page.html里添加的代码。在最后的Theme by Hux，删去了github部分。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;撰写博客并上传&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;撰写&lt;/h3&gt;
+&lt;p&gt;用macdown写博客，放在_posts文件夹下。需要有文件头类似如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;---
+layout: post
+title: &quot;技术博客搭建&quot;
+subtitle: &quot;感谢gitpage，jekyll和hux模板&quot;
+date: 2016-4-21
+author: &quot;Anyinlover&quot;
+catalog: true
+tags:
+  - 工具
+---
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;上传&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;git add *.md
+git commit -m &quot;add somefile&quot;
+git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-8&quot;&gt;结尾&lt;/h2&gt;
+&lt;p&gt;好啦，博客搭建过程大概如此，现在让我们一块欣赏吧。&lt;/p&gt;
+</description>
+        <pubDate>Thu, 21 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/04/21/build-the-blog/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/21/build-the-blog/</guid>
+        
+        <category>工具</category>
+        
+        
+      </item>
     
       <item>
         <title>K均值聚类与混合高斯模型</title>
@@ -803,7 +1306,7 @@ p(x \mid y=1) &amp;= \frac{1}{(2\pi)^{n/2} \mid  \Sigma  \mid ^{1/2}} \exp\left(
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;p(y=1 \mid x;\phi,\Sigma,\mu_0,\mu_1)=\frac{1}{1+\exp(-\theta^Tx)}&lt;/script&gt;
 
-&lt;p&gt;实际上高斯判别分布应用了更强的假设，即p(x \mid y)是一个多元高斯分布。因此可以从高斯判别分布可以推导到逻辑回归，但满足逻辑回归的不一定满足高斯判别分布，比如泊松判别分布也能推导到高斯分布。&lt;/p&gt;
+&lt;p&gt;实际上高斯判别分布应用了更强的假设，即&lt;script type=&quot;math/tex&quot;&gt;p(x \mid y)&lt;/script&gt;是一个多元高斯分布。因此可以从高斯判别分布可以推导到逻辑回归，但满足逻辑回归的不一定满足高斯判别分布，比如泊松判别分布也能推导到高斯分布。&lt;/p&gt;
 
 &lt;p&gt;这也造成了高斯判别分布的性质，当原始数据吻合高斯分布时，这是一种很有效很精确的算法。但更多时候数据不能很好的满足高斯分布，这时候高斯判别分布就失效了，相比而言，逻辑回归更稳定，也更常用。&lt;/p&gt;
 
@@ -1256,423 +1759,6 @@ h_{\theta}(x) &amp;= E[T(y) \mid x;\theta]\\
         <category>Ng机器学习系列</category>
         
         <category>机器学习算法</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>逻辑回归</title>
-        <description>&lt;p&gt;线性回归是一种连续型模型，对于y值是离散的情况就无能为力了。对于分类问题而言，很常用的是另一种算法：逻辑回归。逻辑回归虽然是名为回归，实际却是解决分类问题的，这也是有趣的地方。我们这里仅限讨论二元分类，对于多元分类，原理一致。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;分类与逻辑回归&lt;/h2&gt;
-&lt;p&gt;在逻辑回归中，由于y取值只有0和1两种可能性，很自然的一个做法是先把X做一个映射，映射到（0，1）空间，而logistic函数很好的满足了这个性质：两侧很快的趋于边界。（注意logistic也不是唯一的选择）逻辑回归的模型就是在线性回归外又做了一个logistic计算：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-h(x)=g(\theta^Tx)=\frac{1}{1+e^{-\theta^Tx}}
-&lt;/script&gt;
-
-&lt;p&gt;对于离散情况我们不能再用损失函数去衡量模型的拟合度，只能从最大似然性角度去衡量。逻辑回归和线性回归的似然性表示也有很大区别，线性回归通过引入一个误差的高斯分布来表示，逻辑回归则可以直接用&lt;script type=&quot;math/tex&quot;&gt;h_\theta(x)&lt;/script&gt;来表示：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-&amp;P(y=1\mid x;\theta)=h_\theta(x)\\
-&amp;P(y=0\mid x;\theta)=1-h_\theta(x)
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;把两式归纳起来可以写成：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-p(y\mid x;\theta)=(h_\theta(x))^y(1-h_\theta(x))^{1-y}
-&lt;/script&gt;
-
-&lt;p&gt;所以有最大似然函数：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-L(\theta)&amp;=\prod_{i=1}^m p(y^{(i)}\mid x^{(i)};\theta) \\
-&amp;= \prod_{i=1}^m(h_\theta(x^{(i)}))^{y^{(i)}}(1-h_\theta(x^{(i)}))^{1-y^{(i)}}
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;后面的套路都是一样的，两边求对数，用梯度下降法求对数最大似然函数最大值。&lt;/p&gt;
-
-&lt;p&gt;对数最大似然函数：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\ell(\theta)&amp;=\log L(\theta)\\
-&amp;=\sum_{i=1}^m y^{(i)}\log h(x^{(i)})+(1-y^{(i)})\log (1-h(x^{(i)}))
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;对于单个训练集来说，对其对数最大似然函数求导：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\frac{\partial}{\partial\theta_j}&amp;=(y\frac{1}{g(\theta^Tx)}-(1-y)\frac{1}{1-g(\theta^Tx)})\frac{\partial}{\partial\theta_j}g(\theta^Tx) \\
-&amp;=(y\frac{1}{g(\theta^Tx)}-(1-y)\frac{1}{1-g(\theta^Tx)})g(\theta^Tx)(1-g(\theta^Tx))\frac{\partial}{\partial\theta_j}\theta^Tx\\
-&amp;=(y(1-g(\theta^Tx))-(1-y)g(\theta^Tx))x_j\\
-&amp;=(y-h_\theta(x))x_j
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;利用增量梯度下降法：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\theta_j:=\theta_j+\alpha(y^{(i)}-h_\theta(x^{(i)}))x_j^{(i)}
-&lt;/script&gt;
-
-&lt;p&gt;这个式子和线性回归竟然一模一样！当然这里的&lt;script type=&quot;math/tex&quot;&gt;h_\theta(x)&lt;/script&gt;是不同的，其实后面可以证明，这可不仅仅是巧合哦。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;题外话：感知机&lt;/h2&gt;
-&lt;p&gt;感知机是个历史悠久的模型，刚开始用来模型神经元的原理。后来被用在机器学习中，虽然简单，但却非常有效。至今仍是神经网络算法的基石。&lt;/p&gt;
-
-&lt;p&gt;感知机和逻辑回归不同的地方在于把logistic函数用域函数替代了：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-g(z)=
-\begin{cases}
-1 \quad\text{if }z\geq0 \\
-0 \quad\text{if }z&lt;0
-\end{cases}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;仍然使用上面的梯度下降法进行迭代。&lt;/p&gt;
-
-&lt;p&gt;乍看之下感知机和逻辑回归非常相像，其实有很多的区别。感知机模型的输出也是离散量，而逻辑回归的输出是连续量。特别的，感知机没法用概率去解释，黑白分明，自然也没法用最大似然函数去衡量拟合情况。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;牛顿法&lt;/h2&gt;
-&lt;p&gt;牛顿法是另一种可以求解对数似然函数最大值得方法。注意牛顿法也必须应用在凸函数上。想要求得&lt;script type=&quot;math/tex&quot;&gt;f(\theta)=0&lt;/script&gt;，可以用下式迭代：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\theta:=\theta-\frac{f(\theta)}{f&#39;(\theta)}
-&lt;/script&gt;
-
-&lt;p&gt;使用在求最大值上，即&lt;script type=&quot;math/tex&quot;&gt;f&#39;(\theta)=0&lt;/script&gt;，则使用下式迭代：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\theta:=\theta-\frac{\ell&#39;(\theta)}{\ell&#39; &#39;(\theta)}
-&lt;/script&gt;
-
-&lt;p&gt;对于向量化的&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;，比较复杂，需要使用到海森矩阵（一个1+n,1+n的矩阵）：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\theta:=\theta-H^{-1}\nabla_{\theta}\ell(\theta)
-&lt;/script&gt;
-
-&lt;p&gt;海森矩阵（一个1+n,1+n的矩阵）的计算方法如下，还是另篇专述：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-H_{ij}=\frac{\partial^2 \ell(\theta)}{\partial \theta_i \partial \theta_j}
-&lt;/script&gt;
-
-&lt;p&gt;牛顿方法通常比梯度下降法更快的收敛，这个可以从他们的迭代步子中也可以粗略的感知。但和直接计算法类似，牛顿法也使用了矩阵的逆，当特征数很大时，这一步的计算会很费时。所以，天下没有免费的午餐。&lt;/p&gt;
-</description>
-        <pubDate>Sun, 10 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/2016/04/10/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/10/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</guid>
-        
-        <category>Ng机器学习系列</category>
-        
-        <category>机器学习算法</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>线性回归</title>
-        <description>&lt;p&gt;几乎所有的机器学习书籍都以线性回归为起点，这是有道理的。第一，线性回归比较容易入门，第二，线性回归是后续很多现代算法的基础，第三，线性回归是一种应用非常广泛的算法。&lt;/p&gt;
-
-&lt;p&gt;简单线性回归的模型很简单，可以下面的公式表示：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-h(x)=\displaystyle\sum_{i=0}^{n} \theta_ix_i=\theta^Tx
-&lt;/script&gt;
-
-&lt;p&gt;其中&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;称为参数或权重。上式实现从X空间到Y空间的映射。&lt;/p&gt;
-
-&lt;p&gt;拟合程度的好坏可以用下面的函数表示：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-J(\theta)=\frac{1}{2}\displaystyle\sum_{i=1}^{m} (h_\theta(x^{(i)})-y^{(i)})^2
-&lt;/script&gt;
-
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;J(\theta)&lt;/script&gt;被称为损失函数，这里的损失函数用估计值与实际值差的平方和来表示，是一种最常见的表示误差的方法。我们的目标就是使这个损失函数降到最小，实现最佳拟合。求最小二乘常用的有梯度下降法和举证计算法。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;梯度下降法&lt;/h2&gt;
-
-&lt;p&gt;梯度下降法的本质就是用迭代的思想，每一次都沿着最陡的方向（梯度）下降一小步，最终到达最小值。注意梯度下降法本身只能求局部最优解，但由于线性回归的J是个凸二次函数，因此局部最小值就是全局最小值。&lt;/p&gt;
-
-&lt;p&gt;先对&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;给出一个原始猜测值（一般可以取0），然后执行下面的迭代，其中&lt;script type=&quot;math/tex&quot;&gt;\alpha&lt;/script&gt;是个固定值，称为学习率：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\theta_j:=\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta)
-&lt;/script&gt;
-
-&lt;p&gt;对&lt;script type=&quot;math/tex&quot;&gt;J(\theta)&lt;/script&gt;求偏导可得下式：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\frac{\partial}{\partial\theta_j}J(\theta)&amp;=\frac{\partial}{\partial\theta_j}\frac{1}2(h_\theta(x)-y)^2 \\&amp;=2\cdot\frac{1}2(h_\theta(x)-y)\cdot\frac{\partial}{\partial\theta_j}(h_\theta-y)\\&amp;=(h_\theta(x)-y)\cdot\frac{\partial}{\partial\theta_j}(\displaystyle\sum_{i=0}^n \theta_ix_i-y)\\&amp;=(h_\theta(x)-y)x_j
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;所以有最终迭代的方程：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\theta_j:=\theta_j+\alpha(y-h_\theta(x))x_j
-&lt;/script&gt;
-
-&lt;p&gt;直观理解，二次函数的导数就是个一次函数，沿着导数方向下降，就是上面这式子。&lt;/p&gt;
-
-&lt;p&gt;上述式子是在只有一个训练样本时的情况，实际肯定会有大量的训练样本。对于多个训练样本，可以有两种变式。
-第一种方法叫批梯度下降，每一次迭代时，我把所有训练样本的误差都跑一遍，叠加后对&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;进行更新。&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\theta_j:=\theta_j+\alpha\sum_{i=1}^m(y^{(i)}-h_\theta(x^{(i)}))x_j^{(i)}
-&lt;/script&gt;
-
-&lt;p&gt;另一种方法叫增量梯度下降，每跑一个样本，我就迭代一次。&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\text{for }i=1\text{ to }m:\\
-\theta_j:=\theta_j+\alpha(y^{(i)}-h_\theta(x^{(i)}))x_j^{(i)}
-&lt;/script&gt;
-
-&lt;p&gt;显然增量梯度下降会比批梯度下降跑的快，由于每一次迭代都要计算所有样本，批梯度非常耗时。另一方面，增量梯度很可能无法达到最小值，而是在最小值左右徘徊。因此对大数据集我们倾向于选择增量梯度，而对于小数据集则选择批梯度。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;矩阵计算法&lt;/h2&gt;
-
-&lt;p&gt;对于损失函数最小值的求解，除了上面的梯度下降法，还可以用矩阵直接进行计算。但其过程涉及到很多的矩阵推导，需要具备较高的数学基础。这种算法的本质就是利用了函数最小值处导数等于0的性质。&lt;/p&gt;
-
-&lt;p&gt;把上面的损失函数向量化，就是下面的表达式：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-J(\theta)=\frac{1}2(X\theta-\overrightarrow{y})^T(X\theta-\overrightarrow{y})
-&lt;/script&gt;
-
-&lt;p&gt;将上面的损失函数对&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;求导，可以得到：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\nabla_{\theta}J(\theta)&amp;=\nabla_{\theta}\frac{1}2(X\theta-\overrightarrow{y})^T(X\theta-\overrightarrow{y})\\&amp;=\frac{1}2\nabla_{\theta}(\theta^TX^TX\theta-\theta^TX^T\overrightarrow{y}-\overrightarrow{y}X\theta+\overrightarrow{y}^T\overrightarrow{y})\\&amp;=\frac{1}2\nabla_{\theta}tr(\theta^TX^TX\theta-\theta^TX^T\overrightarrow{y}-\overrightarrow{y}X\theta+\overrightarrow{y}^T\overrightarrow{y})\\&amp;=\frac{1}2\nabla_{\theta}(tr\theta^TX^TX\theta-2tr\overrightarrow{y}X\theta)\\&amp;=\frac{1}2(X^TX\theta+X^TX\theta-2X^T\overrightarrow{y}）\\&amp;=X^TX\theta-X^T\overrightarrow{y}
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;上述推导利用了矩阵的迹及相关性质，另篇专述。&lt;/p&gt;
-
-&lt;p&gt;令等式等于0，可以得到：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-X^TX\theta=X^T\overrightarrow{y}
-&lt;/script&gt;
-
-&lt;p&gt;容易求出&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\theta = (X^TX)^{-1}X^T\overrightarrow{y}
-&lt;/script&gt;
-
-&lt;p&gt;注意当训练集和特征值很多时，求矩阵的逆会很耗时，此时算法的性能不如前面的梯度下降法。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;概率解释&lt;/h2&gt;
-
-&lt;p&gt;这一节从概率的角度出发，论证了为什么把最小二乘作为损失函数是令人信服的选择。个人觉得这是一个比较有趣的角度。&lt;/p&gt;
-
-&lt;p&gt;假设我们的模型估计值和y真实值存在一个偏差&lt;script type=&quot;math/tex&quot;&gt;\epsilon&lt;/script&gt;，表示未被模型考虑的因素或者是随机的噪音。进一步假设&lt;script type=&quot;math/tex&quot;&gt;\epsilon^{(i)}&lt;/script&gt;是独立同分布的，服从&lt;script type=&quot;math/tex&quot;&gt;\epsilon^{(i)}\sim\mathcal{N}(0,\sigma^2)&lt;/script&gt;的高斯分布：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-p(\epsilon^{(i)})=\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2})
-&lt;/script&gt;
-
-&lt;p&gt;似然性函数等于：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-L(\theta)&amp;=\prod_{i=1}^m p(y^{(i)}\mid x^{(i)};\theta) \\
-&amp;=\prod_{i=1}^m\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2})
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;根据最大似然性准则，我们需要选择&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;使似然性函数取到最大值。&lt;/p&gt;
-
-&lt;p&gt;两边同取log函数，得到对数似然性函数：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\ell(\theta)&amp;=\log{L(\theta)}\\
-&amp;=\log\prod_{i=1}^m\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2})\\
-&amp;=\sum_{i=1}^m \log\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2})\\
-&amp;=m\log\frac{1}{\sqrt{2\pi}\sigma}-\frac{1}{\sigma^2}\cdot\frac{1}{2}\displaystyle\sum_{i=1}^{m} (h_\theta(x^{(i)})-y^{(i)})^2
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;可以看出为了让&lt;script type=&quot;math/tex&quot;&gt;\ell(\theta)&lt;/script&gt;最大，必须让&lt;script type=&quot;math/tex&quot;&gt;\frac{1}{2}\displaystyle\sum_{i=1}^{m} (h_\theta(x^{(i)})-y^{(i)})^2&lt;/script&gt;最小，这就是前面的损失函数&lt;script type=&quot;math/tex&quot;&gt;h(\theta)&lt;/script&gt;。还可以发现&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;的取值和&lt;script type=&quot;math/tex&quot;&gt;\sigma&lt;/script&gt;是无关的。&lt;/p&gt;
-
-&lt;p&gt;需要注意的是最小二乘并不是唯一合理的损失函数，最大似然性作为一种假设也不是推导损失函数的必要条件。我们还有其他合理的损失函数可以选择。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;局部加权线性回归&lt;/h2&gt;
-
-&lt;p&gt;局部加权线性回归的本质在于考虑了预测样本，对于训练集中和预测样本相似的训练样本，给予其更高的权值。&lt;/p&gt;
-
-&lt;p&gt;局部加权线性回归修改了简单线性回归的损失函数，添加了一个权值函数&lt;script type=&quot;math/tex&quot;&gt;w^{(i)}&lt;/script&gt;：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-h(\theta)=\frac{1}{2}\sum_{i=1}^{m}w^{(i)} (h_\theta(x^{(i)})-y^{(i)})^2
-&lt;/script&gt;
-
-&lt;p&gt;这个权值函数又是和预测样本相关联的，下面是一种标准的选择，x是预测样本的输入，&lt;script type=&quot;math/tex&quot;&gt;\tau&lt;/script&gt;称为带宽，可以调整：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-w^{(i)}=\exp(-\frac{(x^{(i)}-x)^2}{2\tau^2})
-&lt;/script&gt;
-
-&lt;p&gt;局部加权线性回归显然是一种比简单线性回归优化的算法，但他也被称为非参数算法，因为模型参数会随着预测样本变化，因此需要每一次进行即时计算。&lt;/p&gt;
-</description>
-        <pubDate>Sun, 10 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/2016/04/10/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/10/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
-        
-        <category>Ng机器学习系列</category>
-        
-        <category>机器学习算法</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>矩阵参考</title>
-        <description>&lt;p&gt;矩阵运算是各类算法的基础，虽然大学的线代都学过，但不用则废，现在还是需要捡起来。知识点略多，之前已经过了一遍，至于总结，准备采取需要什么总结什么的方式。增量补充吧，哈哈。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;单位矩阵&lt;/h2&gt;
-&lt;p&gt;单位矩阵就是对角为1，其余为0的矩阵，常常用作无中生有，当一个路人甲。因为它的脾气好：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;AI=A=IA&lt;/script&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;转置&lt;/h2&gt;
-&lt;p&gt;矩阵所谓的转置就是行列互换，转置的产生，往往是由于运算的需要。比如向量的平方和表示。转置有如下三个性质：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;：&lt;script type=&quot;math/tex&quot;&gt;(A^T)^T=A&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;：&lt;script type=&quot;math/tex&quot;&gt;(AB)^T=B^TA^T&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;：&lt;script type=&quot;math/tex&quot;&gt;(A+B)^T=A^T+B^T&lt;/script&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;其中第一第三条很明显，第二条略作证明。&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-(AB)_{ij}^T&amp;=(AB)_{ji}=\sum_{k=1}^nA_{jk}B_{ki}\\
-&amp;=\sum_{k=1}^nB_{ki}A_{jk}=\sum_{k=1}^nB_{ik}^TA_{kj}^T\\
-&amp;=(B^TA^T)_{ij}
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;迹&lt;/h2&gt;
-&lt;p&gt;矩阵的迹是方形矩阵的对角和，虽然它本身没什么作用，但常常被用作推演的中间步骤。对于迹，有如下五个性质：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;For &lt;script type=&quot;math/tex&quot;&gt;A\in\mathbb{R}^{n\times n},trA=trA^T&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;For &lt;script type=&quot;math/tex&quot;&gt;A, B\in \mathbb{R}^{n\times n}, tr(A+B)=trA+trB&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;For &lt;script type=&quot;math/tex&quot;&gt;A\in\mathbb{R}^{n\times n},t\in \mathbb{R}, tr(tA)=t\,trA&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;For &lt;script type=&quot;math/tex&quot;&gt;A, B\text{ such that }AB\text{ is square}, trAB=trBA&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;For &lt;script type=&quot;math/tex&quot;&gt;A, B, C\text{ such that }ABC\text{ is square}, trABC=trBCA=trCAB&lt;/script&gt;, and so on&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;以上性质中，第1，2，3条都是显而易见的，第五条可以由第四条推导得到，因此只需要证明第4条。&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-trAB &amp;= \sum_{i=1}^m(AB)_{ii}=\sum_{i=1}^m(\sum_{j=1}^nA_{ij}B_{ji})\\
-&amp;=\sum_{j=1}^n\sum_{i=1}^mB_{ji}A_{ij}=\sum_{j=1}^n(BA)_{jj}\\
-&amp;=trBA
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;梯度&lt;/h2&gt;
-&lt;p&gt;梯度就是函数对矩阵求偏导，结果和原矩阵形状相同。梯度在机器学习中极为常用，需要牢牢掌握。&lt;/p&gt;
-
-&lt;p&gt;梯度原始的性质只有简单的两条：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;：&lt;script type=&quot;math/tex&quot;&gt;\nabla_{x}(f(x)+g(x))=\nabla_{x}f(x)+\nabla_{x}g(x)&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;：For &lt;script type=&quot;math/tex&quot;&gt;t\in \mathbb{R}, \nabla_{x}(tf(x))=t\nabla_{x}f(x)&lt;/script&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;但梯度还有其他延伸的性质，之前在线性规划推导直接计算法时就用到过。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;：&lt;script type=&quot;math/tex&quot;&gt;\nabla_{A}trAB=B^T&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;：&lt;script type=&quot;math/tex&quot;&gt;\nabla_{A^T}f(A)=(\nabla_Af(A))^T&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;：&lt;script type=&quot;math/tex&quot;&gt;\nabla_{A}trABA^TC=CAB+C^TAB^T&lt;/script&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;下面分别予以证明：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\frac{\partial}{\partial A_{ij}}trAB&amp;=\frac{\partial}{\partial A_{ij}}\sum_{i=1}^m(AB)_{ii}\\
-&amp;=\frac{\partial}{\partial A_{ij}}\sum_{i=1}^m\sum_{j=1}^NA_{ij}B_{ji}\\
-&amp;=B_{ji}=B_{ij}^T
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-(\nabla_{A^T}f(A))_{ij}&amp;=\frac{\partial}{\partial A_{ij}^T}f(A)=\frac{\partial}{\partial A_{ji}}f(A)\\
-&amp;=(\nabla_{A}f(A))_{ji}=(\nabla_{A}f(A))_{ij}^T
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\frac{\partial}{\partial A_{ij}}trABA^TC&amp;=tr(\frac{\partial AB}{\partial A_{ij}}A^TC+AB\frac{\partial A^TC}{\partial A_{ij}})\\
-&amp;=tr(BA^TC\frac{\partial A}{\partial A_{ij}})+tr(CAB\frac{\partial A^T}{\partial A_{ij}})\\
-&amp;=tr(BA^TC\frac{\partial A}{\partial A_{ij}})+tr(B^TA^TC^T\frac{\partial A}{\partial A_{ij}})\\
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\frac{\partial}{\partial A}trABA^TC&amp;=(BA^TC)^T+(B^TA^TC^T)^T\\
-&amp;=C^TAB^T+CAB
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;section-4&quot;&gt;海森矩阵&lt;/h2&gt;
-&lt;p&gt;一个粗略的类比是，梯度是对矩阵求一阶导，海森是对向量求二阶导。这样方便我们理解海森的实质。有一个式子可以表达这个概念：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\nabla_x^2f(x)=\nabla_x(\nabla_xf(x))^T
-&lt;/script&gt;
-
-&lt;p&gt;注意第二次求导实际上是对&lt;script type=&quot;math/tex&quot;&gt;\nabla_xf(x)&lt;/script&gt;每一个元素求导。因为没有定义向量的求导运算。&lt;/p&gt;
-
-&lt;p&gt;海森矩阵是一个对称矩阵。即&lt;script type=&quot;math/tex&quot;&gt;H_{ij}=H_{ji}&lt;/script&gt;。&lt;/p&gt;
-</description>
-        <pubDate>Sun, 10 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/2016/04/10/%E7%9F%A9%E9%98%B5%E5%8F%82%E8%80%83/</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/10/%E7%9F%A9%E9%98%B5%E5%8F%82%E8%80%83/</guid>
-        
-        <category>Ng机器学习系列</category>
-        
-        <category>数学基础</category>
         
         
       </item>
