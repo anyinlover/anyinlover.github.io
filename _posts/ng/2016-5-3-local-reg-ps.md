@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "局部加权回归习题"
-subtitle: "斯坦福大学机器学习习题集一"
+subtitle: "斯坦福大学机器学习习题集一之二"
 date: 2016-5-3
 author: "Anyinlover"
 catalog: true

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "逻辑回归习题"
-subtitle: "斯坦福大学机器学习习题集一"
+subtitle: "斯坦福大学机器学习习题集一之一"
 date: 2016-5-2
 author: "Anyinlover"
 catalog: true

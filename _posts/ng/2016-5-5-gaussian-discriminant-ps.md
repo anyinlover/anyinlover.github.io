@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "高斯判别分析习题"
-subtitle: "斯坦福大学机器学习习题集一"
+subtitle: "斯坦福大学机器学习习题集一之四"
 date: 2016-5-5
 author: "Anyinlover"
 catalog: true
