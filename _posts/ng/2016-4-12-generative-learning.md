@@ -159,8 +159,8 @@ $$
 
 $$
 \begin{align}
-\phi_{j \mid y=1}&=\frac{\sum_{i=1}^m1\{x_j^{(i)}=1\wedge y^{(i)}=1\}+1}{\sum_{i=1}^m1\{y^{(i)}=1\}+2}\\
-\phi_{j \mid y=0}&=\frac{\sum_{i=1}^m1\{x_j^{(i)}=1\wedge y^{(i)}=0\}+1}{\sum_{i=1}^m1\{y^{(i)}=0\}+2}
+\phi_{j \mid y=1}&=\frac{\sum_{i=1}^m1\{x_j^{(i)}=1\wedge y^{(i)}=1\}+1}{\sum_{i=1}^m1\{y^{(i)}=1\}+|V|}\\
+\phi_{j \mid y=0}&=\frac{\sum_{i=1}^m1\{x_j^{(i)}=1\wedge y^{(i)}=0\}+1}{\sum_{i=1}^m1\{y^{(i)}=0\}+|V|}
 \end{align}
 $$
 
@@ -194,8 +194,8 @@ $$
 
 $$
 \begin{align}
-\phi_{k \mid y=1}&=\frac{\sum_{i=1}^m\sum_{j=1}^{n_i}1\{x_j^{(i)}=k\wedge y^{(i)}=1\}+1}{\sum_{i=1}^m1\{y^{(i)}=1\}n_i+ \mid V \mid }\\
-\phi_{k \mid y=0}&=\frac{\sum_{i=1}^m\sum_{j=1}^{n_i}1\{x_j^{(i)}=k\wedge y^{(i)}=0\}+1}{\sum_{i=1}^m1\{y^{(i)}=0\}n_i+ \mid V \mid }
+\phi_{k \mid y=1}&=\frac{\sum_{i=1}^m\sum_{j=1}^{n_i}1\{x_j^{(i)}=k\wedge y^{(i)}=1\}+1}{\sum_{i=1}^m1\{y^{(i)}=1\}n_i+ |V| }\\
+\phi_{k \mid y=0}&=\frac{\sum_{i=1}^m\sum_{j=1}^{n_i}1\{x_j^{(i)}=k\wedge y^{(i)}=0\}+1}{\sum_{i=1}^m1\{y^{(i)}=0\}n_i+ |V| }
 \end{align}
 $$
 
