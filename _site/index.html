@@ -173,6 +173,355 @@
             ">
     			
 <div class="post-preview">
+    <a href="/2016/05/07/kernelize-perceptron-ps/">
+        <h2 class="post-title">
+            感知机核函数化习题
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习习题集二之二
+        </h3>
+        
+        <div class="post-content-preview">
+            高维系数向量
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on May 7, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/07/construct-kernel-ps/">
+        <h2 class="post-title">
+            核函数构造习题
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习习题集二之一
+        </h3>
+        
+        <div class="post-content-preview">
+            相加
+是核函数，两个半正定矩阵相加仍然是半正定。
+
+
+
+相减
+不是核函数，令，则：
+
+
+
+正系数
+是核函数
+
+
+
+负系数
+不是核函数
+
+
+
+相乘
+是核函数，由于是核函数：
+
+
+
+因此可以推导得到：
+
+
+
+函数相乘
+是核函数。上一种情况的特殊化，令。
+
+映射核函数
+是核函数，仍然保持半正定。
+
+多项式
+是核函数，通过上面的证明，相加，系数，幂，截距运算都保持核函数性质。
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on May 7, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/06/linear-invariance-ps/">
+        <h2 class="post-title">
+            优化算法线性不变习题
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习习题集一之五
+        </h3>
+        
+        <div class="post-content-preview">
+            证明牛顿法是线性不变的
+
+令，需要找到和的表示。
+
+
+
+上式等同于：
+
+
+
+其中是A的第i列。因此有：
+
+
+
+再来定义海森矩阵：
+
+
+
+因此有:
+
+
+
+下面来推导对于函数的牛顿方法：
+
+
+
+只需要证明，即完成证明：
+
+
+
+证明梯度下降法不是线性不变
+在上应用梯度下降规则：
+
+
+
+在$$f(x)%%上应用梯度下降规则：
+
+
+
+要使得 成立，
+
+
+
+必须在成立的条件下才能成立，因此梯度下降法不是...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on May 6, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/05/gaussian-discriminant-ps/">
+        <h2 class="post-title">
+            高斯判别分析习题
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习习题集一之四
+        </h3>
+        
+        <div class="post-content-preview">
+            高斯判别分析与逻辑回归的关系
+
+
+
+因此可以得到：
+
+
+
+模型参数推导
+
+
+
+然后分别对各参数求偏导。
+
+首先求解
+
+
+
+令上式为0，可以得到：
+
+
+
+再求解
+
+
+
+令上式为0，可以得到，同理：
+
+
+
+最后求解，为方便计算，对求偏导：
+
+
+
+令上式为0，可以得到：
+
+
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on May 5, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/04/glm-ps/">
+        <h2 class="post-title">
+            广义线性模型习题
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习习题集一之三
+        </h3>
+        
+        <div class="post-content-preview">
+            证明泊松分布属于指数分布族
+
+
+
+因此可以得到：
+
+
+
+泊松模型的正则响应函数
+
+
+
+泊松模型的随机梯度下降
+
+
+
+随机梯度上升的规则是：
+
+
+
+证明递归规则的通用性
+
+首先可以得出：
+
+
+
+因此只需要证明  即可得证。
+
+
+
+等式两边对求导：
+
+
+
+因此上面的递归规则具有通用性。
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on May 4, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/03/local-reg-ps/">
+        <h2 class="post-title">
+            局部加权回归习题
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习习题集一之二
+        </h3>
+        
+        <div class="post-content-preview">
+            加权系数的矩阵表示
+令，因此可以推导出下式：
+
+
+
+局部加权的标准方程
+根据上式得到的损失函数，可以计算如下：
+
+
+
+令上式为0，最终我们得出局部加权的标准方程为：
+
+
+
+以y的方差表示加权系数
+
+
+
+即：
+
+
+
+回归问题
+
+实现一般回归
+用标准方程来写一般回归是比较容易的。
+
+from numpy import *
+import pandas as pd
+orx = pd.read_csv...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on May 3, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/02/log-reg-ps/">
+        <h2 class="post-title">
+            逻辑回归习题
+        </h2>
+        
+        <h3 class="post-subtitle">
+            斯坦福大学机器学习习题集一之一
+        </h3>
+        
+        <div class="post-content-preview">
+            逻辑回归
+
+证明逻辑回归的对数最大似然函数的海森矩阵是半负定矩阵
+
+对数最大似然函数表示如下：
+
+
+
+其一阶导根据讲义的证明是：
+
+
+
+海森矩阵单个元素可表示为：
+
+
+
+海森矩阵可表示为：
+
+
+
+下面来证明 恒成立。
+
+
+
+因此逻辑回归的对数最大似然函数的海森矩阵是一个半负定矩阵，其只有一个唯一的全局最大值。
+
+用牛顿法来拟合逻辑回归模型
+尽管牛顿法的表达式已经给出，但用python跑出这个...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on May 2, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/04/24/factor-analysis/">
         <h2 class="post-title">
             因子分析
@@ -262,204 +611,6 @@ github建立博客仓库
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/04/18/K%E5%9D%87%E5%80%BC%E8%81%9A%E7%B1%BB%E4%B8%8E%E6%B7%B7%E5%90%88%E9%AB%98%E6%96%AF%E6%A8%A1%E5%9E%8B/">
-        <h2 class="post-title">
-            K均值聚类与混合高斯模型
-        </h2>
-        
-        <h3 class="post-subtitle">
-            斯坦福大学机器学习第八讲
-        </h3>
-        
-        <div class="post-content-preview">
-            K均值聚类算法
-在聚类问题中，我们给定一个训练集，标签没有给出，我们的目标还是把数据分类。这是一个非监督学习问题。
-
-K均值聚类算法给出了下面的方法：
-
-
-  随机初始化聚类中心
-  
-    不断迭代直到收敛：{
-
-    对所有i，令：
-
-    
-
-    对所有j，令：
-
-    
-
-    }
-  
-
-
-算法的内循环不停的在执行两个步骤，先把每个训练样本归给最近的聚类中心所代表的类...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Anyinlover on April 18, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/04/17/%E8%A7%84%E5%88%99%E5%8C%96%E4%B8%8E%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9/">
-        <h2 class="post-title">
-            规则化与模型选择
-        </h2>
-        
-        <h3 class="post-subtitle">
-            斯坦福大学机器学习第七讲
-        </h3>
-        
-        <div class="post-content-preview">
-            对于有限个模型，我们如何选择最优的模型。
-
-交叉验证
-对于整个训练集进行训练，从中挑选最小训练误差来评价模型并不是一个好方法，因为这样往往选出高方差的模型。
-
-因此有下面的交叉验证法：把训练数据分S成和两部分，一般分成七三开。用来训练数据，用来验证数据。从中挑出验证误差最小的模型作为最优模型，再进行全数据集重训练。
-
-交叉验证避免了一味选择复杂的模型，但也造成了数据的浪费，特别在数据量不足时...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Anyinlover on April 17, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/04/17/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8E%9F%E7%90%86/">
-        <h2 class="post-title">
-            机器学习原理
-        </h2>
-        
-        <h3 class="post-subtitle">
-            斯坦福大学机器学习第六讲
-        </h3>
-        
-        <div class="post-content-preview">
-            偏差和方差
-还是从房价预测的例子入手，我们可以分别用一次函数，三次函数和五次函数去拟合测试集。但不是三个模型都是好模型，第一个和第三个都存在着泛化误差，即测试集的拟合误差要大于训练集的期望误差。
-
-对于一次函数模型，我们认为模型有偏差，即使给出足够大的训练集也会使数据欠拟合。而对于五次函数模型，我们认为模型有方差，仅仅是很好的吻合了小范围的测试集，对数据过拟合，不能准确反映更一般的输入输出关...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Anyinlover on April 17, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/04/14/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/">
-        <h2 class="post-title">
-            支持向量机
-        </h2>
-        
-        <h3 class="post-subtitle">
-            斯坦福大学机器学习第五讲
-        </h3>
-        
-        <div class="post-content-preview">
-            这一章主要学习支持向量机。支持向量机是目前最好的监督学习算法之一。但支持向量机本身难度较大，需要较强的数学基础。假如抛开数学部分，其本质就是用拉格朗日对偶法计算最大间隔，利用核函数简化高维映射的计算，用SMO算法更新参数。本文也将根据NG讲义的这一顺序展开。此外，这里有一份比较完善的中文入门资料。
-
-间隔入门
-回顾之前的逻辑回归，，当时预测为1，否则为0。这里存在一个预测的可信度问题，假如或...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Anyinlover on April 14, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/04/12/%E7%94%9F%E6%88%90%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/">
-        <h2 class="post-title">
-            生成学习算法
-        </h2>
-        
-        <h3 class="post-subtitle">
-            斯坦福大学机器学习第四讲
-        </h3>
-        
-        <div class="post-content-preview">
-            前面的回归算法和感知机算法都属于判别学习算法，这一章聊聊另一类算法：生成学习算法。这两者的区别可以用以下的比喻，判别学习算法是根据所有猫猫狗狗的特征，建立一个模型，区分出两类动物的分界线。生成学习算法则是分别对猫和狗建立一个模型，然后去对照看跟哪个模型更像。
-
-生成学习算法的理论依据就是贝叶斯公式，体现了后验概率和先验概率之间的关系：
-
-
-
-对于生成学习算法而言，实际分母一致，不需要计算，只...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Anyinlover on April 12, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/04/11/%E9%9A%8F%E6%9C%BA%E5%88%86%E5%B8%83/">
-        <h2 class="post-title">
-            随机分布
-        </h2>
-        
-        <h3 class="post-subtitle">
-            斯坦福大学机器学习补遗二
-        </h3>
-        
-        <div class="post-content-preview">
-            随机分布属于概率统计的内容，同样在机器学习中经常遇到，线性回归被视为高斯分布，逻辑回归则是伯努利分布，因此在这里专列一篇介绍七个常见的随机分布，分成离散随机分布和连续随机分布两大块。
-
-离散随机分布
-介绍四种离散随机分布，分别是伯努利分布，二项分布，几何分布和泊松分布。离散随机分布用概率表达。
-
-伯努利分布
-伯努利分布是最简单的一种分布，抛一枚头向上概率为p的硬币，最终结果的分布。：
-
-
-
-...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Anyinlover on April 11, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/04/11/%E5%B9%BF%E4%B9%89%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/">
-        <h2 class="post-title">
-            广义线性模型
-        </h2>
-        
-        <h3 class="post-subtitle">
-            斯坦福大学机器学习第三讲
-        </h3>
-        
-        <div class="post-content-preview">
-            这一章讲讲广义线性模型。我刚看到这一章的时候，觉得很神奇。知识的境界不就是归一么。能把具体的模型一般化了，这本身就是件美丽的事。这里就是把线性回归和逻辑回归都归入了广义线性模型（GLMs)。
-
-指数分布族
-在讲广义线性模型前，需要先了解指数分布族。凡是能表达成下面的形式的，都属于指数分布族。
-
-
-
-其中被称为自然参数，是充分统计量，对机器学习来说一般，是对数部分函数，其作用是做一个正态化常量...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Anyinlover on April 11, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -518,20 +669,20 @@ K均值聚类算法给出了下面的方法：
                             
                         
                             
-                                <a href="/tags/#Ng机器学习系列" title="Ng机器学习系列" rel="12">
+                                <a href="/tags/#Ng机器学习系列" title="Ng机器学习系列" rel="19">
                                     Ng机器学习系列
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#数学基础" title="数学基础" rel="2">
-                                    数学基础
                                 </a>
                             
                         
                             
                                 <a href="/tags/#机器学习算法" title="机器学习算法" rel="7">
                                     机器学习算法
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#数学基础" title="数学基础" rel="2">
+                                    数学基础
                                 </a>
                             
                         
