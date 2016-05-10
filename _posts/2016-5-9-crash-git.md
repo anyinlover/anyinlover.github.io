@@ -9,9 +9,9 @@ tags:
   - 工具
 ---
 
-##Git简介
+## Git简介
 Git是一种分布式版本控制系统，由开发出Linux的大神Linus撰写。SVN是目前使用最多的集中式版本库控制系统。
-##安装Git
+## 安装Git
 在Ubuntu下可以用下面的命令安装：
 
 ```sudo apt-get install git```
@@ -30,25 +30,25 @@ git config --global core.editor vim
 
 `--global`是一个全局参数，也可以对每个Git仓库设置不同的配置。
 	
-##创建版本库
+## 创建版本库
 
-###创建
+### 创建
 在某个目录下使用下面的命令，将其初始化成一个Git仓库：
 
 ```git init```
 
-###添加文件到暂存区
+### 添加文件到暂存区
 新添或者修改一个文件后，使用`git add`将其添加到暂存区：
 
 ```git add filename```
-###从暂存区添加到版本库
+### 从暂存区添加到版本库
 使用命令`git commit`将暂存区文件提交到仓库, `-m`后是提交的备注：
 
 ```git commit -m "add a file"```
 
 `add`和`commit`分成了两步，可以多次`add`，一次`commit`。
 
-##版本管理
+## 版本管理
 `git status`查看仓库当前的状态：
 
 ```git status```
@@ -57,7 +57,7 @@ git config --global core.editor vim
 
 ```git diff filename```
 
-###版本回退
+### 版本回退
 
 `git log`可以用来查看版本记录，其中一大串数字显示的是SHA1计算出来的`commit id`。
 
@@ -85,7 +85,7 @@ Git管理的是修改而非文件。下面的命令可以比较版本库中和�
 
 ```git diff HEAD -- filename```
 
-###撤销修改
+### 撤销修改
 
 如果只是修改了工作区的文件，用下面的命令可以撤销到上一次`commit`或`add`提交后的状态：
 
@@ -142,7 +142,7 @@ Git其实还能支持其他协议，比如`https`，但`https`速度慢，且每
 ## 分支管理
 分支提供了平行世界的功能，使多人协作更加的方便。
 
-###创建与合并分支
+### 创建与合并分支
 在版本回退中，每次提交Git都会串成时间线也就是分支。在Git中，默认的那个分支称为主分支，即`master`分支。在前面的单分支情况下，`HEAD`严格来说是指向`master`的，而`master`才是指向提交的，所以`HEAD`指向的就是当前分支。
 
 ![](http://www.liaoxuefeng.com/files/attachments/0013849087937492135fbf4bbd24dfcbc18349a8a59d36d000/0)
@@ -188,13 +188,13 @@ git checkout dev
 
 ```git branch -d dev```
 
-###解决冲突
+### 解决冲突
 当两个分支都有新的提交时，会发生合并冲突，需要手工修改后重新提交。
 可以用`git log --graph`查看分支合并图:
 
 ```git log --graph --pretty=oneline --abbrev-commit```
 
-###分支管理策略
+### 分支管理策略
 Git默认会使用`Fast forward`模式，这种模式在删除分支后，会丢掉分支信息。如果禁用Fast forward模式合并，会产生一个新的commit，从而可以保存被删除分支信息，使用`--no-ff`参数：
 
 ```git merge --no-ff -m "merge with no-ff" dev```
@@ -207,7 +207,7 @@ Git默认会使用`Fast forward`模式，这种模式在删除分支后，会丢
 类似于下图的团队合作：
 ![摘自廖雪峰git教程](http://www.liaoxuefeng.com/files/attachments/001384909239390d355eb07d9d64305b6322aaf4edac1e3000/0)
 
-###Bug分支
+### Bug分支
 如果要修复一个紧急Bug，而现有分支上的工作区又不干净，可以先用下面的命令保存工作现场：
 
 ```git stash```
@@ -271,9 +271,9 @@ Git默认会使用`Fast forward`模式，这种模式在删除分支后，会丢
 4. 没有冲突后再次推送。
 *  如果`git pull`提示”no tracking information"，说明本地分支和远程分支无关联，参考上面的指令。
 
-##标签管理
+## 标签管理
 在发布版本时，打一个标签，可以唯一确定打标签时候的版本。标签是版本库的一个快照，实质是一个不能移动的指向commit的指针。
-###创建标签
+### 创建标签
 首先切换到要打标签的分支上，创建新标签，默认打在最新提交的commit上：
 
 ```git tag v1.0```
@@ -296,7 +296,7 @@ Git默认会使用`Fast forward`模式，这种模式在删除分支后，会丢
 
 ```git tag -s v0.2 -m "signed version 0.2 released" commit_id```
 
-###操作标签
+### 操作标签
 
 标签打错是可以删除的：
 ```git tag -d v0.1```
@@ -313,7 +313,7 @@ Git默认会使用`Fast forward`模式，这种模式在删除分支后，会丢
 
 ```git push origin :refs/tags/v0.9```
 
-##使用github
+## 使用github
 * 在Github上， 可以任意Fork开源仓库
 * 自己拥有Fork后的仓库的读写权限
 * 可以推送pull request给官方仓库来贡献代码
@@ -342,7 +342,7 @@ Git除了最前面的姓名和邮箱，还有很多可以配置的。
 * 每个仓库的配置在`.git/config`
 * 当前用户(Global)配置在`~/.gitconfig`
 
-##搭建git服务器
+### 搭建git服务器
 
 [参考原文](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000)
 
