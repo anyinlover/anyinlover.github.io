@@ -1,13 +1,14 @@
 ---
 layout: post
-title: "朴素贝叶斯习题"
-subtitle: "斯坦福大学机器学习习题集二之三之一"
+title: "朴素贝叶斯与SVM习题"
+subtitle: "斯坦福大学机器学习习题集二之三"
 date: 2016-5-8
 author: "Anyinlover"
 catalog: true
 tags:
   - Ng机器学习系列
 ---
+## 朴素贝叶斯习题
 
 这一篇我得好好记载一下，差不多花了我一整个周日，实际投入时间估计超过八小时，最后还是参考原始的octave代码才写出我的python代码。但不得不说这一题让我也有很大的收获。python文件处理，sparse矩阵利用，贝叶斯公式的本质理解，朴素贝叶斯算法的深入理解，甚至octave语法的复习，都收获到不少。虽然最后自己也有些着急，但最终还是斩获了这道题目。
 
@@ -27,7 +28,7 @@ def getxy(filename):
     matrix = lil_matrix((row,col)) # Row-based linked list sparse matrix
     category = lil_matrix((row,1))  # To construct a matrix efficiently
     
-    for m in range(rows):
+    for m in range(row):
         line = np.array([int(x) for x in f.readline().rstrip().split()])
         matrix[m, np.cumsum(line[1:-1:2])] = line[2:-1:2] # the cumulative sum of the elements 
         category[m] = line[0] 
@@ -58,3 +59,92 @@ yp[yp <= 0] = 0
 err = yp - ys
 print(len(err[err != 0])/rows)
 ```
+
+## 最大概率的五个关键词
+
+```python
+z = np.log(psi1) - np.log(psi0)
+temp = np.argpartition(-z,5)
+result_args = temp[:5]
+import pandas as pd
+tokens = pd.read_table('ps2/TOKENS_LIST',header=None, sep = ' ').iloc[:,1].values
+tokens[result_args]
+```
+
+## 不同训练样本的测试误差
+
+```python
+def geterror(trainname, testname):
+    xt,yt,rowt,colt = getxy(trainname)
+    
+    psi1 = (yt * xt + 1) / (sum((yt)*xt) + colt) # * operation represent dot between 1 -d array with sparse matrix
+    psi0 = ((1-yt) * xt + 1) / (sum((1-yt)*xt) + colt) # use Laplace smoothing
+    
+    y1 = sum(yt) / rowt
+    y0 = 1 - y1
+
+    xs,ys,rows,cols = getxy(testname)
+
+    yp1 = xs * np.log(psi1) + np.log(y1) # use log convert
+    yp0 = xs * np.log(psi0) + np.log(y0)
+
+    yp = yp1 - yp0
+    yp[yp > 0] = 1
+    yp[yp <= 0] = 0
+
+    err = yp - ys
+    return len(err[err != 0])/rows
+
+samples = [50,100,200,400,800,1400]
+files = ['PS2/MATRIX.TRAIN.'+ str(x) for x in samples]
+
+errors = [geterror(x,'PS2/MATRIX.TEST') for x in files]
+
+% matplotlib inline
+import matplotlib.pyplot as plt
+plt.scatter(samples,errors,color = 'red')
+plt.hold = True
+plt.plot(samples, np.poly1d(np.polyfit(samples, errors,4))(samples))
+plt.xlabel('samples')
+plt.xlim(0,1500)
+plt.ylabel('errors')
+```
+![](\img\ps2_3_1)
+
+## 使用SVM分类
+
+```python
+from sklearn import svm
+
+def svmerror(trainname,testname):
+    xt,yt,rowt,colt = getxy(trainname)
+    lin_svm = svm.LinearSVC()
+    lin_svm.fit(xt.toarray(),yt)
+    
+    xs,ys,rows,cols = getxy(testname)
+    
+    yp = lin_svm.predict(xs.toarray())
+    
+    err = yp - ys
+    return len(err[err != 0])/rows
+   
+samples = [50,100,200,400,800,1400]
+files = ['PS2/MATRIX.TRAIN.'+ str(x) for x in samples]
+
+svm_errors = [svmerror(x,'PS2/MATRIX.TEST') for x in files]
+
+% matplotlib inline
+import matplotlib.pyplot as plt
+plt.scatter(samples,svm_errors,color = 'red')
+plt.hold = True
+plt.plot(samples, np.poly1d(np.polyfit(samples, svm_errors,4))(samples))
+plt.xlabel('samples')
+plt.xlim(0,1500)
+plt.ylabel('errors')
+```
+
+![](\img\ps2_3_2)
+
+## 朴素贝叶斯和SVM比较
+
+朴素贝叶斯能用更少的数据快速学习，但也有较高的渐进误差。相反，SVM在小样本时有较大误差，但能快速的逼近。一般而言，生成算法比判别算法需要更少的样本，但有更高的渐进误差。

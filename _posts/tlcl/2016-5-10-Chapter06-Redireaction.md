@@ -15,7 +15,7 @@ tags:
 * 2> - Redirect standard error to a file
 * &> - Redirect standard output and error to a same file
 * cat - Concatenate files
-* | - Pipelines
+* \| - Pipelines
 * sort - Sort the lines
 * uniq - Report or omit repeated lines
 * wc - Print line, word, and byte counts

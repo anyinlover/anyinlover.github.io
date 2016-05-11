@@ -145,23 +145,23 @@ Git其实还能支持其他协议，比如`https`，但`https`速度慢，且每
 ### 创建与合并分支
 在版本回退中，每次提交Git都会串成时间线也就是分支。在Git中，默认的那个分支称为主分支，即`master`分支。在前面的单分支情况下，`HEAD`严格来说是指向`master`的，而`master`才是指向提交的，所以`HEAD`指向的就是当前分支。
 
-![](http://www.liaoxuefeng.com/files/attachments/0013849087937492135fbf4bbd24dfcbc18349a8a59d36d000/0)
+![](\img\git_1)
 
 当新建分支`dev`时，指向与`master`相同的提交，并把`HEAD`指向`dev`，表示当前分支在`dev`上。
 
-![](http://www.liaoxuefeng.com/files/attachments/001384908811773187a597e2d844eefb11f5cf5d56135ca000/0)
+![](\img\git_2)
 
 现在对工作区的修改和提交发生在了`dev`分支上，提交一次后会变成下面这样：
 
-![](http://www.liaoxuefeng.com/files/attachments/0013849088235627813efe7649b4f008900e5365bb72323000/0)
+![](\img\git_3)
 
 如果`dev`分支的工作完成了，需要将其合并到`master`上，只需要让`master`指向`dev`对应的提交，合并就完成了：
 
-![](http://www.liaoxuefeng.com/files/attachments/00138490883510324231a837e5d4aee844d3e4692ba50f5000/0)
+![](\img\git_4)
 
 这个时候删除`dev`分支也没有关系（就是删除一个指针），删完后就变成：
 
-![](http://www.liaoxuefeng.com/files/attachments/001384908867187c83ca970bf0f46efa19badad99c40235000/0)
+![](\img\git_5)
 
 首先创建并切换到新分支`dev`上：
 
@@ -205,7 +205,7 @@ Git默认会使用`Fast forward`模式，这种模式在删除分支后，会丢
 3. 多人协作时每个人在自己分支上干活，时不时合并到dev分支。
 
 类似于下图的团队合作：
-![摘自廖雪峰git教程](http://www.liaoxuefeng.com/files/attachments/001384909239390d355eb07d9d64305b6322aaf4edac1e3000/0)
+![摘自廖雪峰git教程](\img\git_6)
 
 ### Bug分支
 如果要修复一个紧急Bug，而现有分支上的工作区又不干净，可以先用下面的命令保存工作现场：
@@ -318,7 +318,6 @@ Git默认会使用`Fast forward`模式，这种模式在删除分支后，会丢
 * 自己拥有Fork后的仓库的读写权限
 * 可以推送pull request给官方仓库来贡献代码
 
-![摘自廖雪峰git教程](http://www.liaoxuefeng.com/files/attachments/001384926554932eb5e65df912341c1a48045bc274ba4bf000/0)
 
 ## 自定义Git
 Git除了最前面的姓名和邮箱，还有很多可以配置的。
