@@ -117,4 +117,4 @@ $$\epsilon(\hat{h}) \leq (\min_{h\in\mathcal{H}} \epsilon(h)) + 2 \sqrt{\frac{1}
 
 $$|\epsilon(h)-\hat{\epsilon}(h)| \leq O\left(\sqrt{\frac{d}{m} \log \frac{m}{d} + \frac{1}{m} \log \frac{1}{\delta}}\right)$$
 
-同样还有下面的结论：对$$|\epsilon(h)-\hat{\epsilon}(h)| \leq \gamma$$ 要求至少$$1-\delta$$概率对所有$$h \in \mathcal{H}$$成立，需要满足$$m=O_{\gamma,\delta}(d)$$。即对于最小化训练误差的算法，所需的训练样本数和算法参数个数几乎成线性关系。
+同样还有下面的结论：对$$\| \epsilon(h)-\hat{\epsilon}(h) \| \leq \gamma$$ 要求至少$$1-\delta$$概率对所有$$h \in \mathcal{H}$$成立，需要满足$$m=O_{\gamma,\delta}(d)$$。即对于最小化训练误差的算法，所需的训练样本数和算法参数个数几乎成线性关系。
