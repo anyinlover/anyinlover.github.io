@@ -44,6 +44,20 @@
     <![endif]-->
 
     <!-- ga & ba script hoook -->
+
+    <!-- Latex Support by Anyinlover -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'] ],
+          displayMath: [ ['$$','$$'] ],
+          processEscapes: true,
+      }
+    });
+    </script>
+
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
     <script></script>
 </head>
 
@@ -173,262 +187,9 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2016/05/07/kernelize-perceptron-ps/">
+    <a href="/2016/05/30/test/">
         <h2 class="post-title">
-            感知机核函数化习题
-        </h2>
-        
-        <h3 class="post-subtitle">
-            斯坦福大学机器学习习题集二之二
-        </h3>
-        
-        <div class="post-content-preview">
-            高维系数向量
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Anyinlover on May 7, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/07/construct-kernel-ps/">
-        <h2 class="post-title">
-            核函数构造习题
-        </h2>
-        
-        <h3 class="post-subtitle">
-            斯坦福大学机器学习习题集二之一
-        </h3>
-        
-        <div class="post-content-preview">
-            相加
-是核函数，两个半正定矩阵相加仍然是半正定。
-
-
-
-相减
-不是核函数，令，则：
-
-
-
-正系数
-是核函数
-
-
-
-负系数
-不是核函数
-
-
-
-相乘
-是核函数，由于是核函数：
-
-
-
-因此可以推导得到：
-
-
-
-函数相乘
-是核函数。上一种情况的特殊化，令。
-
-映射核函数
-是核函数，仍然保持半正定。
-
-多项式
-是核函数，通过上面的证明，相加，系数，幂，截距运算都保持核函数性质。
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Anyinlover on May 7, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/06/linear-invariance-ps/">
-        <h2 class="post-title">
-            优化算法线性不变习题
-        </h2>
-        
-        <h3 class="post-subtitle">
-            斯坦福大学机器学习习题集一之五
-        </h3>
-        
-        <div class="post-content-preview">
-            证明牛顿法是线性不变的
-
-令，需要找到和的表示。
-
-
-
-上式等同于：
-
-
-
-其中是A的第i列。因此有：
-
-
-
-再来定义海森矩阵：
-
-
-
-因此有:
-
-
-
-下面来推导对于函数的牛顿方法：
-
-
-
-只需要证明，即完成证明：
-
-
-
-证明梯度下降法不是线性不变
-在上应用梯度下降规则：
-
-
-
-在$$f(x)%%上应用梯度下降规则：
-
-
-
-要使得 成立，
-
-
-
-必须在成立的条件下才能成立，因此梯度下降法不是...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Anyinlover on May 6, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/05/gaussian-discriminant-ps/">
-        <h2 class="post-title">
-            高斯判别分析习题
-        </h2>
-        
-        <h3 class="post-subtitle">
-            斯坦福大学机器学习习题集一之四
-        </h3>
-        
-        <div class="post-content-preview">
-            高斯判别分析与逻辑回归的关系
-
-
-
-因此可以得到：
-
-
-
-模型参数推导
-
-
-
-然后分别对各参数求偏导。
-
-首先求解
-
-
-
-令上式为0，可以得到：
-
-
-
-再求解
-
-
-
-令上式为0，可以得到，同理：
-
-
-
-最后求解，为方便计算，对求偏导：
-
-
-
-令上式为0，可以得到：
-
-
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Anyinlover on May 5, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/04/glm-ps/">
-        <h2 class="post-title">
-            广义线性模型习题
-        </h2>
-        
-        <h3 class="post-subtitle">
-            斯坦福大学机器学习习题集一之三
-        </h3>
-        
-        <div class="post-content-preview">
-            证明泊松分布属于指数分布族
-
-
-
-因此可以得到：
-
-
-
-泊松模型的正则响应函数
-
-
-
-泊松模型的随机梯度下降
-
-
-
-随机梯度上升的规则是：
-
-
-
-证明递归规则的通用性
-
-首先可以得出：
-
-
-
-因此只需要证明  即可得证。
-
-
-
-等式两边对求导：
-
-
-
-因此上面的递归规则具有通用性。
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Anyinlover on May 4, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/03/local-reg-ps/">
-        <h2 class="post-title">
-            局部加权回归习题
+            test
         </h2>
         
         <h3 class="post-subtitle">
@@ -437,7 +198,11 @@
         
         <div class="post-content-preview">
             加权系数的矩阵表示
-令，因此可以推导出下式：
+令
+
+$W{ii}=\frac{1}{2} w^{(i)}，W{ij}=0 \text{ for } i \neq j, \overrightarrow{z}=X\theta-\overrightarrow{y}, z_i=\theta^T x^{(i)}-y^{(i)}$
+
+，因此可以推导出下式：
 
 
 
@@ -446,167 +211,339 @@
 
 
 
-令上式为0，最终我们得出局部加权的标准方程为：
-
-
-
-以y的方差表示加权系数
-
-
-
-即：
-
-
-
-回归问题
-
-实现一般回归
-用标准方程来写一般回归是比较容易的。
-
-from numpy import *
-import pandas as pd
-orx = pd.read_csv...
+...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Anyinlover on May 3, 2016
+        Posted by Anyinlover on May 30, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/02/log-reg-ps/">
+    <a href="/2016/05/23/independent-components-analysis/">
         <h2 class="post-title">
-            逻辑回归习题
+            独立成分分析
         </h2>
         
         <h3 class="post-subtitle">
-            斯坦福大学机器学习习题集一之一
+            斯坦福大学机器学习第十二讲
         </h3>
         
         <div class="post-content-preview">
-            逻辑回归
+            考虑一个鸡尾酒派对，不同位置的n个麦克风记录了n个说话者的声音。我们的目标是区分原始n个说话者的信号。
 
-证明逻辑回归的对数最大似然函数的海森矩阵是半负定矩阵
-
-对数最大似然函数表示如下：
+用公式来表达，假设有一些数据通过n各独立源产生，我们观察到的是：
 
 
 
-其一阶导根据讲义的证明是：
+这里A是一个未知的方矩阵被称为混合矩阵。重复观察可以得到数据集，目标就是还原源数据。
 
+令为分离矩阵，我们的目标变成找到W,因为。令表示W的第i行，则。
 
+ICA的任意性
 
-海森矩阵单个元素可表示为：
-
-
-
-海森矩阵可表示为：
-
-
-
-下面来证明 恒成立。
-
-
-
-因此逻辑回归的对数最大似然函数的海森矩阵是一个半负定矩阵，其只有一个唯一的全局最大值。
-
-用牛顿法来拟合逻辑回归模型
-尽管牛顿法的表达式已经给出，但用python跑出这个...
+如果对源和混合矩阵没有任何先验知识，只是给...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Anyinlover on May 2, 2016
+        Posted by Anyinlover on May 23, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/04/24/factor-analysis/">
+    <a href="/2016/05/22/principal-components-analysis/">
         <h2 class="post-title">
-            因子分析
+            主成分分析
         </h2>
         
         <h3 class="post-subtitle">
-            斯坦福大学机器学习第十讲
+            斯坦福大学机器学习第十一讲
         </h3>
         
         <div class="post-content-preview">
-            在前面的混合高斯模型中，我们常常假定我们有充足的样本去发现数据的内在结构。也就是样本数m远远大于特征数n。
+            前一讲因子分析中，将数据投射到k维子空间，它是一个可能性模型，使用EM算法拟合参数。本讲中的主成分分析完成类似的功能，但却简单的多，只需要用到特征向量，不需要借用EM算法。
 
-现在考虑的情况，在这样的条件下，单高斯模型都无法拟合，更不论混合高斯模型了。根据最大似然估计，高斯模型的拟合参数如下：
+在实现PCA算法之前，需要先对数据进行预处理：
 
 
+  令
+  将 用代替
+  计算
+  将用
 
-我们会发现是奇异阵，不存在。这样就无法计算模型的密度函数了。
 
-进一步讲，要通过最大似然估计来拟合高斯模型，必须让m远大于n，才能有比较好的结果。
+如果知道两个特征的范围大小一致，后两步可以省略。
 
-那么我们...
+现在我们就是要找出一个方向，使得投射后的数据仍然有高的方差。即最大...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Anyinlover on April 24, 2016
+        Posted by Anyinlover on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/04/21/em-algorithm/">
+    <a href="/2016/05/21/working-with-subqueries/">
         <h2 class="post-title">
-            最大期望算法
+            使用子查询
         </h2>
         
         <h3 class="post-subtitle">
-            斯坦福大学机器学习第九讲
+            《Sams Teach Yourself SQL in 10 Minutes》第十一讲
         </h3>
         
         <div class="post-content-preview">
-            在前一讲中，我们谈到最大期望算法应用于混合高斯模型中，在这一讲，我们给出最大期望算法的一般形式，展示其如何能运用于求解潜在变量的预测问题。
+            本讲主要学习子查询及其使用。
 
-琴生不等式
+理解子查询
+前面的SELECT语句都是简单的查询，SQL还允许在查询中嵌套查询，这就是子查询。
 
-假如是一个凸函数，即，或者。恒取大于号是称为严格凸函数。X是随机分布，琴生不等式可表达如下：
+使用子查询过滤
 
-
-
-当等号成立时必须有恒成立，即X是常量。
-
-琴生不等式可以用图形直观的去解释。
-
-同理，当f时一个凹函数时，不等式反向成立。
-
-最大期望算法...
+SELECT cust_id
+FROM Orders
+WHERE order_num IN (SELECT order_num
+					FROM OrderItems
+					WHERE prod_id = 'RGAN01');
+      ...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Anyinlover on April 21, 2016
+        Posted by Anyinlover on May 21, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/04/21/build-the-blog/">
+    <a href="/2016/05/21/using-views/">
         <h2 class="post-title">
-            技术博客搭建
+            使用视图
         </h2>
         
         <h3 class="post-subtitle">
-            感谢gitpage，jekyll和hux模板
+            《Sams Teach Yourself SQL in 10 Minutes》第十八讲
         </h3>
         
         <div class="post-content-preview">
-            搭建一个属于自己的博客是我一直都有的梦想。作为一个有技术的人，当然应该选择gitpage。使用git来管理，用markdown来撰写，不担心内容丢失，也不用为繁杂的语法困扰，十分合我心意。下面就记录一下我的博客搭建过程，操作系统是OS X。
+            本讲主要学习视图，原理及何时使用。可以看到视图能够简化操作。
 
-申请gitpage账号，建立仓库。
-想要用gitpage，首先得有个github账号。
+理解视图
 
-github建立博客仓库
-在github上建立一个仓库，仓库...
+视图是虚拟的表，它没有实体的数据，只是包含动态查询的结果。
+
+为何使用视图
+
+视图有以下几个常见的用法：
+
+
+  重用SQL语句
+  简化复杂SQL操作
+  导出部分表
+  保护数据
+  更改数据的样式和表达
+
+
+当视图创建之后，它可以执行和表一样的操作。
+
+视图的规则和限制
+
+
+  视图的命名也必须是唯一的。
+  ...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Anyinlover on April 21, 2016
+        Posted by Anyinlover on May 21, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/21/using-data-manipulation-functions/">
+        <h2 class="post-title">
+            使用数据处理函数
+        </h2>
+        
+        <h3 class="post-subtitle">
+            《Sams Teach Yourself SQL in 10 Minutes》第八讲
+        </h3>
+        
+        <div class="post-content-preview">
+            本讲中主要学习什么是函数，数据库支持哪些类型的函数，以及如何使用这些函数。
+
+理解函数
+
+和其他语言一样，SQL也支持使用函数来处理数据。比如前面提到的RTRIM
+
+但SQL函数有一个问题，就是和数据库管理系统强相关。不同的数据库支持的函数差别较大。因此，使用函数来处理数据时，一个好的习惯是加上注释。
+
+使用函数
+大部分SQL实现了下面四种类型的函数：
+
+
+  文本函数，处理文本字符串。
+ ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on May 21, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/21/updating-and-deleting-data/">
+        <h2 class="post-title">
+            更新和删除数据
+        </h2>
+        
+        <h3 class="post-subtitle">
+            《Sams Teach Yourself SQL in 10 Minutes》第十六讲
+        </h3>
+        
+        <div class="post-content-preview">
+            本讲主要学习UPDATE和DELETE语句来操作数据。
+
+更新数据
+
+UPDATE主要有两种用法：
+
+
+  更新特定行
+  更新所有行
+
+
+UPDATE Customers
+SET cust_email='kim@thetoystore.com'
+WHERE cust_id='1000000005';
+
+UPDATE Customers
+SET cust_contact='Sam Rober...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on May 21, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/21/summarizing-data/">
+        <h2 class="post-title">
+            统计函数
+        </h2>
+        
+        <h3 class="post-subtitle">
+            《Sams Teach Yourself SQL in 10 Minutes》第九讲
+        </h3>
+        
+        <div class="post-content-preview">
+            本讲主要学习SQL统计函数来总结整表数据。
+
+使用统计函数
+
+SQL提供了五种统计函数，用于对数据进行一个总结性的了解。
+
+
+  
+    
+      函数
+      作用
+    
+  
+  
+    
+      AVG()
+      平均值
+    
+    
+      COUNT()
+      行数
+    
+    
+      MAX()
+      最高值
+    
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on May 21, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/21/joining-tables/">
+        <h2 class="post-title">
+            连接表
+        </h2>
+        
+        <h3 class="post-subtitle">
+            《Sams Teach Yourself SQL in 10 Minutes》第十二讲
+        </h3>
+        
+        <div class="post-content-preview">
+            本讲主要学习连接表的作用和创建。
+
+理解连接
+
+连接表是SQL语句的一个重要特性，也是SELECT中主要的操作。理解连接和连接语法是学习SQL中非常重要的一部分。
+
+在理解连接之前，有必要先了解关系表和关系型数据库的设计。
+
+理解关系表
+关系表被设计成用来将信息分割成多张表，每张条对应一种数据类型。
+
+为何使用连接
+将数据分散在不同表里可以更高效的存储，更简单的操作，以及更好的扩展。
+
+但当...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on May 21, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/21/inserting-data/">
+        <h2 class="post-title">
+            插入数据
+        </h2>
+        
+        <h3 class="post-subtitle">
+            《Sams Teach Yourself SQL in 10 Minutes》第十五讲
+        </h3>
+        
+        <div class="post-content-preview">
+            本讲主要学习使用INSERT语句插入数据。
+
+理解数据插入
+
+SELECT毫无疑问是最常用的SQL语句，但还有其他三个常用SQL语句，第一个就是INSERT。
+
+INSERT用来在数据库表中插入行，有三种用途：
+
+
+  插入完整单行
+  插入部分单行
+  插入查询结果
+
+
+插入完整单行
+
+INSERT INTO Customers
+VALUES('1000000006',
+			'Toy L...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Anyinlover on May 21, 2016
     </p>
 </div>
 <hr>
@@ -643,7 +580,7 @@ github建立博客仓库
                             
                         
                             
-                                <a href="/tags/#工具" title="工具" rel="4">
+                                <a href="/tags/#工具" title="工具" rel="5">
                                     工具
                                 </a>
                             
@@ -657,19 +594,19 @@ github建立博客仓库
                             
                         
                             
-                                <a href="/tags/#Linux" title="Linux" rel="6">
+                                <a href="/tags/#Linux" title="Linux" rel="12">
                                     Linux
                                 </a>
                             
                         
                             
-                                <a href="/tags/#Linux命令行" title="Linux命令行" rel="6">
+                                <a href="/tags/#Linux命令行" title="Linux命令行" rel="12">
                                     Linux命令行
                                 </a>
                             
                         
                             
-                                <a href="/tags/#Ng机器学习系列" title="Ng机器学习系列" rel="19">
+                                <a href="/tags/#Ng机器学习系列" title="Ng机器学习系列" rel="25">
                                     Ng机器学习系列
                                 </a>
                             
@@ -687,8 +624,20 @@ github建立博客仓库
                             
                         
                             
-                                <a href="/tags/#机器学习理论" title="机器学习理论" rel="3">
+                                <a href="/tags/#机器学习理论" title="机器学习理论" rel="5">
                                     机器学习理论
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#编程语言" title="编程语言" rel="20">
+                                    编程语言
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#SQL" title="SQL" rel="18">
+                                    SQL
                                 </a>
                             
                         

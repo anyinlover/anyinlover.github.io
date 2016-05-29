@@ -21,7 +21,7 @@ tags:
 找个合适的文件夹防止本地目录，比如Documents下：
 
 	git clone anyinlover.github.io
-	
+
 假如还没有安装git，需要先装上git。
 
 ## 安装jekyll并绑定文件夹
@@ -29,12 +29,12 @@ tags:
 ### 安装jekyll
 
 	gem install jekyll
-	
+
 ### 绑定文件夹
 
 	cd anyinlover.github.io
 	jekyll build
-	
+
 ## 安装配置模板
 
 网上有挺多jekyll模板，除了[官方模板网站](http://jekyllthemes.org)，我更喜欢[dr. jekyll themes](https://drjekyllthemes.github.io)。如果要足够简单，[poole](http://getpoole.com)是个不错的选择，本次我使用的是一位中国人做的模板[hux](https://github.com/Huxpro/huxpro.github.io)，功能强大，在各方面都很趁意。
@@ -44,7 +44,7 @@ tags:
 从模板网站上把文件夹下载下来，解压到本地的博客文件夹。可以在本地打开jekyll先看一下，在浏览器输入0.0.0.0:4000：
 
 	jekyll serve
-	
+
 ### 配置模板
 
 配置模板是件比较烦的事情。特别是hux这个模板，虽然好看，但也意味着可配置的东西太多。配置文件主要是_config.xml这个文件，其他地方就需要修改html代码了。
@@ -89,9 +89,9 @@ kramdown那里作者配置了输入GFM，我也把它去掉了，我需要用lat
         </a>
     </li>
     {% endif %}
-    
-   I
+
 #### 配置footer.html
+
 在footer.html中也要添加page.html里添加的代码。在最后的Theme by Hux，删去了github部分。
 
 ## 撰写博客并上传
@@ -117,6 +117,6 @@ tags:
 	git add *.md
 	git commit -m "add somefile"
 	git push origin master
-	
+
 ## 结尾
 好啦，博客搭建过程大概如此，现在让我们一块欣赏吧。

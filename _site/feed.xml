@@ -5,421 +5,18 @@
     <description>在这里探索数据，发现真理</description>
     <link>http://anyinlover.github.io/</link>
     <atom:link href="http://anyinlover.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 07 May 2016 08:50:46 +0800</pubDate>
-    <lastBuildDate>Sat, 07 May 2016 08:50:46 +0800</lastBuildDate>
+    <pubDate>Sun, 29 May 2016 17:11:29 +0800</pubDate>
+    <lastBuildDate>Sun, 29 May 2016 17:11:29 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
-        <title>感知机核函数化习题</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;高维系数向量&lt;/h2&gt;
-</description>
-        <pubDate>Sat, 07 May 2016 00:00:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/2016/05/07/kernelize-perceptron-ps/</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/07/kernelize-perceptron-ps/</guid>
-        
-        <category>Ng机器学习系列</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>核函数构造习题</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;相加&lt;/h2&gt;
-&lt;p&gt;是核函数，两个半正定矩阵相加仍然是半正定。&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-&amp; \forall z \, z^TG_1z \geq 0, z^TG_2z \geq 0 \\
-\implies &amp; \forall z \, z^T G z = z^TG_1z + z^TG_2z \geq 0
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;相减&lt;/h2&gt;
-&lt;p&gt;不是核函数，令&lt;script type=&quot;math/tex&quot;&gt;K_2 = 2K_1&lt;/script&gt;，则：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt; \forall z \, z^T G z = z^T (G_1 - 2G_1) z = - z^T G_1 z \leq 0&lt;/script&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;正系数&lt;/h2&gt;
-&lt;p&gt;是核函数&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-&amp; \forall z \, z^TG_1z \geq 0 \\
-\implies &amp; \forall z \, z^T G z = az^TG_1z  \geq 0
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;负系数&lt;/h2&gt;
-&lt;p&gt;不是核函数&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-&amp; \forall z \, z^TG_1z \geq 0 \\
-\implies &amp; \forall z \, z^T G z = -az^TG_1z  \leq 0
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;section-4&quot;&gt;相乘&lt;/h2&gt;
-&lt;p&gt;是核函数，由于&lt;script type=&quot;math/tex&quot;&gt;K_1, K_2&lt;/script&gt;是核函数：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-&amp; \exists \phi^{(1)} \, K_1(x,z) = \phi^{(1)}(x)^T\phi^{(1)}(z)=\sum_i \phi_i^{(1)}(x)\phi_i^{(1)}(z) \\
-&amp; \exists \phi^{(1)} \, K_2(x,z) = \phi^{(2)}(x)^T\phi^{(2)}(z)=\sum_i \phi_i^{(2)}(x)\phi_i^{(2)}(z)
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;因此可以推导得到：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-K(x,z) &amp;= K_1(x,z)K_2(x,z) \\
-&amp;= \sum_i \phi_i^{(1)}(x)\phi_i^{(1)}(z)\sum_i \phi_i^{(2)}(x)\phi_i^{(2)}(z) \\
-&amp;= \sum_i \sum_j \phi_i^{(1)}(x)\phi_i^{(1)}(z) \phi_j^{(2)}(x)\phi_j^{(2)}(z) \\
-&amp;= \sum_i \sum_j (\phi_i^{(1)}(x)\phi_j^{(2)}(x))(\phi_i^{(1)}(z)\phi_j^{(2)}(z)) \\
-&amp;= \sum_{(i,j)} \psi_{i,j}(x)\psi_{i,j}(z) \\
-&amp;= \psi(x)^T \psi(z)
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;section-5&quot;&gt;函数相乘&lt;/h2&gt;
-&lt;p&gt;是核函数。上一种情况的特殊化，令&lt;script type=&quot;math/tex&quot;&gt;\psi(x) = f(x)&lt;/script&gt;。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-6&quot;&gt;映射核函数&lt;/h2&gt;
-&lt;p&gt;是核函数，仍然保持半正定。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-7&quot;&gt;多项式&lt;/h2&gt;
-&lt;p&gt;是核函数，通过上面的证明，相加，系数，幂，截距运算都保持核函数性质。&lt;/p&gt;
-</description>
-        <pubDate>Sat, 07 May 2016 00:00:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/2016/05/07/construct-kernel-ps/</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/07/construct-kernel-ps/</guid>
-        
-        <category>Ng机器学习系列</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>优化算法线性不变习题</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;证明牛顿法是线性不变的&lt;/h2&gt;
-
-&lt;p&gt;令&lt;script type=&quot;math/tex&quot;&gt;g(z)=f(Az)&lt;/script&gt;，需要找到&lt;script type=&quot;math/tex&quot;&gt;\nabla_z g(z)&lt;/script&gt;和&lt;script type=&quot;math/tex&quot;&gt;\nabla_z^2 g(z)&lt;/script&gt;的&lt;script type=&quot;math/tex&quot;&gt;f(z)&lt;/script&gt;表示。&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\frac {\partial g(z)} {\partial z_i} &amp;= 
-\sum_{k=1}^n \frac{\partial f(Az)} {\partial (Az)_k}
-\frac{\partial (Az)_k} {partial z_i} \\
-&amp;= \sum_{k=1}^n \frac{\partial f(Az)} {\partial (Az)_k} A_{ki} \\
-&amp;= \sum_{k=1}^n \frac{\partial f(Az)} {\partial x_k} A_{ki}
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;上式等同于：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\frac {\partial g(z)} {\partial z_i} =
-A_{\cdot i}^T \nabla_x f(Az)
-&lt;/script&gt;
-
-&lt;p&gt;其中&lt;script type=&quot;math/tex&quot;&gt;A_{\cdot i}&lt;/script&gt;是A的第i列。因此有：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\nabla_z g(z) = A^T \nabla_x f(Az)
-&lt;/script&gt;
-
-&lt;p&gt;再来定义海森矩阵&lt;script type=&quot;math/tex&quot;&gt;\nabla_z^2 g(z)&lt;/script&gt;：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\frac {\partial^2 g(z)} {\partial z_i \partial z_j}
-&amp;= \frac {\partial} {\partial z_j} \sum_{k=1}^n \frac{\partial f(Az)} {\partial (Az)_k} A_{ki} \\
-&amp;= \sum_l \sum_k \frac{\partial^2 f(Az)} {\partial x_l \partial x_k} A_{kj} A_{lj}
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;因此有:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;H_g(z) = A^T H_f(Az) A&lt;/script&gt;
-
-&lt;p&gt;下面来推导对于函数&lt;script type=&quot;math/tex&quot;&gt;f(Ax)&lt;/script&gt;的牛顿方法：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-z^{(i+1)} &amp;= z^{(i)} - H_g(z^{(i)})^{-1} \nabla_z g(z^{(i)}) \\
-&amp;= z^{(i)} - (A^T H_f(Az^{(i)}) A)^{-1} A^T \nabla_x f(Az^{(i)}) \\
-&amp;= z^{(i)} - A^{-1}H_f(Az^{(i)})^{-1}(A^T)^{-1}A^T \nabla_x f(Az^{(i)}) \\
-&amp;= z^{(i)} - A^{-1}H_f(Az^{(i)})^{-1}\nabla_x f(Az^{(i)})
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;只需要证明&lt;script type=&quot;math/tex&quot;&gt;Az^{(i+1)}=x^{(i+1)}&lt;/script&gt;，即完成证明：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-Az^{(i+1)} &amp;= A(z^{(i)} - A^{-1}H_f(Az^{(i)})^{-1}\nabla_x f(Az^{(i)})) \\
-&amp;= Az^{(i)} - H_f(Az^{(i)})^{-1}\nabla_x f(Az^{(i)}) \\
-&amp;= x^{(i)} - H_f(x^{(i)})^{-1} \nabla_x f(x^{(i)}) \\
-&amp;= x^{(i+1)}
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;证明梯度下降法不是线性不变&lt;/h2&gt;
-&lt;p&gt;在&lt;script type=&quot;math/tex&quot;&gt;g(z)&lt;/script&gt;上应用梯度下降规则：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-z^{(i+1)} = z^{(i)} - \alpha A^T \nabla_x f(Az^{(i)})
-&lt;/script&gt;
-
-&lt;p&gt;在$$f(x)%%上应用梯度下降规则：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-x^{(i+1)} = x^{(i)} - \alpha \nabla_x f(x^{(i)})
-&lt;/script&gt;
-
-&lt;p&gt;要使得&lt;script type=&quot;math/tex&quot;&gt;x^{(i+1)} = A z^{(i+1)}&lt;/script&gt; 成立，&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-Az^{(i+1)} &amp;= z^{(i)} - \alpha AA^T \nabla_x f(Az^{(i)}) \\
-&amp;= x^{(i)} - \alpha AA^T \nabla_x f(x^{(i)})
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;必须在&lt;script type=&quot;math/tex&quot;&gt;AA^T=I&lt;/script&gt;成立的条件下才能成立，因此梯度下降法不是线性不变的。&lt;/p&gt;
-</description>
-        <pubDate>Fri, 06 May 2016 00:00:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/2016/05/06/linear-invariance-ps/</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/06/linear-invariance-ps/</guid>
-        
-        <category>Ng机器学习系列</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>高斯判别分析习题</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;高斯判别分析与逻辑回归的关系&lt;/h2&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-p(y=1 \mid x; \phi, \Sigma, \mu_0, \mu_1) &amp;= \frac {p(x \mid y=1; \phi, \Sigma, \mu_0, \mu_1) p(y=1; \phi, \Sigma, \mu_0, \mu_1)} {p(x; \phi, \Sigma, \mu_0, \mu_1)} \\
-&amp;= \frac {p(x \mid y=1; \phi, \Sigma, \mu_0, \mu_1) p(y=1; \phi, \Sigma, \mu_0, \mu_1)} {p(x \mid y=1; \phi, \Sigma, \mu_0, \mu_1) p(y=1; \phi, \Sigma, \mu_0, \mu_1) + p(x \mid y=0; \phi, \Sigma, \mu_0, \mu_1) p(y=0; \phi, \Sigma, \mu_0, \mu_1)} \\
-&amp;= \frac { \exp\left(-\frac{1}{2}(x-\mu_1)^T\Sigma^{-1}(x-\mu_1)\right)\phi} { \exp\left(-\frac{1}{2}(x-\mu_1)^T\Sigma^{-1}(x-\mu_1)\right)\phi + \exp\left(-\frac{1}{2}(x-\mu_0)^T\Sigma^{-1}(x-\mu_0)\right)(1-\phi)} \\
-&amp;=\frac {1} {1+ \exp\left(\log( \frac {1-\phi} {\phi})-\frac{1}{2}(x-\mu_0)^T\Sigma^{-1}(x-\mu_0)+\frac{1}{2}(x-\mu_1)^T\Sigma^{-1}(x-\mu_1)\right)} \\
-&amp;= \frac{1} {1 + \exp \left(-\frac{1}{2} (-2\mu_0^T\Sigma^{-1}x + \mu_0^T\Sigma^{-1}\mu_0 + 2\mu_1^T\Sigma^{-1}x - \mu_1^T\Sigma^{-1}\mu_1) + \log ( \frac {1-\phi} {\phi})\right)}
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;因此可以得到：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\theta =
-\begin{bmatrix}
-\frac{1}{2}(\mu_0^T\Sigma^{-1}\mu_0-\mu_1^T\Sigma^{-1}\mu_1) - \log( \frac {1-\phi} {\phi}) \\
-\Sigma^{-1}\mu_1 - \Sigma^{-1}\mu_0
-\end{bmatrix}
-&lt;/script&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;模型参数推导&lt;/h2&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\ell(\phi,\mu_0,\mu_1,\Sigma) &amp;= \log \prod_{i=1}^m p(x^{(i)} \mid y^{(i)}; \mu_0, \mu_1, \Sigma) p(y^{(i)}; \phi) \\
-&amp;= \sum_{i=1}^m \log p(x^{(i)} \mid y^{(i)}; \mu_0, \mu_1, \Sigma) + \sum_{i=1}^m \log p(y^{(i)}; \phi) \\
-&amp;\simeq \sum_{i=1}^m [\frac{1}{2} \log \frac{1}{\left| \Sigma \right|} -\frac{1}{2}(x^{(i)}-\mu_{y^{(i)}})^T\Sigma^{-1}(x^{(i)}-\mu_{y^{(i)}}) + y^{(i)} \log \phi + (1 - y^{(i)}) \log(1-\phi)]
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;然后分别对各参数求偏导。&lt;/p&gt;
-
-&lt;p&gt;首先求解&lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt;&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\frac{\partial \ell} {\partial \phi} &amp;= \sum_{i=1}^m \left[\frac{y^{(i)}}{\phi} - \frac {1-y^{(i)}} {1 - \phi} \right] \\
-&amp;= \frac{\sum_{i=1}^m 1\{y^{(i)}=1\}}{\phi} - \frac{m - \sum_{i=1}^m 1\{y^{(i)}=1\}}{1-\phi}
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;令上式为0，可以得到：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\phi = \frac{1}{m}\sum_{i=1}^m1\{y^{(1)}\}
-&lt;/script&gt;
-
-&lt;p&gt;再求解&lt;script type=&quot;math/tex&quot;&gt;\mu_0&lt;/script&gt;&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\nabla_{\mu_0} \ell &amp;= -\frac{1}{2} \sum_{i:y^{(i)}=0}\nabla_{\mu_0}(x^{(i)}-\mu_0)^T\Sigma^{-1}(x^{(i)}-\mu_0) \\
-&amp;= -\frac{1}{2} \sum_{i:y^{(i)}=0}\nabla_{\mu_0} [\mu_0^T\Sigma^{-1}\mu_0-{x^{(i)}}^T \Sigma^{-1} \mu_0 - \mu_0^T \Sigma^{-1} x^{(i)}] \\
-&amp;= -\frac{1}{2} \sum_{i:y^{(i)}=0}\nabla_{\mu_0} tr[\mu_0^T\Sigma^{-1}\mu_0-{x^{(i)}}^T \Sigma^{-1} \mu_0 - \mu_0^T \Sigma^{-1} x^{(i)}] \\
-&amp;= -\frac{1}{2} \sum_{i:y^{(i)}=0} [2\Sigma^{-1} \mu_0 - 2\Sigma^{-1} x^{(i)}]
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;令上式为0，可以得到，&lt;script type=&quot;math/tex&quot;&gt;\mu_1&lt;/script&gt;同理：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\mu_0 = \frac{\sum_{i=1}^m1\{y^{i}=0\}x^{(i)}}{\sum_{i=1}^m1\{y^{i}=0\}}
-&lt;/script&gt;
-
-&lt;p&gt;最后求解&lt;script type=&quot;math/tex&quot;&gt;\Sigma&lt;/script&gt;，为方便计算，对&lt;script type=&quot;math/tex&quot;&gt;S = \Sigma^{-1}&lt;/script&gt;求偏导：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\nabla_S \ell &amp;= \sum_{i=1}^m \nabla_S [\frac{1}{2} \log \left| S \right| - \frac{1}{2}(x^{(i)}-\mu_{y^{(i)}})^TS(x^{(i)}-\mu_{y^{(i)}})] \\
-&amp;= \sum_{i=1}^m [\frac{1}{2\left| S \right|}\nabla_S \left| S \right| - \frac{1}{2}\nabla_S(x^{(i)}-\mu_{y^{(i)}})^TS(x^{(i)}-\mu_{y^{(i)}})] \\
-&amp;= \sum_{i=1}^m[\frac{1} {2} S^{-1} - \frac{1} {2} (x^{(i)}-\mu_{y^{(i)}})(x^{(i)}-\mu_{y^{(i)}})^T] \\
-&amp;= \frac{1}{2} \sum_{i=1}^m[\Sigma - (x^{(i)}-\mu_{y^{(i)}})(x^{(i)}-\mu_{y^{(i)}})^T]
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;令上式为0，可以得到：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\Sigma = \frac{1}{m}\sum_{i=1}^m(x^{(i)}-\mu_{y^{(i)}})(x^{(i)}-\mu_{y^{(i)}})^T
-&lt;/script&gt;
-</description>
-        <pubDate>Thu, 05 May 2016 00:00:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/2016/05/05/gaussian-discriminant-ps/</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/05/gaussian-discriminant-ps/</guid>
-        
-        <category>Ng机器学习系列</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>广义线性模型习题</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;证明泊松分布属于指数分布族&lt;/h2&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-p(y;\lambda) &amp;= \frac {e^{-\lambda} \lambda^y} {y!} \\
-&amp;= \frac{1}{y!} \exp(y \log \lambda - \lambda)
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;因此可以得到：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-b(y) &amp;= \frac{1}{y!} \\
-T(y) &amp;= y \\
-\eta &amp;= \log \lambda \Rightarrow \lambda = e^\eta \\
-a(\eta) &amp;= \lambda = e^\eta
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;泊松模型的正则响应函数&lt;/h2&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-g(\eta) &amp;= E[T(y); \eta] \\
-&amp;= E[y; \eta] \\
-&amp;= \lambda \\
-&amp;= e^\eta
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;泊松模型的随机梯度下降&lt;/h2&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\frac {\partial \ell(\theta)} {\theta_j} &amp;= \frac {\partial \log p(y^{(i)} \mid x^{(i)}; \theta)} {\partial \theta_j} \\
-&amp;= \frac {\partial \log ( \frac {1} {y^{(i)}!} \exp(\eta^Ty^{(i)} - e^\eta))}{\partial \theta_j} \\
-&amp;= \frac {\partial ((\theta^Tx^{(i)})^Ty^{(i)} - e^{\theta^Tx^{(i)}})} {\partial \theta_j} \\
-&amp;= \frac{\partial ((\sum_k \theta_k x_k^{(i)})y^{(i)} - e^{\sum_k \theta_k x_k^{(i)}})}{\partial \theta_j} \\
-&amp;= x_j^{(i)} y^{(i)} - e^{\sum_k \theta_k x_k^{(i)}} x_j^{(i)} \\
-&amp;= (y^{(i)} - e^{\theta^T x^{(i)}})x_j^{(i)}
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;随机梯度上升的规则是：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\theta_j &amp; := \theta_j + \alpha \frac {\partial \ell(\theta)} {\partial \theta_j} \\
-&amp; := \theta_j + \alpha (y^{(i)} - e^{\theta^T x^{(i)}})x_j^{(i)}
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;证明递归规则的通用性&lt;/h2&gt;
-
-&lt;p&gt;首先可以得出：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\frac {\partial \ell(\theta)} {\partial \theta_j} &amp;= \frac {\partial \log p(y^{(i)} \mid x^{(i)}; \theta)} {\partial \theta_j} \\
-&amp;= \frac {\partial \log (b(y) \exp (\eta^Ty - a(\eta)))} {\partial \theta_j} \\
-&amp;= \frac {\partial (\eta^Ty - a(\eta))} {\partial \theta_j} \\
-&amp;= x_jy - \frac {\partial a(\eta)} {\partial \eta} x_j \\
-&amp;= (y - \frac {\partial a(\eta)} {\partial \eta}) x_j
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;因此只需要证明 &lt;script type=&quot;math/tex&quot;&gt;\frac {\partial a(\eta)} {\partial \eta} = h(x)&lt;/script&gt; 即可得证。&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\int_y p(y \mid x; \theta)dy &amp;= 1 \\
-\int_y b(y) \exp (\eta^Ty - a(\eta))dy &amp;= 1 \\
-\int_y b(y) \exp (\eta^Ty)dy &amp;= \exp(a(\eta))
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;等式两边对&lt;script type=&quot;math/tex&quot;&gt;\eta&lt;/script&gt;求导：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\int_y b(y) \exp (\eta^Ty)dy &amp;= \exp(a(\eta)) \frac {\partial a(\eta)} {\partial \eta} \\
-\frac {\partial a(\eta)} {\partial \eta} &amp;= \int_y b(y) y \exp (\eta^Ty - a(\eta))dy \\
-&amp;= \int_y y p(y \mid x; \theta)dy \\
-&amp;= E[y \mid x; \theta] = h(x)
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;因此上面的递归规则具有通用性。&lt;/p&gt;
-</description>
-        <pubDate>Wed, 04 May 2016 00:00:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/2016/05/04/glm-ps/</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/04/glm-ps/</guid>
-        
-        <category>Ng机器学习系列</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>局部加权回归习题</title>
+        <title>test</title>
         <description>&lt;h2 id=&quot;section&quot;&gt;加权系数的矩阵表示&lt;/h2&gt;
-&lt;p&gt;令&lt;script type=&quot;math/tex&quot;&gt;W_{ii}=\frac{1}{2} w^{(i)}，W_{ij}=0 \text{ for } i \neq j, \overrightarrow{z}=X\theta-\overrightarrow{y}, z_i=\theta^T x^{(i)}-y^{(i)}&lt;/script&gt;，因此可以推导出下式：&lt;/p&gt;
+&lt;p&gt;令&lt;/p&gt;
+
+&lt;p&gt;$W&lt;em&gt;{ii}=\frac{1}{2} w^{(i)}，W&lt;/em&gt;{ij}=0 \text{ for } i \neq j, \overrightarrow{z}=X\theta-\overrightarrow{y}, z_i=\theta^T x^{(i)}-y^{(i)}$&lt;/p&gt;
+
+&lt;p&gt;，因此可以推导出下式：&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
 
@@ -500,7 +97,7 @@ plt.plot(xl, yl)
 
 &lt;h3 id=&quot;section-4&quot;&gt;实现局部加权线性回归&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;Xl = arange(-10, 15.01, 0.02)
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;Xl = arange(-10, 15.01, 0.02)
 def plot_t(t):
     plt.hold(&#39;on&#39;)
     Xl = arange(-10, 15.01, 0.02)
@@ -513,7 +110,7 @@ def plot_t(t):
         Ylo.append(yl)
         Yl = array(Ylo)
     plt.plot(Xl,Yl,color=&#39;red&#39;)
-    
+
  plt.scatter(x = orx.ravel(), y = y, marker=&#39;x&#39;, color=&#39;blue&#39;)
 plt.xlabel(&#39;x&#39;)
 plt.ylabel(&#39;y&#39;)
@@ -530,9 +127,9 @@ plot_t(2)
 &lt;h3 id=&quot;section-5&quot;&gt;带宽的影响&lt;/h3&gt;
 &lt;p&gt;带宽决定了影响模型的样本数量多少。带宽越小，影响模型的样本越少，模型也更容易受噪音影响，上面当带宽变0.1时，直接导致矩阵不可逆。带宽越大，影响模型的样本越多，模型更趋于一般线性回归。&lt;/p&gt;
 </description>
-        <pubDate>Tue, 03 May 2016 00:00:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/2016/05/03/local-reg-ps/</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/03/local-reg-ps/</guid>
+        <pubDate>Mon, 30 May 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/05/30/test/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/30/test/</guid>
         
         <category>Ng机器学习系列</category>
         
@@ -540,315 +137,69 @@ plot_t(2)
       </item>
     
       <item>
-        <title>逻辑回归习题</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;逻辑回归&lt;/h2&gt;
+        <title>独立成分分析</title>
+        <description>&lt;p&gt;考虑一个鸡尾酒派对，不同位置的n个麦克风记录了n个说话者的声音。我们的目标是区分原始n个说话者的信号。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-1&quot;&gt;证明逻辑回归的对数最大似然函数的海森矩阵是半负定矩阵&lt;/h3&gt;
+&lt;p&gt;用公式来表达，假设有一些数据&lt;script type=&quot;math/tex&quot;&gt;s \in {\mathbb{R}}^n&lt;/script&gt;通过n各独立源产生，我们观察到的是：&lt;/p&gt;
 
-&lt;p&gt;对数最大似然函数表示如下：&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt; x = As &lt;/script&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\ell(\theta) = \sum_{i=1}^m y^{(i)} \log h(x^{(i)})
-+ (1 - y^{(i)}) \log (1 - h(x^{(i)}))
-&lt;/script&gt;
+&lt;p&gt;这里A是一个未知的方矩阵被称为混合矩阵。重复观察可以得到数据集&lt;script type=&quot;math/tex&quot;&gt; \{x^{(i)};i=1,\cdots,m\} &lt;/script&gt;，目标就是还原源数据&lt;script type=&quot;math/tex&quot;&gt;s^{(i)}&lt;/script&gt;。&lt;/p&gt;
 
-&lt;p&gt;其一阶导根据讲义的证明是：&lt;/p&gt;
+&lt;p&gt;令&lt;script type=&quot;math/tex&quot;&gt;W = A^{-1}&lt;/script&gt;为分离矩阵，我们的目标变成找到W,因为&lt;script type=&quot;math/tex&quot;&gt;s^{(i)}=Wx^{(i)}&lt;/script&gt;。令&lt;script type=&quot;math/tex&quot;&gt;w_i^T&lt;/script&gt;表示W的第i行，则&lt;script type=&quot;math/tex&quot;&gt;s_j^{(i)}=w_j^Tx^{(i)}&lt;/script&gt;。&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\frac {\partial \ell(\theta)} {\partial \theta_k} =
-\sum_{i=1}^m (y - h_\theta (x^{(i)}))x_k^{(i)}
-&lt;/script&gt;
+&lt;h2 id=&quot;ica&quot;&gt;ICA的任意性&lt;/h2&gt;
 
-&lt;p&gt;海森矩阵单个元素可表示为：&lt;/p&gt;
+&lt;p&gt;如果对源和混合矩阵没有任何先验知识，只是给出&lt;script type=&quot;math/tex&quot;&gt;x^{(i)}&lt;/script&gt;，容易看出A是具有一些任意性的。&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+&lt;p&gt;如果P是任意一个&lt;script type=&quot;math/tex&quot;&gt;n \times n&lt;/script&gt;的重排列矩阵，这意味这每一行每一列都只包含一个1，那么我们是无法区分W和PW的，因为源数据的排列次序不会影响观察到的x。&lt;/p&gt;
 
-\begin{align}
-H_{kl} &amp;= \frac {\partial \ell(\theta)} {\partial \theta_k \theta_l} \\
-&amp;= - \sum_{i=1}^m \frac {\partial h_\theta (x^{(i)})} {\partial \theta_l} x_k^{(i)} \\
-&amp;= - \sum_{i=1}^m h_\theta(x^{(i)}) (1-h_\theta(x^{(i)})) x_l^{(i)}x_k^{(i)}
-\end{align}
- %]]&gt;&lt;/script&gt;
+&lt;p&gt;同样的，对W进行系数的缩放也没有影响。&lt;/p&gt;
 
-&lt;p&gt;海森矩阵可表示为：&lt;/p&gt;
+&lt;p&gt;对于非高斯分布的数据源而言，只存在上面两种任意性。如果数据源是高斯分布的，考虑下面的例子。&lt;script type=&quot;math/tex&quot;&gt;n=2, s \sim \mathcal{N}(0,I)&lt;/script&gt;。那么对于观察数据&lt;script type=&quot;math/tex&quot;&gt;x=As&lt;/script&gt;而言，x也是一个高斯分布，平均值为0，方差为&lt;script type=&quot;math/tex&quot;&gt;E[xx^T]=E[Ass^TA^T]=AA^T&lt;/script&gt;。现在令R是任意一个正交矩阵，即&lt;script type=&quot;math/tex&quot;&gt;RR^T=R^TR=I&lt;/script&gt;，则有&lt;script type=&quot;math/tex&quot;&gt;A&#39;=AR&lt;/script&gt;，当混合矩阵是&lt;script type=&quot;math/tex&quot;&gt;A&#39;&lt;/script&gt;时，我们观察到&lt;script type=&quot;math/tex&quot;&gt;x&#39;=A&#39;s&lt;/script&gt;。&lt;script type=&quot;math/tex&quot;&gt;x&#39;&lt;/script&gt;的分布同样属于高斯分布，平均值为0，方差为&lt;script type=&quot;math/tex&quot;&gt;E[x&#39;{x&#39;}^T]=E[A&#39;ss^T{A&#39;}^T]=E[ARss^T(AR)^T]=ARR^TA^T=AA^T&lt;/script&gt;。也就是无论混合矩阵是A还是&lt;script type=&quot;math/tex&quot;&gt;A&#39;&lt;/script&gt;，最终观察到的都是&lt;script type=&quot;math/tex&quot;&gt;\mathcal{N}(0,AA^T)&lt;/script&gt;的分布。&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;H = - \sum_{i=1}^m h_\theta(x^{(i)}) (1-h_\theta(x^{(i)})) x^{(i)} x^{(i)T}&lt;/script&gt;
+&lt;p&gt;上述讨论是建立在对称的标准多变量正态分布上的，尽管ICA不能在高斯分布数据中应用，在实际应用于非高斯分布数据中，只要数据足够多，是可以还原成n个独立源的。&lt;/p&gt;
 
-&lt;p&gt;下面来证明&lt;script type=&quot;math/tex&quot;&gt;z^T H z \leq 0&lt;/script&gt; 恒成立。&lt;/p&gt;
+&lt;h2 id=&quot;section&quot;&gt;分布密度和线性转换&lt;/h2&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+&lt;p&gt;假设随机变量s的分布密度是&lt;script type=&quot;math/tex&quot;&gt;p_s(s)&lt;/script&gt;，那么x的分布密度&lt;script type=&quot;math/tex&quot;&gt;p_x&lt;/script&gt;可以用下式表示：&lt;/p&gt;
 
-\begin{align}
-z^T H z &amp;= - z^T \sum_{i=1}^m h_\theta(x^{(i)}) (1-h_\theta(x^{(i)})) x^{(i)} x^{(i)T} z \\
-&amp;= - \sum_{i=1}^m h_\theta(x^{(i)}) (1-h_\theta(x^{(i)})) z^T x^{(i)} x^{(i)T} z \\
-&amp;= - \sum_{i=1}^m h_\theta(x^{(i)}) (1-h_\theta(x^{(i)})) (z^T x^{(i)})^2 \\
-&amp; \leq 0
-\end{align}
- %]]&gt;&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p_x(x)=p_s(Wx)\cdot | W |&lt;/script&gt;
 
-&lt;p&gt;因此逻辑回归的对数最大似然函数的海森矩阵是一个半负定矩阵，其只有一个唯一的全局最大值。&lt;/p&gt;
+&lt;h2 id=&quot;ica-1&quot;&gt;ICA算法&lt;/h2&gt;
 
-&lt;h3 id=&quot;section-2&quot;&gt;用牛顿法来拟合逻辑回归模型&lt;/h3&gt;
-&lt;p&gt;尽管牛顿法的表达式已经给出，但用python跑出这个程序还是花了我三个小时。主要的难点在于把前面的代数表示转化为矩阵表示，包括梯度和海森矩阵。下面给出我的python代码，用的是python3。&lt;/p&gt;
+&lt;p&gt;假设每个数据源&lt;script type=&quot;math/tex&quot;&gt;s_i&lt;/script&gt;的分布由分布密度&lt;script type=&quot;math/tex&quot;&gt;p_s&lt;/script&gt;给出，则s的联合分布由下式给出：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;from numpy import *
-import pandas as pd
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(s) = \prod_{i=1}^n p_s(s_i)&lt;/script&gt;
 
-orx = pd.read_csv(&#39;q1x.dat&#39;, sep=&#39;\s+&#39;, header=None).values
-y = pd.read_csv(&#39;q1y.dat&#39;, sep=&#39;\s+&#39;, header=None).values.ravel()
+&lt;p&gt;也可以得到&lt;script type=&quot;math/tex&quot;&gt;x=As=W^{-1}s&lt;/script&gt;的分布密度：&lt;/p&gt;
 
-X = hstack((ones((orx.shape[0], 1)), orx))
-theta = zeros(X.shape[1])
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(x) = \prod_{i=1}^n p_s(w_i^Tx) \cdot |W|&lt;/script&gt;
 
+&lt;p&gt;回顾累积分布函数(cdf)的定义，&lt;script type=&quot;math/tex&quot;&gt;F(z_0)=P(z \leq z_0)= \int_{-\infty}^{z_0} p_z(z)dz&lt;/script&gt;，z的分布密度也可以通过求导得到&lt;script type=&quot;math/tex&quot;&gt;p_z(z)=F&#39;(z)&lt;/script&gt;。&lt;/p&gt;
 
-def h(theta):
-    return 1/(1+exp(-dot(X, theta)))
+&lt;p&gt;因此，要确定s的分布密度，只需要确定cdf，它从0增长到1。根据我们上面的讨论，cdf不能取高斯函数，我们选择S型函数&lt;script type=&quot;math/tex&quot;&gt;g(s)=1/(1+e^{-s})&lt;/script&gt;，（假如对源分布有先验知识，这里应该利用先验知识构建cdf）。&lt;/p&gt;
 
+&lt;p&gt;方矩阵W是模型的参数，给定训练集&lt;script type=&quot;math/tex&quot;&gt;\{x^{(i)};i=1,\cdots,m\}&lt;/script&gt;，对数似然函数是：&lt;/p&gt;
 
-def hd(theta):
-    return dot(X.T, y - h(theta))
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\ell(W) = \sum_{i=1}^m \left( \sum_{j=1}^n \log g&#39;(w_j^Tx^{(i)}) + \log |W| \right)&lt;/script&gt;
 
+&lt;p&gt;使用随机梯度上升法则更新W，对于一个训练样本&lt;script type=&quot;math/tex&quot;&gt;x^{(i)}&lt;/script&gt;，更新规则是：&lt;/p&gt;
 
-def hdd(theta):
-    return -dot(X.T, tile(h(theta)*(1-h(theta)), (theta.size, 1)).T*X)
+&lt;script type=&quot;math/tex; mode=display&quot;&gt; W := W + \alpha \left(
+\begin{bmatrix}
+1-2g(w_1^Tx^{(i)}) \\
+1-2g(w_2^Tx^{(i)}) \\
+\vdots \\
+1-2g(w_n^Tx^{(i)})\\
+\end{bmatrix}
+{x^{(i)}}^T + (W^T)^{-1} \right)&lt;/script&gt;
 
-
-maxtry = 50
-
-for i in range(maxtry):
-    theta = theta - dot(linalg.inv(hdd(theta)), hd(theta))
-
-print(theta)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;画图&lt;/h3&gt;
-&lt;p&gt;这个纯粹的就是画图能力的考验，这一块前面看过《python machine learning》，还是比较容易的。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;import matplotlib.pyplot as plt
-plt.scatter(x = orx[y==1,0], y = orx[y==1,1], marker=&#39;o&#39;, color=&#39;red&#39;, label=&#39;y=1&#39;)
-plt.scatter(x = orx[y==0,0], y = orx[y==0,1], marker=&#39;x&#39;, color=&#39;blue&#39;, label=&#39;y=0&#39;)
-plt.xlabel(&#39;$x_1$&#39;)
-plt.ylabel(&#39;$x_2$&#39;)
-plt.legend(loc=&#39;upper left&#39;)
-plt.xlim(0,9)
-x1 = arange(0,10,1)
-x2 = (-theta[0]-theta[1]*x1)/theta[2]
-plt.plot(x1, x2)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;最后得到的图：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;\img\ps1_1.png&quot; alt=&quot;ps1_1&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;上面的推导包含了样本独立分布的假设，因此可以直接来最大化&lt;script type=&quot;math/tex&quot;&gt;\prod_i p(x^{(i)}; W)&lt;/script&gt;。但实际上说话者案例中样本并非完全独立，它们是时间相关的。但假如样本数足够多，ICA算法仍然有效。事实上，当样本具有相关性时，有时候还帮助我们加快拟合，类似于随机排序功能。&lt;/p&gt;
 </description>
-        <pubDate>Mon, 02 May 2016 00:00:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/2016/05/02/log-reg-ps/</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/02/log-reg-ps/</guid>
-        
-        <category>Ng机器学习系列</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>因子分析</title>
-        <description>&lt;p&gt;在前面的混合高斯模型中，我们常常假定我们有充足的样本去发现数据的内在结构。也就是样本数m远远大于特征数n。&lt;/p&gt;
-
-&lt;p&gt;现在考虑&lt;script type=&quot;math/tex&quot;&gt;n \gg n&lt;/script&gt;的情况，在这样的条件下，单高斯模型都无法拟合，更不论混合高斯模型了。根据最大似然估计，高斯模型的拟合参数如下：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\mu &amp;= \frac {1} {m} \sum_{i=1}^m x^{(i)} \\
-\Sigma &amp;= \frac {1} {m} \sum_{i=1}^m (x^{(i)}-\mu) (x^{(i)}-\mu)^T
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;我们会发现&lt;script type=&quot;math/tex&quot;&gt;\Sigma&lt;/script&gt;是奇异阵，&lt;script type=&quot;math/tex&quot;&gt;\Sigma^{-1}&lt;/script&gt;不存在。这样就无法计算模型的密度函数了。&lt;/p&gt;
-
-&lt;p&gt;进一步讲，要通过最大似然估计来拟合高斯模型，必须让m远大于n，才能有比较好的结果。&lt;/p&gt;
-
-&lt;p&gt;那么我们如何解决这个样本数不足的问题呢？&lt;/p&gt;
-
-&lt;h2 id=&quot;sigma&quot;&gt;限制&lt;script type=&quot;math/tex&quot;&gt;\Sigma&lt;/script&gt;&lt;/h2&gt;
-&lt;p&gt;如果我们没有足够的数据来拟合一个协方差矩阵，我们可以为其添加一些限制。比如考虑协方差矩阵是对角的，也就是特征间是相互独立的，在这种情况下：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Sigma_{jj} = \frac {1} {m} \sum_{i=1}^m (x_j^{(i)}-\mu_j)^2&lt;/script&gt;
-
-&lt;p&gt;二元高斯分布在平面的投影是个椭圆，对角阵意味着椭圆轴线与坐标轴平行。&lt;/p&gt;
-
-&lt;p&gt;进一步，我们还能控制&lt;script type=&quot;math/tex&quot;&gt;\Sigma&lt;/script&gt;不仅是对角的，而且对角元素相同。&lt;script type=&quot;math/tex&quot;&gt;\Sigma= \sigma^2 I&lt;/script&gt;，&lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt;可以通过最大似然估计得到：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\sigma^2 = \frac {1}{mn} \sum_{j=1}^n \sum_{i=1}^m (x_j^{(i)}-\mu_j)^2 &lt;/script&gt;
-
-&lt;p&gt;在高斯分布平面投影上椭圆变成了圆。&lt;/p&gt;
-
-&lt;p&gt;假如不对&lt;script type=&quot;math/tex&quot;&gt;\Sigma&lt;/script&gt;做限制，我们必须在&lt;script type=&quot;math/tex&quot;&gt;m \geq n+1&lt;/script&gt;的条件下才能保证&lt;script type=&quot;math/tex&quot;&gt;\Sigma&lt;/script&gt;不是一个奇异阵，在上面的约束下，只需要&lt;script type=&quot;math/tex&quot;&gt;m \geq 2&lt;/script&gt;就能保证非奇异。&lt;/p&gt;
-
-&lt;p&gt;但上述的假设太强，意味着特征之间完全相互独立，假如我们想要挖掘数据内部的关系时，就需要使用到因子分析模型。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;边缘和条件高斯分布&lt;/h2&gt;
-&lt;p&gt;在描述因子分析之前，我们先来讨论一下如何找到联合多元高斯分布的条件分布和边缘分布。&lt;/p&gt;
-
-&lt;p&gt;假定我们有一个随机变量：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-x = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}
-&lt;/script&gt;
-
-&lt;p&gt;这里&lt;script type=&quot;math/tex&quot;&gt;x_1 \in \mathbb{R}^r, x_2 \in \mathbb{R}^s, \Sigma_{11} \in \mathbb{R}^{r\times r}, \Sigma_{12} \in \mathbb{R}^{r \times s}&lt;/script&gt; 假定 &lt;script type=&quot;math/tex&quot;&gt; x \sim \mathcal{N} (\mu, \Sigma) &lt;/script&gt;，有：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
- \mu = \begin{bmatrix} \mu_1 \\ \mu_2 \end{bmatrix}, 
-\Sigma = \begin{bmatrix} \Sigma_{11} &amp; \Sigma_{12} \\ \Sigma_{21} &amp; \Sigma_{22} \end{bmatrix}  %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;x_1&lt;/script&gt; 和&lt;script type=&quot;math/tex&quot;&gt;x_2&lt;/script&gt;被称为联合多元分布，那么&lt;script type=&quot;math/tex&quot;&gt;x_1&lt;/script&gt;的边缘分布是什么？很容易可以看到&lt;script type=&quot;math/tex&quot;&gt;E[x_1]=\mu_1&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;Cov(x_1) = E[(x_1-\mu_1)(x_1-\mu_1)]=\Sigma_{11}&lt;/script&gt;
-。因为根据协方差的定义：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-Cov(x) &amp;= \Sigma \\
-&amp;= \begin{bmatrix} \Sigma_{11} &amp; \Sigma_{12} \\ \Sigma_{21} &amp; \Sigma_{22}
-    \end{bmatrix} \\
-&amp;= E[(x-\mu)(x-\mu)^T] \\
-&amp;= E[\begin{pmatrix} x_1-\mu_1 \\ x_2-\mu_2 \end{pmatrix}
-{\begin{pmatrix} x_1-\mu_1 \\ x_2-\mu_2 \end{pmatrix}}^T] \\
-&amp;= E \begin{pmatrix} (x_1-\mu_1)(x_1-\mu_1)^T (x_1-\mu_1)(x_2-\mu_2)^T \\
-(x_2 - \mu_2)(x_1 - \mu_1)^T (x_2-\mu_2)(x_2-\mu_2)^T \end{pmatrix}
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;因此可以得出&lt;script type=&quot;math/tex&quot;&gt;x_1&lt;/script&gt;的边缘分布是&lt;script type=&quot;math/tex&quot;&gt;x_1 \sim \mathcal{N} (\mu_1, \Sigma_{11})&lt;/script&gt;。&lt;/p&gt;
-
-&lt;p&gt;下面再来考虑在&lt;script type=&quot;math/tex&quot;&gt;x_2&lt;/script&gt;给定下&lt;script type=&quot;math/tex&quot;&gt;x_1&lt;/script&gt;的条件分布。可以记作&lt;script type=&quot;math/tex&quot;&gt;x_1 \mid x_2 \sim \mathcal{N} (\mu_{1\mid 2}, \Sigma_{1 \mid 2})&lt;/script&gt;，可以计算如下：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\mu_{1 \mid 2} &amp;= \mu_1 + \Sigma_{12} \Sigma_{22}^{-1} (x_2 - \mu_2) \\
-\Sigma_{1 \mid 2} &amp;= \Sigma_{11} - \Sigma_{12} \Sigma_{22}^{-1} \Sigma_{21}
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;因子分析模型&lt;/h2&gt;
-&lt;p&gt;在因子分析模型中，我们定义(x,z)的联合分布如下，其中&lt;script type=&quot;math/tex&quot;&gt;z \in \mathbb{R}^k &lt;/script&gt;是一个潜在随机变量：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-z &amp; \sim \mathcal{N}(0, I) \\
-x \mid z &amp; \sim \mathcal{N} (\mu + \Lambda z, \Psi)
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;其中向量&lt;script type=&quot;math/tex&quot;&gt;\mu \in \mathcal{R}^n &lt;/script&gt;，矩阵 &lt;script type=&quot;math/tex&quot;&gt; \Lambda \in \mathcal{R}^{n \times k} &lt;/script&gt;， 对角阵&lt;script type=&quot;math/tex&quot;&gt;\Psi \in \mathcal{R}^{n \times n}&lt;/script&gt;，k的取值一般都要小于n。&lt;/p&gt;
-
-&lt;p&gt;我们相当于把数据从k维映射到n维&lt;script type=&quot;math/tex&quot;&gt;\mu+ \Lambda z&lt;/script&gt;，最后再填上一个噪音&lt;script type=&quot;math/tex&quot;&gt;\Psi&lt;/script&gt;。上面的因子分析模型也可以表示成下面的形式：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-z &amp; \sim \mathcal{N} (0, I) \\
-\epsilon &amp; \sim \mathcal{N} (0, \Psi) \\
-x &amp; = \mu + \Lambda z + \epsilon
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;我们的随机变量z，x构成了一个联合高斯分布：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-\begin{bmatrix} z \\ x \end{bmatrix} \sim \mathcal{N} (\mu_{zx}, \Sigma)
-&lt;/script&gt;
-
-&lt;p&gt;下面来找到&lt;script type=&quot;math/tex&quot;&gt;\mu_{zx}&lt;/script&gt;和&lt;script type=&quot;math/tex&quot;&gt;\Sigma&lt;/script&gt;。&lt;/p&gt;
-
-&lt;p&gt;容易直到&lt;script type=&quot;math/tex&quot;&gt;E[z]=0&lt;/script&gt;，因为z满足标准正态分布。&lt;script type=&quot;math/tex&quot;&gt;E[x]=\mu&lt;/script&gt;可有下式求解：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-E[x] &amp;= E[\mu+ \Psi z + \epsilon] \\
-&amp;= \mu + \Psi E[z] + E[\epsilon] \\
-&amp;= \mu
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;因此可以得到&lt;script type=&quot;math/tex&quot;&gt;\mu_{zx}&lt;/script&gt;:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_{zx} =
-\begin{bmatrix}
-\overrightarrow{0} \\
-\mu
-\end{bmatrix}
-&lt;/script&gt;
-
-&lt;p&gt;下面继续计算&lt;script type=&quot;math/tex&quot;&gt;\Sigma&lt;/script&gt;，因为&lt;script type=&quot;math/tex&quot;&gt;\Sigma_{zz} = Cov(z) = I&lt;/script&gt;，&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\Sigma_{zx} &amp;= E[(z - E[z])(x - E[x])^T] \\
-&amp;= E[z (\mu + \Lambda z + \epsilon - \mu)^T ] \\
-&amp;= E[zz^T] \Lambda^T + E [z \epsilon^T] \\
-&amp;= \Lambda^T
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\Sigma_{xx} &amp;= E[(x - E[x])(x - E[x])^T] \\
-&amp;= E[(\mu + \Lambda z + \epsilon - \mu)(\mu + \Lambda z + \epsilon - \mu)^T ] \\
-&amp;= E[ \Lambda z z^T \Lambda^T + \epsilon z^T \Lambda^T + \Lambda z \epsilon^T + \epsilon \epsilon^T] \\
-&amp;= \Lambda E[z z^t] \Lambda^T + E [\epsilon \epsilon^T] \\
-\Lambda \Lambda^T + \Psi
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;最终我们得到联合分布如下：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{bmatrix}
-z \\ x
-\end{bmatrix}
-\sim \mathcal{N} \left (
-\begin{bmatrix}
-\overrightarrow{0} \\ \mu
-\end{bmatrix},
-\begin{bmatrix}
-I &amp; \Lambda^T \\
-\Lambda &amp; \Lambda \Lambda^T + \Psi
-\end{bmatrix}
-\right)
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;x的边缘分布是&lt;script type=&quot;math/tex&quot;&gt;x \sim \mathcal{N} (\mu, \Lambda \Lambda^T + \Psi) &lt;/script&gt;，因此可以得出其最大似然函数的表达式：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\ell (\mu, \Lambda, \Psi) = \log \prod_{i=1}^m \frac {1} {2\pi)^{n/2}
-{| \Lambda\Lambda^T + \Psi |}^{1/2} } \exp \left( - \frac{1}{2}
-(x^{(i)}-\mu)^T (\Lambda \Lambda^T + \Psi)^{-1} (x^{(i)} - \mu) \right) &lt;/script&gt;
-
-&lt;p&gt;对于上述的最大似然函数估计，同样的无法直接求解，需要用最大期望算法来解决。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;因子分析的最大期望算法&lt;/h2&gt;
-
-&lt;p&gt;在E步，我们需要计算&lt;script type=&quot;math/tex&quot;&gt;Q_i(z^{(i)}) = p(z^{(i)} \mid x^{(i)}; \mu, \Lambda, \Psi)。根据前面条件分布的公式，我们知道&lt;/script&gt; z^{(i)} \mid x^{(i)}; \mu, \Lambda, \Psi \sim \mathcal{N} (\mu&lt;em&gt;{z^{(i)} \mid x^{(i)}}, \Sigma&lt;/em&gt;{z^{(i)} \mid x^{(i)}})，其中：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\mu_{z^{(i)} \mid x^{(i)}} &amp;= \Lambda^T (\Lambda\Lambda^T + \Psi)^{-1} (x^{(i)} - \mu) \\
-\Sigma_{z^{(i)} \mid x^{(i)}} &amp;= I - \Lambda^T (\Lambda\Lambda^T + \Psi)^{-1} \Lambda
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;后面的推导偷懒不写了~一句话就是用EM算法去求解，感觉更多的是考验数学水平。&lt;/p&gt;
-
-</description>
-        <pubDate>Sun, 24 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/2016/04/24/factor-analysis/</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/24/factor-analysis/</guid>
+        <pubDate>Mon, 23 May 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/05/23/independent-components-analysis/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/23/independent-components-analysis/</guid>
         
         <category>Ng机器学习系列</category>
         
@@ -858,296 +209,692 @@ I &amp; \Lambda^T \\
       </item>
     
       <item>
-        <title>最大期望算法</title>
-        <description>&lt;p&gt;在前一讲中，我们谈到最大期望算法应用于混合高斯模型中，在这一讲，我们给出最大期望算法的一般形式，展示其如何能运用于求解潜在变量的预测问题。&lt;/p&gt;
+        <title>主成分分析</title>
+        <description>&lt;p&gt;前一讲因子分析中，将数据投射到k维子空间，它是一个可能性模型，使用EM算法拟合参数。本讲中的主成分分析完成类似的功能，但却简单的多，只需要用到特征向量，不需要借用EM算法。&lt;/p&gt;
 
-&lt;h2 id=&quot;section&quot;&gt;琴生不等式&lt;/h2&gt;
+&lt;p&gt;在实现PCA算法之前，需要先对数据进行预处理：&lt;/p&gt;
 
-&lt;p&gt;假如是一个凸函数，即&lt;script type=&quot;math/tex&quot;&gt;f&#39;&#39;(x) \geq 0&lt;/script&gt;，或者&lt;script type=&quot;math/tex&quot;&gt;H \geq 0&lt;/script&gt;。恒取大于号是称为严格凸函数。X是随机分布，琴生不等式可表达如下：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;令&lt;script type=&quot;math/tex&quot;&gt;\mu = \frac{1}{m} \sum_{i=1}^m x^{(i)}&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;将&lt;script type=&quot;math/tex&quot;&gt;x^{(i)}&lt;/script&gt; 用&lt;script type=&quot;math/tex&quot;&gt;x^{(i)} - \mu&lt;/script&gt;代替&lt;/li&gt;
+  &lt;li&gt;计算&lt;script type=&quot;math/tex&quot;&gt;\sigma_j^2 = \frac{1}{m} \Sigma_i(x_j^{(i)})^2&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;将&lt;script type=&quot;math/tex&quot;&gt;x_j^{(i)}&lt;/script&gt;用&lt;script type=&quot;math/tex&quot;&gt;x_j^{(i)}/\sigma_j&lt;/script&gt;&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt; E|f(X)| \geq f(EX)&lt;/script&gt;
+&lt;p&gt;如果知道两个特征的范围大小一致，后两步可以省略。&lt;/p&gt;
 
-&lt;p&gt;当等号成立时必须有&lt;script type=&quot;math/tex&quot;&gt;X=E \mid X \mid &lt;/script&gt;恒成立，即X是常量。&lt;/p&gt;
-
-&lt;p&gt;琴生不等式可以用图形直观的去解释。&lt;/p&gt;
-
-&lt;p&gt;同理，当f时一个凹函数时，不等式反向成立。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;最大期望算法&lt;/h2&gt;
-
-&lt;p&gt;给定训练集&lt;script type=&quot;math/tex&quot;&gt;\{x^{(1)},\cdots,x^{(m)}\}&lt;/script&gt;由m个独立样本构成。我们需要针对数据拟合模型&lt;script type=&quot;math/tex&quot;&gt;p(x,z)&lt;/script&gt;的参数，最大似然函数由下式给出：&lt;/p&gt;
+&lt;p&gt;现在我们就是要找出一个方向，使得投射后的数据仍然有高的方差。即最大化下式：&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
 
 \begin{align}
-\ell(\theta) &amp;= \sum_{i=1}^m \log p(x;\theta) \\
-&amp;= \sum_{i=1}^m \log \sum_z p(x,z;\theta)
+\frac{1}{m} \sum_{i=1}^m ({x^{(i)}}^T u)^2 &amp;= \frac{1}{m} \sum_{i=1}^m u^T x^{(i)} {x^{(i)}}^T u \\
+&amp;= u^T \left( \frac{1}{m} \sum_{i=1}^m x^{(i)} {x^{(i)}}^T \right) u
 \end{align}
  %]]&gt;&lt;/script&gt;
 
-&lt;p&gt;对上式直接求偏导计算无法得到解析解。因为&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;是一个潜在变量，只有&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;是已知的条件下，才可能解出，因此引出了最大期望算法。它的策略就是分两步走，E步首先给出&lt;script type=&quot;math/tex&quot;&gt;\ell&lt;/script&gt;的下限，然后在M步优化这个下限。&lt;/p&gt;
+&lt;p&gt;当&lt;script type=&quot;math/tex&quot;&gt;\|u\|_2 = 1&lt;/script&gt;时，很容易得知u取经验协方差矩阵$$\Sigma = \frac{1}{m} \sum_{i=1}^m x^{(i)} {x^{(i)}}^T的特征向量时为最大值。&lt;/p&gt;
 
-&lt;p&gt;对每个i，令&lt;script type=&quot;math/tex&quot;&gt;Q_i&lt;/script&gt;是对z的分布（&lt;script type=&quot;math/tex&quot;&gt;\sum_z Q_i(z) = 1, Q_i(z) \geq 0&lt;/script&gt;）运用琴生不等式，有下面的关系：&lt;/p&gt;
+&lt;p&gt;当想得到一维子空间时，u取首要特征向量。更一般化，要投射到k维子空间时，取头k个特征向量：&lt;script type=&quot;math/tex&quot;&gt;u_1, \cdots, u_k&lt;/script&gt;。&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+&lt;p&gt;子空间的特征可以用对应的向量表示：&lt;/p&gt;
 
-\begin{align}
-\sum_i \log p(x^{(i)}; \theta) &amp;= \sum_i \log \sum_{z^{(i)}} p(x^{(i)}, z^{(i)}; \theta) \\
-&amp;= \sum_i \log \sum_{z^{(i)}} Q_i(z^{(i)}) \frac {p(x^{(i)}, z^{(i)}; \theta)} {Q_i(z^{(i)})} \\
-&amp;\geq \sum_i \sum_{z^{(i)}} Q_i(z^{(i)}) \log \frac {p(x^{(i)}, z^{(i)}; \theta)} {Q_i(z^{(i)})}
-\end{align}
- %]]&gt;&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt; y^{(i)} =
+\begin{bmatrix}
+u_1^T x^{(i)} \\
+u_2^T x^{(i)} \\
+\vdots \\
+u_k^T x^{(i)} \\
+\end{bmatrix}
+\in
+{\mathbb{R}}^k
+&lt;/script&gt;
 
-&lt;p&gt;我们可以看出分布&lt;script type=&quot;math/tex&quot;&gt;[p(x^{(i)}，z^{(i)};\theta)/Q_i(z^{(i)})]&lt;/script&gt;针对&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;关于&lt;script type=&quot;math/tex&quot;&gt;Q_i&lt;/script&gt;的期望值就是&lt;/p&gt;
+&lt;p&gt;PCA也被称为降维算法。向量&lt;script type=&quot;math/tex&quot;&gt;u_1, \cdots, u_k&lt;/script&gt;被称为k个主成分。&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\sum_{z^{(i)}} Q_i(z^{(i)}) \frac {p(x^{(i)}, z^{(i)}; \theta)} {Q_i(z^{(i)})}&lt;/script&gt;
+&lt;p&gt;PCA算法有很多应用场景。&lt;/p&gt;
 
-&lt;p&gt;又由于对数函数是一个凹函数，因此有：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;f\left(E_{z^{(i)} \sim Q_i} \left[ \frac {p(x^{(i)}, z^{(i)}; \theta)} {Q_i(z^{(i)})} \right] \right) \geq E_{z^{(i)} \sim Q_i} \left[ f \left( \frac {p(x^{(i)}, z^{(i)}; \theta)} {Q_i(z^{(i)})} \right) \right] &lt;/script&gt;
-
-&lt;p&gt;因此对于任意分布&lt;script type=&quot;math/tex&quot;&gt;Q_i&lt;/script&gt;，上式给出了对&lt;script type=&quot;math/tex&quot;&gt;\ell(\theta)&lt;/script&gt;的下限。在选择&lt;script type=&quot;math/tex&quot;&gt;Q_i&lt;/script&gt;时，一个很自然的做法是l令琴生不等式等号成立。即变量为常量：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac {p(x^{(i)}, z^{(i)}; \theta)} {Q_i(z^{(i)}    )} = c&lt;/script&gt;
-
-&lt;p&gt;其中c是独立于&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;的常量。又因为&lt;script type=&quot;math/tex&quot;&gt;\sum_z Q_i(z^{(i)})=1&lt;/script&gt;，所以有：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-Q_i(z^{(i)}) &amp;= \frac {p(x^{(i)}, z^{(i)}; \theta)} {\sum_z p(x^{(i)}, z^{(i)}; \theta)} \\
-&amp;= \frac {p(x^{(i)}, z^{(i)}; \theta)} {p(x^{(i)}; \theta)} \\
-&amp;= p(z^{(i)} \mid x^{(i)}; \theta)
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;也就是&lt;script type=&quot;math/tex&quot;&gt;Q_i&lt;/script&gt;是在&lt;script type=&quot;math/tex&quot;&gt;x^{(i)}&lt;/script&gt;给定下&lt;script type=&quot;math/tex&quot;&gt;z^{(i)}&lt;/script&gt;的后验分布。现在我们可以得出最大期望算法的数学表达：
-重复下面的步骤直到收敛：{&lt;/p&gt;
-
-&lt;p&gt;E步，对每个i，令：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;Q_i(z^{(i)}) := p(z^{(i)} \mid x^{(i)}; \theta) &lt;/script&gt;
-
-&lt;p&gt;M步，令：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\theta := \arg \max_\theta \sum_i \sum_{z^{(i)}} Q_i(z^{(i)}) \log \frac {p(x^{(i)}, z^{(i)}; \theta)} {Q_i(z^{(i)})} &lt;/script&gt;
-
-&lt;p&gt;}&lt;/p&gt;
-
-&lt;p&gt;但我们如何能证明最大期望算法一定能收敛呢？通过下式可以得到：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-\ell(\theta^{(t+1)}) &amp; \geq \sum_i \sum_{z^{(i)}} Q_i^{(t)} (z^{(i)}) \log \frac {p(x^{(i)}, z^{(i)}; \theta^{(t+1)})} {Q^{(t)}_i(z^{(i)})} \\
-&amp; \geq \sum_i \sum_{z^{(i)}} Q_i^{(t)} (z^{(i)}) \log \frac {p(x^{(i)}, z^{(    i)}; \theta^{(t)})} {Q^{(t)}_i(z^{(i)})} \\
-&amp;= \ell(\theta^{(t)})
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;因此最大期望算法一定是逐渐收敛的，在实际应用中，我们常常是给定一个容忍系数来终止算法拟合。&lt;/p&gt;
-
-&lt;p&gt;假如我们定义：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;J(Q, \theta) = 
-\sum_i \sum_{z^{(i)}} Q_i(z^{(i)}) \log \frac {p(x^{(i)}, z^{(i)}; \theta)} {Q_i(z^{(i)})} &lt;/script&gt;
-
-&lt;p&gt;最大期望算法可以被视作对于J的坐标上升法。在E步优化Q，在M步优化&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;混合高斯模型再回顾&lt;/h2&gt;
-
-&lt;p&gt;有了最大期望算法的一般定义，我们再回头来拟合混合高斯模型的参数。&lt;/p&gt;
-
-&lt;p&gt;E步很简单：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\omega_j^{(i)}=Q_i(z^{(i)}=j)=P(z^{(i)}=j \mid x^{(i)}; \phi, \mu, \Sigma)&lt;/script&gt;
-
-&lt;p&gt;在M步，我们需要分别对参数&lt;script type=&quot;math/tex&quot;&gt;\phi, \mu, \Sigma&lt;/script&gt;求目标函数的最大化:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-&amp; \sum_{i=1}^m \sum_{z^{(i)}} Q_i(z^{(i)}) \log \frac {p(x^{(i)},z^{(i)}; \phi, \mu, \Sigma)}
-{Q_i(z^{(i)})} \\
-=&amp; \sum_{i=1}^m \sum_{j=1}^k Q_i(z^{(i)}=j) \log \frac {p(x^{(i)} \mid z^{(i)}=j; \mu, \Sigma)
-p(z^{(i)}=j; \phi)} {Q_i(z^{(i)}=j)} \\
-=&amp; \sum_{i=1}^m \sum_{j=1}^k \omega_j^{(i)} \log \frac {\frac{1} {(2\pi)^{n/2} |\Sigma_j|^{1/2}}
-\exp (-\frac{1}{2} (x^{(i)}-\mu_j)^T \Sigma_j^{-1} (x^{(i)}-\mu_j)) \cdot \phi_j} { \omega_j^{(i)}} \\
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;首先来求解&lt;script type=&quot;math/tex&quot;&gt;\mu_j&lt;/script&gt;，对其求梯度可以得到：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-
-\begin{align}
-&amp; \nabla_{\mu_j} \sum_{i=1}^m \sum_{j=1}^k \omega_j^{(i)} \log \frac {\frac{1} {(2\pi)^{n/2} |\Sigma_j|^{1/2}}
-121 \exp (-\frac{1}{2} (x^{(i)}-\mu_j)^T \Sigma_j^{-1} (x^{(i)}-\mu_j)) \cdot \phi_j} { \omega_j^{(i)    }} \\
-=&amp; -\nabla_{\mu_j}\sum_{i=1}^m \sum_{j=1}^k \omega_j^{(i)} \frac{1}{2} (x^{(i)}-\mu_j)^T \Sigma_j^{-1} (x^{(i)}-\mu_j) \\
-=&amp; \frac{1}{2} \sum_{i=1}^m \omega_j^{(i)} \nabla_{\mu_j} (2\mu_j^T\Sigma_j^{-1}x^{(i)} -\mu_j^T\Sigma_j^T \mu_j) \\
-=&amp; \sum_{i=1}^m \omega_j^{(i)} (\Sigma_j^{-1}x^{(i)}-\Sigma_j^T \mu_j)
-\end{align}
- %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;将上式等于0可以得到：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_j := \frac {\sum_{i=1}^m \omega_j^{(i)}x^{(i)}} {\sum_{i=1}^m \omega_j^{(i)}}&lt;/script&gt;
-
-&lt;p&gt;再来考虑&lt;script type=&quot;math/tex&quot;&gt;\phi_j&lt;/script&gt;，我们需要最大化：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt; \sum_{i=1}^m \sum_{j=1}^k \omega_j^{(i)} \log \phi_j &lt;/script&gt;
-
-&lt;p&gt;但认识到&lt;script type=&quot;math/tex&quot;&gt;\phi_j&lt;/script&gt;并不是完全独立的，存在&lt;script type=&quot;math/tex&quot;&gt; \sum_{j=1}^k \phi_j = 1 &lt;/script&gt;的关系，因此我们可以构造拉格朗日方程：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt; \mathcal{L} (\phi) = \sum_{i=1}^m \sum_{j=1}^k \omega_j^{(i)} \log \phi_j + \beta (\sum_{j=1}^k \phi_j - 1) &lt;/script&gt;
-
-&lt;p&gt;求偏导我们得到：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt; \frac {\partial} {\partial \phi_j} \mathcal{L} (\phi) = \sum_{i=1}^m \frac {\omega_j^{(i)}} {\phi_j} + \beta &lt;/script&gt;
-
-&lt;p&gt;因此有：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt; \phi_j = \frac { \sum_{i=1}^m \omega_j^{(i)} } { -\beta } &lt;/script&gt;
-
-&lt;p&gt;根据&lt;script type=&quot;math/tex&quot;&gt; \sum_{j} \phi_j = 1 &lt;/script&gt;的约束关系，&lt;script type=&quot;math/tex&quot;&gt; -\beta = \sum_{i=1}^m \sum_{j=1}^k \omega_j^{(i)} = \sum_{i=1}^m 1 = m &lt;/script&gt;，最终我们可以得到：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi_j := \frac {1} {m} \sum_{i=1}^m \omega_j^{(i)} &lt;/script&gt;
-
-&lt;p&gt;关于&lt;script type=&quot;math/tex&quot;&gt;\Sigma_j&lt;/script&gt; 也可以通过类似方法得到，不过让我自己推出来还是蛮困难的~&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;将数据压缩到二或三维可以用作可视化&lt;/li&gt;
+  &lt;li&gt;在监督学习前使用PCA来降低数据复杂度，避免过拟合。&lt;/li&gt;
+  &lt;li&gt;PCA算法可以用来降噪。&lt;/li&gt;
+&lt;/ul&gt;
 </description>
-        <pubDate>Thu, 21 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/2016/04/21/em-algorithm/</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/21/em-algorithm/</guid>
-        
-        <category>机器学习算法</category>
+        <pubDate>Sun, 22 May 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/05/22/principal-components-analysis/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/22/principal-components-analysis/</guid>
         
         <category>Ng机器学习系列</category>
+        
+        <category>机器学习理论</category>
         
         
       </item>
     
       <item>
-        <title>技术博客搭建</title>
-        <description>&lt;p&gt;搭建一个属于自己的博客是我一直都有的梦想。作为一个有技术的人，当然应该选择gitpage。使用git来管理，用markdown来撰写，不担心内容丢失，也不用为繁杂的语法困扰，十分合我心意。下面就记录一下我的博客搭建过程，操作系统是OS X。&lt;/p&gt;
+        <title>使用子查询</title>
+        <description>&lt;p&gt;本讲主要学习子查询及其使用。&lt;/p&gt;
 
-&lt;h2 id=&quot;gitpage&quot;&gt;申请gitpage账号，建立仓库。&lt;/h2&gt;
-&lt;p&gt;想要用gitpage，首先得有个github账号。&lt;/p&gt;
+&lt;h2 id=&quot;section&quot;&gt;理解子查询&lt;/h2&gt;
+&lt;p&gt;前面的&lt;code&gt;SELECT&lt;/code&gt;语句都是简单的查询，SQL还允许在查询中嵌套查询，这就是子查询。&lt;/p&gt;
 
-&lt;h3 id=&quot;github&quot;&gt;github建立博客仓库&lt;/h3&gt;
-&lt;p&gt;在github上建立一个仓库，仓库命名是有规范的。比如我的github用户名是anyinlover，那么仓库必须命名为anyinlover.github.io。&lt;/p&gt;
+&lt;h2 id=&quot;section-1&quot;&gt;使用子查询过滤&lt;/h2&gt;
 
-&lt;h3 id=&quot;section&quot;&gt;远程仓库同步到本地&lt;/h3&gt;
-&lt;p&gt;找个合适的文件夹防止本地目录，比如Documents下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git clone anyinlover.github.io
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT cust_id
+FROM Orders
+WHERE order_num IN (SELECT order_num
+					FROM OrderItems
+					WHERE prod_id = &#39;RGAN01&#39;);
+                    
+SELECT cust_name, cust_contact
+FROM Customers
+WHERE cust_id IN (SELECT cust_id
+				  FROM Orders
+                  WHERE order_num IN (SELECT order_num
+									  FROM OrderItems
+                                      WHERE prod_id=&#39;RGAN01&#39;));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;假如还没有安装git，需要先装上git。&lt;/p&gt;
+&lt;p&gt;注意子查询虽然能达成目的，但经常不是最有效的方式。后续会讲到连接表也能达到同样的效果。&lt;/p&gt;
 
-&lt;h2 id=&quot;jekyll&quot;&gt;安装jekyll并绑定文件夹&lt;/h2&gt;
+&lt;h2 id=&quot;section-2&quot;&gt;使用子查询作为计算字段&lt;/h2&gt;
 
-&lt;h3 id=&quot;jekyll-1&quot;&gt;安装jekyll&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;gem install jekyll
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT cust_name, cust_state,
+	(SELECT COUNT(*)
+     FROM Orders
+     WHERE Orders.cust_id=Customers.cust_id) AS orders
+FROM Customers
+ORDER BY cust_name;
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;绑定文件夹&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;cd anyinlover.github.io
-jekyll build
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;安装配置模板&lt;/h2&gt;
-
-&lt;p&gt;网上有挺多jekyll模板，除了&lt;a href=&quot;http://jekyllthemes.org&quot;&gt;官方模板网站&lt;/a&gt;，我更喜欢&lt;a href=&quot;https://drjekyllthemes.github.io&quot;&gt;dr. jekyll themes&lt;/a&gt;。如果要足够简单，&lt;a href=&quot;http://getpoole.com&quot;&gt;poole&lt;/a&gt;是个不错的选择，本次我使用的是一位中国人做的模板&lt;a href=&quot;https://github.com/Huxpro/huxpro.github.io&quot;&gt;hux&lt;/a&gt;，功能强大，在各方面都很趁意。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;安装模板&lt;/h3&gt;
-
-&lt;p&gt;从模板网站上把文件夹下载下来，解压到本地的博客文件夹。可以在本地打开jekyll先看一下，在浏览器输入0.0.0.0:4000：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;jekyll serve
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-4&quot;&gt;配置模板&lt;/h3&gt;
-
-&lt;p&gt;配置模板是件比较烦的事情。特别是hux这个模板，虽然好看，但也意味着可配置的东西太多。配置文件主要是_config.xml这个文件，其他地方就需要修改html代码了。&lt;/p&gt;
-
-&lt;h4 id=&quot;configxml&quot;&gt;配置_config.xml&lt;/h4&gt;
-&lt;p&gt;前面的title啥的不必提了，看几个特别的地方。&lt;/p&gt;
-
-&lt;p&gt;SNS设置那里我添加了豆瓣和简书的支持。增加douban_username和jianshu_username两行。&lt;/p&gt;
-
-&lt;p&gt;anchorjs那里我把默认的true改成了false，因为正文中标题前莫名出现一个#看起来很难受，锚定的功能也用不上。&lt;/p&gt;
-
-&lt;p&gt;评论系统我选择了disqus，注释了默认的duoshuo。&lt;/p&gt;
-
-&lt;p&gt;kramdown那里作者配置了输入GFM，我也把它去掉了，我需要用latex语法输入数学公式，这是GFM不支持的。&lt;/p&gt;
-
-&lt;h4 id=&quot;abouthtml&quot;&gt;配置about.html&lt;/h4&gt;
-&lt;p&gt;作者把about.html直接写成了html，我觉得更合适的还是用md文件来表示。修改其中的description，删除秀恩爱照片。在正文中去掉了中英文版本（按钮略丑）。替换内容，只留下一段自己的介绍。&lt;/p&gt;
-
-&lt;h4 id=&quot;indexhtmltagshtml&quot;&gt;配置index.html和tags.html&lt;/h4&gt;
-&lt;p&gt;作者把这两页的描述都写进了html文件里，打开修改成自己要说的description,删除默认图片&lt;/p&gt;
-
-&lt;h4 id=&quot;pagehtml&quot;&gt;配置page.html&lt;/h4&gt;
-&lt;p&gt;在page.html中添加了豆瓣和简书的支持，在143行插入：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;li&amp;gt;
-    &amp;lt;a target=&quot;_blank&quot; href=&quot;https://www.douban.com/people/48573787&quot;&amp;gt;
-       &amp;lt;span class=&quot;fa-stack fa-lg&quot;&amp;gt;
-            &amp;lt;i class=&quot;fa fa-circle fa-stack-2x&quot;&amp;gt;&amp;lt;/i&amp;gt;
-            &amp;lt;i class=&quot;fa  fa-stack-1x fa-inverse&quot;&amp;gt;豆&amp;lt;/i&amp;gt;
-       &amp;lt;/span&amp;gt;
-     &amp;lt;/a&amp;gt;
-&amp;lt;/li&amp;gt;
-
-
-&amp;lt;li&amp;gt;
-    &amp;lt;a target=&quot;_blank&quot; href=&quot;http://jianshu.com/users/33ab62821c57/timeline&quot;&amp;gt;
-       &amp;lt;span class=&quot;fa-stack fa-lg&quot;&amp;gt;
-            &amp;lt;i class=&quot;fa fa-circle fa-stack-2x&quot;&amp;gt;&amp;lt;/i&amp;gt;
-            &amp;lt;i class=&quot;fa fa-stack-1x fa-inverse&quot;&amp;gt;简&amp;lt;/i&amp;gt;
-       &amp;lt;/span&amp;gt;
-    &amp;lt;/a&amp;gt;
-&amp;lt;/li&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I
-#### 配置footer.html
-在footer.html中也要添加page.html里添加的代码。在最后的Theme by Hux，删去了github部分。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-5&quot;&gt;撰写博客并上传&lt;/h2&gt;
-
-&lt;h3 id=&quot;section-6&quot;&gt;撰写&lt;/h3&gt;
-&lt;p&gt;用macdown写博客，放在_posts文件夹下。需要有文件头类似如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;---
-layout: post
-title: &quot;技术博客搭建&quot;
-subtitle: &quot;感谢gitpage，jekyll和hux模板&quot;
-date: 2016-4-21
-author: &quot;Anyinlover&quot;
-catalog: true
-tags:
-  - 工具
----
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-7&quot;&gt;上传&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;git add *.md
-git commit -m &quot;add somefile&quot;
-git push origin master
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;section-8&quot;&gt;结尾&lt;/h2&gt;
-&lt;p&gt;好啦，博客搭建过程大概如此，现在让我们一块欣赏吧。&lt;/p&gt;
 </description>
-        <pubDate>Thu, 21 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://anyinlover.github.io/2016/04/21/build-the-blog/</link>
-        <guid isPermaLink="true">http://anyinlover.github.io/2016/04/21/build-the-blog/</guid>
+        <pubDate>Sat, 21 May 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/05/21/working-with-subqueries/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/21/working-with-subqueries/</guid>
         
-        <category>工具</category>
+        <category>编程语言</category>
+        
+        <category>SQL</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>使用视图</title>
+        <description>&lt;p&gt;本讲主要学习视图，原理及何时使用。可以看到视图能够简化操作。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;理解视图&lt;/h2&gt;
+
+&lt;p&gt;视图是虚拟的表，它没有实体的数据，只是包含动态查询的结果。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;为何使用视图&lt;/h3&gt;
+
+&lt;p&gt;视图有以下几个常见的用法：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;重用SQL语句&lt;/li&gt;
+  &lt;li&gt;简化复杂SQL操作&lt;/li&gt;
+  &lt;li&gt;导出部分表&lt;/li&gt;
+  &lt;li&gt;保护数据&lt;/li&gt;
+  &lt;li&gt;更改数据的样式和表达&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;当视图创建之后，它可以执行和表一样的操作。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;视图的规则和限制&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;视图的命名也必须是唯一的。&lt;/li&gt;
+  &lt;li&gt;视图的数量没有限制。&lt;/li&gt;
+  &lt;li&gt;创建视图需要有安全权限。&lt;/li&gt;
+  &lt;li&gt;视图可以嵌套。&lt;/li&gt;
+  &lt;li&gt;视图不可被索引，不能有触发器或默认值。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;创建视图&lt;/h2&gt;
+
+&lt;p&gt;使用&lt;code&gt;CREATE VIEW&lt;/code&gt;语句创建视图。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;使用视图来简化复杂连接&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;CREATE VIEW ProductCustomers AS
+SELECT cust_name, cust_contact, prod_id
+FROM Customers, Orders, OrderItems
+WHERE Customers.cust_id=Orders.cust_id
+AND OrderItems.order_num=Orders.order_num;
+
+SELECT cust_name, cust_contact
+FROM ProductCustomers
+WHERE prod_id=&#39;RGAN01&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;使用视图更改数据样式&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;Create VIEW VendorLocations AS
+SELECT CONCAT(vend_name, &#39; (&#39;, vend_country, &#39;)&#39;)
+AS vend_title
+FROM Vendors;
+
+SELECT * FROM vendorlocations;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;使用视图过滤不必要的数据&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;CREATE VIEW CustomerEMailList AS
+SELECT cust_id, cust_name, cust_email
+FROM Customers
+WHERE cust_email IS NOT NULL;
+
+SELECT * FROM CustomerEMailList;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;使用视图表示计算字段&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;CREATE VIEW OrderItemsExpanded AS
+SELECT order_num,
+		prod_id,
+        quantity,
+        item_price,
+        quantity*item_price AS expanded_price
+FROM OrderItems;
+
+SELECT * FROM OrderItemsExpanded
+WHERE order_num=20008;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Sat, 21 May 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/05/21/using-views/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/21/using-views/</guid>
+        
+        <category>编程语言</category>
+        
+        <category>SQL</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>使用数据处理函数</title>
+        <description>&lt;p&gt;本讲中主要学习什么是函数，数据库支持哪些类型的函数，以及如何使用这些函数。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;理解函数&lt;/h2&gt;
+
+&lt;p&gt;和其他语言一样，SQL也支持使用函数来处理数据。比如前面提到的&lt;code&gt;RTRIM&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;但SQL函数有一个问题，就是和数据库管理系统强相关。不同的数据库支持的函数差别较大。因此，使用函数来处理数据时，一个好的习惯是加上注释。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;使用函数&lt;/h2&gt;
+&lt;p&gt;大部分SQL实现了下面四种类型的函数：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;文本函数，处理文本字符串。&lt;/li&gt;
+  &lt;li&gt;数字函数，数学运算。&lt;/li&gt;
+  &lt;li&gt;时间日期函数。&lt;/li&gt;
+  &lt;li&gt;系统函数。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;函数除了使用在&lt;code&gt;SELECT&lt;/code&gt;部分，也可以使用在SQL语句的其他部分，比如&lt;code&gt;WHERE&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;文本处理函数&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT vend_name, UPPER(vend_name) AS vend_name_upcase
+FROM Vendors
+ORDER BY vend_name;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下面是一些通用的文本处理函数：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;函数&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;作用&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;LEFT()&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;从左取子字符串&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;LENGTH()&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;字符串长度&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;LOWER()&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;字符串小写&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;LTRIM()&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;截除字符串首空格&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;RIGHT()&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;从右取字符串&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;RTRIM()&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;截除字符串尾空格&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;SOUNDEX()&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;返回字符串音值&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;UPPER()&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;字符串大写&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;这里面&lt;code&gt;SOUNDEX()&lt;/code&gt;比较特殊，用来查找发音相似的字符串：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT cust_name, cust_contact
+FROM Customers
+WHERE SOUNDEX(cust_contact)=SOUNDEX(&#39;Michael Green&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;日期时间处理函数&lt;/h2&gt;
+
+&lt;p&gt;日期和时间在数据库中以数据库管理系统特有的格式存储，实际使用时需要通过日期时间处理函数来调用，这一部分函数非常重要，但同时也非常不具有普遍性。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT order_num
+FROM Orders
+WHERE YEAR(order_date)=2012;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;具体的日期时间处理函数需要参照不同SQL的产品文档。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;数字函数&lt;/h2&gt;
+
+&lt;p&gt;数字函数和上面两者相比最不常用，却是最普遍性的。下面列举一些常见的数字处理函数：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;ABS()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;COS()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;EXP()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;PI()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;SIN()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;SQRT()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;TAN()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 21 May 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/05/21/using-data-manipulation-functions/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/21/using-data-manipulation-functions/</guid>
+        
+        <category>编程语言</category>
+        
+        <category>SQL</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>更新和删除数据</title>
+        <description>&lt;p&gt;本讲主要学习&lt;code&gt;UPDATE&lt;/code&gt;和&lt;code&gt;DELETE&lt;/code&gt;语句来操作数据。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;更新数据&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;UPDATE&lt;/code&gt;主要有两种用法：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;更新特定行&lt;/li&gt;
+  &lt;li&gt;更新所有行&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;UPDATE Customers
+SET cust_email=&#39;kim@thetoystore.com&#39;
+WHERE cust_id=&#39;1000000005&#39;;
+
+UPDATE Customers
+SET cust_contact=&#39;Sam Roberts&#39;,
+	cust_email=&#39;sam@toyland.com&#39;
+WHERE cust_id=&#39;1000000006&#39;;
+
+UPDATE Customers
+SET cust_email=NULL
+WHERE cust_id=&#39;1000000005&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;删除数据&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;DELETE FROM Customers
+WHERE cust_id=&#39;1000000008&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意如果要删除的行中存在其他表的外键，那么删除操作是无法完成的。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;更新删除数据指南&lt;/h2&gt;
+
+&lt;p&gt;下面是一些实用的更新删除数据指南：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;永远不要在没有&lt;code&gt;WHERE&lt;/code&gt;分句的情况下更新和删除，除非你真的想操作所有行。&lt;/li&gt;
+  &lt;li&gt;确保每张表都有一个主键，尽可能在&lt;code&gt;WHERE&lt;/code&gt;分句中使用它。&lt;/li&gt;
+  &lt;li&gt;在用&lt;code&gt;WHERE&lt;/code&gt;分句更新删除前，先用&lt;code&gt;SELECT&lt;/code&gt;测试查看。&lt;/li&gt;
+  &lt;li&gt;使用数据库的强制参考完整性特性，即上面提到的外键。&lt;/li&gt;
+  &lt;li&gt;考虑DBA强制在更新删除时使用&lt;code&gt;WHERE&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 21 May 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/05/21/updating-and-deleting-data/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/21/updating-and-deleting-data/</guid>
+        
+        <category>编程语言</category>
+        
+        <category>SQL</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>统计函数</title>
+        <description>&lt;p&gt;本讲主要学习SQL统计函数来总结整表数据。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;使用统计函数&lt;/h2&gt;
+
+&lt;p&gt;SQL提供了五种统计函数，用于对数据进行一个总结性的了解。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;函数&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;作用&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;AVG()&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;平均值&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;COUNT()&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;行数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;MAX()&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;最高值&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;MIN()&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;最低值&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;SUM()&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;和值&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;avg&quot;&gt;&lt;code&gt;AVG()&lt;/code&gt;函数&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT AVG(prod_price) AS avg_price
+FROM Products;
+
+SELECT AVG(prod_price) AS avg_price
+FROM Products
+WHERE vend_id = &#39;DLL01&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;NULL&lt;/code&gt;值会被&lt;code&gt;AVG()&lt;/code&gt;忽略不计。&lt;/p&gt;
+
+&lt;h3 id=&quot;count&quot;&gt;&lt;code&gt;COUNT()&lt;/code&gt;函数&lt;/h3&gt;
+
+&lt;p&gt;使用&lt;code&gt;COUNT(*)&lt;/code&gt;会计算所有的行数，包括&lt;code&gt;NULL&lt;/code&gt;值的。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT COUNT(*) AS num_cust
+FROM Customers;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用&lt;code&gt;COUNT(column)&lt;/code&gt;则会把&lt;code&gt;NULL&lt;/code&gt;值排除在外。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT COUNT(cust_email) AS num_cust
+FROM Customers;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;max&quot;&gt;&lt;code&gt;MAX()&lt;/code&gt;函数&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT MAX(prod_price) AS max_price
+FROM Products;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;除了应用在数字数据上，&lt;code&gt;MAX()&lt;/code&gt;也可以应用在文本数据上。&lt;/p&gt;
+
+&lt;h3 id=&quot;min&quot;&gt;&lt;code&gt;MIN()&lt;/code&gt;函数&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT MIN(prod_price) AS min_price
+FROM Products;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;和&lt;code&gt;MAX()&lt;/code&gt;类似，&lt;code&gt;MIN()&lt;/code&gt;也能应用在文本数据上。&lt;/p&gt;
+
+&lt;h3 id=&quot;sum&quot;&gt;&lt;code&gt;SUM()&lt;/code&gt;函数&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT SUM(quantity) AS items_ordered
+FROM OrderItems
+WHERE order_num=20005;
+
+SELECT SUM(item_price*quantity) AS total_price
+FROM OrderItems
+WHERE order_num=20005;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;独特值统计&lt;/h2&gt;
+
+&lt;p&gt;如果要计算独特值得统计数据，可以使用&lt;code&gt;DISTINCT&lt;/code&gt;关键字，但注意只能配合列名使用：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT AVG(DISTINCT prod_price) AS avg_price
+FROM Products
+WHERE vend_id=&#39;DLL01&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;联合统计函数&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT COUNT(*) AS num_items,
+		MIN(prod_price) AS price_min,
+      	MAX(prod_price) AS price_max,
+        AVG(prod_price) AS price_avg
+FROM Products;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Sat, 21 May 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/05/21/summarizing-data/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/21/summarizing-data/</guid>
+        
+        <category>编程语言</category>
+        
+        <category>SQL</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>连接表</title>
+        <description>&lt;p&gt;本讲主要学习连接表的作用和创建。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;理解连接&lt;/h2&gt;
+
+&lt;p&gt;连接表是SQL语句的一个重要特性，也是&lt;code&gt;SELECT&lt;/code&gt;中主要的操作。理解连接和连接语法是学习SQL中非常重要的一部分。&lt;/p&gt;
+
+&lt;p&gt;在理解连接之前，有必要先了解关系表和关系型数据库的设计。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;理解关系表&lt;/h3&gt;
+&lt;p&gt;关系表被设计成用来将信息分割成多张表，每张条对应一种数据类型。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;为何使用连接&lt;/h3&gt;
+&lt;p&gt;将数据分散在不同表里可以更高效的存储，更简单的操作，以及更好的扩展。&lt;/p&gt;
+
+&lt;p&gt;但当要获取的数据分散在不同表里时，就需要使用连接使得&lt;code&gt;SELECT&lt;/code&gt;操作可以从多表中获取数据。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;创建连接&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT vend_name, prod_name, prod_price
+FROM Vendors, Products
+WHERE Vendors.vend_id=Products.vend_id;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;where&quot;&gt;&lt;code&gt;WHERE&lt;/code&gt;分句的重要性&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;WHERE&lt;/code&gt;分句指定了两张表的关系。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;内连接&lt;/h3&gt;
+
+&lt;p&gt;上述的这种连接也被称为内连接，连接是建立在两表的相同性上的。内连接还可以用一种&lt;code&gt;ON&lt;/code&gt;分句来替代&lt;code&gt;WHERE&lt;/code&gt;分句，作用是一致的：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT vend_name, prod_name, prod_price
+FROM Vendors INNER JOIN Products
+	ON Vendors.vend_id=Products.vend_id;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;连接多表&lt;/h3&gt;
+
+&lt;p&gt;连接表的数量是不受限制的，只需要指定关系即可：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT prod_name, vend_name, prod_price, quantity
+FROM OrderItems, Products, Vendors
+WHERE Products.vend_id=Vendors.vend_id
+	AND OrderItems.prod_id=Products.prod_id
+    AND order_num=20007;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;回顾上一讲的子查询，我们可以发现用内连接也可以实现它的功能，下面两个SQL语句的功能就是一致的，具体哪个更高效视情况而定，需要测试。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT cust_name, cust_contact
+FROM Customers
+WHERE cust_id IN (SELECT cust_id
+				  FROM Orders
+                  WHERE order_num IN (SELECT order_num
+									  FROM OrderItems
+                                      WHERE prod_id=&#39;RGAN01&#39;)); 
+                                         
+SELECT cust_name, cust_contact
+FROM Customers, Orders, OrderItems
+WHERE Customers.cust_id=Orders.cust_id
+	AND OrderItems.order_num=Orders.order_num
+    AND prod_id=&#39;RGAN01&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Sat, 21 May 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/05/21/joining-tables/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/21/joining-tables/</guid>
+        
+        <category>编程语言</category>
+        
+        <category>SQL</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>插入数据</title>
+        <description>&lt;p&gt;本讲主要学习使用&lt;code&gt;INSERT&lt;/code&gt;语句插入数据。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;理解数据插入&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;SELECT&lt;/code&gt;毫无疑问是最常用的SQL语句，但还有其他三个常用SQL语句，第一个就是&lt;code&gt;INSERT&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;INSERT&lt;/code&gt;用来在数据库表中插入行，有三种用途：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;插入完整单行&lt;/li&gt;
+  &lt;li&gt;插入部分单行&lt;/li&gt;
+  &lt;li&gt;插入查询结果&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;插入完整单行&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;INSERT INTO Customers
+VALUES(&#39;1000000006&#39;,
+			&#39;Toy Land&#39;,
+            &#39;123 Any Street&#39;,
+            &#39;New York&#39;,
+            &#39;NY&#39;,
+            &#39;11111&#39;,
+            &#39;USA&#39;,
+            NULL,
+            NULL);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面这种插入方式严重依赖于列次序，是很不安全的操作，建议用下面的方式插入：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;INSERT INTO Customers(cust_id,
+					cust_name,
+					cust_address,
+					cust_city,
+					cust_state,
+					cust_zip,
+					cust_country,
+					cust_contact,
+					cust_email)
+VALUES(&#39;1000000007&#39;,
+			&#39;Toy Land&#39;,
+            &#39;123 Any Street&#39;,
+            &#39;New York&#39;,
+            &#39;NY&#39;,
+            &#39;11111&#39;,
+            &#39;USA&#39;,
+            NULL,
+			NULL);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;插入部分单行&lt;/h3&gt;
+
+&lt;p&gt;如果数据库允许某一列的值为空，或有指定的默认值，可以在插入时省略该行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;INSERT INTO Customers(cust_id,
+					cust_name,
+                    cust_address,
+                    cust_city,
+                    cust_state,
+                    cust_zip,
+                    cust_country)
+VALUES(&#39;1000000008&#39;,
+			&#39;Toy Land&#39;,
+            &#39;123 Any Street&#39;,
+            &#39;New York&#39;,
+            &#39;NY&#39;,
+            &#39;11111&#39;,
+            &#39;USA&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;插入获取到的数据&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;INSERT&lt;/code&gt;还可以用来插入&lt;code&gt;SELECT&lt;/code&gt;获取到的数据，被称为&lt;code&gt;INSERT SELECT&lt;/code&gt;。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;INSERT INTO Customers(cust_id,
+					cust_name,
+                    cust_address,
+                    cust_city,
+                    cust_state,
+                    cust_zip,
+                    cust_country)
+			SELECT cust_id,
+					cust_name,
+                    cust_address,
+                    cust_city,
+                    cust_state,
+                    cust_zip,
+                    cust_country
+			FROM CustNew;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;INSERT&lt;/code&gt;通常只能插入单行数据，但&lt;code&gt;INSERT SELECT&lt;/code&gt;是个例外，其可以一次性插入多行数据。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;复制表&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;CREATE TABLE CustCopy AS
+SELECT * FROM Customers;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;复制表操作在测试新的SQL语句时很有用。	&lt;/p&gt;
+</description>
+        <pubDate>Sat, 21 May 2016 00:00:00 +0800</pubDate>
+        <link>http://anyinlover.github.io/2016/05/21/inserting-data/</link>
+        <guid isPermaLink="true">http://anyinlover.github.io/2016/05/21/inserting-data/</guid>
+        
+        <category>编程语言</category>
+        
+        <category>SQL</category>
         
         
       </item>
