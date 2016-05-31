@@ -187,31 +187,25 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2016/05/30/test/">
+    <a href="/2016/05/30/tree/">
         <h2 class="post-title">
-            test
+            树
         </h2>
         
         <h3 class="post-subtitle">
-            斯坦福大学机器学习习题集一之二
+            ESL第9.2节
         </h3>
         
         <div class="post-content-preview">
-            加权系数的矩阵表示
-令
+            背景
 
-$W{ii}=\frac{1}{2} w^{(i)}，W{ij}=0 \text{ for } i \neq j, \overrightarrow{z}=X\theta-\overrightarrow{y}, z_i=\theta^T x^{(i)}-y^{(i)}$
+基于树的方法将特征空间分割成一系列长方形，然后用一个简单的模型（类似于常量）来拟合。树的概念简单，但往往很有效。我们首先来看一种最常见的基于树的回归分类算法CART。
 
-，因此可以推导出下式：
+CART是一类迭代二叉树，其关键优势在于其可解释性。每次都只分割一个特征。
 
+回归树
 
-
-局部加权的标准方程
-根据上式得到的损失函数，可以计算如下：
-
-
-
-...
+现在我们来讨论如何构造一棵回归树。对于N次观察，我们的数据由p个输入和一个输出构成。即。算法需要自动确定分割的变量和分割点，以及...
         </div>
     </a>
     <p class="post-meta">
@@ -606,13 +600,13 @@ VALUES('1000000006',
                             
                         
                             
-                                <a href="/tags/#Ng机器学习系列" title="Ng机器学习系列" rel="25">
+                                <a href="/tags/#Ng机器学习系列" title="Ng机器学习系列" rel="24">
                                     Ng机器学习系列
                                 </a>
                             
                         
                             
-                                <a href="/tags/#机器学习算法" title="机器学习算法" rel="7">
+                                <a href="/tags/#机器学习算法" title="机器学习算法" rel="8">
                                     机器学习算法
                                 </a>
                             
@@ -639,6 +633,8 @@ VALUES('1000000006',
                                 <a href="/tags/#SQL" title="SQL" rel="18">
                                     SQL
                                 </a>
+                            
+                        
                             
                         
                     </div>
