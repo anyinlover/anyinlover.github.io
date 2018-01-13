@@ -1,0 +1,1025 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.9.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="zh" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Chapter 09 - Permissions - 木公的博客-Anyinlover Blog</title>
+
+
+
+
+<meta name="description" content="  id - Display user identity  chmod - Change a file’s mode  umask - Set the default file permissions  su - Run a shell as another user  sudo - Execute a command as another user  chown - Change a file’s owner  chgrp - CHange a file’s group ownership  passwd - Change a user’s password">
+
+
+
+
+<meta name="author" content="Anyinlover">
+
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="木公的博客-Anyinlover Blog">
+<meta property="og:title" content="Chapter 09 - Permissions">
+
+
+  <link rel="canonical" href="http://localhost:4000/tlcl/Chapter09-Permissions/">
+  <meta property="og:url" content="http://localhost:4000/tlcl/Chapter09-Permissions/">
+
+
+
+  <meta property="og:description" content="  id - Display user identity  chmod - Change a file’s mode  umask - Set the default file permissions  su - Run a shell as another user  sudo - Execute a command as another user  chown - Change a file’s owner  chgrp - CHange a file’s group ownership  passwd - Change a user’s password">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  <meta property="og:image" content="http://localhost:4000/img/sunrise.jpg">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2016-05-10T00:00:00+08:00">
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000",
+      "logo": "http://localhost:4000/img/tree.jpg"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Anyinlover",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="木公的博客-Anyinlover Blog Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://localhost:4000/">木公的博客-Anyinlover Blog</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/about" >关于</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/year-archive/" >博文</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/categories/" >类别</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/tags/" >标签</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('http://localhost:4000/img/sunrise.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 class="page__title" itemprop="headline">
+        
+          Chapter 09 - Permissions
+
+        
+      </h1>
+      
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="http://localhost:4000/img/morning.jpg" alt="Anyinlover" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Anyinlover</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        未经审视的人生是不值得过的
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">关注</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Xi'an</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/anyinlover" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.weibo.com/2663254313" itemprop="sameAs">
+            <i class="fab fa-fw fa-weibo" aria-hidden="true"></i> Weibo
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+        <li>
+          <a href="https://www.douban.com/people/48573787/" itemprop="sameAs">
+            <span class="fa-layers fa-fw">
+              <i class="fas fa-circle"></i>
+              <span class="fa-layers-text fa-inverse" data-fa-transform="shrink-4">豆</span>
+            </span>
+            Douban
+          </a>
+        </li>
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Chapter 09 - Permissions">
+    <meta itemprop="description" content="  id - Display user identity  chmod - Change a file’s mode  umask - Set the default file permissions  su - Run a shell as another user  sudo - Execute a command as another user  chown - Change a file’s owner  chgrp - CHange a file’s group ownership  passwd - Change a user’s password">
+    <meta itemprop="datePublished" content="May 10, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#owners-group-members-and-everybody-else">Owners, Group Members, And Everybody Else</a></li>
+  <li><a href="#reading-writing-and-executing">Reading, Writing, And Executing</a></li>
+  <li><a href="#chmod---change-file-mode">chmod - Change File Mode</a></li>
+  <li><a href="#umask---set-default-permissions">umask - Set Default Permissions</a></li>
+  <li><a href="#changing-identities">Changing Identities</a>
+    <ul>
+      <li><a href="#su---run-a-shell-with-substitute-user-and-group-ids">su - Run A Shell With Substitute User And Group IDs</a></li>
+      <li><a href="#sudo---execute-a-command-as-another-user">sudo - Execute A Command As Another User</a></li>
+      <li><a href="#chown---change-file-owner-and-group">chown - Change File Owner And Group</a></li>
+      <li><a href="#chgrp---change-group-ownership">chgrp - Change Group Ownership</a></li>
+    </ul>
+  </li>
+  <li><a href="#changing-your-password">Changing Your Password</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <ul>
+  <li>id - Display user identity</li>
+  <li>chmod - Change a file’s mode</li>
+  <li>umask - Set the default file permissions</li>
+  <li>su - Run a shell as another user</li>
+  <li>sudo - Execute a command as another user</li>
+  <li>chown - Change a file’s owner</li>
+  <li>chgrp - CHange a file’s group ownership</li>
+  <li>passwd - Change a user’s password</li>
+</ul>
+
+<p>Linux: not only multitasking system, but also multi-user system</p>
+
+<h2 id="owners-group-members-and-everybody-else">Owners, Group Members, And Everybody Else</h2>
+
+<p>Find out information about your identity</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>id
+</code></pre></div></div>
+
+<p>User accounts are defined in the <code class="highlighter-rouge">/etc/passwd</code></p>
+
+<p>Groups are defined in the <code class="highlighter-rouge">/etc/group</code></p>
+
+<h2 id="reading-writing-and-executing">Reading, Writing, And Executing</h2>
+
+<p><code class="highlighter-rouge">-rw-rw-r-- me	me 0 2008-03-06 14:52 foo.txt</code></p>
+
+<p><em>File Types</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Attribute</th>
+      <th style="text-align: left">File Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">-</td>
+      <td style="text-align: left">A regular file</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">d</td>
+      <td style="text-align: left">A directory</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">l</td>
+      <td style="text-align: left">A symbolic link. The remaining file attributes are always “rwxrwxrwx” and are dummy values</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">c</td>
+      <td style="text-align: left">A character special file, refers to a device that handles data as a stream of bytes</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">b</td>
+      <td style="text-align: left">A block special file, refers to a device that handles data in blocks</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>Permission Attributes</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Attribute</th>
+      <th style="text-align: left">Files</th>
+      <th style="text-align: left">Directories</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">r</td>
+      <td style="text-align: left">Allows a file to be opened and read</td>
+      <td style="text-align: left">Allows a directory’s contents to be listed if the execute attribute is also set</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">w</td>
+      <td style="text-align: left">Allows a file to be written to or truncated, not allow to be renamed or deleted, which is determined by directory attributes</td>
+      <td style="text-align: left">Allows files within a directory to be created, deleted, and renamed if the execute attribute is also set</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">x</td>
+      <td style="text-align: left">Allows a file to be treated as a program and executed</td>
+      <td style="text-align: left">Allows a directory to be entered</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>Permission Attribute Examples</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">File Attributes</th>
+      <th style="text-align: left">Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="highlighter-rouge">-rwx------</code></td>
+      <td style="text-align: left">A regular file that is readable, writable, and executable by the file’s owner. No one else has any access</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="highlighter-rouge">-rw-------</code></td>
+      <td style="text-align: left">A regular file that is readable and writable by the file’s owner. No one else has any access</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="highlighter-rouge">-rw-r--r--</code></td>
+      <td style="text-align: left">A regular file that is readable and writable by the file’s owner. Members of the file’s owner group may read the file. The file is world-readable</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="highlighter-rouge">-rwxr-xr-x</code></td>
+      <td style="text-align: left">A regular file that is readable, writable, and executable by the file’s owner. The file may be read and executed by everybody else</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="highlighter-rouge">rw-rw----</code></td>
+      <td style="text-align: left">A regular file that is readable and writable by the file’s owner and members of the file’s group owner only.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="highlighter-rouge">lrwxrwxrwx</code></td>
+      <td style="text-align: left">A symbolic link. All symbolic links have “dummy” permissions.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="highlighter-rouge">drwxrwx---</code></td>
+      <td style="text-align: left">A directory. The owner and the members of the owner group may enter the directory and, create, rename and remove files within the directory.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="highlighter-rouge">drwxr-x---</code></td>
+      <td style="text-align: left">A directory. The owner may enter the directory and create, rename and delete files within the directory. Members of the owner group may enter the directory but cannot create, delete or rename files.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="chmod---change-file-mode">chmod - Change File Mode</h2>
+
+<p><em>File Modes In binary And Octal</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Octal</th>
+      <th style="text-align: center">Binary</th>
+      <th style="text-align: center">File Mode</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">000</td>
+      <td style="text-align: center"><code class="highlighter-rouge">---</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">001</td>
+      <td style="text-align: center"><code class="highlighter-rouge">--x</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">010</td>
+      <td style="text-align: center"><code class="highlighter-rouge">-w-</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">011</td>
+      <td style="text-align: center"><code class="highlighter-rouge">-wx</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">100</td>
+      <td style="text-align: center"><code class="highlighter-rouge">r--</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">101</td>
+      <td style="text-align: center"><code class="highlighter-rouge">r-x</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">110</td>
+      <td style="text-align: center"><code class="highlighter-rouge">rw-</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">111</td>
+      <td style="text-align: center"><code class="highlighter-rouge">rwx</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chmod 600 foo.txt
+</code></pre></div></div>
+
+<p>A few common ones: 7(<code class="highlighter-rouge">rwx</code>), 6(<code class="highlighter-rouge">rw-</code>), 5(<code class="highlighter-rouge">r-x</code>), 4(<code class="highlighter-rouge">r--</code>), and 0(<code class="highlighter-rouge">---</code>)</p>
+
+<p><em>chmod Symbolic Notation</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Symbol</th>
+      <th style="text-align: left">Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">u</td>
+      <td style="text-align: left">Short for “user” but means the file or directory owner</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">g</td>
+      <td style="text-align: left">Group owner</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">o</td>
+      <td style="text-align: left">Short for “others”, but means world</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">a</td>
+      <td style="text-align: left">Short for “all”. The combination of “u”, “g”, and “o”</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>chmod Symbolic Notation Examples</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Notation</th>
+      <th style="text-align: left">Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">u+x</td>
+      <td style="text-align: left">Add execute permission for the owner</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">u-x</td>
+      <td style="text-align: left">Remove execute permission from the owner</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">+x</td>
+      <td style="text-align: left">Add execute permission for the owner, group, and world</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">o-rw</td>
+      <td style="text-align: left">Remove the read and write permission from anyone besides the owner and group owner</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">go=rw</td>
+      <td style="text-align: left">Set the group owner and anyone besides the owner to have read and write permission. If eithet the group owner or world previously had execute permissions, they are removed</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">u+x, go=rx</td>
+      <td style="text-align: left">Add execute permission for the owner and set the permissions for the group and others to read and execute</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="umask---set-default-permissions">umask - Set Default Permissions</h2>
+
+<p>See the current value</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>umask
+</code></pre></div></div>
+
+<p>Set another value</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>umask 0022
+</code></pre></div></div>
+
+<ul>
+  <li>Some Special Permissions</li>
+</ul>
+
+<p>setuid bit (4000): set the effective user ID from that of the real user (the user actually running the program) to that of the program’s owner.</p>
+
+<p>setgid bit(2000): set the effective group ID from the real group ID of the real user to that of the file owner.</p>
+
+<p>sticky bit(1000): Prevent users from deleting or renaming files unless the user is either the owner of the directory, the owner of the file, or the superuser.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chmod u+s program`-&gt;`-rwsr-xr-x
+chmod g+s dir`-&gt;`drwxrwsr-x
+chmod +t dir`-&gt;`drwxrwxrwt
+</code></pre></div></div>
+
+<h2 id="changing-identities">Changing Identities</h2>
+
+<h3 id="su---run-a-shell-with-substitute-user-and-group-ids">su - Run A Shell With Substitute User And Group IDs</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su [-[l]] [user]
+</code></pre></div></div>
+
+<p>If <code class="highlighter-rouge">-l</code> option is included, the resulting shell session is a login shell for the specified user.</p>
+
+<p>To start a shell for the superuser</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su -
+</code></pre></div></div>
+
+<p>Return to the previous shell</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>exit
+</code></pre></div></div>
+
+<p>Execute a single command, it’s important to enclose the command in quotes</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su -c 'commad'
+</code></pre></div></div>
+
+<h3 id="sudo---execute-a-command-as-another-user">sudo - Execute A Command As Another User</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo command
+</code></pre></div></div>
+
+<p>To see the privileges granted by sudo</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo -l
+</code></pre></div></div>
+
+<h3 id="chown---change-file-owner-and-group">chown - Change File Owner And Group</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chown [owner][:[group]] file...
+</code></pre></div></div>
+
+<p><em>chown Argument Examples</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Argument</th>
+      <th style="text-align: left">Results</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">bob</td>
+      <td style="text-align: left">Changes the ownership of the file from its current owner to user bob</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">bob:users</td>
+      <td style="text-align: left">Changes the ownership of the file from its current owner to user bob and changes the file group owner to group users.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">:admins</td>
+      <td style="text-align: left">Changes the group owner to the group admins. The file owner is unchanged</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">bob:</td>
+      <td style="text-align: left">Change the file owner from the current owner to user bob and changes the group owner to the login group of user bob</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="chgrp---change-group-ownership">chgrp - Change Group Ownership</h3>
+
+<p>Used in older versions of Unix to change group ownership.</p>
+
+<h2 id="changing-your-password">Changing Your Password</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>passwd [user]
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 标签: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#linux" class="page__taxonomy-item" rel="tag">Linux</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 分类: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/categories/#tlcl" class="page__taxonomy-item" rel="tag">TLCL</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time datetime="2016-05-10T00:00:00+08:00">May 10, 2016</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/tlcl/Chapter08-Advanced-Keyboard-Tricks/" class="pagination--pager" title="Chapter 08 - Advanced Keyboard Tricks
+">向前</a>
+    
+    
+      <a href="http://localhost:4000/tlcl/Chapter10-Processes/" class="pagination--pager" title="Chapter 10 - Processes
+">向后</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">猜您还喜欢</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E5%B7%A5%E5%85%B7/%E5%8D%9A%E5%AE%A2%E9%87%8D%E5%BB%BA/" rel="permalink">博客重建
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">今天花了整整一天的时候把我的博客重建起来了，主要是换了一个主题，然后剩下的时候就一直在折腾了。这次用了一个很受欢迎的minimal-mistakes，搞下来才发现它为啥叫迷你了，自己要设置的东西太多了！
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%84%8F%E4%B9%89/" rel="permalink">人生的意义
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">人生的意义
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E5%B7%A5%E5%85%B7/shadowsocksr/" rel="permalink">shadowsocksR
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">时代在发展，shadowsocks源作者已经被请去喝茶了，现在更流行的一个叫shadowsocksR加强版，感谢两位作者。这里也趁着换VPS的同时新装了一个shadowsocksR。
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E7%AC%94%E8%AE%B0/ruby-gem-bundler/" rel="permalink">ruby &amp; gem &amp; bundler
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">ruby
+
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+  <input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  <div id="results" class="results"></div>
+</div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+    
+    
+    
+      <li><a href="https://github.com/anyinlover"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="http://localhost:4000/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 Anyinlover. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="http://localhost:4000/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+
+
+
+  
+  
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr.min.js"></script>
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr-store.js"></script>
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/tlcl/Chapter09-Permissions/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/tlcl/Chapter09-Permissions"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://anyinlover.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<p>这一讲主要学习使用<code>SELECT</code>语句中的<code>ORDER BY</code>条件来对获取到的数据进行排序。</p>
+
+<h2 id="section">数据排序</h2>
+
+<pre><code class="language-sql">SELECT prod_name
+FROM Products
+ORDER BY prod_name;
+</code></pre>
+
+<h2 id="section-1">多列排序</h2>
+
+<pre><code class="language-sql">SELECT prod_id, prod_price, prod_name
+FROM Products
+ORDER BY prod_price, prod_name;
+</code></pre>
+
+<h2 id="section-2">通过列位置排序</h2>
+
+<pre><code class="language-sql">SELECT prod_id, prod_price, prod_name
+FROM Products
+ORDER BY 2, 3;
+</code></pre>
+
+<p>通过列位置排序可以省略列名，但同时也会有误选，更改，不能指定<code>SELECT</code>外列名等缺点。</p>
+
+<h2 id="section-3">指定排序方向</h2>
+
+<p>默认的排序方向是从A到Z，如果想要反方向排序，可以使用关键字<code>DESC</code>。</p>
+
+<pre><code class="language-sql">SELECT prod_id, prod_price, prod_name
+FROM Products
+ORDER BY prod_price DESC;
+</code></pre>
+
+<p>如果要对多列指定排序方向，记得<code>DESC</code>只对前一个列名生效，也就是说，要让多列都降序排列，必须每一列都指定<code>DESC</code>：</p>
+
+<pre><code class="language-sql">SELECT prod_id, prod_price, prod_name
+FROM Products
+ORDER BY prod_price DESC, prod_name;
+</code></pre>

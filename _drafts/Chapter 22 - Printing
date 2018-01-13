@@ -1,0 +1,86 @@
+# Chapter 22 - Printing
+@(Computer_Science)[TLCL,Linux]
+* pr - Convert text files for printing
+* lpr - Print files
+* a2ps - Format files for printing on a PostScript printer
+* lpstat - Show printer status information
+* lpq - Show printer queue status
+* lprm - Cancel print jobs
+
+## A Brief History Of Printing
+### Printing In The Dim Times
+### Character-based Printers
+### Graphical Printers
+## Printing With Linux
+CUPS (Common Unix Printing System) provides print drivers and print-job management
+Ghostscript is a PostScrpt interpreter which acts as a RIP
+
+## Preparing Files For Printing
+### pr - Convert Text Files For Printing
+*Common pr Options*
+|Option|Description|
+|:----|:-----|
+|+first[:last]|Output a range of pages starting with first and, optionally, ending with last|
+|-columns|Organize the content of the page into the number of columns specified by columns|
+|-a|By default, muticolumn output is listed vertically. By adding the -a (across) option, content is listed horizontally|
+|-d|Double-space output|
+|-D "format"| Format the date displayed in page headers using format. See the man page for the date command|
+|-f| Use form feeds rather than carriage returns to separate pages|
+|-h "header"| In the center portion of the page header, use header rather than the name of the file being processed|
+|-l length| Set page length to length. Default os 66|
+|-n | Number lines|
+|-o offset| Create a left margin offset characters wide|
+|-w width| Set page width ot width. Default is 72|
+`ls /usr/bin | pr -3 -w 65 | head`
+
+## Sending A Print Job To A Printer
+The CUPS printing suite supports two methods of printing historically: Berkeley or LPD, use the lpr program; SysV, use the lp program.
+
+### lpr - Print Files (Berkeley Style)
+`ls /usr/bin | pr -3 | lpr`
+*Common lpr Options*
+|Option|Description|
+|:----| :-----------|
+|-# number| Set number of copies to number|
+|-p| Print each page with a shaded header with the date, time, job name, and page number|
+|-P printer| Specify the name of the printer used for output|
+|-r| Deleteb files after printing|
+
+### lp - Print Files (System V Style)
+*Common lp Options*
+|Option|Description|
+|:-----|:----------|
+|-d printer| Set the destination (printer) to printer|
+|-n number| Set the number of copies to number|
+|-o landscape| Set output to landscape orientation|
+|-o fitplot| Scale the file to fit the page. This is useful when printing images|
+|-o scaling=number| Scale file to number|
+|-o cpi=number| Set the output characters per inch to number.Default is 10|
+|-o lpi=number| Set the output lines per inch to number. Default is 6|
+|-o page-bottom=points<br>-o page-left=points<br>-o page-right=points<br>-o page-top=points|Set the page margins. Values are expressed in points, there are 72 points to an inch|
+|-P pages| Specify the list of pages. pages may be expressed as a comma-separated list and/or a range. For example "1,2,7-10"|
+
+`ls /usr/bin | pr -4 -w 90 -l 88 | lp -o page-left=36 -o cpi=12 -o lpi=8`
+
+### Another Option: a2ps
+`ls /usr/bin | pr -3 -t | a2ps -o ~/Desktop/ls.ps -L 66`
+
+## Monitoring And Controlling Print Jobs
+### lpstat - Display Print System Status
+`lpstat -a`
+`lpstat -s`
+*Common lpstat Options*
+|Option| Description|
+|-a [print...] | Display the state of the printer queue for printer|
+|-d| Display the name of the system's default printer|
+|-p [printer...] | Display the status of the specified printer|
+|-r| Display the status of the print server|
+|-s| Display a status summary|
+|-t| Display a complete status report|
+
+### lpq - Display Printer Queue Status
+`lpq`
+
+### lprm/cancel - Cancel Print Jobs
+Berkeley style (lprm) and System V (cancel)
+`cancel 603`

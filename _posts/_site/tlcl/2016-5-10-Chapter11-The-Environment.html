@@ -1,0 +1,189 @@
+<ul>
+  <li>printenv - Print part or all of the environment</li>
+  <li>set - Set shell options</li>
+  <li>export - Export environment to subsequently executed programs</li>
+  <li>alias - Create an alias for a command</li>
+  <li>source - re-read the configuration</li>
+</ul>
+
+<h2 id="what-is-stored-in-the-environment">What is Stored In The Environment?</h2>
+
+<p>Two basic types of data in the environment: environment variables and shell variables.</p>
+
+<p>Some programmatic data: aliases and shell functions</p>
+
+<h3 id="examining-the-environment">Examining The Environment</h3>
+
+<p>Display environment variables:</p>
+
+<pre><code>printenv | less
+</code></pre>
+
+<p>List the value of a specific variable:</p>
+
+<pre><code>printenv USER
+</code></pre>
+
+<p>Display both the shell and environment variables:</p>
+
+<pre><code>set | less
+</code></pre>
+
+<p>View the contents of a variable:</p>
+
+<pre><code>echo $HOME
+</code></pre>
+
+<p>View the aliases:</p>
+
+<pre><code>alias
+</code></pre>
+
+<h3 id="some-interesting-variables">Some interesting Variables</h3>
+
+<p><em>Environment Variables</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Variable</th>
+      <th style="text-align: center">Contents</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">DISPLAY</td>
+      <td style="text-align: center">The name of your display if you are running a graphical environment</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">EDITOR</td>
+      <td style="text-align: center">The name of the program to be used for text editing</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">SHELL</td>
+      <td style="text-align: center">The name of your shell program</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">HOME</td>
+      <td style="text-align: center">The pathname of your home directory</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">LANG</td>
+      <td style="text-align: center">Defines the character set and collation order of your language</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">PAGER</td>
+      <td style="text-align: center">The name of the program to be used for paging output</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">PATH</td>
+      <td style="text-align: center">A colon-separated list of directories that are searched when you enter the name of a executable program</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">PS1</td>
+      <td style="text-align: center">Prompt String 1. This difines the contents of your shell prompt</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">PWD</td>
+      <td style="text-align: center">The current working directory</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">TERM</td>
+      <td style="text-align: center">The name of your terminal type</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">TZ</td>
+      <td style="text-align: center">Specifies your timezone</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">USER</td>
+      <td style="text-align: center">Your username</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="how-is-the-environment-established">How Is The Environment Established?</h2>
+
+<p><em>Startup Files For Login Shell Sections</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">File</th>
+      <th style="text-align: center">Contents</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">/etc/profile</td>
+      <td style="text-align: center">A global configuration script that applies to all users</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">~/.bash_profile</td>
+      <td style="text-align: center">A user’s personal startup file</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">~/.bash_login</td>
+      <td style="text-align: center">If ~/.bash_profile is not found, bash attempts to read this script</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">~/.profile</td>
+      <td style="text-align: center">If neither ~/.bash_profile nor ~/.bash_login is found, bash attempts to read this file. This is the default in Ubuntu</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>Startup Files For Non-Login Shell Sessions</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">File</th>
+      <th style="text-align: center">Contents</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">/etc/bash.bashrc</td>
+      <td style="text-align: center">A golbal configuration script that applies to all users</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">~/.bashrc</td>
+      <td style="text-align: center">A user’s personal startup file</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="whats-in-a-startup-file">What’s In A Startup File</h3>
+
+<p>Tell the shell to make the contents of PATH available.</p>
+
+<pre><code>export PATH
+</code></pre>
+
+<h2 id="modifying-the-environment">Modifying The Environment</h2>
+
+<h3 id="which-files-should-we-modify">Which Files Should We Modify?</h3>
+
+<p>.profile: to add directories to your PATH, or define additional environment variables</p>
+
+<p>.bashrc: to everthing else</p>
+
+<h3 id="text-editors">Text Editors</h3>
+
+<p>nano, vi, emacs</p>
+
+<h3 id="using-a-text-editor">Using A Text Editor</h3>
+
+<p>Create a backup copy before edit an important configuration file.</p>
+
+<pre><code>cp .bashrc .bashrc.bak
+nano .bashrc
+</code></pre>
+
+<h3 id="activating-our-changes">Activating Our Changes</h3>
+
+<p>make bash re-read the modified .bashrc file:</p>
+
+<pre><code>source .bashrc
+</code></pre>

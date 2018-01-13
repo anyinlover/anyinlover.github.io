@@ -1,0 +1,33 @@
+<p>本讲主要学习子查询及其使用。</p>
+
+<h2 id="section">理解子查询</h2>
+<p>前面的<code>SELECT</code>语句都是简单的查询，SQL还允许在查询中嵌套查询，这就是子查询。</p>
+
+<h2 id="section-1">使用子查询过滤</h2>
+
+<pre><code class="language-sql">SELECT cust_id
+FROM Orders
+WHERE order_num IN (SELECT order_num
+					FROM OrderItems
+					WHERE prod_id = 'RGAN01');
+                    
+SELECT cust_name, cust_contact
+FROM Customers
+WHERE cust_id IN (SELECT cust_id
+				  FROM Orders
+                  WHERE order_num IN (SELECT order_num
+									  FROM OrderItems
+                                      WHERE prod_id='RGAN01'));
+</code></pre>
+
+<p>注意子查询虽然能达成目的，但经常不是最有效的方式。后续会讲到连接表也能达到同样的效果。</p>
+
+<h2 id="section-2">使用子查询作为计算字段</h2>
+
+<pre><code class="language-sql">SELECT cust_name, cust_state,
+	(SELECT COUNT(*)
+     FROM Orders
+     WHERE Orders.cust_id=Customers.cust_id) AS orders
+FROM Customers
+ORDER BY cust_name;
+</code></pre>

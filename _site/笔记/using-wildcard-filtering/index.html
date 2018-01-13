@@ -1,0 +1,701 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.9.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="zh" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>通配符过滤 - 木公的博客-Anyinlover Blog</title>
+
+
+
+
+<meta name="description" content="这一讲主要学习使用通配符和LIKE操作符来过滤数据。">
+
+
+
+
+<meta name="author" content="Anyinlover">
+
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="木公的博客-Anyinlover Blog">
+<meta property="og:title" content="通配符过滤">
+
+
+  <link rel="canonical" href="http://localhost:4000/%E7%AC%94%E8%AE%B0/using-wildcard-filtering/">
+  <meta property="og:url" content="http://localhost:4000/%E7%AC%94%E8%AE%B0/using-wildcard-filtering/">
+
+
+
+  <meta property="og:description" content="这一讲主要学习使用通配符和LIKE操作符来过滤数据。">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  <meta property="og:image" content="http://localhost:4000/img/sunrise.jpg">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2016-05-18T00:00:00+08:00">
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000",
+      "logo": "http://localhost:4000/img/tree.jpg"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Anyinlover",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="木公的博客-Anyinlover Blog Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://localhost:4000/">木公的博客-Anyinlover Blog</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/about" >关于</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/year-archive/" >博文</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/categories/" >类别</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/tags/" >标签</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('http://localhost:4000/img/sunrise.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 class="page__title" itemprop="headline">
+        
+          通配符过滤
+
+        
+      </h1>
+      
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="http://localhost:4000/img/morning.jpg" alt="Anyinlover" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Anyinlover</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        未经审视的人生是不值得过的
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">关注</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Xi'an</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/anyinlover" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.weibo.com/2663254313" itemprop="sameAs">
+            <i class="fab fa-fw fa-weibo" aria-hidden="true"></i> Weibo
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+        <li>
+          <a href="https://www.douban.com/people/48573787/" itemprop="sameAs">
+            <span class="fa-layers fa-fw">
+              <i class="fas fa-circle"></i>
+              <span class="fa-layers-text fa-inverse" data-fa-transform="shrink-4">豆</span>
+            </span>
+            Douban
+          </a>
+        </li>
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="通配符过滤">
+    <meta itemprop="description" content="这一讲主要学习使用通配符和LIKE操作符来过滤数据。">
+    <meta itemprop="datePublished" content="May 18, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#使用like操作符">使用LIKE操作符</a>
+    <ul>
+      <li><a href="#百分号通配符">百分号%通配符</a></li>
+      <li><a href="#下划线_通配符">下划线_通配符</a></li>
+      <li><a href="#方括号通配符">方括号[]通配符</a></li>
+    </ul>
+  </li>
+  <li><a href="#使用通配符的技巧">使用通配符的技巧</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>这一讲主要学习使用通配符和<code class="highlighter-rouge">LIKE</code>操作符来过滤数据。</p>
+
+<h2 id="使用like操作符">使用<code class="highlighter-rouge">LIKE</code>操作符</h2>
+<p>通配符和<code class="highlighter-rouge">LIKE</code>操作符一块使用，可以进行模糊搜索。</p>
+
+<h3 id="百分号通配符">百分号<code class="highlighter-rouge">%</code>通配符</h3>
+
+<p><code class="highlighter-rouge">%</code>通配符可以表示任意数量的任意字符。注意<code class="highlighter-rouge">%</code>也能代表0个字符，但它匹配不到<code class="highlighter-rouge">NULL</code>值。</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">prod_id</span><span class="p">,</span> <span class="n">prod_name</span>
+<span class="k">FROM</span> <span class="n">Products</span>
+<span class="k">WHERE</span> <span class="n">prod_name</span> <span class="k">LIKE</span> <span class="s1">'Fish%'</span><span class="p">;</span>
+
+<span class="k">SELECT</span> <span class="n">prod_id</span><span class="p">,</span> <span class="n">prod_name</span>
+<span class="k">FROM</span> <span class="n">Products</span>
+<span class="k">WHERE</span> <span class="n">prod_name</span> <span class="k">LIKE</span> <span class="s1">'%bean bag%'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="下划线_通配符">下划线<code class="highlighter-rouge">_</code>通配符</h3>
+
+<p><code class="highlighter-rouge">_</code>通配符只能表示一个字符。</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">prod_id</span><span class="p">,</span> <span class="n">prod_name</span>
+<span class="k">FROM</span> <span class="n">Products</span>
+<span class="k">WHERE</span> <span class="n">prod_name</span> <span class="k">LIKE</span> <span class="s1">'__ inch teddy bear'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="方括号通配符">方括号<code class="highlighter-rouge">[]</code>通配符</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">cust_contact</span>
+<span class="k">FROM</span> <span class="n">Customers</span>
+<span class="k">WHERE</span> <span class="n">cust_contact</span> <span class="n">RLIKE</span> <span class="s1">'^[JM]'</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">cust_contact</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="使用通配符的技巧">使用通配符的技巧</h2>
+
+<ul>
+  <li>不要过度使用</li>
+  <li>尽量不要在开头使用</li>
+  <li>注意通配符放置位置</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 标签: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#sql" class="page__taxonomy-item" rel="tag">SQL</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80" class="page__taxonomy-item" rel="tag">编程语言</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 分类: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/categories/#%E7%AC%94%E8%AE%B0" class="page__taxonomy-item" rel="tag">笔记</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time datetime="2016-05-18T00:00:00+08:00">May 18, 2016</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/%E7%AC%94%E8%AE%B0/understanding-sql/" class="pagination--pager" title="了解SQL
+">向前</a>
+    
+    
+      <a href="http://localhost:4000/%E7%AC%94%E8%AE%B0/combining-queries/" class="pagination--pager" title="组合查询
+">向后</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">猜您还喜欢</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E5%B7%A5%E5%85%B7/%E5%8D%9A%E5%AE%A2%E9%87%8D%E5%BB%BA/" rel="permalink">博客重建
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">今天花了整整一天的时候把我的博客重建起来了，主要是换了一个主题，然后剩下的时候就一直在折腾了。这次用了一个很受欢迎的minimal-mistakes，搞下来才发现它为啥叫迷你了，自己要设置的东西太多了！
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%84%8F%E4%B9%89/" rel="permalink">人生的意义
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">人生的意义
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E5%B7%A5%E5%85%B7/shadowsocksr/" rel="permalink">shadowsocksR
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">时代在发展，shadowsocks源作者已经被请去喝茶了，现在更流行的一个叫shadowsocksR加强版，感谢两位作者。这里也趁着换VPS的同时新装了一个shadowsocksR。
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E7%AC%94%E8%AE%B0/ruby-gem-bundler/" rel="permalink">ruby &amp; gem &amp; bundler
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">ruby
+
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+  <input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  <div id="results" class="results"></div>
+</div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+    
+    
+    
+      <li><a href="https://github.com/anyinlover"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="http://localhost:4000/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 Anyinlover. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="http://localhost:4000/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+
+
+
+  
+  
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr.min.js"></script>
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr-store.js"></script>
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/%E7%AC%94%E8%AE%B0/using-wildcard-filtering/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/%E7%AC%94%E8%AE%B0/using-wildcard-filtering"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://anyinlover.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+  </body>
+</html>

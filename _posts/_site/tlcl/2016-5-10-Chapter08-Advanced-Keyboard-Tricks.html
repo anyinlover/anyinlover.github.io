@@ -1,0 +1,259 @@
+<ul>
+  <li>clear - Clear the screen</li>
+  <li>history - Display the contents of the history list</li>
+</ul>
+
+<h2 id="command-line-editing">Command Line Editing</h2>
+
+<h3 id="cursor-movement">Cursor Movement</h3>
+
+<p><em>Cursor Movement Commands</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Key</th>
+      <th style="text-align: center">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Ctrl-a</td>
+      <td style="text-align: center">Move cursor to the beginning of the line</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Ctrl-e</td>
+      <td style="text-align: center">Move cursor to the end of the line</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Ctrl-f</td>
+      <td style="text-align: center">Move cursor forward one character</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Ctrl-b</td>
+      <td style="text-align: center">Move cursor backward one character</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Alt-f</td>
+      <td style="text-align: center">Move cursor forward one word</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Alt-b</td>
+      <td style="text-align: center">Move cursor backward one word</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Ctrl-l</td>
+      <td style="text-align: center">Clear the screen</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="modifying-text">Modifying Text</h3>
+
+<p><em>Text Editing Commands</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Key</th>
+      <th style="text-align: center">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Ctrl-d</td>
+      <td style="text-align: center">Delete the character at the cursor location</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Ctrl-t</td>
+      <td style="text-align: center">Transpose(exchange)the character at the cursor location with the one preceding it</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Alt-t</td>
+      <td style="text-align: center">Transpose the word at the cursor location with the one preceding it</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Alt-l</td>
+      <td style="text-align: center">Convert the characters from the cursor location to the end of the word to lowercase</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Alt-u</td>
+      <td style="text-align: center">Convert the characters from the cursor location to the end fo the word to uppercase</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="cutting-and-pasting-killing-and-yanking-text">Cutting And Pasting (Killing And Yanking) Text</h3>
+
+<p><em>Cut And Paste Commands</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Key</th>
+      <th style="text-align: center">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Ctrl-k</td>
+      <td style="text-align: center">Kill text from the cursor location to the end of line</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Ctrl-u</td>
+      <td style="text-align: center">Kill text from the cursor location the the beginning of the line</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Alt-d</td>
+      <td style="text-align: center">Kill text from the cursor location to the end of the current word</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Alt-Backspace</td>
+      <td style="text-align: center">Kill text from the cursor location to the beginning of the current word</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Ctrl-y</td>
+      <td style="text-align: center">Yank text from the kill-ring and insert it at the cursor location</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>The Meta key -&gt; Alt</li>
+</ul>
+
+<h2 id="completion">Completion</h2>
+<p>Tab </p>
+
+<p><em>Completion Commands</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Key</th>
+      <th style="text-align: center">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Alt-?</td>
+      <td style="text-align: center">Display list of possible completions, or press the tab key a second time</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Alt-*</td>
+      <td style="text-align: center">Insert all possible completions</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Programmable Completion</li>
+</ul>
+
+<h2 id="using-history">Using History</h2>
+
+<p>The history of commands is kept in home directory in a file called .bash_history.</p>
+
+<h3 id="searching-history">Searching History</h3>
+
+<p>View the contents of the history list</p>
+
+<pre><code>history | less
+</code></pre>
+
+<p>Find a command</p>
+
+<pre><code>history | grep /usr/bin
+</code></pre>
+
+<p>Use history line</p>
+
+<pre><code>!88 Incremental search
+</code></pre>
+
+<ul>
+  <li>Ctrl-r to start and find next one</li>
+  <li>Ctrl-g or Ctrl-c to quit searching</li>
+  <li>Enter to execute the command</li>
+  <li>Ctrl-j to copy the command for editing</li>
+</ul>
+
+<p><em>History Commands</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Key</th>
+      <th style="text-align: center">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Ctrl-p</td>
+      <td style="text-align: center">Move to the previous history entry</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Ctrl-n</td>
+      <td style="text-align: center">Move to the next history entry</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Alt-&lt;</td>
+      <td style="text-align: center">Move to the beginning(top) of the history list</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Alt-&gt;</td>
+      <td style="text-align: center">Move to the end(bottom) of the history list</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Ctrl-r</td>
+      <td style="text-align: center">Reverse incremental search</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Alt-p</td>
+      <td style="text-align: center">Reverse search</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Alt-n</td>
+      <td style="text-align: center">Forward search</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Ctrl-o</td>
+      <td style="text-align: center">Execute the current item in the history list and advance to the next one</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="history-expansion">History Expansion</h3>
+
+<p><em>History Expansion Commands</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Sequence</th>
+      <th style="text-align: center">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">!!</td>
+      <td style="text-align: center">Repeat the last command</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">!number</td>
+      <td style="text-align: center">Repeat history list item number</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">!string</td>
+      <td style="text-align: center">Repeat last history list item starting with string</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">!?string</td>
+      <td style="text-align: center">Repeat last history list item containing string</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Script: to recond an entire shell session and store it in a file</li>
+</ul>

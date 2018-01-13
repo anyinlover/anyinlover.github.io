@@ -1,0 +1,98 @@
+<h2 id="section">逻辑回归</h2>
+
+<h3 id="section-1">证明逻辑回归的对数最大似然函数的海森矩阵是半负定矩阵</h3>
+
+<p>对数最大似然函数表示如下：</p>
+
+<script type="math/tex; mode=display">
+\ell(\theta) = \sum_{i=1}^m y^{(i)} \log h(x^{(i)})
++ (1 - y^{(i)}) \log (1 - h(x^{(i)}))
+</script>
+
+<p>其一阶导根据讲义的证明是：</p>
+
+<script type="math/tex; mode=display">
+\frac {\partial \ell(\theta)} {\partial \theta_k} =
+\sum_{i=1}^m (y - h_\theta (x^{(i)}))x_k^{(i)}
+</script>
+
+<p>海森矩阵单个元素可表示为：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+H_{kl} &= \frac {\partial \ell(\theta)} {\partial \theta_k \theta_l} \\
+&= - \sum_{i=1}^m \frac {\partial h_\theta (x^{(i)})} {\partial \theta_l} x_k^{(i)} \\
+&= - \sum_{i=1}^m h_\theta(x^{(i)}) (1-h_\theta(x^{(i)})) x_l^{(i)}x_k^{(i)}
+\end{align}
+ %]]></script>
+
+<p>海森矩阵可表示为：</p>
+
+<script type="math/tex; mode=display">H = - \sum_{i=1}^m h_\theta(x^{(i)}) (1-h_\theta(x^{(i)})) x^{(i)} x^{(i)T}</script>
+
+<p>下面来证明<script type="math/tex">z^T H z \leq 0</script> 恒成立。</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+z^T H z &= - z^T \sum_{i=1}^m h_\theta(x^{(i)}) (1-h_\theta(x^{(i)})) x^{(i)} x^{(i)T} z \\
+&= - \sum_{i=1}^m h_\theta(x^{(i)}) (1-h_\theta(x^{(i)})) z^T x^{(i)} x^{(i)T} z \\
+&= - \sum_{i=1}^m h_\theta(x^{(i)}) (1-h_\theta(x^{(i)})) (z^T x^{(i)})^2 \\
+& \leq 0
+\end{align}
+ %]]></script>
+
+<p>因此逻辑回归的对数最大似然函数的海森矩阵是一个半负定矩阵，其只有一个唯一的全局最大值。</p>
+
+<h3 id="section-2">用牛顿法来拟合逻辑回归模型</h3>
+<p>尽管牛顿法的表达式已经给出，但用python跑出这个程序还是花了我三个小时。主要的难点在于把前面的代数表示转化为矩阵表示，包括梯度和海森矩阵。下面给出我的python代码，用的是python3。</p>
+
+<pre><code>from numpy import *
+import pandas as pd
+
+orx = pd.read_csv('q1x.dat', sep='\s+', header=None).values
+y = pd.read_csv('q1y.dat', sep='\s+', header=None).values.ravel()
+
+X = hstack((ones((orx.shape[0], 1)), orx))
+theta = zeros(X.shape[1])
+
+
+def h(theta):
+    return 1/(1+exp(-dot(X, theta)))
+
+
+def hd(theta):
+    return dot(X.T, y - h(theta))
+
+
+def hdd(theta):
+    return -dot(X.T, tile(h(theta)*(1-h(theta)), (theta.size, 1)).T*X)
+
+
+maxtry = 50
+
+for i in range(maxtry):
+    theta = theta - dot(linalg.inv(hdd(theta)), hd(theta))
+
+print(theta)
+</code></pre>
+
+<h3 id="section-3">画图</h3>
+<p>这个纯粹的就是画图能力的考验，这一块前面看过《python machine learning》，还是比较容易的。</p>
+
+<pre><code>import matplotlib.pyplot as plt
+plt.scatter(x = orx[y==1,0], y = orx[y==1,1], marker='o', color='red', label='y=1')
+plt.scatter(x = orx[y==0,0], y = orx[y==0,1], marker='x', color='blue', label='y=0')
+plt.xlabel('$x_1$')
+plt.ylabel('$x_2$')
+plt.legend(loc='upper left')
+plt.xlim(0,9)
+x1 = arange(0,10,1)
+x2 = (-theta[0]-theta[1]*x1)/theta[2]
+plt.plot(x1, x2)
+</code></pre>
+
+<p>最后得到的图：</p>
+
+<p><img src="\img\ps1_1.png" alt="ps1_1" /></p>

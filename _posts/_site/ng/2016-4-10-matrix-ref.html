@@ -1,0 +1,113 @@
+<p>矩阵运算是各类算法的基础，虽然大学的线代都学过，但不用则废，现在还是需要捡起来。知识点略多，之前已经过了一遍，至于总结，准备采取需要什么总结什么的方式。增量补充吧，哈哈。</p>
+
+<h2 id="section">单位矩阵</h2>
+<p>单位矩阵就是对角为1，其余为0的矩阵，常常用作无中生有，当一个路人甲。因为它的脾气好：</p>
+
+<script type="math/tex; mode=display">AI=A=IA</script>
+
+<h2 id="section-1">转置</h2>
+<p>矩阵所谓的转置就是行列互换，转置的产生，往往是由于运算的需要。比如向量的平方和表示。转置有如下三个性质：</p>
+
+<ul>
+  <li>：<script type="math/tex">(A^T)^T=A</script></li>
+  <li>：<script type="math/tex">(AB)^T=B^TA^T</script></li>
+  <li>：<script type="math/tex">(A+B)^T=A^T+B^T</script></li>
+</ul>
+
+<p>其中第一第三条很明显，第二条略作证明。</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+(AB)_{ij}^T&=(AB)_{ji}=\sum_{k=1}^nA_{jk}B_{ki}\\
+&=\sum_{k=1}^nB_{ki}A_{jk}=\sum_{k=1}^nB_{ik}^TA_{kj}^T\\
+&=(B^TA^T)_{ij}
+\end{align}
+ %]]></script>
+
+<h2 id="section-2">迹</h2>
+<p>矩阵的迹是方形矩阵的对角和，虽然它本身没什么作用，但常常被用作推演的中间步骤。对于迹，有如下五个性质：</p>
+
+<ul>
+  <li>For <script type="math/tex">A\in\mathbb{R}^{n\times n},trA=trA^T</script></li>
+  <li>For <script type="math/tex">A, B\in \mathbb{R}^{n\times n}, tr(A+B)=trA+trB</script></li>
+  <li>For <script type="math/tex">A\in\mathbb{R}^{n\times n},t\in \mathbb{R}, tr(tA)=t\,trA</script></li>
+  <li>For <script type="math/tex">A, B\text{ such that }AB\text{ is square}, trAB=trBA</script></li>
+  <li>For <script type="math/tex">A, B, C\text{ such that }ABC\text{ is square}, trABC=trBCA=trCAB</script>, and so on</li>
+</ul>
+
+<p>以上性质中，第1，2，3条都是显而易见的，第五条可以由第四条推导得到，因此只需要证明第4条。</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+trAB &= \sum_{i=1}^m(AB)_{ii}=\sum_{i=1}^m(\sum_{j=1}^nA_{ij}B_{ji})\\
+&=\sum_{j=1}^n\sum_{i=1}^mB_{ji}A_{ij}=\sum_{j=1}^n(BA)_{jj}\\
+&=trBA
+\end{align}
+ %]]></script>
+
+<h2 id="section-3">梯度</h2>
+<p>梯度就是函数对矩阵求偏导，结果和原矩阵形状相同。梯度在机器学习中极为常用，需要牢牢掌握。</p>
+
+<p>梯度原始的性质只有简单的两条：</p>
+
+<ul>
+  <li>：<script type="math/tex">\nabla_{x}(f(x)+g(x))=\nabla_{x}f(x)+\nabla_{x}g(x)</script></li>
+  <li>：For <script type="math/tex">t\in \mathbb{R}, \nabla_{x}(tf(x))=t\nabla_{x}f(x)</script></li>
+</ul>
+
+<p>但梯度还有其他延伸的性质，之前在线性规划推导直接计算法时就用到过。</p>
+
+<ul>
+  <li>：<script type="math/tex">\nabla_{A}trAB=B^T</script></li>
+  <li>：<script type="math/tex">\nabla_{A^T}f(A)=(\nabla_Af(A))^T</script></li>
+  <li>：<script type="math/tex">\nabla_{A}trABA^TC=CAB+C^TAB^T</script></li>
+</ul>
+
+<p>下面分别予以证明：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+\frac{\partial}{\partial A_{ij}}trAB&=\frac{\partial}{\partial A_{ij}}\sum_{i=1}^m(AB)_{ii}\\
+&=\frac{\partial}{\partial A_{ij}}\sum_{i=1}^m\sum_{j=1}^NA_{ij}B_{ji}\\
+&=B_{ji}=B_{ij}^T
+\end{align}
+ %]]></script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+(\nabla_{A^T}f(A))_{ij}&=\frac{\partial}{\partial A_{ij}^T}f(A)=\frac{\partial}{\partial A_{ji}}f(A)\\
+&=(\nabla_{A}f(A))_{ji}=(\nabla_{A}f(A))_{ij}^T
+\end{align}
+ %]]></script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+\frac{\partial}{\partial A_{ij}}trABA^TC&=tr(\frac{\partial AB}{\partial A_{ij}}A^TC+AB\frac{\partial A^TC}{\partial A_{ij}})\\
+&=tr(BA^TC\frac{\partial A}{\partial A_{ij}})+tr(CAB\frac{\partial A^T}{\partial A_{ij}})\\
+&=tr(BA^TC\frac{\partial A}{\partial A_{ij}})+tr(B^TA^TC^T\frac{\partial A}{\partial A_{ij}})\\
+\end{align}
+ %]]></script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+\frac{\partial}{\partial A}trABA^TC&=(BA^TC)^T+(B^TA^TC^T)^T\\
+&=C^TAB^T+CAB
+\end{align}
+ %]]></script>
+
+<h2 id="section-4">海森矩阵</h2>
+<p>一个粗略的类比是，梯度是对矩阵求一阶导，海森是对向量求二阶导。这样方便我们理解海森的实质。有一个式子可以表达这个概念：</p>
+
+<script type="math/tex; mode=display">
+\nabla_x^2f(x)=\nabla_x(\nabla_xf(x))^T
+</script>
+
+<p>注意第二次求导实际上是对<script type="math/tex">\nabla_xf(x)</script>每一个元素求导。因为没有定义向量的求导运算。</p>
+
+<p>海森矩阵是一个对称矩阵。即<script type="math/tex">H_{ij}=H_{ji}</script>。</p>

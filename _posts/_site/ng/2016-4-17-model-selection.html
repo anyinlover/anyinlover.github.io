@@ -1,0 +1,60 @@
+<p>对于有限个模型<script type="math/tex">\mathcal{M}=\{M_1,\cdots,M_d\}</script>，我们如何选择最优的模型。</p>
+
+<h2 id="section">交叉验证</h2>
+<p>对于整个训练集进行训练，从中挑选最小训练误差来评价模型并不是一个好方法，因为这样往往选出高方差的模型。</p>
+
+<p>因此有下面的交叉验证法：把训练数据分S成<script type="math/tex">S_{train}</script>和<script type="math/tex">S_{cv}</script>两部分，一般分成七三开。<script type="math/tex">S_{train}</script>用来训练数据，<script type="math/tex">S_{cv}</script>用来验证数据。从中挑出验证误差最小的模型作为最优模型，再进行全数据集重训练。</p>
+
+<p>交叉验证避免了一味选择复杂的模型，但也造成了数据的浪费，特别在数据量不足时可能影响模型的训练精度。下面是一种更改良的方法，称为k折交叉验证。</p>
+
+<p>把数据集S分为k份，在评估某一个模型时，每一次将其中一份作为验证集，其他k-1份作为训练集，计算出平均的验证误差。最后挑选出最优模型进行全数据集重训练。</p>
+
+<p>交叉验证除了使用于模型选择上，还可用以评估单个模型的预测准确度上。</p>
+
+<h2 id="section-1">特征选择</h2>
+<p>有些时候会遇到特征过多的情况，这种情况下很容易造成过拟合。这时我们就需要采取特征选择算法来降低特征的数量。</p>
+
+<p>一种算法称为前向搜索。从零开始，每次增加一个特征，利用交叉验证计算误差，选择误差最小的增加，直到达到阈值。</p>
+
+<p>与之相对的另一种算法称为后向搜索。这两种算法的时间复杂度都比较高，需要<script type="math/tex">O(n^2)</script>。</p>
+
+<p>第二种算法称为过滤特征选择。本质就是简单计算每个特征<script type="math/tex">x_i</script>和<script type="math/tex">y</script>的相关度<script type="math/tex">S(i)</script>。选择得分最高的k个特征。</p>
+
+<p>在实际中，最常见的就是用互信息<script type="math/tex">MI(x_i,y)</script>来衡量相关度：</p>
+
+<script type="math/tex; mode=display">MI(x_i,y)=\sum_{x_i \in \{0,1\}} \sum_{y \in \{0,1\}} p(x_i,y) \log \frac{p(x_i,y)}{p(x_i)p(y)}</script>
+
+<p>互信息还可以用KL距离来表示:</p>
+
+<script type="math/tex; mode=display">MI(x_i,y)=KL(p(x_i,y)\|p(x_i)p(y))</script>
+
+<p>最后一点是如何确定k的取值，标准做法就是采用交叉验证。</p>
+
+<h2 id="section-2">贝叶斯统计和规则化</h2>
+<p>回顾根据最大似然函数选择参数：</p>
+
+<script type="math/tex; mode=display">\theta_{ML}=\arg \max_{\theta} \prod_{i=1}^m p(y^{(i)}\mid x^{(i)}; \theta)</script>
+
+<p>从频率学派角度来看，<script type="math/tex">\theta</script>不是随机的，而是确定而未知的值。我们的任务就是通过统计方法（比如最大似然函数）来找出它的值。</p>
+
+<p>从贝叶斯学派角度来看，<script type="math/tex">\theta</script>是随机未知的值，我们可以给定一个先验分布<script type="math/tex">p(\theta)</script>，给定训练集<script type="math/tex">S=\{(x^{(i)},y^{(i)})\}_{i=1}^m</script>，我们可以计算后验概率：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+p(\theta\mid S) &= \frac{p(S\mid \theta)p(\theta)}{p(S)} \\
+&= \frac{(\prod_{i=1}^mp(y^{(i)}\mid x^{(i)},\theta))p(\theta)}{\int_\theta(\prod_{i=1}^mp(y^{(i)}\mid x^{(i)},\theta))p(\theta)d\theta}
+\end{align}
+ %]]></script>
+
+<p>这里的<script type="math/tex">p(y^{(i)}\mid x^{(i)},\theta)</script>可以从学习模型中得到。比如对于贝叶斯逻辑回归而言，<script type="math/tex">p(y^{(i)}\mid x^{(i)},\theta)=h_\theta(x^{(i)})^{y^{(i)}}(1-h_\theta(x^{(i)}))^{(1-y^{(i)})}</script>，其中<script type="math/tex">h_\theta(x^{(i)})=1/(1+\exp(-\theta^Tx^{(i)}))。</script></p>
+
+<p>给定新的测试样本，我们可以计算对于标签的后验概率：</p>
+
+<script type="math/tex; mode=display">p(y|x,S)=\int_\theta p(y\mid x,\theta)p(\theta\mid S)d\theta</script>
+
+<p>但事实上后验概率公式中的分母积分很难计算，我们常常最大后验概率估计代替，只比最大似然估计函数多了一个<script type="math/tex">p(\theta)</script>：</p>
+
+<script type="math/tex; mode=display">\theta_{MAP}=\arg \max_\theta \prod_{i=1}^mp(y^{(i)}\mid x^{(i)},\theta))p(\theta)</script>
+
+<p>在实际应用中,常常假定先验概率<script type="math/tex">p(\theta)</script>满足<script type="math/tex">\theta \sim \mathcal{N}(0, \tau^2I)</script>。贝叶斯最大后验概率估计往往比最大似然估计更容易克服过拟合问题。</p>

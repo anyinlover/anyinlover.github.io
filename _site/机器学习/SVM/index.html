@@ -1,0 +1,1021 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.9.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="zh" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>支持向量机 - 木公的博客-Anyinlover Blog</title>
+
+
+
+
+<meta name="description" content="这一章主要学习支持向量机。支持向量机是目前最好的监督学习算法之一。但支持向量机本身难度较大，需要较强的数学基础。假如抛开数学部分，其本质就是用拉格朗日对偶法计算最大间隔，利用核函数简化高维映射的计算，用SMO算法更新参数。本文也将根据NG讲义的这一顺序展开。此外，这里有一份比较完善的中文入门资料。">
+
+
+
+
+<meta name="author" content="Anyinlover">
+
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="木公的博客-Anyinlover Blog">
+<meta property="og:title" content="支持向量机">
+
+
+  <link rel="canonical" href="http://localhost:4000/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/SVM/">
+  <meta property="og:url" content="http://localhost:4000/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/SVM/">
+
+
+
+  <meta property="og:description" content="这一章主要学习支持向量机。支持向量机是目前最好的监督学习算法之一。但支持向量机本身难度较大，需要较强的数学基础。假如抛开数学部分，其本质就是用拉格朗日对偶法计算最大间隔，利用核函数简化高维映射的计算，用SMO算法更新参数。本文也将根据NG讲义的这一顺序展开。此外，这里有一份比较完善的中文入门资料。">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  <meta property="og:image" content="http://localhost:4000/img/sunrise.jpg">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2016-04-14T00:00:00+08:00">
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000",
+      "logo": "http://localhost:4000/img/tree.jpg"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Anyinlover",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="木公的博客-Anyinlover Blog Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://localhost:4000/">木公的博客-Anyinlover Blog</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/about" >关于</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/year-archive/" >博文</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/categories/" >类别</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/tags/" >标签</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('http://localhost:4000/img/sunrise.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 class="page__title" itemprop="headline">
+        
+          支持向量机
+
+        
+      </h1>
+      
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="http://localhost:4000/img/morning.jpg" alt="Anyinlover" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Anyinlover</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        未经审视的人生是不值得过的
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">关注</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Xi'an</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/anyinlover" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.weibo.com/2663254313" itemprop="sameAs">
+            <i class="fab fa-fw fa-weibo" aria-hidden="true"></i> Weibo
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+        <li>
+          <a href="https://www.douban.com/people/48573787/" itemprop="sameAs">
+            <span class="fa-layers fa-fw">
+              <i class="fas fa-circle"></i>
+              <span class="fa-layers-text fa-inverse" data-fa-transform="shrink-4">豆</span>
+            </span>
+            Douban
+          </a>
+        </li>
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="支持向量机">
+    <meta itemprop="description" content="这一章主要学习支持向量机。支持向量机是目前最好的监督学习算法之一。但支持向量机本身难度较大，需要较强的数学基础。假如抛开数学部分，其本质就是用拉格朗日对偶法计算最大间隔，利用核函数简化高维映射的计算，用SMO算法更新参数。本文也将根据NG讲义的这一顺序展开。此外，这里有一份比较完善的中文入门资料。">
+    <meta itemprop="datePublished" content="April 14, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#间隔入门">间隔入门</a></li>
+  <li><a href="#标记">标记</a></li>
+  <li><a href="#函数间隔和几何间隔">函数间隔和几何间隔</a></li>
+  <li><a href="#最优间隔分类器">最优间隔分类器</a></li>
+  <li><a href="#拉格朗日对偶">拉格朗日对偶</a></li>
+  <li><a href="#优化间隔分类器">优化间隔分类器</a></li>
+  <li><a href="#核函数">核函数</a></li>
+  <li><a href="#规则化和不可分情况">规则化和不可分情况</a></li>
+  <li><a href="#smo算法">SMO算法</a>
+    <ul>
+      <li><a href="#坐标上升法">坐标上升法</a></li>
+      <li><a href="#smo">SMO</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>这一章主要学习支持向量机。支持向量机是目前最好的监督学习算法之一。但支持向量机本身难度较大，需要较强的数学基础。假如抛开数学部分，其本质就是用拉格朗日对偶法计算最大间隔，利用核函数简化高维映射的计算，用SMO算法更新参数。本文也将根据NG讲义的这一顺序展开。此外，<a href="http://blog.csdn.net/macyang/article/details/38782399">这里</a>有一份比较完善的中文入门资料。</p>
+
+<h2 id="间隔入门">间隔入门</h2>
+<p>回顾之前的逻辑回归，<script type="math/tex">h_\theta(x)=g(\theta^Tx)</script>，当<script type="math/tex">\theta^Tx \geq 0</script>时预测为1，否则为0。这里存在一个预测的可信度问题，假如<script type="math/tex">\theta^Tx \gg 0</script>或者<script type="math/tex">\theta^Tx \ll 0</script>，那么预测的可信度就高。换一个角度，预测点离分割面越远，预测可信度就越高。把训练集离分割面最近的点到分割面的距离称为间隔，支持向量机的使命就是找到有最大间隔得分割面，使预测可信度提到最高。</p>
+
+<h2 id="标记">标记</h2>
+<p>为了讨论支持向量机，需要引入一套新的标记符号。<script type="math/tex">y\in \{-1,1\}</script>而不再是<script type="math/tex">\{0,1\}</script>。分类器的表示也发生了变化：</p>
+
+<script type="math/tex; mode=display">h_{\omega,b}(x)=g(\omega^Tx+b)</script>
+
+<p>这里用的g是感知机算法，即<script type="math/tex">g(z)=1,z\geq0</script>，否则取-1。b是单独的截距，即之前的<script type="math/tex">\theta_0</script>。</p>
+
+<h2 id="函数间隔和几何间隔">函数间隔和几何间隔</h2>
+<p>根据一个训练样本<script type="math/tex">(x^{(i)},y^{(i)})</script>，定义函数间隔如下：</p>
+
+<script type="math/tex; mode=display">\hat{\gamma}^{(i)}=y^{(i)}(\omega^Tx+b)</script>
+
+<p>函数间隔越大，可信度就越高。</p>
+
+<p>给定训练集<script type="math/tex">S=\{(x^{(i)},y^{(i)});i=1,\cdots,m\}</script>，定义函数间隔是所有函数间隔中最小的那个：</p>
+
+<script type="math/tex; mode=display">\hat{\gamma}=\min_{i=1,\cdots,m}\hat{\gamma}^{(i)}</script>
+
+<p>下面的问题是如何找出<script type="math/tex">\gamma^{(i)}</script>的表达式，分割面与<script type="math/tex">\omega</script>永远是正交的。对于训练样本在分割面上的投影，可以表示成</p>
+
+<script type="math/tex; mode=display">x^{(i)}-\gamma^{(i)} \cdot \frac{\omega}{\|\omega\|}</script>
+
+<p>又因为投影点在分割面上，所以有：</p>
+
+<script type="math/tex; mode=display">\omega^T(x^{(i)}-\gamma^{(i)}\frac{\omega}{\|\omega\|})+b=0</script>
+
+<p>解得：</p>
+
+<script type="math/tex; mode=display">\gamma^{(i)}=\frac{\omega^Tx^{(i)}+b}{\|\omega\|}=(\frac{\omega}{\|\omega\|})^Tx^{(i)}+\frac{b}{\|\omega\|}</script>
+
+<p>结合y的取值可以得到几何间隔：</p>
+
+<script type="math/tex; mode=display">\gamma^{(i)}=y^{(i)}((\frac{\omega}{\|\omega\|})^Tx^{(i)}+\frac{b}{\|\omega\|})</script>
+
+<p>我们发现几何间隔与函数间隔相比只是除了<script type="math/tex">\|\omega\|</script>，当<script type="math/tex">\|\omega\|=1</script>时函数间隔等于几何间隔。而且几何间隔不会受到比例系数的影响。</p>
+
+<h2 id="最优间隔分类器">最优间隔分类器</h2>
+
+<p>对于一个可以线性分割的训练集来说，现在我们的任务就是要找到一个最大几何间隔。问题就转化成下面的优化问题：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\max_{\gamma,\omega,b}  \quad  &\gamma \\
+\text{s.t.}  \quad & y^{(i)}(\omega^Tx^{(i)}+b)\geq \gamma, i=1,\cdots,m \\
+& \|\omega\|=1
+\end{align} %]]></script>
+
+<p>对于<script type="math/tex">\|\omega\|=1</script>这样的约束条件很难处理，把几何间隔用函数间隔替换了，优化问题转化为：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\max_{\hat{\gamma},\omega,b}  \quad  & \frac{\hat{\gamma}}{\|\omega\|} \\
+\text{s.t.}  \quad & y^{(i)}(\omega^Tx^{(i)}+b)\geq \hat{\gamma}, i=1,\cdots,m
+\end{align} %]]></script>
+
+<p>进一步，利用<script type="math/tex">\hat{\gamma}</script>的可伸缩性质，令<script type="math/tex">\hat{\gamma}=1</script>，求<script type="math/tex">1/\|\omega\|</script>相当于求<script type="math/tex">\|\omega\|^2</script>的最小值。</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\min_{\omega,b}  \quad  & \frac{1}{2}\|\omega\|^2 \\
+\text{s.t.}  \quad & y^{(i)}(\omega^Tx^{(i)}+b)\geq 1, i=1,\cdots,m
+\end{align} %]]></script>
+
+<p>现在优化问题转变成了一个凸二次函数带一个线性约束，这样的优化问题可以用QP软件来处理。</p>
+
+<h2 id="拉格朗日对偶">拉格朗日对偶</h2>
+<p>我们到了支持向量机的难点之一，拉格朗日对偶。这其实就是一种把多元约束优化问题转换为一元约束优化问题的思想。
+考虑下面这样的问题形式：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\min_\omega \quad & f(\omega) \\
+\text{s.t.} \quad & h_i(\omega)=0, i=1,\cdots,l
+\end{align} %]]></script>
+
+<p>我们定义拉格朗日公式为：</p>
+
+<script type="math/tex; mode=display">\mathcal{L}(\omega,\beta)=f(\omega)+\sum_{i=1}^l \beta_ih_i(\omega)</script>
+
+<p>这里<script type="math/tex">\beta_i</script>被称为拉格朗日算子。通过求偏导可以求解得到<script type="math/tex">\omega</script>和<script type="math/tex">\beta</script>：</p>
+
+<script type="math/tex; mode=display">\frac{\partial\mathcal{L}}{\partial\omega_i}=0; \frac{\partial \mathcal{L}}{\partial\beta_i}=0</script>
+
+<p>将上面的形式进行拓展，把不等约束也包含在内，考虑下面的问题形式，称为原始优化问题：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\min_\omega \quad & f(\omega) \\
+\text{s.t.} \quad & g_i(\omega) \leq 0, i=1,\cdots,k \\
+& h_i(\omega)=0, i=1,\cdots,l
+\end{align} %]]></script>
+
+<p>为了解决上述问题，我们定义了一般化的拉格朗日方程：</p>
+
+<script type="math/tex; mode=display">\mathcal{L}(\omega,\alpha,\beta)=f(\omega)+\sum_{i=1}^k\alpha_ig_i(\omega)+\sum_{i=1}^l\beta_ih_i(\omega)</script>
+
+<p>考虑以下方程：</p>
+
+<script type="math/tex; mode=display">\theta_{\mathcal{p}}(\omega)=\max_{\alpha,\beta:\alpha_i \geq 0}\mathcal{L}(\omega,\alpha,\beta)</script>
+
+<p>假如<script type="math/tex">g_i(\omega)>0</script> 或者<script type="math/tex">h_i(\omega) \neq 0</script>，都会使得<script type="math/tex">\theta_{\mathcal{p}}(\omega)=\infty</script></p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\theta_{\mathcal{p}}(\omega)=
+\begin{cases}
+f(\omega) \quad & \text{if }\omega \text{ satisfies primal constraints}\\
+\infty \quad & \text{otherwise}
+\end{cases} %]]></script>
+
+<p>考虑最小化问题：</p>
+
+<script type="math/tex; mode=display">\min_{\omega} \theta_{\mathcal{p}}(\omega)=\min_{\omega} \max_{\alpha,\beta:\alpha_i \geq 0} \mathcal{L}(\omega,\alpha,\beta)</script>
+
+<p>这就是我们的原始优化问题。最后定义优化值<script type="math/tex">p^*=\min_{\omega} \theta_p(\omega)</script>，称为原始问题的值。</p>
+
+<p>再来看一个有些不同的问题。定义：</p>
+
+<script type="math/tex; mode=display">\theta_{\mathcal{D}}(\alpha,\beta)=\min_{\omega} \mathcal{L}(\omega,\alpha,\beta)</script>
+
+<p>我们可以得到对偶优化问题：</p>
+
+<script type="math/tex; mode=display">\max_{\alpha,\beta:\alpha_i \geq 0} \theta_{\mathcal{D}}(\alpha,\beta)=\max_{\alpha,\beta:\alpha_i \geq 0} \min_{\omega} \mathcal{L}(\omega,\alpha,\beta)</script>
+
+<p>对偶优化问题相当于和初始优化问题交换了max和min的顺序，我们定义对偶优化问题的优化值为<script type="math/tex">d^*=\max_{\alpha,\beta:\alpha_i \geq 0} \theta_{\mathcal{D}} (\omega)</script></p>
+
+<p>关于max和min有下面的结论：</p>
+
+<script type="math/tex; mode=display">\max_x \min_y f(x,y) \leq \min_y \max_x f(x,y)</script>
+
+<p>简要证明：对于任意x,y，下式成立：</p>
+
+<script type="math/tex; mode=display">\min_s f(x,s) \leq f(x,y) \leq\max_tf(t,y)</script>
+
+<p>因此下式成立，得到证明：</p>
+
+<script type="math/tex; mode=display">\max_x \min_s f(x,s) \leq \min_y \max_t f(t,y)</script>
+
+<p>回到我们的拉格朗日对偶问题：</p>
+
+<script type="math/tex; mode=display">d^*=\max_{\alpha,\beta:\alpha_i \geq 0} \min_{\omega} \mathcal{L}(\omega,\alpha,\beta) \leq \min_{\omega} \max_{\alpha,\beta:\alpha_i \geq 0} \mathcal{L}(\omega,\alpha,\beta) = p^*</script>
+
+<p>在满足一定的条件下，上式中等号成立，因此我们可以用求解对偶问题来求解原始问题。</p>
+
+<p>假设<script type="math/tex">f</script>和<script type="math/tex">g_i</script>是凸函数，<script type="math/tex">h_i</script>是线性的，约束<script type="math/tex">g_i</script>是可满足的。那必然会存在<script type="math/tex">\omega^*, \alpha^*, \beta^*</script>满足<script type="math/tex">p^*=d^*=\mathcal{L}(\omega^*,\alpha^*,\beta^*)</script>，他们满足下面的KKT条件：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\frac{\partial}{\partial \omega_i}\mathcal{L}(\omega^*, \alpha^*, \beta^*) &= 0, i=1,\cdots,n \\
+\frac{\partial}{\partial \beta_i}\mathcal{L}(\omega^*, \alpha^*, \beta^*) &= 0, i=1,\cdots,l \\
+\alpha_i^*g_i(\omega^*) &= 0, i=1,\cdots,k \\
+g_i(\omega^*) & \leq 0, i=1,\cdots,k \\
+\alpha^* & \geq 0, i=1,\cdots,k
+\end{align} %]]></script>
+
+<p>相反的，假如存在<script type="math/tex">\omega^*, \alpha^*, \beta^*</script>满足KKT条件，那它也是拉格朗日问题的解。</p>
+
+<p>在KKT条件的第三式中我们还发现，必须满足<script type="math/tex">\alpha_i^*>0</script>当<script type="math/tex">g_i(\omega^*) = 0</script>。</p>
+
+<p>（本来以为拉格朗日对偶会很困难，啃下来发现更多的是心理作用，233）</p>
+
+<h2 id="优化间隔分类器">优化间隔分类器</h2>
+
+<p>回到我们的优化间隔分类器，我们可以把约束写成标准形式：</p>
+
+<script type="math/tex; mode=display">g_i(\omega)=-y^{(i)}(\omega^Tx^{(i)}+b)+1 \leq 0</script>
+
+<p>根据KKT条件，只有在函数间隔是1时才能<script type="math/tex">\alpha_i^*>0</script>。实际上只有很少量的点决定了最大间隔。这些点被称为支持向量。</p>
+
+<p>把优化问题写成下面的拉格朗日形式，注意我们这里不带<script type="math/tex">\beta_i</script>：</p>
+
+<script type="math/tex; mode=display">\mathcal{L}(\omega,b,\alpha)=\frac{1}{2}\|\omega\|^2-\sum_{i=1}^m \alpha_i[y^{(i)}(\omega^Tx^{(i)}+b)-1]</script>
+
+<p>我们首先找出拉格朗日对偶问题，即先固定<script type="math/tex">\alpha</script>，求对于<script type="math/tex">\omega,b</script>的最小值。分别求<script type="math/tex">\mathcal{L}</script>对<script type="math/tex">\omega,b</script>的偏导：</p>
+
+<script type="math/tex; mode=display">\nabla_{\omega} \mathcal{L}(\omega,b,\alpha)=\omega - \sum_{i=1}^m\alpha_iy^{(i)}x^{(i)}=0</script>
+
+<p>由此得到：</p>
+
+<script type="math/tex; mode=display">\omega=\sum_{i=1}^m \alpha_iy^{(i)}x^{(i)}</script>
+
+<p>对b求偏导，我们得到：</p>
+
+<script type="math/tex; mode=display">\frac{\partial}{\partial b} \mathcal{L}(\omega, b, \alpha)=\sum_{i=1}^m \alpha_iy^{(i)}=0</script>
+
+<p>将<script type="math/tex">\omega,b</script>代回<script type="math/tex">\mathcal{L}</script>表达式，我们得到：</p>
+
+<script type="math/tex; mode=display">\mathcal{L}(\omega,b,\alpha)=\sum_{i=1}^m\alpha_i-\frac{1}{2}\sum_{i,j=1}^my^{(i)}y^{(j)}\alpha_i\alpha_j(x^{(i)})^Tx^{(j)}</script>
+
+<p>最终，我们得到下面的拉格朗日对偶问题：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\max_{\alpha} \quad & W(\alpha)=\sum_{i=1}^m\alpha_i-\frac{1}{2}\sum_{i,j=1}^my^{(i)}y^{(j)}\alpha_i\alpha_j\langle x^{(i)},x^{(j)} \rangle \\
+s.t. \quad & \alpha_i \geq 0, i=1,\cdots,m \\
+& \sum_{i=1}^m \alpha_iy^{(i)}=0
+\end{align} %]]></script>
+
+<p>因为我们满足KKT条件，因此可以通过解答拉格朗日对偶问题来解决原始问题。对偶问题需要用下面的核函数解决。</p>
+
+<p>在得到<script type="math/tex">\alpha^*</script>后，也就能得到<script type="math/tex">\omega^*</script>，<script type="math/tex">b^*</script>可以通过下式得到：</p>
+
+<script type="math/tex; mode=display">b^*=-\frac{\max_{i:y^{(i)}=-1} \omega^{*T}x^{(i)}+\min_{i:y^{(i)}=1}\omega^{*T}x^{(i)}}{2}</script>
+
+<p>进一步讨论一下预测问题，对于新输入的x，我们要计算<script type="math/tex">\omega^Tx+b</script>：</p>
+
+<script type="math/tex; mode=display">\omega^Tx+b=(\sum_{i=1}^m \alpha_iy^{(i)}x^{(i)})^Tx+b=\sum_{i=1}^m \alpha_iy^{(i)}\langle x^{(i)}, x \rangle + b</script>
+
+<p>我们注意到预测时也只用到了x的内积，对偶问题中同样只用了内积。此外，只有支持向量的<script type="math/tex">\alpha_i</script>不为0，因此这一步运算花费很少。</p>
+
+<h2 id="核函数">核函数</h2>
+<p>在房价预测中，我们用<script type="math/tex">x,x^2,x^3</script>来得到一个三次方函数。这里我们把原始<script type="math/tex">x</script>称为属性，把<script type="math/tex">x,x^2,x^3</script>称为特征。用<script type="math/tex">\phi</script>记为特征映射。在我们的例子里，有：</p>
+
+<script type="math/tex; mode=display">\phi(x)=\begin{bmatrix}x \\ x^2 \\ x^3\end{bmatrix}</script>
+
+<p>将内积<script type="math/tex">\langle x,z\rangle</script>用<script type="math/tex">\langle \phi(x), \phi(z) \rangle</script>代替，定义对应的核函数为：</p>
+
+<script type="math/tex; mode=display">K(x,z)=\phi(x)^T \phi(z)</script>
+
+<p>巧妙的地方在于可能<script type="math/tex">\phi(x)</script>的计算量很大，但<script type="math/tex">K(x,z)</script>却很容易。实际在算法中我们只需要应用到<script type="math/tex">K(x,z)</script>，却不必知道<script type="math/tex">\phi(x)</script>是多少。举下面两个例子。</p>
+
+<p>考虑核函数<script type="math/tex">K(x,z)=(x^Tz)^2</script>：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+K(x,z) &= (\sum_{i=1}^n x_iz_i)(\sum_{j=1}^n x_iz_i) \\
+&= \sum_{i=1}^n \sum_{j=1}^n x_i x_j z_i z_j \\
+&= \sum_{i,j=1}^n (x_ix_j)(z_iz_j)
+\end{align} %]]></script>
+
+<p>因此特征映射函数为下式，需要<script type="math/tex">O(n^2)</script>时间，而核函数只需要<script type="math/tex">O(n)</script>：</p>
+
+<script type="math/tex; mode=display">\phi(x)=\begin{bmatrix}x_1x_1 \\ x_1x_2 \\ x_1x_3 \\ x_2x_1 \\ x_2x_2 \\ x_2x_3 \\ x_3x_1 \\ x_3x_2 \\ x_3x_3\end{bmatrix}</script>
+
+<p>再考虑一个相关的核函数：</p>
+
+<script type="math/tex; mode=display">K(x,z)=(x^Tz+c)^2=\sum_{i,j=1}^n (x_ix_j)(z_iz_j)+ \sum_{i=1}^n( \sqrt{2c}x_i)(\sqrt{2c}z_i) + c^2</script>
+
+<p>此时的特征函数为：</p>
+
+<script type="math/tex; mode=display">\phi(x)=\begin{bmatrix}x_1x_1 \\ x_1x_2 \\ x_1x_3 \\ x_2x_1 \\ x_2x_2 \\ x_2x_3 \\ x_3x_1 \\ x_3x_2 \\ x_3x_3 \\ \sqrt{2c}x_1 \\ \sqrt{2c}x_2 \\ \sqrt{2c}x_3 \\ c\end{bmatrix}</script>
+
+<p>更一般的，核函数<script type="math/tex">K(x,z)=(x^Tz+c)^d</script>把特征映射到了<script type="math/tex">\binom{n+d}{d}</script>维特征空间。需要<script type="math/tex">O(n^d)</script>时间，而核函数仍只需要<script type="math/tex">O(n)</script>。</p>
+
+<p>从另一个角度粗略的讲，<script type="math/tex">K(x,z)=\phi(x)^T \phi(z)</script>体现了<script type="math/tex">\phi(x)</script>和<script type="math/tex">\phi(z)</script>之间的接近关系，越接近核函数越大，越远离核函数越小。比如下面的高斯核函数，很好的衡量了x和z之间的关系：</p>
+
+<script type="math/tex; mode=display">K(x,z)=\exp(- \frac{\|x-z\|^2}{2\sigma^2})</script>
+
+<p>但现在有一个问题，我怎么知道这个核函数是有意义的，即能找出特征映射<script type="math/tex">\phi</script>满足<script type="math/tex">K(x,z)=\phi(x)^T \phi(z)</script>。</p>
+
+<p>假设K是一个有效的核函数，给定有限点集<script type="math/tex">\{x^{(1)},\cdots,x^{(m)}\}</script>，令一个核函数矩阵<script type="math/tex">K \in \mathbb{R}^{m \times m}, K_{ij}=K(x^{(i)},x^{(j)})</script>。</p>
+
+<p>假如K是个有效核函数，则有：</p>
+
+<script type="math/tex; mode=display">K_{ij}=K(x^{(i)},x^{(j)})=\phi(x^{(i)})^T\phi(x^{(j)})=\phi(x^{(j)})^T\phi(x^{(i)})=K(x^{(j)},x^{(i)})=K_{ji}</script>
+
+<p>还能证明核函数矩阵是半正定的：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+z^TKz &= \sum_i\sum_jz_iK_{ij}z_j \\
+&=\sum_i\sum_jz_i\phi(x^{(i)})^T\phi(x^{(j)})z_j \\
+&=\sum_i\sum_jz_i\sum_k\phi_k(x^{(i)})\phi_k(x^{(j)})z_j\\
+&=\sum_k\sum_i\sum_jz_i\phi_k(x^{(i)})\phi_k(x^{(j)})z_j \\
+&= \sum_k(\sum_iz_i\phi_k(x^{(i)}))^2 \\
+&\geq 0
+\end{align} %]]></script>
+
+<p>因此当核函数是有效的，核函数矩阵是对称半正定的。事实上这不仅仅是一个必要条件，还是一个充分条件。归纳为Mercer定理。</p>
+
+<p>除了应用在支持向量机中，核函数还在其他算法中大量应用。这种应用被称为核方法。（个人粗浅的理解，核方法看起来像是小技巧，实际上体现事物的内在本质）。</p>
+
+<h2 id="规则化和不可分情况">规则化和不可分情况</h2>
+<p>之前推导支持向量机时我们假定数据是线性可分割的，通过特征映射我们也能完成非线性分割，但有时候仍然会发生训练结果不好的情况，因为数据中会有噪音或离群点影响。</p>
+
+<p>为此，我们引入规则化和松弛变量，将优化问题转化为下面的问题：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\min_{\omega,b, \xi}  \quad  & \frac{1}{2}\|\omega\|^2 + C\sum_{i=1}^m \xi_i\\
+\text{s.t.}  \quad & y^{(i)}(\omega^Tx^{(i)}+b)\geq 1-\xi_i, i=1,\cdots,m \\
+& \xi_i \geq 0, i=1,\cdots,m
+\end{align} %]]></script>
+
+<p>构造拉格朗日方程：</p>
+
+<script type="math/tex; mode=display">\mathcal{L}(\omega,b,\xi,\alpha,r)=\frac{1}{2}\omega^T\omega+C\sum_{i=1}^m \xi_i - \sum_{i=1}^m \alpha_i[y^{(i)}(x^T\omega+b)-1+\xi_i]-\sum_{i=1}^m r_i\xi_i</script>
+
+<p>采用对<script type="math/tex">\omega,b, \xi</script>求偏导的方法，可以得到对偶方程：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\max_{\alpha} \quad & W(\alpha)=\sum_{i=1}^m\alpha_i-\frac{1}{2}\sum_{i,j=1}^my^{(i)}y^{(j)}\alpha_i\alpha_j\langle x^{(i)},x^{(j)} \rangle \\
+s.t. \quad & 0 \leq \alpha_i \leq C, i=1,\cdots,m \\
+& \sum_{i=1}^m \alpha_iy^{(i)}=0
+\end{align} %]]></script>
+
+<p>我们注意到对偶方程和未引入松弛变量前几乎一致，除了<script type="math/tex">\alpha</script>取值范围有变化。因为</p>
+
+<script type="math/tex; mode=display">\frac{\partial}{\partial \xi_i} \mathcal{L}(\omega,b,\xi,\alpha,r)=C-\alpha_i-r_i=0</script>
+
+<p>根据KKT条件，还能得出以下结果：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\alpha_i=0 &\Rightarrow y^{(i)}(\omega^Tx^{(i)}+b) \geq 1 \\
+\alpha_i=C &\Rightarrow y^{(i)}(\omega^Tx^{(i)}+b) \leq 1 \\
+0 \leq \alpha_i \leq C &\Rightarrow y^{(i)}(\omega^Tx^{(i)}+b) = 1
+\end{align} %]]></script>
+
+<h2 id="smo算法">SMO算法</h2>
+<p>SMO算法专门用来高效解决支持向量机中推导出来的拉格朗日对偶问题。在讨论SMO算法之前先讲讲坐标上升法。</p>
+
+<h3 id="坐标上升法">坐标上升法</h3>
+<p>坐标上升法是另一种优化方法，类似于前面的梯度下降法和牛顿法。其实质是每次只在一个坐标方向优化，考虑以下的无约束优化问题：</p>
+
+<script type="math/tex; mode=display">\max_{\alpha} W(\alpha_1, \alpha_2, \cdots, \alpha_m)</script>
+
+<p>使用以下的算法进行递归直到达到最优解：</p>
+
+<p><script type="math/tex">\text{For }i=1,\cdots,m:\\
+\alpha_i := \arg \max_{\hat{\alpha_i}} W(\alpha_1,\cdots,\alpha_{i-1},\hat{\alpha_i},\alpha_{i+1},\cdots,\alpha_m)</script>
+按顺序每一次固定其他，更新一个变量。（更复杂的版本是每一次更新使W增加最快的变量）。</p>
+
+<p>当函数W是类似于 arg max 这样高效运算的函数时，坐标上升法是一种很有效的算法。</p>
+
+<h3 id="smo">SMO</h3>
+<p>我们回到SMO算法来解决拉格朗日对偶问题。
+观察约束<script type="math/tex">\sum_{i=1}^m \alpha_i y^{(i)}=0</script>，我们发现<script type="math/tex">\alpha</script>并不完全独立，<script type="math/tex">\alpha_1=-y^{(1)}\sum_{i=2}^m\alpha_iy^{(i)}</script>。</p>
+
+<p>受坐标上升法的启发，SMO算法的核心就是选择一对参数（使W增长最快的两个）进行更新，直到优化结束。</p>
+
+<p>假设选择<script type="math/tex">\alpha_1,\alpha_2</script>进行更新：</p>
+
+<script type="math/tex; mode=display">\alpha_1y^{(1)}+\alpha_2y^{(2)}=-\sum_{i=3}^m \alpha_iy^{(i)}=\zeta</script>
+
+<p>结合<script type="math/tex">0\leq \alpha_i \leq C</script>的约束，<script type="math/tex">\alpha_2</script>的真实取值范围是<script type="math/tex">L \leq \alpha_2 \leq H</script>。最终更新结果是：
+<script type="math/tex">% <![CDATA[
+\alpha_2^{new}=
+\begin{cases}
+H \quad &\text{if } \alpha_2^{new, unclipped} > H \\
+\alpha_2^{new, unclipped} \quad &\text{if } L \leq \alpha_2^{new, unclipped} \leq H \\
+L
+\end{cases} %]]></script></p>
+
+<p><script type="math/tex">\alpha_1^{new}</script>值可以通过前面的线性关系求得。</p>
+
+<p>SMO这里讲的还是比较粗略，需要后续再补充。不过支持向量机到此终于完结了，花了三天半时间，也是值得。</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 标签: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97" class="page__taxonomy-item" rel="tag">Ng机器学习系列</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95" class="page__taxonomy-item" rel="tag">机器学习算法</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 分类: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/categories/#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0" class="page__taxonomy-item" rel="tag">机器学习</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time datetime="2016-04-14T00:00:00+08:00">April 14, 2016</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/generative-learning/" class="pagination--pager" title="生成学习算法
+">向前</a>
+    
+    
+      <a href="http://localhost:4000/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/machine-learning-theory/" class="pagination--pager" title="机器学习原理
+">向后</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">猜您还喜欢</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E5%B7%A5%E5%85%B7/%E5%8D%9A%E5%AE%A2%E9%87%8D%E5%BB%BA/" rel="permalink">博客重建
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">今天花了整整一天的时候把我的博客重建起来了，主要是换了一个主题，然后剩下的时候就一直在折腾了。这次用了一个很受欢迎的minimal-mistakes，搞下来才发现它为啥叫迷你了，自己要设置的东西太多了！
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%84%8F%E4%B9%89/" rel="permalink">人生的意义
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">人生的意义
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E5%B7%A5%E5%85%B7/shadowsocksr/" rel="permalink">shadowsocksR
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">时代在发展，shadowsocks源作者已经被请去喝茶了，现在更流行的一个叫shadowsocksR加强版，感谢两位作者。这里也趁着换VPS的同时新装了一个shadowsocksR。
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E7%AC%94%E8%AE%B0/ruby-gem-bundler/" rel="permalink">ruby &amp; gem &amp; bundler
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">ruby
+
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+  <input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  <div id="results" class="results"></div>
+</div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+    
+    
+    
+      <li><a href="https://github.com/anyinlover"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="http://localhost:4000/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 Anyinlover. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="http://localhost:4000/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+
+
+
+  
+  
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr.min.js"></script>
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr-store.js"></script>
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr-en.js"></script>
+
+
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/SVM/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/SVM"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://anyinlover.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+  </body>
+</html>

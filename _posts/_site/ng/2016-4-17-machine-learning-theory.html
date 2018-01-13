@@ -1,0 +1,112 @@
+<h2 id="section">偏差和方差</h2>
+<p>还是从房价预测的例子入手，我们可以分别用一次函数，三次函数和五次函数去拟合测试集。但不是三个模型都是好模型，第一个和第三个都存在着泛化误差，即测试集的拟合误差要大于训练集的期望误差。</p>
+
+<p>对于一次函数模型，我们认为模型有偏差，即使给出足够大的训练集也会使数据欠拟合。而对于五次函数模型，我们认为模型有方差，仅仅是很好的吻合了小范围的测试集，对数据过拟合，不能准确反映更一般的输入输出关系。</p>
+
+<p>很多时候都需要在偏差和方差之间做权衡。假如我们的模型过于简单只有很少的几个参数，那很可能有大的偏差；假如模型过于复杂有很多的参数，那可能会有大的方差。</p>
+
+<h2 id="section-1">预备知识</h2>
+<p>我们开始学习一些机器学习原理中最基石的规则。最终希望能够回答三个问题：</p>
+
+<ol>
+  <li>我们是否可以把偏差和方差公式化？最终引出模型选择方法。</li>
+  <li>为何从测试集中可以获得泛化误差？测试集误差和泛化误差是否有联系？</li>
+  <li>是否能在某些条件下证明算法一定有效？</li>
+</ol>
+
+<p>首先介绍两个引理（这里没有证明，可以直观感受）。</p>
+
+<p><strong>联合界定理</strong>：存在<script type="math/tex">A_1,A_2,\cdots,A_k</script>共k个不同事件（可能独立也可能非独立），必然有：</p>
+
+<script type="math/tex; mode=display">P(A_1 \cup \cdots \cup A_k) \leq P(A_1)+\cdots + P(A_k)</script>
+
+<p><strong>霍夫丁不等式</strong>：令<script type="math/tex">Z_1,\cdots,Z_m</script>是m个服从伯努利分布的独立同分布随机变量，令<script type="math/tex">\hat{\phi}=(1/m)\sum_{i=1}^m Z_i</script>作为随机变量的均值，令任意<script type="math/tex">\gamma>0</script>固定，有下面的关系：</p>
+
+<script type="math/tex; mode=display">P(|\phi - \hat{\phi}| > \gamma) \leq 2\exp(-2\gamma^2m)</script>
+
+<p>为了简化解释，我们再以二元分类为例。假设给定一个训练集<script type="math/tex">S=\{(x^{(i)},y^{(i)};i=1,\cdots,m\}</script>，训练样本<script type="math/tex">(x^{(i)},y^{(i)})</script>满足可能性分布<script type="math/tex">\mathcal{D}</script>，对于假说h，定义训练误差（经验误差）为：</p>
+
+<script type="math/tex; mode=display">\hat{\epsilon}(h)=\frac{1}{m} \sum_{i=1}^m1\{h(x^{(i)} \neq y^{(i)}\}</script>
+
+<p>定义泛化误差为：</p>
+
+<script type="math/tex; mode=display">\epsilon(h)=P_{(x,y) \sim \mathcal{D}}(h(x) \neq y)</script>
+
+<p>PAC是一组构建机器学习原理的假定。其中最重要的两条就是训练集和测试集满足同分布，训练样本具备独立性。</p>
+
+<p>考虑线性分类，令<script type="math/tex">h_\theta(x)=1\{\theta^Tx \geq 0\}</script>，评估参数<script type="math/tex">\theta</script>拟合的一种方式就是让训练误差最小化：</p>
+
+<script type="math/tex; mode=display">\hat{\theta} = \arg \min_{\theta} \hat{\epsilon}(h_{\theta})</script>
+
+<p>这个过程被称为经验风险最小化，它被视为是最基础的学习算法。ERM本身是非凸不能用一般优化算法求解的，逻辑回归和支持向量机被看做对这种算法的凸性近似。</p>
+
+<p>更一般化，我们用假设集<script type="math/tex">\mathcal{H}</script>来定义一组分类器。比如对于线性分类法，<script type="math/tex">\mathcal{H}=\{h_{\theta}: h_{\theta}(x)=1\{\theta^Tx \geq 0\}, \theta \in \mathbb{R}^{n+1}\}</script>。经验风险最小化可以写成下式：</p>
+
+<script type="math/tex; mode=display">\hat{h}=\arg \min_{h \in \mathcal{H}} \hat{\epsilon}(h)</script>
+
+<h2 id="section-2">有限假设集</h2>
+<p>我们先来考虑假说集有限的情况，即<script type="math/tex">\mathcal{H}=\{h_1,\cdots,h_k\}</script>，假设集由k个假说构成。经验风险最小化算法选择其中使训练误差最小的假说作为<script type="math/tex">\hat{h}</script>。</p>
+
+<p>考虑一个伯努利随机变量Z，样本<script type="math/tex">(x,y) \sim \mathcal{D}</script>，令<script type="math/tex">Z=1\{h_i(x) \neq y\}</script>。对训练样本我们同样定义<script type="math/tex">Z_j=1\{h_i(x^{(j)}) \neq y^{(j)}\}</script>。训练样本和测试样本服从同分布。</p>
+
+<p>可以看到误分类的可能性<script type="math/tex">\epsilon(h)</script>就等于<script type="math/tex">Z(Z_j)</script>的期望值，此外，训练误差可表示成：</p>
+
+<script type="math/tex; mode=display">\hat{\epsilon}(h_i)=\frac{1}{m}\sum_{j=1}^m Z_j</script>
+
+<p>因此我们在这里可以应用霍夫丁不等式：</p>
+
+<script type="math/tex; mode=display">P(|\epsilon(h_i)-\hat{\epsilon}(h_i)| > \gamma) \leq 2\exp(-2\gamma^2m)</script>
+
+<p>这显示了当m足够大时，对特定的<script type="math/tex">h_i</script>训练误差有极高的可能性与泛化误差接近。下面我们要证明对于所有<script type="math/tex">h \in \mathcal{H}</script>，上面的特性也成立。</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+P(\exists h \in \mathcal{H}.|\epsilon(h_i)-\hat{\epsilon}(h_i)| > \gamma) &= P(A_1 \cup \cdots \cup A_k) \\
+&\leq \sum_{i=1}^k P(A_i) \\
+&\leq \sum_{i=1}^k 2 \exp(-2\gamma^2m) \\
+&=2k \exp(-2\gamma^2m)
+\end{align}
+ %]]></script>
+
+<p>这个结果被称为一致收敛，对于所有h都满足。</p>
+
+<p>令<script type="math/tex">\delta=2k\exp(-2\gamma^2m)</script>，我们可以计算出为达到概率在<script type="math/tex">1-\delta</script>，精确度在<script type="math/tex">\pm\gamma</script>内要求所需的样本复杂度m：</p>
+
+<script type="math/tex; mode=display"> m \geq \frac{1}{2\gamma^2} \log \frac{2k}{\delta}</script>
+
+<p>同样，我们也可以求得精确度：</p>
+
+<script type="math/tex; mode=display">|\hat{\epsilon}(h)-\epsilon(h)| \leq \sqrt{\frac{1}{2m} \log{\frac{2k}{\delta}}}</script>
+
+<p>现在还有一个问题，模型的泛化误差和最小训练误差<script type="math/tex">\hat{h}=\arg \min_{h \in \mathcal{H}} \hat{\epsilon}(h)</script>存在什么联系？</p>
+
+<p>令<script type="math/tex">h^*=\arg \min_{h \in \mathcal{H}} \epsilon(h)</script>作为假设集<script type="math/tex">\mathcal{H}</script>中最好的一个，它与训练误差最小的假设存在以下关系：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+\epsilon(\hat{h}) &\leq \hat{\epsilon}(\hat{h})+\gamma \\
+&\leq \hat{\epsilon}(h^*)+\gamma \\
+&\leq \epsilon(h^*)+2\gamma
+\end{align}
+ %]]></script>
+
+<p>在<script type="math/tex">\mid \mathcal{H}\mid =k</script>，<script type="math/tex">m,\delta</script>固定，至少有<script type="math/tex">1-\delta</script>的可能性：</p>
+
+<script type="math/tex; mode=display">\epsilon(\hat{h}) \leq (\min_{h\in\mathcal{H}} \epsilon(h)) + 2 \sqrt{\frac{1}{2m} \log \frac{2k}{\delta}}</script>
+
+<p>这也从另一面证明了偏差和方差的矛盾性。假设我们的假设集扩大了，则前一项下降，后一项增加。反之亦然。</p>
+
+<h2 id="section-3">无限假设集</h2>
+<p>在有限假设集中我们得出了一些有用的定理。但对于参数是实数的假设集来说，有无限个假设。我们是否能得出类似的结论？</p>
+
+<p>首先做一个不是很正确的解释。因为实数在计算机中也是由有限位组成，因此所谓的无限假设实际上也是有限的，因此可以套用上一节的结论来处理。</p>
+
+<p>为得出无限假设集的结果，我们需要定义VC维。给定样本点集合<script type="math/tex">S=\{x^{(i)},\cdots,x^{(d)}\}, x^{(i)} \in \mathcal{X}</script>，我们说<script type="math/tex">\mathcal{H}</script>粉碎<script type="math/tex">S</script>假如<script type="math/tex">\mathcal{H}</script>可以识别任意的标签。我们定义VC维，<script type="math/tex">VC(\mathcal{H})</script>是最大的可粉碎样本大小。例如对于有两个维度的线性分类而言，<script type="math/tex">VC(\mathcal{H})=3</script>。</p>
+
+<p>下式展示了对于无限假设集的定理，对于给定<script type="math/tex">\mathcal{H}</script>，令<script type="math/tex">d=VC(\mathcal{H})</script>，至少有<script type="math/tex">1-\delta</script>的可能性：</p>
+
+<script type="math/tex; mode=display">|\epsilon(h)-\hat{\epsilon}(h)| \leq O\left(\sqrt{\frac{d}{m} \log \frac{m}{d} + \frac{1}{m} \log \frac{1}{\delta}}\right)</script>
+
+<p>同样还有下面的结论：对<script type="math/tex">\| \epsilon(h)-\hat{\epsilon}(h) \| \leq \gamma</script> 要求至少<script type="math/tex">1-\delta</script>概率对所有<script type="math/tex">h \in \mathcal{H}</script>成立，需要满足<script type="math/tex">m=O_{\gamma,\delta}(d)</script>。即对于最小化训练误差的算法，所需的训练样本数和算法参数个数几乎成线性关系。</p>

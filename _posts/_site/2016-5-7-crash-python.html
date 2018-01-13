@@ -1,0 +1,1006 @@
+<h2 id="python">得到python</h2>
+<p>从python官网可以下载python，对于数据科学家来说，更方便的是直接下载Anaconda分发包。</p>
+
+<p>pip是python包管理工具，利用它可以很方便的寻找安装python包。</p>
+
+<p>Ipython是一个增强版的python shell。和它配套使用的还有一个jupyter notebook，有很好的交互界面，是我目前使用python的主力战场。</p>
+
+<h2 id="python-1">python之禅</h2>
+<p>下面描述了python之禅：python的设计原则，</p>
+
+<blockquote>
+  <p>Beautiful is better than ugly.<br />
+Explicit is better than implicit.<br />
+Simple is better than complex.<br />
+Complex is better than complicated.	 
+Flat is better than nested.<br />
+Sparse is better than dense.<br />
+Readability counts.<br />
+Special cases aren’t special enough to break the rules.<br />
+Although practicality beats purity.<br />
+Errors should never pass silently.<br />
+Unless explicitly silenced.<br />
+In the face of ambiguity, refuse the temptation to guess.<br />
+There should be one– and preferably only one –obvious way to do it.<br />
+Although that way may not be obvious at first unless you’re Dutch.<br />
+Now is better than never.<br />
+Although never is often better than <em>right</em> now.<br />
+If the implementation is hard to explain, it’s a bad idea.<br />
+If the implementation is easy to explain, it may be a good idea.<br />
+Namespaces are one honking great idea – let’s do more of those!  </p>
+</blockquote>
+
+<p>其中最常见得一条就是在python中只有一种最好的实现方法，常常被称为Pythonic。</p>
+
+<h2 id="section">空格格式化</h2>
+<p>python中用缩进来表示代码块。</p>
+
+<p><code>python
+for i in [1, 2, 3, 4, 5]:
+    print(i)
+    for j in [1, 2, 3, 4, 5]:
+        print(j)
+        print(i+j)
+    print(i)
+print("done looping")
+</code>
+这让python代码非常具有可读性，但也因此需要注意空格的使用。空格在括号内是被忽略的，比如用在下面的长代码中：</p>
+
+<p><code>python
+long_winded_computation=(1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11
+                        + 12 + 13 + 14 + 15 + 16 + 17 + 18 + 19 + 20)
+</code></p>
+
+<p>或者让代码变得更加可读：</p>
+
+<p><code>python
+list_of_lists = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+easier_to_read_list_of_lists = [ [1, 2, 3],
+                                 [4, 5, 6],
+                                 [7, 8, 9] ]
+</code></p>
+
+<p>反斜杠可以用来断行，但一般很少用：</p>
+
+<p><code>python
+two_plus_three = 2 + \
+                 3
+</code></p>
+
+<p>使用空格的一个缺陷是代码复制时会变形，在Ipython中有一个函数<code>%paste</code>可以解决这个问题。</p>
+
+<h2 id="section-1">模块</h2>
+
+<p>python的很多功能都需要导入模块来实现。</p>
+
+<p>一种简单的方法是把模块整个导入：</p>
+
+<p><code>python
+import re
+my_regex = re.compile("[0-9]+", re.I) 
+</code>
+这样导入后只能通过加前缀<code>re.</code>来调用模块内的函数。</p>
+
+<p>如果代码中这个标识符已经被使用，可以用别名来替代：</p>
+
+<p><code>python
+import re as regex 
+my_regex = regex.compile("[0-9]+", regex.I)
+</code>
+当模块名称不清晰或者过于冗长时，也可以用别名：</p>
+
+<p><code>python
+import matplotlib.pyplot as plt
+</code></p>
+
+<p>如果只需要使用到模块中一些特定的子模块或函数，可以显性的导入：</p>
+
+<p><code>python
+from collections import defaultdict, Counter
+lookup = defaultdict(int)
+my_counter = Counter()
+</code></p>
+
+<p>另外也有一种做法就是把模块内的值全都导入，但这样会有命名冲突的风险，不推荐这样处理，比如下面<code>re.match</code>覆盖了原来的<code>match</code>。</p>
+
+<p><code>python
+match = 10
+from re import *
+print match
+</code></p>
+
+<h2 id="section-2">算术</h2>
+
+<p>在python2中除法是整数除法，到python3中已经是浮点数除法了。<code>5/2</code>再也不会等于2了。</p>
+
+<h2 id="section-3">函数</h2>
+
+<p>一个函数把输入转化成输出，在python中使用<code>def</code>来定义函数：</p>
+
+<p><code>python
+def double(x):
+    """this is where you put an optional docstring
+    that explains what the function does.
+    for example, this function multiplies its input by 2"""
+    return x * 2
+</code>
+在python中函数是原始类的，也就是函数可以被赋给变量，也可以作为参数传给另一个函数。</p>
+
+<p>```python
+def apply_to_one(f):
+    “"”calls the function f with 1 as its argument”””
+    return f(1)</p>
+
+<p>my_double = double # refers to the previously defined function
+x = apply_to_one(my_double) # equals 2
+```
+使用lambda语法可以创造匿名函数：</p>
+
+<p><code>python
+y = apply_to_one(lambda x: x + 4) # equals 5
+</code>
+lambda函数也能赋给变量，但多数人推荐下面的传统做法：</p>
+
+<p><code>python
+another_double = lambda x: 2 * x # don't do this
+def another_double(x): return 2 * x # do this instead
+</code>
+函数参数可以指定默认值：</p>
+
+<p>```python
+def my_print(message=”my default message”):
+    print(message)</p>
+
+<p>my_print(“hello”) # prints ‘hello’
+my_print()		 # prints ‘my default message’
+```
+传参时带上变量名有时候也很有用：</p>
+
+<p>```python
+def subtract(a=0, b=0):
+    return a - b</p>
+
+<p>subtract(10, 5) # returns 5
+subtract(0, 5)  # returns -5
+subtract(b=10)  # same as previous
+```</p>
+
+<h2 id="section-4">字符串</h2>
+
+<p>字符串可以用单引号或双引号来定义：</p>
+
+<p><code>python
+single_quoted_string='data science'
+double_quoted_string="data science"
+</code></p>
+
+<p>python使用反斜杠来编码特殊字符：</p>
+
+<p><code>python
+tab_string = "\t" # represents the tab character
+len(tab_string)
+</code>
+如果仍然想让反斜杠保持为反斜杠，可以用<code>r""</code>创造原始字符串：</p>
+
+<p><code>python
+not_tab_string=r"\t" # represents the characters '\' and 't'
+len(not_tab_string)
+</code>
+可以三个双引号来创建多行的字符串：</p>
+
+<p><code>python
+muti_line_string = """This is the first line.
+and this is the second line
+and this is the third line"""
+</code></p>
+
+<h2 id="section-5">异常</h2>
+
+<p>在python中可以用<code>try</code>和<code>except</code>来处理异常，防止程序报错：</p>
+
+<p><code>python
+try:
+    print(0/0)
+except ZeroDivisionError:
+    print("cannot divide by zero")
+</code>
+虽然在很多语言中异常被认为是不好的，但在python中偶尔的使用异常可让代码保持整洁。</p>
+
+<h2 id="section-6">列表</h2>
+
+<p>列表是python中最基础的数据结构。列表是一个有序集合。</p>
+
+<p>```python
+integer_list = [1, 2, 3]
+heterogeneous_list = [“string”, 0.1, True]
+list_of_lists = [ integer_list, heterogeneous_list, []]</p>
+
+<p>list_length = len(integer_list) # equals 3
+list_sum = sum(integer_list) # equals 6
+```
+可以用方括号来对第n个元素取值或赋值</p>
+
+<p><code>python
+x = list(range(10)) # is the list [0, 1, ..., 9]
+zero = x[0] # equals 0, lists are 0-indexed
+one = x[1] # equals 1
+nine = x[-1] # equals 9, 'Pythonic' for last element
+eight = x[-2] # equals 8, 'Pythonic' for next-to-last element
+x[0] = -1 # now x is [-1, 1, 2, 3, ..., 9]
+</code>
+方括号也可以用来切片：</p>
+
+<p><code>python
+first_three = x[:3] # [-1, 1, 2]
+three_to_end = x[3:] # [3, 4, ..., 9]
+one_to_four = x[1:5] # [1, 2, 3, 4]
+last_three = x[-3:] # [7, 8, 9]
+without_first_and_last = x[1:-1] # [1, 2, ..., 8]
+copy_of_x = x[:] # [-1, 1, 2, ..., 9]
+</code></p>
+
+<p>python有一个<code>in</code>操作来验证元素是否在列表中：</p>
+
+<p><code>python
+1 in [1, 2, 3] # True
+0 in [1, 2, 3] # False
+</code>
+这个操作会依次去进行比较，除非列表比较短，否则会很费时。</p>
+
+<p>把列表串联起来是容易的：</p>
+
+<p><code>python
+x = [1, 2, 3]
+x.extend([4, 5, 6]) # x is now [1,2,3,4,5,6]
+</code></p>
+
+<p>如果不想改变x那么可以采用列表加法：</p>
+
+<p><code>python
+x = [1, 2, 3]
+y = x + [4, 5, 6] # y is [1,2,3,4,5,6]; x is unchanged
+</code></p>
+
+<p>最常见的还是每次添加一个元素：</p>
+
+<p><code>python
+x = [1, 2, 3]
+x.append(0) # x is now [1, 2, 3, 0]
+y = x[-1] # equals 0
+z = len(x) # equals 4
+</code>
+如果知道列表元素个数还可以使用解包：</p>
+
+<p><code>python
+x, y = [1, 2] # now x is 1, y is 2
+</code></p>
+
+<p>对于不需要使用的元素可以用下划线替代：</p>
+
+<p><code>python
+_, y = [1, 2] # now y==2, didn't care about the first element
+</code></p>
+
+<h2 id="section-7">元组</h2>
+<p>元组与列表类似，但是不可变的。列表很多不涉及到修改元素的操作都可以用在元组上。元组用小括号来表示：</p>
+
+<p>```python
+my_list = [1, 2]
+my_tuple = (1, 2)
+other_tuple = 3, 4
+my_list[1] = 3 # my_list is now [1, 3]</p>
+
+<p>try:
+    my_tuple[1] = 3
+except TypeError:
+    print(“cannot modify a tuple”)
+```
+元组可以被用来从函数返回多值。</p>
+
+<p>```python
+def sum_and_product(x, y):
+    return (x+y), (x*y)</p>
+
+<p>sp = sum_and_product(2, 3) # equals (5, 6)
+s, p = sum_and_product(5, 10) # s is 15, p is 50
+```
+元组和列表都可以用来赋多值：</p>
+
+<p><code>python
+x, y = 1, 2 # now x is 1, y is 2
+x, y = y, x # Pythonic way to swap variables; now x is 2, y is 1
+</code></p>
+
+<h2 id="section-8">字典</h2>
+
+<p>字典是另一种基本数据结构，将键和值相对应，方便快速查找。</p>
+
+<p><code>python
+empty_dict = {} # Pythonic
+empty_dict2 = dict() # less Pythonic
+grades = {"Joel": 80, "Tim": 95} # dictionary literal
+</code>
+可以通过键来查找值。</p>
+
+<p><code>python
+joels_grade = grades["Joel"] # equals 80
+</code>
+假如键不在字典中，就会报错<code>KeyError</code>：</p>
+
+<p><code>python
+try:
+    kates_grade = grades["Kate"]
+except KeyError:
+    print("no grad for Kate!")
+</code></p>
+
+<p>可以用下面的方法检查键是否存在：</p>
+
+<p><code>python
+joel_has_grade = "Joel" in grades # True
+kate_has_grade = "Kate" in grades # False
+</code>
+字典有一个<code>get</code>方法可以在键不存在时返回一个默认值：</p>
+
+<p><code>python
+joels_grade = grades.get("Joel", 0) # equals 80
+kates_grade = grades.get("Kate", 0) # equals 0
+no_ones_grade = grades.get("No One") # default default is None
+</code>
+用中括号可以对键赋值：</p>
+
+<p><code>python
+grades["Tim"] = 99 # replaces the old value
+grades["Kate"] = 100 # adds a third entry
+num_students = len(grades) # equals 3
+</code>
+字典可以很方便的表示结构性数据：</p>
+
+<p><code>python
+tweet = {
+    "user" : "joelgrus",
+    "text" : "Data Science is Awesome",
+    "retweet_count" : 100,
+    "hashtags" : ["#data", "#science", "#datascience",
+                  "#awesome", "#yolo"]
+}
+</code>
+除了查找特定的键，还可以查找下面的值：</p>
+
+<p>```python
+tweet_keys = tweet.keys() # list of keys
+tweet_values = tweet.values() # list of values
+tweet_items = tweet.items() # list of (key, value) tuples</p>
+
+<p>“user” in tweet_keys # True, but uses a slow list in
+“user” in tweet # more Pythonic, uses faster dict in
+“joelgrus” in tweet_values
+```
+字典的键必须是不可变得，因此，不能将列表作为键，如果需要多键，可以使用元组或者把键转化成字符串。</p>
+
+<h3 id="section-9">默认字典</h3>
+
+<p>假如需要对文档的单词进行计数，常规的方法如下：</p>
+
+<p><code>python
+document = "Hello how are you. Every one has a mi ring"
+word_counts = {}
+for word in document:
+    if word in word_counts:
+        word_counts[word] += 1
+    else:
+        word_counts[word] = 1
+word_counts
+</code>
+或者使用异常机制来处理首次添加：</p>
+
+<p><code>python
+word_counts = {}
+for word in document:
+    try:
+        word_counts[word] += 1
+    except KeyError:
+        word_counts[word] = 1
+</code></p>
+
+<p>第三种方法是使用<code>get</code>方法：</p>
+
+<p><code>python
+word_counts = {}
+for word in document:
+    previous_count = word_counts.get(word, 0)
+    word_counts[word] = previous_count + 1
+</code>
+但这三种方法看起来都有些别扭，更好的方法是使用<code>defaultdict</code>。</p>
+
+<p>```python
+from collections import defaultdict</p>
+
+<p>word_counts = defaultdict(int) # int() produces 0 
+for word in document:
+    word_counts[word] += 1</p>
+
+<p>```
+除了应用在整数上，还能应用在列表或字典，甚至自己的函数上：</p>
+
+<p>```python
+dd_list = defaultdict(list) # list() produces an empty list
+dd_list[2].append(1) # now dd_list contains {2: [1]}</p>
+
+<p>dd_dict = defaultdict(dict) # dict() produces an empty dict
+dd_dict[“Joel”][“City”] = “Seattle” # {“Joel”: {“City”:”Seattle”}}</p>
+
+<p>dd_pair = defaultdict(lambda: [0, 0])
+dd_pair[2][1] = 1 # {2: [0,1]}
+```
+所以这是一种很方便的省却检查键是否存在的解决方案。</p>
+
+<h3 id="section-10">计数</h3>
+
+<p>计数构造了一个字典，并将键映射到个数：</p>
+
+<p><code>python
+from collections import Counter
+c = Counter([0, 1, 2, 0]) # c is (basically) {0:2, 1:1, 2:1}
+</code>
+因此这可以方便的解决我们的单词统计问题：</p>
+
+<p><code>python
+word_counts = Counter(document)
+</code>
+计数示例有一个<code>most_common</code>方法很有效：</p>
+
+<p><code>python
+# print the 10 most common words and their counts
+for word, count in word_counts.most_common(10):
+    print(word, count)
+</code></p>
+
+<h2 id="section-11">集合</h2>
+
+<p>集合是另一种数据结构，表达了离散元素的集合。</p>
+
+<p><code>python
+s = set()
+s.add(1) # s is now { 1 }
+s.add(2) # s is now {1, 2}
+s.add(2) # s is still { 1, 2}
+x = len(s) # equals 2
+y = 2 in s # equals True
+z = 3 in s # equals False
+</code>
+使用集合主要有两个理由。第一个是<code>in</code>操作在集合中应用非常快，类似于字典中键的查找：</p>
+
+<p><code>python
+stopwords_list = ["a","an","at"] + ["manyotherwords"] + ["yet", "you"]
+"zip" in stopwords_list # False, but have to check every element
+stopwords_set = set(stopwords_list)
+"zip" in stopwords_set # very fast to check
+</code>
+第二个理由是找到集合中不同项：</p>
+
+<p><code>python
+item_list = [1, 2, 3, 1, 2, 3]
+num_items = len(item_list) # 6
+item_set = set(item_list)  # {1，2，3}
+num_distinct_items = len(item_set) # 3
+distinct_items = list(item_set) # [1, 2, 3]
+</code>
+集合比字典和列表使用的少得多。</p>
+
+<h2 id="section-12">控制流</h2>
+
+<p>像大部分编程语言，python可以使用<code>if</code>：</p>
+
+<p><code>python
+if 1 &gt; 2:
+    message = "if only 1 were greater than two..."
+elif 1 &gt; 3:
+    message = "elif stands for 'else if'"
+else:
+    message = "when all else fails use else (if you want to)"
+</code>
+有时候还可以写成一行：</p>
+
+<p><code>python
+parity = "even" if x % 2 == 0 else "odd"
+</code>
+Python还有一个<code>while</code>循环：</p>
+
+<p><code>python
+x = 0
+while x &lt; 10:
+    print(x, "is less than 10")
+    x += 1
+</code>
+但更常用的是<code>for</code>和<code>in</code>：</p>
+
+<p><code>python
+for x in range(10):
+    print(x, "is less than 10")
+</code>
+如果要控制更复杂的逻辑，可以使用<code>continue</code>和<code>break</code>：</p>
+
+<p><code>python
+for x in range(10):
+    if x == 3:
+        continue # go immediately to the next iteration
+    if x == 5:
+        break # quit the loop entirely
+    print(x)
+</code></p>
+
+<h2 id="section-13">真值</h2>
+
+<p>布尔型在python中也和其他语言一样，除了是大写的：</p>
+
+<p><code>python
+one_is_less_than_two = 1 &lt; 2 # equals True
+true_equals_false = True == False # equals False
+</code>
+<code>None</code>表示一个不存在的值，类似于其他语言的<code>null</code>：</p>
+
+<p><code>python
+x = None
+print(x==None) # prints True, but is not Pythonic
+print(x is None) # prints True, and is Pythonic
+</code>
+Python在它期望布尔值时允许任何值，下面的值都被认为是假值：</p>
+
+<ul>
+  <li>False</li>
+  <li>None</li>
+  <li>[](空列表）</li>
+  <li>{}（空字典）</li>
+  <li>””</li>
+  <li>set()</li>
+  <li>0</li>
+  <li>0.0</li>
+</ul>
+
+<p>其他任何值都被认为是真值，这在<code>if</code>中测试空字符串或空字典时格外有用</p>
+
+<p><code>python
+s = some_function_that_returns_a_string()
+if s:
+    first_char = s[0]
+else:
+    first_char = ""
+</code>
+一种更简单的方法是：</p>
+
+<p><code>python
+first_char = s and s[0]
+</code>
+因为<code>and</code>操作会在第一个值为真时返回第二个值，第一个值为假时返回第一个值。下面用了类似的技巧：</p>
+
+<p><code>python
+safe_x = x or 0
+</code>
+python还有一个<code>all</code>函数，输入一个列表，当列表所有元素是真时返回真，还有一个<code>any</code>函数，至少有一个元素是真时返回真：</p>
+
+<p><code>python
+all([True, 1, {3}]) # True
+all([True, 1, {}]) # False, {} is falsy
+any([True, 1, {}]) # True, True is truthy
+all([]) # True, no falsy elements in the list
+any([]) # False, no truthy elements in the list
+</code></p>
+
+<h2 id="section-14">排序</h2>
+
+<p>每个python列表都有一个<code>sort</code>方法，如果不想改变原列表，也可以使用<code>sorted</code>函数，会返回一个新列表：</p>
+
+<p><code>python
+x = [4,1,2,3] 
+y = sorted(x) # is [1,2,3,4], x is unchanged
+x.sort() # now x is [1,2,3,4]
+</code>
+默认情况下，列表排序会从小到大进行，如果想要从大到小排序，可以指定<code>reverse=True</code>参数。除了比较元素本身，还可以用参数<code>key</code>指定函数。</p>
+
+<p>```python
+# sort the list by absolute value from largest to smallest
+x = sorted([-4,1,-2,3], key=abs, reverse=True) # is [-4,3,-2,1]</p>
+
+<h1 id="sort-the-words-and-counts-from-highest-count-to-lowest">sort the words and counts from highest count to lowest</h1>
+<p>wc = sorted(word_counts.items(),
+           key=lambda pair: pair[1],
+           reverse=True)
+```</p>
+
+<h2 id="section-15">列表生成器</h2>
+
+<p>列表生成器可以很方便的将列表转换成另一个列表，这是典型的Pythonic方法。</p>
+
+<p><code>python
+even_numbers = [x for x in range(5) if x % 2 == 0] # [0, 2, 4]
+squares = [x * x for x in range(5)] # [0, 1, 4, 9, 16]
+even_squares = [x * x for x in even_numbers] # [0, 4, 16]
+</code>
+这种用法也能把列表转换成字典或集合：</p>
+
+<p><code>python
+square_dict = { x: x * x for x in range(5)} # {0:0, 1:1, 2:4, 3:9, 4:16}
+squre_set = ( x * x for x in [1, -1]) # {1}
+</code>
+如果不需要使用到列表中的值，就用下划线替代：</p>
+
+<p><code>python
+zeroes = [0 for _ in even_numbers] # has the same length as even_numbers
+</code>
+列表生成器还能使用多个<code>for</code>：</p>
+
+<p><code>python
+pairs = [(x, y)
+        for x in range(10)
+        for y in range(10)]
+</code>
+后面的<code>for</code>可以应用前面的<code>for</code>结果：</p>
+
+<p><code>python
+increasing_pairs = [(x, y) # only pairs with x &lt; y
+                   for x in range(10) # range(lo, hi) equals
+                   for y in range(x + 1, 10)] # [lo, lo + 1, ..., hi - 1]
+</code></p>
+
+<h2 id="section-16">生成器和迭代器</h2>
+<p>列表有一个问题就是容易变得很大，如果每次只需要使用很少的元素，计算整个列表就会很低效，还可能耗尽内存。</p>
+
+<p>生成器是一种可以迭代（常常用<code>for</code>），但值只有在需要使用时才计算。</p>
+
+<p><code>python
+def lazy_range(n):
+    """a lazy version of range"""
+    i = 0
+    while i &lt; n:
+        yield i
+        i += 1
+</code>
+下面的循环就是依次使用yield里的值直到结束：</p>
+
+<p><code>python
+for i in lazy_range(10):
+    # do_something_with(i)
+    print(i)
+</code>
+在python3中，<code>range</code>本身就是个生成器，这意味着生成器可以创建无限的序列：</p>
+
+<p><code>python
+def natural_numbers():
+    """returns 1, 2, 3, ..."""
+    n = 1
+    while True:
+        yield n
+        n += 1
+</code>
+当然在实际应用中需要和<code>break</code>配合使用。</p>
+
+<p>生成器的一个缺点就是只能迭代一次，如果需要迭代多次，那就需要新建生成器或者使用列表。</p>
+
+<p>另一种创建生成器的方法是使用小括号的列表生成器：</p>
+
+<p><code>python
+lazy_evens_below_20 = (i for i in lazy_range(20) if i % 2 == 0)
+</code>
+前面提到<code>dict</code>有一个<code>items()</code>方法可以返回键值对。更常用的我们使用它的<code>iteritems()</code>方法，这就是一个生成器方法。</p>
+
+<h2 id="section-17">随机数</h2>
+<p>使用<code>random</code>模块，可以很方便的生成随机数。</p>
+
+<p>```python
+import random
+four_uniform_randoms = [random.random() for _ in range(4)]</p>
+
+<h1 id="randomrandom-produces-numbers">[0.8444218515250481, # random.random() produces numbers</h1>
+<p>#  0.7579544029403025, # uniformly between 0 and 1
+#  0.420571580830845, # it’s the random function we’ll use
+#  0.25891675029296335] # most often
+```
+<code>random</code>模块实际上产生的是根据内部状态产生伪随机数，如果想要得到可重复结果，可以使用<code>random.seed</code>：</p>
+
+<p><code>python
+random.seed(10) # set the seed to 10
+print(random.random()) # 0.57140259469
+random.seed(10) # reset the seed to 10
+print(random.random()) # 0.57140259469 again
+</code>
+有时也会用到<code>random.randrange</code>，可以传1或2个参数，返回一个从<code>range()</code>中随机抽取的值：</p>
+
+<p><code>python
+random.randrange(10) # choose randomly from range(10) = [0, 1, ..., 9]
+random.randrange(3, 6) # choose randomly from range(3, 6) = [3, 4, 5]
+</code>
+另外还有一些方法也很有用，<code>random.shuffle</code>将列表元素随机排列：</p>
+
+<p><code>python
+up_to_ten = list(range(10))
+random.shuffle(up_to_ten)
+print(up_to_ten)
+# [2, 5, 1, 9, 7, 3, 8, 6, 4, 0] 
+</code>
+想要随机从列表中抽取一个元素，可以使用<code>random.choice</code>：</p>
+
+<p><code>python
+my_best_friend = random.choice(["Alice", "Bob", "Charlie"])
+</code>
+如果想要随机抽取一组不重复样本，使用<code>random.sample</code></p>
+
+<p><code>python
+lottery_numbers = range(60)
+winning_numbers = random.sample(lottery_numbers, 6)
+</code>
+如果想要抽取重复样本，还是使用<code>random.choice</code>：</p>
+
+<p><code>python
+four_with_replacement = [random.choice(range(10)) for _ in range(4)]
+</code></p>
+
+<h2 id="section-18">正则表达式</h2>
+
+<p>正则表达式在搜索文本时很有用，但其相当的复杂，这里只简单的列举几例：</p>
+
+<p>```python
+import re</p>
+
+<p>print(all([ # all of these are true, because
+        not re.match(“a”, “cat”), # * ‘cat’ doesn’t start with ‘a’
+        re.search(“a”, “cat”), # * ‘cat’ has an ‘a’ in it
+        not re.search(“c”, “dog”), # * ‘dog’ doesn’t have a ‘c’ in it
+        3 == len(re.split(“[ab]”, “carbs”)), # * split on a or b to [‘c’, ‘r’, ‘s’]
+        “R-D-“ == re.sub(“[0-9]”, “-“, “R2D2”) # * replace digits with dashes
+    ])) # print True
+```</p>
+
+<h2 id="section-19">面向对象编程</h2>
+<p>和其他语言一样，python允许你创建类来封装数据和函数。类的使用可以让我们的代码变得简洁。解释类最好的方法还是亲自构造一个。</p>
+
+<p>假设现在我们没有内置的集合，我们来自己构造一个集合类。</p>
+
+<p>我们的集合类需要有些什么成员函数？我们需要去添加元素，删除元素，验证元素是否存在，因此类构造如下：</p>
+
+<p>```python
+# by convention, we give classes PascalCase names
+class Set:</p>
+
+<pre><code># thest are the member functions
+# every one takes a first parameter "self" (another convention)
+# that refers to the particular Set object being used
+
+def __init__(self, values=None):
+    """This is the constructor.
+    It gets called when you create a new Set.
+    You would use it like
+    s1 = Set() # empty set
+    s2 = Set([1,2,3,4]) # initialize with values"""
+    
+    self.dict = {} # each instance if Set has its own dict property
+    					# which is what we'll use to track memberships
+    if values is not None:
+        for value in values:
+            self.add(value)
+
+def __repr__(self):
+    """this is the string representation of a Set object
+    if you type is at the Python prompt or pass it to str()"""
+    return "Set: " + str(self.dict.keys())
+
+# we'll represent membership by being a key in self.dict with
+# value True
+def add(self, value):
+    self.dict[value] = True
+
+# value is in the Set if it's a key in the dictionary
+def contains(self, value):
+    return value in self.dict
+
+def remove(self, value):
+    del self.dict[value] ``` 构建完类后，我们可以像内置类那样进行调用：
+</code></pre>
+
+<p><code>python
+s = Set([1,2,3])
+s.add(4)
+print(s.contains(4)) # True
+s.remove(3)
+print(s.contains(3)) # False
+</code></p>
+
+<h2 id="section-20">函数工具</h2>
+
+<p>有时候我们想要部分应用函数来创建一个新函数：</p>
+
+<p><code>python
+def exp(base, power):
+    return base ** power
+</code>
+现在想创建一个<code>two_to_the</code>函数，输入<code>power</code>，输出<code>exp(2, power)</code>。用下面这种方法可行，但看起来怪怪的：</p>
+
+<p><code>python
+def two_to_the(power):
+    return exp(2, power)
+</code>
+另一种方法是使用<code>functools.partial</code></p>
+
+<p><code>python
+from functools import partial
+two_to_the = partial(exp, 2) # is now a function of one variable
+print(two_to_the(3)) # 8
+</code>
+也可以通过指定参数名来填充后一个参数：</p>
+
+<p><code>python
+square_of = partial(exp, power=2)
+square_of(3) # 9
+</code>
+我们偶尔也会使用到<code>map</code>,<code>reduce</code>和<code>filter</code>来提供与列表生成器类似的功能。</p>
+
+<p>```python
+def double(x):
+    return 2 * x</p>
+
+<p>xs = [1, 2, 3, 4]
+twice_xs = [double(x) for x in xs] # [2, 4, 6, 8]
+twice_xs = map(double, xs) # same as above
+list_doubler = partial(map, double) # <em>function</em> that doubles a list
+twice_xs = list_doubler(xs) # again [2, 4, 6, 8]
+```
+<code>map</code>也能使用多列表来来传递多参：</p>
+
+<p><code>python
+def multiply(x, y): return x * y
+products = map(multiply, [1, 2], [4, 5]) # [1 * 4, 2 * 5] = [4, 10]
+</code>
+<code>filter</code>提供了列表生成器中类似<code>if</code>的功能</p>
+
+<p>```python
+def is_even(x):
+    “"”True if x is even, False if x is odd”””
+    return x % 2 == 0</p>
+
+<p>x_evens = [x for x in xs if is_even(x)] # [2, 4]
+x_evens = filter(is_even, xs) # same as above
+list_evener = partial(filter, is_even) # <em>function</em> that filters a list
+x_evens = list_evener(xs) # again [2, 4]
+```
+在python3中，<code>reduce</code>已经不是内置函数了，需要从<code>functools</code>中导入，更推荐用列表生成器来处理：</p>
+
+<p><code>python
+from functools import reduce
+x_product = reduce(multiply, xs)
+list_product = partial(reduce, multiply)
+x_product = list_product(xs)
+</code>
+此外，在python3中，这三个函数都产生生成器而不是之前的列表了。</p>
+
+<h2 id="section-21">遍历</h2>
+
+<p>很多时候，经常需要同时遍历列表中的元素及其序号：</p>
+
+<p>```python
+# not Pythonic
+for i in range(len(documents)):
+    document = documents[i]
+    do_something(i, document)</p>
+
+<h1 id="also-not-pythonic">also not Pythonic</h1>
+<p>i = 0
+for document in documents:
+    do_something(i, document)
+    i += 1</p>
+
+<p>Pythonic式的解决办法是是使用<code>enumerate</code>:</p>
+
+<h1 id="pythonic">Pythonic</h1>
+<p>for i, document in enumerate(documents):
+    do_something(i, document)
+```
+类似的，如果我们仅仅想使用序号：</p>
+
+<p><code>python
+for i in range(len(documents)): do_something(i) # not Pythonic
+for i, _ in enumerate(documents): do_something(i) # Pythonic
+</code></p>
+
+<h2 id="section-22">打包与解压</h2>
+
+<p>我们常常需要把两个列表打包起来，<code>zip</code>提供了将多个列表转换成一个含元组的列表的功能：</p>
+
+<p><code>python
+list1 = ['a', 'b', 'c']
+list2 = [1, 2, 3]
+zip(list1, list2) # is [('a', 1), ('b', 2), ('c', 3)]
+</code>
+如果列表的长度不一致，那就在最短列表处停止。</p>
+
+<p>还可以解压回来，代码看起来比较奇怪：</p>
+
+<p><code>python
+pairs = [('a', 1), ('b', 2), ('c', 3)]
+letters, numbers = zip(*pairs)
+</code>
+星号实现了参数解压的功能，把每个列表元素作为<code>zip</code>的参数传入，其相当于下面这个调用：</p>
+
+<p><code>python
+zip(('a', 1), ('b', 2), ('c', 3))
+</code>
+最终返回<code>[('a','b','c'),('1','2','3')]</code></p>
+
+<p>这种技巧可以应用在任何函数上：</p>
+
+<p>```python
+def add(a, b): return a + b</p>
+
+<p>add(1,2) # returns 3
+add([1,2]) # TypeError!
+add(*[1,2]) # returns 3
+```
+有没有好奇怪的感觉~~</p>
+
+<h2 id="section-23">无名参数和关键字参数</h2>
+
+<p>首先来创建一个高阶函数：</p>
+
+<p><code>python
+def doubler(f):
+    def g(x):
+        return 2 * f(x)
+    return g
+</code></p>
+
+<p>可以调用如下：</p>
+
+<p>```python
+def f1(x):
+    return x + 1</p>
+
+<p>g = doubler(f1)
+print(g(3)) # 8 (==(3+1)<em>2)
+print(g(-1)) # 0 (==(-1+1)</em>2)
+```</p>
+
+<p>但假如f不止一个参数时，传入g时就会报错：</p>
+
+<p>```python
+def f2(x, y):
+    return x + y</p>
+
+<p>g = doubler(f2)
+print(g(1,2)) # TypeError: g() takes exactly 1 argument (2 given)
+```</p>
+
+<p>我们需要一种方法来传递任意参数给函数，我们还是用上了前面的参数解压的技巧：</p>
+
+<p>```python
+def magic(*args, **kwargs):
+    print(“unnamed args:”, args)
+    print(“keyword args:”, kwargs)</p>
+
+<p>magic(1, 2, key=”word”, key2=”word2”)</p>
+
+<h1 id="prints">prints</h1>
+<p># unnamed args: (1, 2)
+# keyword args: {‘key’: ‘word’, ‘key2’: ‘word2’}
+```
+当我们这样定义时，<code>args</code>代表的是无名参数构成的元组，<code>kwargs</code>代表的是关键字参数构造的字典。另一方面，如果用列表或元组以及字典来传参，函数也可以构造如下：</p>
+
+<p>```python
+def other_way_magic(x, y, z):
+    return x + y + z</p>
+
+<p>x_y_list = [1, 2]
+z_dict = {“z”: 3}
+other_way_magic(*x_y_list, **z_dict) # 6
+```
+这种技巧我们只在构造高阶函数时使用到，下面是正确的g函数：</p>
+
+<p>```python
+def doubler_correct(f):
+    “"”works no matter what kind of inputs f expects”””
+    def g(<em>args, **kwargs):
+        “"”whatever arguments g is supplied, pass them”””
+        return 2 * f(</em>args, **kwargs)
+    return g</p>
+
+<p>g = doubler_correct(f2)
+print(g(1, 2)) # 6
+```</p>

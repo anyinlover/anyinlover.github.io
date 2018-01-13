@@ -1,0 +1,91 @@
+<h2 id="section">证明牛顿法是线性不变的</h2>
+
+<p>令<script type="math/tex">g(z)=f(Az)</script>，需要找到<script type="math/tex">\nabla_z g(z)</script>和<script type="math/tex">\nabla_z^2 g(z)</script>的<script type="math/tex">f(z)</script>表示。</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+\frac {\partial g(z)} {\partial z_i} &= 
+\sum_{k=1}^n \frac{\partial f(Az)} {\partial (Az)_k}
+\frac{\partial (Az)_k} {partial z_i} \\
+&= \sum_{k=1}^n \frac{\partial f(Az)} {\partial (Az)_k} A_{ki} \\
+&= \sum_{k=1}^n \frac{\partial f(Az)} {\partial x_k} A_{ki}
+\end{align}
+ %]]></script>
+
+<p>上式等同于：</p>
+
+<script type="math/tex; mode=display">
+\frac {\partial g(z)} {\partial z_i} =
+A_{\cdot i}^T \nabla_x f(Az)
+</script>
+
+<p>其中<script type="math/tex">A_{\cdot i}</script>是A的第i列。因此有：</p>
+
+<script type="math/tex; mode=display">
+\nabla_z g(z) = A^T \nabla_x f(Az)
+</script>
+
+<p>再来定义海森矩阵<script type="math/tex">\nabla_z^2 g(z)</script>：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+\frac {\partial^2 g(z)} {\partial z_i \partial z_j}
+&= \frac {\partial} {\partial z_j} \sum_{k=1}^n \frac{\partial f(Az)} {\partial (Az)_k} A_{ki} \\
+&= \sum_l \sum_k \frac{\partial^2 f(Az)} {\partial x_l \partial x_k} A_{kj} A_{lj}
+\end{align}
+ %]]></script>
+
+<p>因此有:</p>
+
+<script type="math/tex; mode=display">H_g(z) = A^T H_f(Az) A</script>
+
+<p>下面来推导对于函数<script type="math/tex">f(Ax)</script>的牛顿方法：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+z^{(i+1)} &= z^{(i)} - H_g(z^{(i)})^{-1} \nabla_z g(z^{(i)}) \\
+&= z^{(i)} - (A^T H_f(Az^{(i)}) A)^{-1} A^T \nabla_x f(Az^{(i)}) \\
+&= z^{(i)} - A^{-1}H_f(Az^{(i)})^{-1}(A^T)^{-1}A^T \nabla_x f(Az^{(i)}) \\
+&= z^{(i)} - A^{-1}H_f(Az^{(i)})^{-1}\nabla_x f(Az^{(i)})
+\end{align}
+ %]]></script>
+
+<p>只需要证明<script type="math/tex">Az^{(i+1)}=x^{(i+1)}</script>，即完成证明：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+Az^{(i+1)} &= A(z^{(i)} - A^{-1}H_f(Az^{(i)})^{-1}\nabla_x f(Az^{(i)})) \\
+&= Az^{(i)} - H_f(Az^{(i)})^{-1}\nabla_x f(Az^{(i)}) \\
+&= x^{(i)} - H_f(x^{(i)})^{-1} \nabla_x f(x^{(i)}) \\
+&= x^{(i+1)}
+\end{align}
+ %]]></script>
+
+<h2 id="section-1">证明梯度下降法不是线性不变</h2>
+<p>在<script type="math/tex">g(z)</script>上应用梯度下降规则：</p>
+
+<script type="math/tex; mode=display">
+z^{(i+1)} = z^{(i)} - \alpha A^T \nabla_x f(Az^{(i)})
+</script>
+
+<p>在$$f(x)%%上应用梯度下降规则：</p>
+
+<script type="math/tex; mode=display">
+x^{(i+1)} = x^{(i)} - \alpha \nabla_x f(x^{(i)})
+</script>
+
+<p>要使得<script type="math/tex">x^{(i+1)} = A z^{(i+1)}</script> 成立，</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+Az^{(i+1)} &= z^{(i)} - \alpha AA^T \nabla_x f(Az^{(i)}) \\
+&= x^{(i)} - \alpha AA^T \nabla_x f(x^{(i)})
+\end{align}
+ %]]></script>
+
+<p>必须在<script type="math/tex">AA^T=I</script>成立的条件下才能成立，因此梯度下降法不是线性不变的。</p>

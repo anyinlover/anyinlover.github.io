@@ -1,0 +1,65 @@
+<p>本讲主要学习使用<code>UNION</code>操作符来联合多<code>SELECT</code>语句。</p>
+
+<h2 id="section">理解组合查询</h2>
+
+<p>有两种场景需要使用组合查询。</p>
+
+<ul>
+  <li>从不同表中返回相似结构的数据</li>
+  <li>从单表中执行多次查询，这种情况和使用多<code>WHERE</code>分句的效果是一致的。</li>
+</ul>
+
+<h2 id="section-1">创建组合查询</h2>
+
+<p>SQL查询通过<code>UNION</code>操作符组合在一起。</p>
+
+<h3 id="union">使用<code>UNION</code></h3>
+<p><code>UNION</code>简单的把两个<code>SELECT</code>区分开来：</p>
+
+<pre><code class="language-sql">SELECT cust_name, cust_contact, cust_email
+FROM Customers
+WHERE cust_state IN ('IL','IN','MI')
+UNION
+SELECT cust_name,cust_contact,cust_email
+FROM Customers
+WHERE cust_name='FUN4All';
+</code></pre>
+
+<h3 id="union-1"><code>UNION</code>规则</h3>
+
+<p><code>UNION</code>有一些规则需要遵循：</p>
+
+<ul>
+  <li>一个<code>UNION</code>必须有两或多个<code>SELECT</code>构成。</li>
+  <li>每个查询都必须包含相同的列，表达式或统计函数。</li>
+  <li>列数据类型必须可兼容。</li>
+</ul>
+
+<h3 id="section-2">包含或省略重复行</h3>
+
+<p><code>UNION</code>默认会省略重复行，类似于多<code>WHERE</code>分句。如果要包含重复行，使用<code>UNION ALL</code>:</p>
+
+<pre><code class="language-sql">SELECT cust_name, cust_contact, cust_email
+FROM Customers
+WHERE cust_state IN ('IL','IN','MI')
+UNION ALL
+SELECT cust_name,cust_contact,cust_email
+FROM Customers
+WHERE cust_name='FUN4All';
+</code></pre>
+
+<h3 id="section-3">组合查询结果排序</h3>
+
+<p>组合查询的排序必须放在最后一个<code>SELECT</code>之后：</p>
+
+<pre><code class="language-sql">SELECT cust_name, cust_contact, cust_email
+FROM Customers
+WHERE cust_state IN ('IL','IN','MI')
+UNION
+SELECT cust_name,cust_contact,cust_email
+FROM Customers
+WHERE cust_name='FUN4All'
+ORDER BY cust_name, cust_contact;
+</code></pre>
+
+<p>组合查询在组合不同表的数据时非常有用，即使列名不同，也可以通过别名来保持一致。</p>

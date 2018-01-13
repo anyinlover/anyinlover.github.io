@@ -1,0 +1,388 @@
+<ul>
+  <li>mkdir - Create directories</li>
+  <li>cp - Copy files and directories</li>
+  <li>mv - Move and rename files</li>
+  <li>rm - Remove files and directories</li>
+  <li>ln - Create links</li>
+</ul>
+
+<h2 id="wildcards">Wildcards</h2>
+
+<p><em>Wildcard</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Wildcard</th>
+      <th style="text-align: left">Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">*</td>
+      <td style="text-align: left">Matches any characters</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">?</td>
+      <td style="text-align: left">Matches any single character</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">[characters]</td>
+      <td style="text-align: left">Matches any character that is a member of the set characters</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">!characters</td>
+      <td style="text-align: left">Matches any character that is not a member of the set characters</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">[[:class:]]</td>
+      <td style="text-align: left">Matches any character that is a member of the specified class</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>Commonly Used Character Classes</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Character Class</th>
+      <th style="text-align: center">Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">[:alnum:]</td>
+      <td style="text-align: center">Matches any alphanumeric character</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">[:alpha:]</td>
+      <td style="text-align: center">Matches any alphabetic character</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">[:digit:]</td>
+      <td style="text-align: center">Matches any numeral</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">[:lower:]</td>
+      <td style="text-align: center">Matches any lowercase letter</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">[:upper:]</td>
+      <td style="text-align: center">Matches any uppercase letter</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>Wildcard Examples</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Pattern</th>
+      <th style="text-align: left">Matches</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">*</td>
+      <td style="text-align: left">All files</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">g*</td>
+      <td style="text-align: left">Any file beginning with “g”</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">b*.txt</td>
+      <td style="text-align: left">Any file beginning with “b” followed by any characters and ending with “.txt”</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Data???</td>
+      <td style="text-align: left">Any file beginning with “Data” followed by exactly three characters</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">[abc]*</td>
+      <td style="text-align: left">Any file beginning with either an “a”, a “b”, or a “c”</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">BACKUP.[0-9][0-9][0-9]</td>
+      <td style="text-align: left">Any file beginning with “BACKUP.” followed by exactly three numerals</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">[[:upper:]]*</td>
+      <td style="text-align: left">Any file beginning with an uppercase letter</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">[![:digit:]]*</td>
+      <td style="text-align: left">Any file not beginning with a numeral</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">*[[:lower:]123]</td>
+      <td style="text-align: left">Any file ending with a lowercase letter or the numerals “1”, “2”, “3”</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="mkdir---create-directories">mkdir - Create Directories</h2>
+
+<pre><code>mkdir directory ...
+</code></pre>
+
+<ul>
+  <li>
+    <p>When three periods follow an argument, it means the argument can be repeated</p>
+
+    <p>mkdir dir1</p>
+
+    <p>mkdir dir1 dir2 dir3</p>
+  </li>
+</ul>
+
+<h2 id="cp---copy-files-and-directories">cp - Copy Files And Directories</h2>
+
+<p>copy the single file or directory to file or directory</p>
+
+<pre><code>cp item1 item2
+</code></pre>
+
+<p>copy multiple items(either files or directories) into a directory</p>
+
+<h3 id="useful-options-and-examples">Useful Options And Examples</h3>
+
+<p><em>cp Options</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Option</th>
+      <th style="text-align: left">Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">-a, –archive</td>
+      <td style="text-align: left">Copy the files and directories and all of their attributes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">-i, –interactive</td>
+      <td style="text-align: left">Before overwriting an existing file, prompt the user for confirmation</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">-r, –recursive</td>
+      <td style="text-align: left">Recursively copy directories and their contents</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">-u, –update</td>
+      <td style="text-align: left">Only copy files that either don’t exist, or are newer</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">-v, –verbose</td>
+      <td style="text-align: left">Display informative messages as the copy is performed</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>cp Examples</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Command</th>
+      <th style="text-align: left">Results</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">cp file1 file2</td>
+      <td style="text-align: left">If file2 exists, overwrite. Not exist, create</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cp -i file1 file2</td>
+      <td style="text-align: left">Same as above, except prompt before overwrite</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cp file1 file2 dir1</td>
+      <td style="text-align: left">Copy file1 and file2 into dir1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cp dir1/* dir2</td>
+      <td style="text-align: left">Copy all the files in dir1 into dir2</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cp -r dir1 dir2</td>
+      <td style="text-align: left">If dir2 exist, Copy dir1(and its contents)into dir2. If not, create a dir2 contain same contents as dir1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="mv---move-and-rename-files">mv - Move And Rename Files</h2>
+<p>move or rename file or directory “item1” to “item2”</p>
+
+<pre><code>mv item1 item2 move one or more items from one directory to another
+
+mv item... directory
+</code></pre>
+
+<h3 id="useful-options-and-examples-1">Useful Options And Examples</h3>
+
+<p><em>mc Options</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Option</th>
+      <th style="text-align: left">Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">-i, –interactive</td>
+      <td style="text-align: left">Before overwriting an existing file, prompt the user for confirmation</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">-u, –update</td>
+      <td style="text-align: left">Only move files that either don’t exist, or are newer</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">-v, –verbose</td>
+      <td style="text-align: left">Display informative messages as the move is performed</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>mv Examples</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Command</th>
+      <th style="text-align: left">Results</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">mv file1 file2</td>
+      <td style="text-align: left">If file2 exists, overwrite. Not exist, create</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">mv -i file1 file2</td>
+      <td style="text-align: left">Same as above, except prompt before overwrite</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">mv file1 file2 dir1</td>
+      <td style="text-align: left">Move file1 and file2 into dir1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">mv -r dir1 dir2</td>
+      <td style="text-align: left">If dir2 exist, Move dir1(and its contents)into dir2. If not, create a dir2 contain same contents as dir1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="rm---remove-files-and-directories">rm - Remove Files And Directories</h2>
+
+<p>romove files and directories</p>
+
+<pre><code>rm item...
+</code></pre>
+
+<h3 id="useful-options-and-examples-2">Useful Options And Examples</h3>
+
+<p><em>rm Options</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Option</th>
+      <th style="text-align: left">Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">-i, –interactive</td>
+      <td style="text-align: left">Before deleting an existing file, prompt the user for confirmation</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">-r, –recursive</td>
+      <td style="text-align: left">Recursively delete directories</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">-f, –force</td>
+      <td style="text-align: left">Ignore nonexisten files and do not prompt, overrides the -i option</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">-v, –verbose</td>
+      <td style="text-align: left">Display informative messages as the deletion is performed</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>rm Examples</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Command</th>
+      <th style="text-align: left">Results</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">rm file1</td>
+      <td style="text-align: left">Delete file1 silently</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rm -i file1</td>
+      <td style="text-align: left">Same as above, except prompt before overwrite</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rm -r file1 dir1</td>
+      <td style="text-align: left">Delete file1 and dir1 and its contents</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rm -rf file1 dir1</td>
+      <td style="text-align: left">Same as above, except if either file1 or dir1 not exist, continue silently</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Be Careful With rm!</li>
+  <li>A useful tip: use ls before rm</li>
+</ul>
+
+<h3 id="in---create-links">In - Create Links</h3>
+
+<p>Create a hard link</p>
+
+<pre><code>ln file link
+</code></pre>
+
+<p>Create a symbolic link</p>
+
+<pre><code>ln -s item link
+</code></pre>
+
+<h2 id="hard-links">Hard Links</h2>
+
+<p>Two limitations:
+1. Cannot reference a file outside its own file system
+2. Cannot reference a directory</p>
+
+<p>Hard Link file has the same inode as the file, <code>-i</code>option can reveal inode information</p>
+
+<pre><code>ls -li
+</code></pre>
+
+<h3 id="symbolic-links">Symbolic Links</h3>
+
+<p>Broken link: The file is deleted before the symbolic link</p>
+
+<h2 id="lets-build-a-playground">Let’s Build A Playground</h2>
+
+<p>See the « The Linux Command Line »</p>
+
+<ul>
+  <li>Creating Symlinks With The GUI: 
+Hold Ctrl+Shift when drag the file</li>
+</ul>

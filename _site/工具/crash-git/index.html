@@ -1,0 +1,1048 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.9.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="zh" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Git速成 - 木公的博客-Anyinlover Blog</title>
+
+
+
+
+<meta name="description" content="Git简介Git是一种分布式版本控制系统，由开发出Linux的大神Linus撰写。SVN是目前使用最多的集中式版本库控制系统。安装Git在Ubuntu下可以用下面的命令安装：">
+
+
+
+
+<meta name="author" content="Anyinlover">
+
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="木公的博客-Anyinlover Blog">
+<meta property="og:title" content="Git速成">
+
+
+  <link rel="canonical" href="http://localhost:4000/%E5%B7%A5%E5%85%B7/crash-git/">
+  <meta property="og:url" content="http://localhost:4000/%E5%B7%A5%E5%85%B7/crash-git/">
+
+
+
+  <meta property="og:description" content="Git简介Git是一种分布式版本控制系统，由开发出Linux的大神Linus撰写。SVN是目前使用最多的集中式版本库控制系统。安装Git在Ubuntu下可以用下面的命令安装：">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  <meta property="og:image" content="http://localhost:4000/img/sunrise.jpg">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2016-05-09T00:00:00+08:00">
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000",
+      "logo": "http://localhost:4000/img/tree.jpg"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Anyinlover",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="木公的博客-Anyinlover Blog Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://localhost:4000/">木公的博客-Anyinlover Blog</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/about" >关于</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/year-archive/" >博文</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/categories/" >类别</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/tags/" >标签</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('http://localhost:4000/img/sunrise.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 class="page__title" itemprop="headline">
+        
+          Git速成
+
+        
+      </h1>
+      
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="http://localhost:4000/img/morning.jpg" alt="Anyinlover" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Anyinlover</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        未经审视的人生是不值得过的
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">关注</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Xi'an</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/anyinlover" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.weibo.com/2663254313" itemprop="sameAs">
+            <i class="fab fa-fw fa-weibo" aria-hidden="true"></i> Weibo
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+        <li>
+          <a href="https://www.douban.com/people/48573787/" itemprop="sameAs">
+            <span class="fa-layers fa-fw">
+              <i class="fas fa-circle"></i>
+              <span class="fa-layers-text fa-inverse" data-fa-transform="shrink-4">豆</span>
+            </span>
+            Douban
+          </a>
+        </li>
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Git速成">
+    <meta itemprop="description" content="Git简介Git是一种分布式版本控制系统，由开发出Linux的大神Linus撰写。SVN是目前使用最多的集中式版本库控制系统。安装Git在Ubuntu下可以用下面的命令安装：">
+    <meta itemprop="datePublished" content="May 09, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#git简介">Git简介</a></li>
+  <li><a href="#安装git">安装Git</a></li>
+  <li><a href="#创建版本库">创建版本库</a>
+    <ul>
+      <li><a href="#创建">创建</a></li>
+      <li><a href="#添加文件到暂存区">添加文件到暂存区</a></li>
+      <li><a href="#从暂存区添加到版本库">从暂存区添加到版本库</a></li>
+    </ul>
+  </li>
+  <li><a href="#版本管理">版本管理</a>
+    <ul>
+      <li><a href="#版本回退">版本回退</a></li>
+      <li><a href="#工作区和缓存区">工作区和缓存区</a></li>
+      <li><a href="#管理修改">管理修改</a></li>
+      <li><a href="#撤销修改">撤销修改</a></li>
+      <li><a href="#删除文件">删除文件</a></li>
+    </ul>
+  </li>
+  <li><a href="#远程仓库">远程仓库</a>
+    <ul>
+      <li><a href="#添加远程库">添加远程库</a></li>
+      <li><a href="#克隆远程库">克隆远程库</a></li>
+    </ul>
+  </li>
+  <li><a href="#分支管理">分支管理</a>
+    <ul>
+      <li><a href="#创建与合并分支">创建与合并分支</a></li>
+      <li><a href="#解决冲突">解决冲突</a></li>
+      <li><a href="#分支管理策略">分支管理策略</a></li>
+      <li><a href="#bug分支">Bug分支</a></li>
+      <li><a href="#feature分支">Feature分支</a></li>
+      <li><a href="#多人协作">多人协作</a></li>
+    </ul>
+  </li>
+  <li><a href="#标签管理">标签管理</a>
+    <ul>
+      <li><a href="#创建标签">创建标签</a></li>
+      <li><a href="#操作标签">操作标签</a></li>
+    </ul>
+  </li>
+  <li><a href="#使用github">使用github</a></li>
+  <li><a href="#自定义git">自定义Git</a>
+    <ul>
+      <li><a href="#忽略特殊文件">忽略特殊文件</a></li>
+      <li><a href="#配置别名">配置别名</a></li>
+      <li><a href="#搭建git服务器">搭建git服务器</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </aside>
+        
+        <h2 id="git简介">Git简介</h2>
+<p>Git是一种分布式版本控制系统，由开发出Linux的大神Linus撰写。SVN是目前使用最多的集中式版本库控制系统。</p>
+<h2 id="安装git">安装Git</h2>
+<p>在Ubuntu下可以用下面的命令安装：</p>
+
+<p><code class="highlighter-rouge">sudo apt-get install git</code></p>
+
+<p>在Mac下则使用Homebrew：</p>
+
+<p><code class="highlighter-rouge">brew install git</code></p>
+
+<p>安装完成后设置一下姓名，邮箱和默认编辑器：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config --global user.name "Miachel Gu"
+git config --global user.email "anyinlover@gmail.com"
+git config --global core.editor vim
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">--global</code>是一个全局参数，也可以对每个Git仓库设置不同的配置。</p>
+
+<h2 id="创建版本库">创建版本库</h2>
+
+<h3 id="创建">创建</h3>
+<p>在某个目录下使用下面的命令，将其初始化成一个Git仓库：</p>
+
+<p><code class="highlighter-rouge">git init</code></p>
+
+<h3 id="添加文件到暂存区">添加文件到暂存区</h3>
+<p>新添或者修改一个文件后，使用<code class="highlighter-rouge">git add</code>将其添加到暂存区：</p>
+
+<p><code class="highlighter-rouge">git add filename</code></p>
+<h3 id="从暂存区添加到版本库">从暂存区添加到版本库</h3>
+<p>使用命令<code class="highlighter-rouge">git commit</code>将暂存区文件提交到仓库, <code class="highlighter-rouge">-m</code>后是提交的备注：</p>
+
+<p><code class="highlighter-rouge">git commit -m "add a file"</code></p>
+
+<p><code class="highlighter-rouge">add</code>和<code class="highlighter-rouge">commit</code>分成了两步，可以多次<code class="highlighter-rouge">add</code>，一次<code class="highlighter-rouge">commit</code>。</p>
+
+<h2 id="版本管理">版本管理</h2>
+<p><code class="highlighter-rouge">git status</code>查看仓库当前的状态：</p>
+
+<p><code class="highlighter-rouge">git status</code></p>
+
+<p><code class="highlighter-rouge">git diff</code>比较修改过的文件：</p>
+
+<p><code class="highlighter-rouge">git diff filename</code></p>
+
+<h3 id="版本回退">版本回退</h3>
+
+<p><code class="highlighter-rouge">git log</code>可以用来查看版本记录，其中一大串数字显示的是SHA1计算出来的<code class="highlighter-rouge">commit id</code>。</p>
+
+<p>用下面的命令可以回退到上一版本，<code class="highlighter-rouge">HEAD</code>表示当前版本，<code class="highlighter-rouge">HEAD^</code>表示上一版本。依次类推，<code class="highlighter-rouge">HEAD^^</code>表示上上版本, <code class="highlighter-rouge">HEAD~100</code>表示往上100个版本：</p>
+
+<p><code class="highlighter-rouge">git reset --hard HEAD^</code></p>
+
+<p>如果又反悔回退了，只要知道<code class="highlighter-rouge">commit_id</code>，仍然可以重新回退到新版本</p>
+
+<p><code class="highlighter-rouge">git reset --hard commit_id</code></p>
+
+<p><code class="highlighter-rouge">commit_id</code>可以只写前面几位，唯一匹配即可。</p>
+
+<p>如果关闭窗口后找不到新版本的<code class="highlighter-rouge">commit_id</code>了，那就需要使用下面的命令来查看命令历史：</p>
+
+<p><code class="highlighter-rouge">git reflog</code></p>
+
+<h3 id="工作区和缓存区">工作区和缓存区</h3>
+
+<p>Git最重要的概念就是三分天下：工作区-缓存区-版本库。<code class="highlighter-rouge">add</code>操作是将工作区的文件加到缓存区中，<code class="highlighter-rouge">commit</code>操作是将缓存区文件加到版本库。</p>
+
+<h3 id="管理修改">管理修改</h3>
+
+<p>Git管理的是修改而非文件。下面的命令可以比较版本库中和工作区中文件的差异：</p>
+
+<p><code class="highlighter-rouge">git diff HEAD -- filename</code></p>
+
+<h3 id="撤销修改">撤销修改</h3>
+
+<p>如果只是修改了工作区的文件，用下面的命令可以撤销到上一次<code class="highlighter-rouge">commit</code>或<code class="highlighter-rouge">add</code>提交后的状态：</p>
+
+<p><code class="highlighter-rouge">git checkout -- filename</code></p>
+
+<p>如果修改已经提交到暂存区了，那就需要使用下面的命令丢弃暂存区修改：</p>
+
+<p><code class="highlighter-rouge">git reset HEAD filename</code></p>
+
+<p>记得丢弃暂存区修改后还要丢弃工作区修改。</p>
+
+<h3 id="删除文件">删除文件</h3>
+<p>使用<code class="highlighter-rouge">git rm</code>删除文件，后面还需要<code class="highlighter-rouge">git commit</code>提交修改：</p>
+
+<p><code class="highlighter-rouge">git rm filename</code></p>
+
+<p>假如误删等同于丢弃暂存区修改，想要还原需要两步走：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset HEAD filename
+git checkout -- filename
+</code></pre></div></div>
+
+<h2 id="远程仓库">远程仓库</h2>
+<p>使用SSH方式连接github，需要配置SSH Key。假如主目录下无隐藏文件夹.ssh，就创建一个<code class="highlighter-rouge">ssh-keygen -t rsa -C "anyinlover@gmail.com"</code>。在.ssh文件下有id_rsa和id_rsa.pub两个文件，将id_rsa.pub内容复制到GitHub SSH Keys，注意不要有多余的空格或换行符。</p>
+
+<h3 id="添加远程库">添加远程库</h3>
+<p>在github上Create a new repo，命名为learngit，在本地仓库已存在的情况下，将本地库与远程库相关联：</p>
+
+<p><code class="highlighter-rouge">git remote add origin git@github.com:anyinlover/learngit</code></p>
+
+<ul>
+  <li>执行错误提醒： fatal: remote origin already exists.
+解决办法：<code class="highlighter-rouge">git remote rm origin</code></li>
+</ul>
+
+<p>远程库默认名字是origin，不必修改。
+推送本地库内容到远程库：</p>
+
+<p><code class="highlighter-rouge">git push -u origin master</code></p>
+
+<p>参数<code class="highlighter-rouge">-u</code>用以将本地master分支与远程master分支关联，以后推送只需要:</p>
+
+<p><code class="highlighter-rouge">git push origin master</code></p>
+
+<ul>
+  <li>ssh警告
+第一次 push 或 clone时出现，用以显示第一次验证github服务器上的SSH key，输入yes即可。</li>
+</ul>
+
+<h3 id="克隆远程库">克隆远程库</h3>
+<p>对于新项目而言，最好先在在gihub上创建新仓库，然后克隆到本地：</p>
+
+<p><code class="highlighter-rouge">git clone git@github.com:guguoshenqi/gitskill.git</code></p>
+
+<p>Git其实还能支持其他协议，比如<code class="highlighter-rouge">https</code>，但<code class="highlighter-rouge">https</code>速度慢，且每次推送需要输入口令，只有在只开放http端口的公司内网环境下使用。</p>
+
+<h2 id="分支管理">分支管理</h2>
+<p>分支提供了平行世界的功能，使多人协作更加的方便。</p>
+
+<h3 id="创建与合并分支">创建与合并分支</h3>
+<p>在版本回退中，每次提交Git都会串成时间线也就是分支。在Git中，默认的那个分支称为主分支，即<code class="highlighter-rouge">master</code>分支。在前面的单分支情况下，<code class="highlighter-rouge">HEAD</code>严格来说是指向<code class="highlighter-rouge">master</code>的，而<code class="highlighter-rouge">master</code>才是指向提交的，所以<code class="highlighter-rouge">HEAD</code>指向的就是当前分支。</p>
+
+<p><img src="\img\git_1.png" alt="" /></p>
+
+<p>当新建分支<code class="highlighter-rouge">dev</code>时，指向与<code class="highlighter-rouge">master</code>相同的提交，并把<code class="highlighter-rouge">HEAD</code>指向<code class="highlighter-rouge">dev</code>，表示当前分支在<code class="highlighter-rouge">dev</code>上。</p>
+
+<p><img src="\img\git_2.png" alt="" /></p>
+
+<p>现在对工作区的修改和提交发生在了<code class="highlighter-rouge">dev</code>分支上，提交一次后会变成下面这样：</p>
+
+<p><img src="\img\git_3.png" alt="" /></p>
+
+<p>如果<code class="highlighter-rouge">dev</code>分支的工作完成了，需要将其合并到<code class="highlighter-rouge">master</code>上，只需要让<code class="highlighter-rouge">master</code>指向<code class="highlighter-rouge">dev</code>对应的提交，合并就完成了：</p>
+
+<p><img src="\img\git_4.png" alt="" /></p>
+
+<p>这个时候删除<code class="highlighter-rouge">dev</code>分支也没有关系（就是删除一个指针），删完后就变成：</p>
+
+<p><img src="\img\git_5.png" alt="" /></p>
+
+<p>首先创建并切换到新分支<code class="highlighter-rouge">dev</code>上：</p>
+
+<p><code class="highlighter-rouge">git checkout -b dev</code></p>
+
+<p>上面的命令相当于下面两步：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch dev
+git checkout dev
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">git branch</code>命令可以查看所有分支，带星号的是当前分支。</p>
+
+<p>如果想切换分支，使用下面的命令：</p>
+
+<p><code class="highlighter-rouge">git chekcout master</code></p>
+
+<p>如果想把<code class="highlighter-rouge">dev</code>分支的内容合并到<code class="highlighter-rouge">master</code>分支上,<code class="highlighter-rouge">Fast-forward</code>是一种快速合并的模式，也就是前面提到的移动指针。有时候可能会不适用这种快速合并的方式。</p>
+
+<p><code class="highlighter-rouge">git merge dev</code></p>
+
+<p>合并完成后就可以放心的删除<code class="highlighter-rouge">dev</code>分支了：</p>
+
+<p><code class="highlighter-rouge">git branch -d dev</code></p>
+
+<h3 id="解决冲突">解决冲突</h3>
+<p>当两个分支都有新的提交时，会发生合并冲突，需要手工修改后重新提交。
+可以用<code class="highlighter-rouge">git log --graph</code>查看分支合并图:</p>
+
+<p><code class="highlighter-rouge">git log --graph --pretty=oneline --abbrev-commit</code></p>
+
+<h3 id="分支管理策略">分支管理策略</h3>
+<p>Git默认会使用<code class="highlighter-rouge">Fast forward</code>模式，这种模式在删除分支后，会丢掉分支信息。如果禁用Fast forward模式合并，会产生一个新的commit，从而可以保存被删除分支信息，使用<code class="highlighter-rouge">--no-ff</code>参数：</p>
+
+<p><code class="highlighter-rouge">git merge --no-ff -m "merge with no-ff" dev</code></p>
+
+<p>实际开发的分支原则</p>
+<ol>
+  <li>master分支非常稳定，只用来发布新版本</li>
+  <li>在dev分支上干活，到版本发布时才合并到master</li>
+  <li>多人协作时每个人在自己分支上干活，时不时合并到dev分支。</li>
+</ol>
+
+<p>类似于下图的团队合作：
+<img src="\img\git_6.png" alt="摘自廖雪峰git教程" /></p>
+
+<h3 id="bug分支">Bug分支</h3>
+<p>如果要修复一个紧急Bug，而现有分支上的工作区又不干净，可以先用下面的命令保存工作现场：</p>
+
+<p><code class="highlighter-rouge">git stash</code></p>
+
+<p>在完成创建Bug分支并合并到现有分支时，可以再恢复工作现场。
+用下面的命令可以查看保存stash列表：</p>
+
+<p><code class="highlighter-rouge">git stash list</code></p>
+
+<p>有两种方法可以恢复工作现场
+<code class="highlighter-rouge">git stash apply</code>
+后不会删除stash列表，需要再用<code class="highlighter-rouge">git stash drop</code>来删除。</p>
+
+<p><code class="highlighter-rouge">git stach pop</code>
+在恢复的同时也会删除stash列表。</p>
+
+<p>在多次stash的情况下，可以先查看stash列表，然后再恢复指定的stash：</p>
+
+<p><code class="highlighter-rouge">git stash apply stash@{0}</code></p>
+
+<h3 id="feature分支">Feature分支</h3>
+<p>开发一个新feature，最好新建分支。</p>
+
+<p>如果要强行删除未合并分支：</p>
+
+<p><code class="highlighter-rouge">git branch -D feature-vulcan</code></p>
+
+<h3 id="多人协作">多人协作</h3>
+
+<p>当从远程仓库克隆时，Git自动会把本地<code class="highlighter-rouge">master</code>分支和远程<code class="highlighter-rouge">master</code>分支对应，远程仓库默认名称是<code class="highlighter-rouge">origin</code>。</p>
+
+<p>要查看远程库的信息，使用<code class="highlighter-rouge">git remote</code>，<code class="highlighter-rouge">git remote -v</code> 显示更详细的信息。
+如果要把本地<code class="highlighter-rouge">master</code>分支推送到远程：</p>
+
+<p><code class="highlighter-rouge">git push origin master</code></p>
+
+<p>如果要推送其他分支，如<code class="highlighter-rouge">dev</code>，那就用：</p>
+
+<p><code class="highlighter-rouge">git push origin dev</code></p>
+
+<p>注意不是全部分支需要远程推送：</p>
+
+<ul>
+  <li>master主分支，dev开发分支需要推送</li>
+  <li>bug分支一般用于本地修复，不需推送</li>
+  <li>feature分支是否推送取决于是否合作开发</li>
+</ul>
+
+<p>从远程库clone时，默认只有本地<code class="highlighter-rouge">master</code>分支，如果要创建远程origin/dev分支到本地：</p>
+
+<p><code class="highlighter-rouge">git checkout -b dev origin/dev</code></p>
+
+<p>完成开发后就可以<code class="highlighter-rouge">push</code>到远程库。但如果想用<code class="highlighter-rouge">git pull</code>抓取远程库，还要指定本地dev分支与远程origin/dev分支的连接：</p>
+
+<p><code class="highlighter-rouge">git branch --set-upstream dev origin/dev</code></p>
+
+<p>多人协作的工作模式：</p>
+
+<ol>
+  <li>首先，尝试用<code class="highlighter-rouge">git push origin branch-name</code> 推送自己的修改；</li>
+  <li>如果推送失败，是由于远程分支比你的本地更新， 需要先<code class="highlighter-rouge">git pull</code>试图合并。</li>
+  <li>如果合并有冲突，则解决冲突，并在本地提交</li>
+  <li>没有冲突后再次推送。
+    <ul>
+      <li>如果<code class="highlighter-rouge">git pull</code>提示”no tracking information”，说明本地分支和远程分支无关联，参考上面的指令。</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="标签管理">标签管理</h2>
+<p>在发布版本时，打一个标签，可以唯一确定打标签时候的版本。标签是版本库的一个快照，实质是一个不能移动的指向commit的指针。</p>
+<h3 id="创建标签">创建标签</h3>
+<p>首先切换到要打标签的分支上，创建新标签，默认打在最新提交的commit上：</p>
+
+<p><code class="highlighter-rouge">git tag v1.0</code></p>
+
+<p><code class="highlighter-rouge">git tag</code>查看所有标签</p>
+
+<p>如果是要为历史提交打标签，需要找到对应的<code class="highlighter-rouge">commit_id</code>：</p>
+
+<p><code class="highlighter-rouge">git tag v0.9 commit_id</code></p>
+
+<p>如果要查看标签，用<code class="highlighter-rouge">git tag</code>找到标签名然后使用下面的命令：</p>
+
+<p><code class="highlighter-rouge">git show &lt;tagname&gt;</code></p>
+
+<p>创建标签时还能带上说明文字：</p>
+
+<p><code class="highlighter-rouge">git tag -a v0.1 -m "version 0.1 released" commit_id</code></p>
+
+<p>用<code class="highlighter-rouge">-s</code>则能用私钥签名标签，签名采用PGP签名。需要安装gpg。</p>
+
+<p><code class="highlighter-rouge">git tag -s v0.2 -m "signed version 0.2 released" commit_id</code></p>
+
+<h3 id="操作标签">操作标签</h3>
+
+<p>标签打错是可以删除的：
+<code class="highlighter-rouge">git tag -d v0.1</code></p>
+
+<p>如果要把标签推送到远程：</p>
+
+<p><code class="highlighter-rouge">git push origin v1.0</code></p>
+
+<p>还可以推送全部标签到远程：</p>
+
+<p><code class="highlighter-rouge">git push origin --tags</code></p>
+
+<p>如果要删除远程标签，有些麻烦，需要先在本地删除，然后：</p>
+
+<p><code class="highlighter-rouge">git push origin :refs/tags/v0.9</code></p>
+
+<h2 id="使用github">使用github</h2>
+<ul>
+  <li>在Github上， 可以任意Fork开源仓库</li>
+  <li>自己拥有Fork后的仓库的读写权限</li>
+  <li>可以推送pull request给官方仓库来贡献代码</li>
+</ul>
+
+<h2 id="自定义git">自定义Git</h2>
+<p>Git除了最前面的姓名和邮箱，还有很多可以配置的。</p>
+
+<h3 id="忽略特殊文件">忽略特殊文件</h3>
+<p>在git工作区根目录下建一个.gitignore文件，可以指定不想提交的文件。
+<a href="https://github.com/github/gitignore">Github官网</a>有不错的示例。</p>
+
+<p>忽略文件原则：</p>
+
+<ul>
+  <li>忽略自动生成文件、如缩略图;</li>
+  <li>忽略编译生成的中间文件、可执行文件等。</li>
+  <li>忽略自己的带敏感信息的配置文件</li>
+</ul>
+
+<h3 id="配置别名">配置别名</h3>
+<p><code class="highlighter-rouge">git config --global alias.st status</code>
+还有好些有意思的别名参考<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375234012342f90be1fc4d81446c967bbdc19e7c03d3000">原文</a>。</p>
+
+<p>配置文件存放位置：</p>
+
+<ul>
+  <li>每个仓库的配置在<code class="highlighter-rouge">.git/config</code></li>
+  <li>当前用户(Global)配置在<code class="highlighter-rouge">~/.gitconfig</code></li>
+</ul>
+
+<h3 id="搭建git服务器">搭建git服务器</h3>
+
+<p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000">参考原文</a></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 标签: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#git" class="page__taxonomy-item" rel="tag">git</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#github" class="page__taxonomy-item" rel="tag">github</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 分类: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/categories/#%E5%B7%A5%E5%85%B7" class="page__taxonomy-item" rel="tag">工具</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time datetime="2016-05-09T00:00:00+08:00">May 09, 2016</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/naive-bayes-svm-ps/" class="pagination--pager" title="朴素贝叶斯与SVM习题
+">向前</a>
+    
+    
+      <a href="http://localhost:4000/tlcl/Chapter06-Redireaction/" class="pagination--pager" title="Chapter 06 - Redireaction
+">向后</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">猜您还喜欢</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E5%B7%A5%E5%85%B7/%E5%8D%9A%E5%AE%A2%E9%87%8D%E5%BB%BA/" rel="permalink">博客重建
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">今天花了整整一天的时候把我的博客重建起来了，主要是换了一个主题，然后剩下的时候就一直在折腾了。这次用了一个很受欢迎的minimal-mistakes，搞下来才发现它为啥叫迷你了，自己要设置的东西太多了！
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%84%8F%E4%B9%89/" rel="permalink">人生的意义
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">人生的意义
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E5%B7%A5%E5%85%B7/shadowsocksr/" rel="permalink">shadowsocksR
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">时代在发展，shadowsocks源作者已经被请去喝茶了，现在更流行的一个叫shadowsocksR加强版，感谢两位作者。这里也趁着换VPS的同时新装了一个shadowsocksR。
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E7%AC%94%E8%AE%B0/ruby-gem-bundler/" rel="permalink">ruby &amp; gem &amp; bundler
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">ruby
+
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+  <input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  <div id="results" class="results"></div>
+</div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+    
+    
+    
+      <li><a href="https://github.com/anyinlover"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="http://localhost:4000/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 Anyinlover. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="http://localhost:4000/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+
+
+
+  
+  
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr.min.js"></script>
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr-store.js"></script>
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/%E5%B7%A5%E5%85%B7/crash-git/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/%E5%B7%A5%E5%85%B7/crash-git"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://anyinlover.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+  </body>
+</html>

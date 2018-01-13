@@ -1,0 +1,827 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.9.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="zh" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>因子分析 - 木公的博客-Anyinlover Blog</title>
+
+
+
+
+<meta name="description" content="在前面的混合高斯模型中，我们常常假定我们有充足的样本去发现数据的内在结构。也就是样本数m远远大于特征数n。">
+
+
+
+
+<meta name="author" content="Anyinlover">
+
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="木公的博客-Anyinlover Blog">
+<meta property="og:title" content="因子分析">
+
+
+  <link rel="canonical" href="http://localhost:4000/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/factor-analysis/">
+  <meta property="og:url" content="http://localhost:4000/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/factor-analysis/">
+
+
+
+  <meta property="og:description" content="在前面的混合高斯模型中，我们常常假定我们有充足的样本去发现数据的内在结构。也就是样本数m远远大于特征数n。">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  <meta property="og:image" content="http://localhost:4000/img/sunrise.jpg">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2016-04-24T00:00:00+08:00">
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000",
+      "logo": "http://localhost:4000/img/tree.jpg"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Anyinlover",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="木公的博客-Anyinlover Blog Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://localhost:4000/">木公的博客-Anyinlover Blog</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/about" >关于</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/year-archive/" >博文</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/categories/" >类别</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/tags/" >标签</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('http://localhost:4000/img/sunrise.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 class="page__title" itemprop="headline">
+        
+          因子分析
+
+        
+      </h1>
+      
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="http://localhost:4000/img/morning.jpg" alt="Anyinlover" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Anyinlover</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        未经审视的人生是不值得过的
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">关注</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Xi'an</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/anyinlover" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.weibo.com/2663254313" itemprop="sameAs">
+            <i class="fab fa-fw fa-weibo" aria-hidden="true"></i> Weibo
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+        <li>
+          <a href="https://www.douban.com/people/48573787/" itemprop="sameAs">
+            <span class="fa-layers fa-fw">
+              <i class="fas fa-circle"></i>
+              <span class="fa-layers-text fa-inverse" data-fa-transform="shrink-4">豆</span>
+            </span>
+            Douban
+          </a>
+        </li>
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="因子分析">
+    <meta itemprop="description" content="在前面的混合高斯模型中，我们常常假定我们有充足的样本去发现数据的内在结构。也就是样本数m远远大于特征数n。">
+    <meta itemprop="datePublished" content="April 24, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#限制sigma">限制</a></li>
+  <li><a href="#边缘和条件高斯分布">边缘和条件高斯分布</a></li>
+  <li><a href="#因子分析模型">因子分析模型</a></li>
+  <li><a href="#因子分析的最大期望算法">因子分析的最大期望算法</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>在前面的混合高斯模型中，我们常常假定我们有充足的样本去发现数据的内在结构。也就是样本数m远远大于特征数n。</p>
+
+<p>现在考虑<script type="math/tex">n \gg n</script>的情况，在这样的条件下，单高斯模型都无法拟合，更不论混合高斯模型了。根据最大似然估计，高斯模型的拟合参数如下：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\mu &= \frac {1} {m} \sum_{i=1}^m x^{(i)} \\
+\Sigma &= \frac {1} {m} \sum_{i=1}^m (x^{(i)}-\mu) (x^{(i)}-\mu)^T
+\end{align} %]]></script>
+
+<p>我们会发现<script type="math/tex">\Sigma</script>是奇异阵，<script type="math/tex">\Sigma^{-1}</script>不存在。这样就无法计算模型的密度函数了。</p>
+
+<p>进一步讲，要通过最大似然估计来拟合高斯模型，必须让m远大于n，才能有比较好的结果。</p>
+
+<p>那么我们如何解决这个样本数不足的问题呢？</p>
+
+<h2 id="限制sigma">限制<script type="math/tex">\Sigma</script></h2>
+<p>如果我们没有足够的数据来拟合一个协方差矩阵，我们可以为其添加一些限制。比如考虑协方差矩阵是对角的，也就是特征间是相互独立的，在这种情况下：</p>
+
+<script type="math/tex; mode=display">\Sigma_{jj} = \frac {1} {m} \sum_{i=1}^m (x_j^{(i)}-\mu_j)^2</script>
+
+<p>二元高斯分布在平面的投影是个椭圆，对角阵意味着椭圆轴线与坐标轴平行。</p>
+
+<p>进一步，我们还能控制<script type="math/tex">\Sigma</script>不仅是对角的，而且对角元素相同。<script type="math/tex">\Sigma= \sigma^2 I</script>，<script type="math/tex">\sigma^2</script>可以通过最大似然估计得到：</p>
+
+<script type="math/tex; mode=display">\sigma^2 = \frac {1}{mn} \sum_{j=1}^n \sum_{i=1}^m (x_j^{(i)}-\mu_j)^2</script>
+
+<p>在高斯分布平面投影上椭圆变成了圆。</p>
+
+<p>假如不对<script type="math/tex">\Sigma</script>做限制，我们必须在<script type="math/tex">m \geq n+1</script>的条件下才能保证<script type="math/tex">\Sigma</script>不是一个奇异阵，在上面的约束下，只需要<script type="math/tex">m \geq 2</script>就能保证非奇异。</p>
+
+<p>但上述的假设太强，意味着特征之间完全相互独立，假如我们想要挖掘数据内部的关系时，就需要使用到因子分析模型。</p>
+
+<h2 id="边缘和条件高斯分布">边缘和条件高斯分布</h2>
+<p>在描述因子分析之前，我们先来讨论一下如何找到联合多元高斯分布的条件分布和边缘分布。</p>
+
+<p>假定我们有一个随机变量：</p>
+
+<script type="math/tex; mode=display">x = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}</script>
+
+<p>这里<script type="math/tex">x_1 \in \mathbb{R}^r, x_2 \in \mathbb{R}^s, \Sigma_{11} \in \mathbb{R}^{r\times r}, \Sigma_{12} \in \mathbb{R}^{r \times s}</script> 假定 <script type="math/tex">x \sim \mathcal{N} (\mu, \Sigma)</script>，有：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\mu = \begin{bmatrix} \mu_1 \\ \mu_2 \end{bmatrix},
+\Sigma = \begin{bmatrix} \Sigma_{11} & \Sigma_{12} \\ \Sigma_{21} & \Sigma_{22} \end{bmatrix} %]]></script>
+
+<p><script type="math/tex">x_1</script> 和<script type="math/tex">x_2</script>被称为联合多元分布，那么<script type="math/tex">x_1</script>的边缘分布是什么？很容易可以看到<script type="math/tex">E[x_1]=\mu_1</script>, <script type="math/tex">Cov(x_1) = E[(x_1-\mu_1)(x_1-\mu_1)]=\Sigma_{11}</script>
+。因为根据协方差的定义：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+Cov(x) &= \Sigma \\
+&= \begin{bmatrix} \Sigma_{11} & \Sigma_{12} \\ \Sigma_{21} & \Sigma_{22}
+    \end{bmatrix} \\
+&= E[(x-\mu)(x-\mu)^T] \\
+&= E[\begin{pmatrix} x_1-\mu_1 \\ x_2-\mu_2 \end{pmatrix}
+{\begin{pmatrix} x_1-\mu_1 \\ x_2-\mu_2 \end{pmatrix}}^T] \\
+&= E \begin{pmatrix} (x_1-\mu_1)(x_1-\mu_1)^T (x_1-\mu_1)(x_2-\mu_2)^T \\
+(x_2 - \mu_2)(x_1 - \mu_1)^T (x_2-\mu_2)(x_2-\mu_2)^T \end{pmatrix}
+\end{align} %]]></script>
+
+<p>因此可以得出<script type="math/tex">x_1</script>的边缘分布是<script type="math/tex">x_1 \sim \mathcal{N} (\mu_1, \Sigma_{11})</script>。</p>
+
+<p>下面再来考虑在<script type="math/tex">x_2</script>给定下<script type="math/tex">x_1</script>的条件分布。可以记作<script type="math/tex">x_1 \mid x_2 \sim \mathcal{N} (\mu_{1\mid 2}, \Sigma_{1 \mid 2})</script>，可以计算如下：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\mu_{1 \mid 2} &= \mu_1 + \Sigma_{12} \Sigma_{22}^{-1} (x_2 - \mu_2) \\
+\Sigma_{1 \mid 2} &= \Sigma_{11} - \Sigma_{12} \Sigma_{22}^{-1} \Sigma_{21}
+\end{align} %]]></script>
+
+<h2 id="因子分析模型">因子分析模型</h2>
+<p>在因子分析模型中，我们定义(x,z)的联合分布如下，其中<script type="math/tex">z \in \mathbb{R}^k</script>是一个潜在随机变量：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+z & \sim \mathcal{N}(0, I) \\
+x \mid z & \sim \mathcal{N} (\mu + \Lambda z, \Psi)
+\end{align} %]]></script>
+
+<p>其中向量<script type="math/tex">\mu \in \mathcal{R}^n</script>，矩阵 <script type="math/tex">\Lambda \in \mathcal{R}^{n \times k}</script>， 对角阵<script type="math/tex">\Psi \in \mathcal{R}^{n \times n}</script>，k的取值一般都要小于n。</p>
+
+<p>我们相当于把数据从k维映射到n维<script type="math/tex">\mu+ \Lambda z</script>，最后再填上一个噪音<script type="math/tex">\Psi</script>。上面的因子分析模型也可以表示成下面的形式：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+z & \sim \mathcal{N} (0, I) \\
+\epsilon & \sim \mathcal{N} (0, \Psi) \\
+x & = \mu + \Lambda z + \epsilon
+\end{align} %]]></script>
+
+<p>我们的随机变量z，x构成了一个联合高斯分布：</p>
+
+<script type="math/tex; mode=display">\begin{bmatrix} z \\ x \end{bmatrix} \sim \mathcal{N} (\mu_{zx}, \Sigma)</script>
+
+<p>下面来找到<script type="math/tex">\mu_{zx}</script>和<script type="math/tex">\Sigma</script>。</p>
+
+<p>容易直到<script type="math/tex">E[z]=0</script>，因为z满足标准正态分布。<script type="math/tex">E[x]=\mu</script>可有下式求解：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+E[x] &= E[\mu+ \Psi z + \epsilon] \\
+&= \mu + \Psi E[z] + E[\epsilon] \\
+&= \mu
+\end{align} %]]></script>
+
+<p>因此可以得到<script type="math/tex">\mu_{zx}</script>:</p>
+
+<script type="math/tex; mode=display">\mu_{zx} =
+\begin{bmatrix}
+\overrightarrow{0} \\
+\mu
+\end{bmatrix}</script>
+
+<p>下面继续计算<script type="math/tex">\Sigma</script>，因为<script type="math/tex">\Sigma_{zz} = Cov(z) = I</script>，</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\Sigma_{zx} &= E[(z - E[z])(x - E[x])^T] \\
+&= E[z (\mu + \Lambda z + \epsilon - \mu)^T ] \\
+&= E[zz^T] \Lambda^T + E [z \epsilon^T] \\
+&= \Lambda^T
+\end{align} %]]></script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\Sigma_{xx} &= E[(x - E[x])(x - E[x])^T] \\
+&= E[(\mu + \Lambda z + \epsilon - \mu)(\mu + \Lambda z + \epsilon - \mu)^T ] \\
+&= E[ \Lambda z z^T \Lambda^T + \epsilon z^T \Lambda^T + \Lambda z \epsilon^T + \epsilon \epsilon^T] \\
+&= \Lambda E[z z^t] \Lambda^T + E [\epsilon \epsilon^T] \\
+\Lambda \Lambda^T + \Psi
+\end{align} %]]></script>
+
+<p>最终我们得到联合分布如下：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{bmatrix}
+z \\ x
+\end{bmatrix}
+\sim \mathcal{N} \left (
+\begin{bmatrix}
+\overrightarrow{0} \\ \mu
+\end{bmatrix},
+\begin{bmatrix}
+I & \Lambda^T \\
+\Lambda & \Lambda \Lambda^T + \Psi
+\end{bmatrix}
+\right) %]]></script>
+
+<p>x的边缘分布是<script type="math/tex">x \sim \mathcal{N} (\mu, \Lambda \Lambda^T + \Psi)</script>，因此可以得出其最大似然函数的表达式：</p>
+
+<script type="math/tex; mode=display">\ell (\mu, \Lambda, \Psi) = \log \prod_{i=1}^m \frac {1} {2\pi)^{n/2}
+{| \Lambda\Lambda^T + \Psi |}^{1/2} } \exp \left( - \frac{1}{2}
+(x^{(i)}-\mu)^T (\Lambda \Lambda^T + \Psi)^{-1} (x^{(i)} - \mu) \right)</script>
+
+<p>对于上述的最大似然函数估计，同样的无法直接求解，需要用最大期望算法来解决。</p>
+
+<h2 id="因子分析的最大期望算法">因子分析的最大期望算法</h2>
+
+<p>在E步，我们需要计算<script type="math/tex">Q_i(z^{(i)}) = p(z^{(i)} \mid x^{(i)}; \mu, \Lambda, \Psi)。根据前面条件分布的公式，我们知道</script> z^{(i)} \mid x^{(i)}; \mu, \Lambda, \Psi \sim \mathcal{N} (\mu_{z^{(i)} \mid x^{(i)}}, \Sigma_{z^{(i)} \mid x^{(i)}})，其中：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\mu_{z^{(i)} \mid x^{(i)}} &= \Lambda^T (\Lambda\Lambda^T + \Psi)^{-1} (x^{(i)} - \mu) \\
+\Sigma_{z^{(i)} \mid x^{(i)}} &= I - \Lambda^T (\Lambda\Lambda^T + \Psi)^{-1} \Lambda
+\end{align} %]]></script>
+
+<p>后面的推导偷懒不写了~一句话就是用EM算法去求解，感觉更多的是考验数学水平。</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 标签: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97" class="page__taxonomy-item" rel="tag">Ng机器学习系列</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%90%86%E8%AE%BA" class="page__taxonomy-item" rel="tag">机器学习理论</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 分类: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/categories/#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0" class="page__taxonomy-item" rel="tag">机器学习</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time datetime="2016-04-24T00:00:00+08:00">April 24, 2016</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/em-algorithm/" class="pagination--pager" title="最大期望算法
+">向前</a>
+    
+    
+      <a href="http://localhost:4000/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/log-reg-ps/" class="pagination--pager" title="逻辑回归习题
+">向后</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">猜您还喜欢</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E5%B7%A5%E5%85%B7/%E5%8D%9A%E5%AE%A2%E9%87%8D%E5%BB%BA/" rel="permalink">博客重建
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">今天花了整整一天的时候把我的博客重建起来了，主要是换了一个主题，然后剩下的时候就一直在折腾了。这次用了一个很受欢迎的minimal-mistakes，搞下来才发现它为啥叫迷你了，自己要设置的东西太多了！
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%84%8F%E4%B9%89/" rel="permalink">人生的意义
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">人生的意义
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E5%B7%A5%E5%85%B7/shadowsocksr/" rel="permalink">shadowsocksR
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">时代在发展，shadowsocks源作者已经被请去喝茶了，现在更流行的一个叫shadowsocksR加强版，感谢两位作者。这里也趁着换VPS的同时新装了一个shadowsocksR。
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E7%AC%94%E8%AE%B0/ruby-gem-bundler/" rel="permalink">ruby &amp; gem &amp; bundler
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">ruby
+
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+  <input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  <div id="results" class="results"></div>
+</div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+    
+    
+    
+      <li><a href="https://github.com/anyinlover"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="http://localhost:4000/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 Anyinlover. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="http://localhost:4000/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+
+
+
+  
+  
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr.min.js"></script>
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr-store.js"></script>
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr-en.js"></script>
+
+
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/factor-analysis/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/factor-analysis"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://anyinlover.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<h2 id="section">证明泊松分布属于指数分布族</h2>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+p(y;\lambda) &= \frac {e^{-\lambda} \lambda^y} {y!} \\
+&= \frac{1}{y!} \exp(y \log \lambda - \lambda)
+\end{align}
+ %]]></script>
+
+<p>因此可以得到：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+b(y) &= \frac{1}{y!} \\
+T(y) &= y \\
+\eta &= \log \lambda \Rightarrow \lambda = e^\eta \\
+a(\eta) &= \lambda = e^\eta
+\end{align}
+ %]]></script>
+
+<h2 id="section-1">泊松模型的正则响应函数</h2>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+g(\eta) &= E[T(y); \eta] \\
+&= E[y; \eta] \\
+&= \lambda \\
+&= e^\eta
+\end{align}
+ %]]></script>
+
+<h2 id="section-2">泊松模型的随机梯度下降</h2>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+\frac {\partial \ell(\theta)} {\theta_j} &= \frac {\partial \log p(y^{(i)} \mid x^{(i)}; \theta)} {\partial \theta_j} \\
+&= \frac {\partial \log ( \frac {1} {y^{(i)}!} \exp(\eta^Ty^{(i)} - e^\eta))}{\partial \theta_j} \\
+&= \frac {\partial ((\theta^Tx^{(i)})^Ty^{(i)} - e^{\theta^Tx^{(i)}})} {\partial \theta_j} \\
+&= \frac{\partial ((\sum_k \theta_k x_k^{(i)})y^{(i)} - e^{\sum_k \theta_k x_k^{(i)}})}{\partial \theta_j} \\
+&= x_j^{(i)} y^{(i)} - e^{\sum_k \theta_k x_k^{(i)}} x_j^{(i)} \\
+&= (y^{(i)} - e^{\theta^T x^{(i)}})x_j^{(i)}
+\end{align}
+ %]]></script>
+
+<p>随机梯度上升的规则是：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+\theta_j & := \theta_j + \alpha \frac {\partial \ell(\theta)} {\partial \theta_j} \\
+& := \theta_j + \alpha (y^{(i)} - e^{\theta^T x^{(i)}})x_j^{(i)}
+\end{align}
+ %]]></script>
+
+<h2 id="section-3">证明递归规则的通用性</h2>
+
+<p>首先可以得出：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+\frac {\partial \ell(\theta)} {\partial \theta_j} &= \frac {\partial \log p(y^{(i)} \mid x^{(i)}; \theta)} {\partial \theta_j} \\
+&= \frac {\partial \log (b(y) \exp (\eta^Ty - a(\eta)))} {\partial \theta_j} \\
+&= \frac {\partial (\eta^Ty - a(\eta))} {\partial \theta_j} \\
+&= x_jy - \frac {\partial a(\eta)} {\partial \eta} x_j \\
+&= (y - \frac {\partial a(\eta)} {\partial \eta}) x_j
+\end{align}
+ %]]></script>
+
+<p>因此只需要证明 <script type="math/tex">\frac {\partial a(\eta)} {\partial \eta} = h(x)</script> 即可得证。</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+\int_y p(y \mid x; \theta)dy &= 1 \\
+\int_y b(y) \exp (\eta^Ty - a(\eta))dy &= 1 \\
+\int_y b(y) \exp (\eta^Ty)dy &= \exp(a(\eta))
+\end{align}
+ %]]></script>
+
+<p>等式两边对<script type="math/tex">\eta</script>求导：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+\int_y b(y) \exp (\eta^Ty)dy &= \exp(a(\eta)) \frac {\partial a(\eta)} {\partial \eta} \\
+\frac {\partial a(\eta)} {\partial \eta} &= \int_y b(y) y \exp (\eta^Ty - a(\eta))dy \\
+&= \int_y y p(y \mid x; \theta)dy \\
+&= E[y \mid x; \theta] = h(x)
+\end{align}
+ %]]></script>
+
+<p>因此上面的递归规则具有通用性。</p>

@@ -1,0 +1,743 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.9.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="zh" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>K均值聚类与混合高斯模型 - 木公的博客-Anyinlover Blog</title>
+
+
+
+
+<meta name="description" content="K均值聚类算法在聚类问题中，我们给定一个训练集，标签没有给出，我们的目标还是把数据分类。这是一个非监督学习问题。">
+
+
+
+
+<meta name="author" content="Anyinlover">
+
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="木公的博客-Anyinlover Blog">
+<meta property="og:title" content="K均值聚类与混合高斯模型">
+
+
+  <link rel="canonical" href="http://localhost:4000/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/Kmean-mix-gauss/">
+  <meta property="og:url" content="http://localhost:4000/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/Kmean-mix-gauss/">
+
+
+
+  <meta property="og:description" content="K均值聚类算法在聚类问题中，我们给定一个训练集，标签没有给出，我们的目标还是把数据分类。这是一个非监督学习问题。">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  <meta property="og:image" content="http://localhost:4000/img/sunrise.jpg">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2016-04-18T00:00:00+08:00">
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000",
+      "logo": "http://localhost:4000/img/tree.jpg"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Anyinlover",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="木公的博客-Anyinlover Blog Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://localhost:4000/">木公的博客-Anyinlover Blog</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/about" >关于</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/year-archive/" >博文</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/categories/" >类别</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/tags/" >标签</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('http://localhost:4000/img/sunrise.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 class="page__title" itemprop="headline">
+        
+          K均值聚类与混合高斯模型
+
+        
+      </h1>
+      
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="http://localhost:4000/img/morning.jpg" alt="Anyinlover" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Anyinlover</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        未经审视的人生是不值得过的
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">关注</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Xi'an</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/anyinlover" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.weibo.com/2663254313" itemprop="sameAs">
+            <i class="fab fa-fw fa-weibo" aria-hidden="true"></i> Weibo
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+        <li>
+          <a href="https://www.douban.com/people/48573787/" itemprop="sameAs">
+            <span class="fa-layers fa-fw">
+              <i class="fas fa-circle"></i>
+              <span class="fa-layers-text fa-inverse" data-fa-transform="shrink-4">豆</span>
+            </span>
+            Douban
+          </a>
+        </li>
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="K均值聚类与混合高斯模型">
+    <meta itemprop="description" content="K均值聚类算法在聚类问题中，我们给定一个训练集，标签没有给出，我们的目标还是把数据分类。这是一个非监督学习问题。">
+    <meta itemprop="datePublished" content="April 18, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#k均值聚类算法">K均值聚类算法</a></li>
+  <li><a href="#混合高斯模型">混合高斯模型</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <h2 id="k均值聚类算法">K均值聚类算法</h2>
+<p>在聚类问题中，我们给定一个训练集<script type="math/tex">\{x^{(1)},\cdots,x^{(m)}\}</script>，标签<script type="math/tex">y^{(i)}</script>没有给出，我们的目标还是把数据分类。这是一个非监督学习问题。</p>
+
+<p>K均值聚类算法给出了下面的方法：</p>
+
+<ol>
+  <li>随机初始化聚类中心<script type="math/tex">\mu_1,\mu_2,\cdots,\mu_k \in \mathbb{R}^n</script></li>
+  <li>不断迭代直到收敛：{</li>
+</ol>
+
+<p>对所有i，令：</p>
+
+<script type="math/tex; mode=display">c^{(i)} := \arg \min_j\|x^{(i)}-\mu_j\|^2</script>
+
+<p>对所有j，令：</p>
+
+<script type="math/tex; mode=display">\mu_j := \frac{\sum_{i=1}^m 1\{c^{(i)}=j\}x^{(i)}}{\sum_{i=1}^m 1\{c^{(i)}=j\}}</script>
+
+<p>}</p>
+
+<p>算法的内循环不停的在执行两个步骤，先把每个训练样本归给最近的聚类中心所代表的类，然后将某类的所有点计算平均值作为新的聚类中心。</p>
+
+<p>现在有一个问题，如何保证K均值聚类算法一定会收敛？定义失真函数为：</p>
+
+<script type="math/tex; mode=display">J(c,\mu)=\sum_{i=1}^m\|x^{(i)}-\mu_{c^{(i)}}\|^2</script>
+
+<p>失真函数定义了所有训练集离其聚类中心平方距离和。对于算法的内循环的两步而言，每一步都是朝着J下降的方向进行。实际上K均值聚类算法就是一类坐标下降法。最终J会达到收敛。</p>
+
+<p>失真函数J是一个非凸函数，所以坐标下降法不能保证J能收敛到全局最小值。为了不限于局部最小值，可以多次跑K均值聚类算法（使用不同的随机初始值），取最低失真函数。</p>
+
+<h2 id="混合高斯模型">混合高斯模型</h2>
+<p>同样假设下面的非监督学习问题，给定一组训练集<script type="math/tex">\{x^{(i)},\cdots,x^{(m)}\}</script>，没有标签。</p>
+
+<p>我们用一个联合分布<script type="math/tex">p(x^{(i)},z^{(i)})=p(x^{(i)} \mid z^{(i)})p(z^{(i)})</script>来对数据进行建模。这里，<script type="math/tex">z^{(i)} \sim \text{Multinomial}(\phi)（\phi_j \geq 0, \sum_{j=1}^k \phi_j = 1, \phi_j=p(z^{(i)}=j))</script>，<script type="math/tex">x^{(i)} \mid z^{(i)}=j \sim \mathcal{N}(\mu_j,\Sigma_j)</script>。因此我们的模型是随机从<script type="math/tex">\{1,\cdots,k\}</script>中选择<script type="math/tex">z^{(i)}</script>，然后从对应<script type="math/tex">z^{(i)}</script>的高斯分布中选择<script type="math/tex">x^{(i)}</script>。这被称为混合高斯模型。此外由于<script type="math/tex">z^{(i)}</script>是潜在的随机变量，这使我们的评估变得困难。</p>
+
+<p>混合高斯模型的参数有<script type="math/tex">\phi,\mu,\Sigma</script>，最大似然函数是：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\ell(\phi,\mu,\Sigma) &= \sum_{i=1}^m \log p(x^{(i)};\phi,\mu,\Sigma) \\
+&= \sum_{i=1}^m \log \sum_{z^{(i)}=1}^k p(x^{(i)}\mid z^{(i)};\mu,\Sigma)p(z^{(i)};\phi)
+\end{align} %]]></script>
+
+<p>然而上式无法用梯度来计算，因此也无法解得最大似然估计。</p>
+
+<p>注意上式中<script type="math/tex">\sum_{z^{(i)}=1}^k</script>产生的原因在于<script type="math/tex">z^{(i)}</script>是未知的，假如<script type="math/tex">z^{(i)}</script>是已知的，那么最大似然函数可以简化为：</p>
+
+<script type="math/tex; mode=display">\ell(\phi,\mu,\Sigma)=\sum_{i=1}^m\log p(x^{(i)}\mid z^{(i)};\mu,\Sigma)+p(z^{(i)};\phi)</script>
+
+<p>做最大似然估计可以解出：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\phi_j &= \frac{1}{m} \sum_{i=1}^m 1 \{z^{(i)}=j\}  \\
+\mu_j &= \frac{\sum_{i=1}^m 1\{z^{(i)}=j\}x^{(i)}}{\sum_{i=1}^m 1\{z^{(i)}=j\}} \\
+\Sigma_j &= \frac{\sum_{i=1}^m 1\{z^{(i)}=j\}(x^{(i)}-\mu_j)(x^{(i)}-\mu_j)^T}{\sum_{i=1}^m 1\{z^{(i)}=j\}}
+\end{align} %]]></script>
+
+<p>事实上，假如<script type="math/tex">z^{(i)}</script>是已知的，那么最大似然估计和之前的高斯判别分析非常类似，只是<script type="math/tex">z^{(i)}</script>表示了标签。</p>
+
+<p>然而<script type="math/tex">z^{(i)}</script>是未知的，这里就引出了最大期望算法。最大期望算法主要由两步构成，E步尝试猜测<script type="math/tex">z^{(i)}</script>的值，M步根据我们猜测的<script type="math/tex">z^{(i)}</script>更新模型参数。</p>
+
+<p>迭代直到收敛：{</p>
+
+<p>（E步）对每个i,j，令：</p>
+
+<script type="math/tex; mode=display">\omega_j^{(i)} := p(z^{(i)}=j\mid x^{(i)}; \phi, \mu, \Sigma)</script>
+
+<p>（M步）更新参数：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\phi_j &:= \frac{1}{m} \sum_{i=1}^m \omega_j^{(i)}  \\
+\mu_j &:= \frac{\sum_{i=1}^m \omega_j^{(i)}x^{(i)}}{\sum_{i=1}^m \omega_j^{(i)}} \\
+\Sigma_j &= \frac{\sum_{i=1}^m \omega_j^{(i)}(x^{(i)}-\mu_j)(x^{(i)}-\mu_j)^T}{\sum_{i=1}^m \omega_j^{(i)}}
+\end{align} %]]></script>
+
+<p>}</p>
+
+<p>在E步，我们通过计算后验概率来得到：</p>
+
+<script type="math/tex; mode=display">p(z^{(i)}=j\mid x^{(i)}; \phi, \mu, \Sigma)=\frac{p(x^{(i)}|z^{(i)}=j;\mu,\Sigma)p(z^{(i)}=j;\phi)}{\sum_{l=1}^kp(x^{(i)}|z^{(i)}=l;\mu,\Sigma)p(z^{(i)}=l;\phi)}</script>
+
+<p>EM算法和K均值聚类算法有很多相似的地方，都是两步走，都是可能陷入局部最优解，需要多次不同的初始值进行计算。</p>
+
+<p>EM算法是否确保收敛等性质放到下一章证明。</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 标签: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97" class="page__taxonomy-item" rel="tag">Ng机器学习系列</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95" class="page__taxonomy-item" rel="tag">机器学习算法</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 分类: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/categories/#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0" class="page__taxonomy-item" rel="tag">机器学习</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time datetime="2016-04-18T00:00:00+08:00">April 18, 2016</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/model-selection/" class="pagination--pager" title="规则化与模型选择
+">向前</a>
+    
+    
+      <a href="http://localhost:4000/%E5%B7%A5%E5%85%B7/build-the-blog/" class="pagination--pager" title="技术博客搭建
+">向后</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">猜您还喜欢</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E5%B7%A5%E5%85%B7/%E5%8D%9A%E5%AE%A2%E9%87%8D%E5%BB%BA/" rel="permalink">博客重建
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">今天花了整整一天的时候把我的博客重建起来了，主要是换了一个主题，然后剩下的时候就一直在折腾了。这次用了一个很受欢迎的minimal-mistakes，搞下来才发现它为啥叫迷你了，自己要设置的东西太多了！
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%84%8F%E4%B9%89/" rel="permalink">人生的意义
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">人生的意义
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E5%B7%A5%E5%85%B7/shadowsocksr/" rel="permalink">shadowsocksR
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">时代在发展，shadowsocks源作者已经被请去喝茶了，现在更流行的一个叫shadowsocksR加强版，感谢两位作者。这里也趁着换VPS的同时新装了一个shadowsocksR。
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/img/tree.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/%E7%AC%94%E8%AE%B0/ruby-gem-bundler/" rel="permalink">ruby &amp; gem &amp; bundler
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">ruby
+
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+  <input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  <div id="results" class="results"></div>
+</div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+    
+    
+    
+      <li><a href="https://github.com/anyinlover"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="http://localhost:4000/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 Anyinlover. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="http://localhost:4000/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+
+
+
+  
+  
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr.min.js"></script>
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr-store.js"></script>
+  <script defer src="http://localhost:4000/assets/js/lunr/lunr-en.js"></script>
+
+
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/Kmean-mix-gauss/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/Kmean-mix-gauss"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://anyinlover.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+  </body>
+</html>

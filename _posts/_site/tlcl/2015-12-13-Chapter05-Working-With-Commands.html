@@ -1,0 +1,189 @@
+<ul>
+  <li>type - Display a command’s type</li>
+  <li>which - Display an executable’s location</li>
+  <li>help - Get help for shell builtins</li>
+  <li>–help - Display usage information for an executable</li>
+  <li>man - Display a program’s manual page</li>
+  <li>apropos - Display appropriate commands</li>
+  <li>whatis - Display a brief description of a command</li>
+  <li>info - Display a CNU program’s info entry</li>
+  <li>alias - Create a alias for commands</li>
+</ul>
+
+<h2 id="what-exactly-are-commands">What Exactly Are Commands?</h2>
+
+<ol>
+  <li>An executable program</li>
+  <li>A command built into the shell itself</li>
+  <li>A shell function</li>
+  <li>An alias</li>
+</ol>
+
+<h2 id="identifying-commands">Identifying Commands</h2>
+
+<h3 id="type---display-a-commands-type">type - Display A Command’s Type</h3>
+
+<pre><code>type command
+</code></pre>
+
+<h3 id="which---display-an-executables-location">which - Display An Executable’s Location</h3>
+
+<pre><code>which ls
+</code></pre>
+
+<h2 id="getting-a-commands-documentation">Getting A Command’s Documentation</h2>
+
+<h3 id="help---get-help-for-shell-builtins">help - Get Help For Shell Builtins</h3>
+
+<pre><code>help cd
+</code></pre>
+
+<h3 id="help---display-usage-information">–help - Display Usage Information</h3>
+
+<pre><code>mkdir --help
+</code></pre>
+
+<h3 id="man---display-a-programs-manual-page">man - Display A Program’s Manual Page</h3>
+
+<pre><code>man ls
+</code></pre>
+
+<p><em>Man Page Organization</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Section</th>
+      <th style="text-align: left">Contents</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">User commands</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2</td>
+      <td style="text-align: left">Programming interfaces kernel system calls</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">3</td>
+      <td style="text-align: left">Programming interfaces to the C library</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">4</td>
+      <td style="text-align: left">Special files such as device nodes and drivers</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">5</td>
+      <td style="text-align: left">File formats</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">6</td>
+      <td style="text-align: left">Games and amusements such as screen savers</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">7</td>
+      <td style="text-align: left">Miscellaneous</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">8</td>
+      <td style="text-align: left">System administration commands</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code>man section search_term
+
+man 5 passwd
+</code></pre>
+
+<h3 id="apropos---display-appropriate-commands">apropos - Display Appropriate Commands</h3>
+
+<pre><code>apropos floppy
+</code></pre>
+
+<h3 id="whatis---display-a-very-brief-description-of-a-command">whatis - Display A Very Brief Description Of A Command</h3>
+
+<pre><code>whatis ls
+</code></pre>
+
+<h3 id="info---display-a-gnu-programs-info-entry">info - Display A GNU Program’s Info Entry</h3>
+
+<pre><code>info coreutils
+</code></pre>
+
+<p><em>info Commands</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Command</th>
+      <th style="text-align: left">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">?</td>
+      <td style="text-align: left">Display command help</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">PgUp or Backspace</td>
+      <td style="text-align: left">Display previous page</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">PgDn or Space</td>
+      <td style="text-align: left">Display next page</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">n</td>
+      <td style="text-align: left">Next - Display the next node</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">p</td>
+      <td style="text-align: left">Previous - Display the previous node</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">u</td>
+      <td style="text-align: left">Up - Display the parent node of the currently displayed node, usually a menu</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Enter</td>
+      <td style="text-align: left">Follow the hyperlink at the cursor lacation</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">q</td>
+      <td style="text-align: left">Quit</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="readme-and-other-program-documentation-files">README And Other Program Documentation Files</h3>
+
+<p>Files end with “.gz” can be opened by zless.</p>
+
+<h2 id="creating-your-own-commands-with-alias">Creating Your Own Commands With alias</h2>
+
+<p>put more than one command on a line by ;</p>
+
+<pre><code>command1; command2; command3...
+
+cd /usr; ls; cd -
+</code></pre>
+
+<p>Create an alias</p>
+
+<pre><code>alias name='string'
+
+alias foo='cd /usr; ls; cd -'
+</code></pre>
+
+<p>Remove an alias</p>
+
+<pre><code>unalias foo
+</code></pre>
+
+<p>See all the aliases defined in the environment</p>
+
+<pre><code>alias
+</code></pre>

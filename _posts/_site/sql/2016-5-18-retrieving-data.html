@@ -1,0 +1,72 @@
+<p>本章中主要学习<code>SELECT</code>的用法来从表中获取数据。</p>
+
+<h2 id="select"><code>SELECT</code>语句</h2>
+
+<p>SQL语句由英语术语构成，这些术语是SQL语言的保留字，被称为关键字，不能拿来用作表名或列名。</p>
+
+<p>最简单的<code>SELECT</code>语句由两部分构成，取什么，从哪取。</p>
+
+<h2 id="section">从单列读取</h2>
+
+<pre><code class="language-sql">SELECT prod_name
+FROM Products;
+</code></pre>
+
+<p>一个简单的<code>SELECT</code>语句仅仅是取回了所有的行，数据既不筛选，也不排序。</p>
+
+<h2 id="section-1">从多列读取</h2>
+
+<pre><code class="language-sql">SELECT prod_id, prod_name, prod_price 
+FROM Products;
+</code></pre>
+
+<h2 id="section-2">读取所有列</h2>
+
+<pre><code class="language-sql">SELECT * 
+FROM Products;
+</code></pre>
+
+<h2 id="section-3">读取不同值的行</h2>
+
+<pre><code class="language-sql">SELECT distinct vend_id 
+FROM Products;
+</code></pre>
+
+<h2 id="section-4">限制返回的数量</h2>
+
+<p>只想返回头五行：</p>
+
+<pre><code class="language-sql">SELECT prod_name 
+FROM Products 
+LIMIT 5;
+</code></pre>
+
+<p>要读取下五行，还可以设置偏移：</p>
+
+<pre><code class="language-sql">SELECT prod_name 
+FROM Products 
+LIMIT 5 OFFSET 5;
+</code></pre>
+
+<p>MySQL还支持偏移的简写，前面的是限制数，后面的是偏移量：</p>
+
+<pre><code class="language-sql">SELECT prod_name 
+FROM Products 
+LIMIT 5,5;
+</code></pre>
+
+<h2 id="section-5">使用评论</h2>
+
+<p>下面是行内注释的用法：</p>
+
+<pre><code class="language-sql">SELECT prod_name  -- this is a comment
+FROM Products;
+</code></pre>
+
+<p>下面是多行注释的用法：</p>
+
+<pre><code class="language-sql">/* SELECT prod_name, vend_id
+FROM Products;*/
+SELECT prod_name
+FROM Products;
+</code></pre>

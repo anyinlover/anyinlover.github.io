@@ -1,0 +1,162 @@
+<ul>
+  <li>
+    <blockquote>
+      <ul>
+        <li>Redirect standard output to a file</li>
+      </ul>
+    </blockquote>
+  </li>
+  <li>
+    <blockquote>
+      <blockquote>
+        <ul>
+          <li>Append redirected output to a file</li>
+        </ul>
+      </blockquote>
+    </blockquote>
+  </li>
+  <li>2&gt; - Redirect standard error to a file</li>
+  <li>&amp;&gt; - Redirect standard output and error to a same file</li>
+  <li>cat - Concatenate files</li>
+  <li>| - Pipelines</li>
+  <li>sort - Sort the lines</li>
+  <li>uniq - Report or omit repeated lines</li>
+  <li>wc - Print line, word, and byte counts</li>
+  <li>grep - Print lines matching a pattern</li>
+  <li>head/tail - Print first/last part of files</li>
+  <li>tee - Read from stdin and output to stdout and files</li>
+</ul>
+
+<h2 id="standard-input-output-and-error">Standard Input, Output, And Error</h2>
+<p>Everything is a file</p>
+
+<h2 id="redirecting-standard-output">Redirecting Standard Output</h2>
+
+<pre><code>ls -l /usr/bin &gt; ls-output.txt
+</code></pre>
+
+<p>Create a new, empty file</p>
+
+<pre><code>&gt; ls-output.txt
+</code></pre>
+
+<p>Append redirected output to a file</p>
+
+<pre><code>ls -l /usr/bin &gt;&gt; ls-output.txt
+</code></pre>
+
+<h2 id="redirecting-standard-error">Redirecting Standard Error</h2>
+
+<pre><code>ls -l /bin/usr 2&gt; ls-error.txt
+</code></pre>
+
+<h3 id="redirecting-standard-output-and-standard-error-to-one-file">Redirecting Standard Output And Standard Error To One File</h3>
+
+<pre><code>ls -l /bin/usr &gt; ls-output.txt 2&gt;&amp;1
+</code></pre>
+
+<p>Second modern way</p>
+
+<pre><code>ls -l /bin/usr &amp;&gt; ls-output.txt
+</code></pre>
+
+<p>Append the standard output and standard error streams to a single file</p>
+
+<pre><code>ls -l /bin/usr &amp;&gt;&gt; ls-output.txt
+</code></pre>
+
+<h3 id="disposing-of-unwanted-output">Disposing Of Unwanted Output</h3>
+
+<pre><code>ls -l /bin/usr 2&gt; /dev/null
+</code></pre>
+
+<h2 id="redirecting-standard-input">Redirecting Standard Input</h2>
+
+<h3 id="cat---concatenate-files">cat - Concatenate Files</h3>
+
+<pre><code>cat [file...]
+</code></pre>
+
+<p>Display short text files</p>
+
+<pre><code>cat ls-output.txt
+</code></pre>
+
+<p>Join files together</p>
+
+<pre><code>cat movie.mpeg.0* &gt; movie.mpeg
+</code></pre>
+
+<p>Read from standard input</p>
+
+<pre><code>cat
+</code></pre>
+
+<ul>
+  <li>Type Ctrl+d to reach end of file(EOF)</li>
+</ul>
+
+<p>Create short text files</p>
+
+<pre><code>cat &gt; lazy_dog.txt
+</code></pre>
+
+<p>Redirect standard input</p>
+
+<pre><code>cat &lt; lazy_dog.txt
+</code></pre>
+
+<h2 id="pipelines">Pipelines</h2>
+
+<pre><code>command1 | command2
+ls -l /usr/bin | less
+</code></pre>
+
+<h3 id="filters">Filters</h3>
+
+<pre><code>ls /bin /usr/bin | sort | less
+</code></pre>
+
+<h3 id="uniq---report-or-omit-repeated-lines">uniq - Report Or Omit Repeated Lines</h3>
+
+<p>Omit repeated lines</p>
+
+<pre><code>ls /bin /usr/bin | sort | uniq | less
+</code></pre>
+
+<p>report repeated lines</p>
+
+<pre><code>ls /bin /usr/bin | sort | uniq -d | less
+</code></pre>
+
+<h3 id="wc---print-line-word-and-byte-counts">wc - Print Line, Word, And Byte Counts</h3>
+
+<pre><code>wc ls-output.txt
+wc /bin /usr/bin | sort | uniq | wc -l
+</code></pre>
+
+<h3 id="grep---print-lines-matching-a-pattern">grep - Print Lines Matching A Pattern</h3>
+
+<pre><code>grep pattern [file...]
+ls /bin /usr/bin | sort |uniq |grep zip
+</code></pre>
+
+<p><code>-i</code> ignore case
+<code>-v</code> print lines that do not match the pattern</p>
+
+<h3 id="headtail---print-firstlast-part-of-files">head/tail - Print First/Last Part Of Files</h3>
+
+<pre><code>head -n 5 ls-output.txt
+tail -n 5 ls-output.txt
+ls /usr/bin | tail -n 5
+</code></pre>
+
+<p>view files in real-time</p>
+
+<pre><code>tail -f /var/log/syslog
+</code></pre>
+
+<h3 id="tee---read-from-stdin-and-output-to-stdout-and-files">tee - Read From Stdin And Output To Stdout And Files</h3>
+
+<pre><code>ls /usr/bin | tee ls.txt | grep zip
+</code></pre>

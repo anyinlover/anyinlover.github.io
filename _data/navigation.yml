@@ -1,0 +1,14 @@
+# main links
+main:
+  - title: "关于"
+    url: /about
+  - title: "博文"
+    url: /year-archive/
+  - title: "类别"
+    url: /categories/
+#  - title: "Collections"
+#    url: /collection-archive/
+  - title: "标签"
+    url: /tags/
+#  - title: "Sitemap"
+#    url: /sitemap/

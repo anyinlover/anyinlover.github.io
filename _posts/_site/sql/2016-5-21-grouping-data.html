@@ -1,0 +1,105 @@
+<p>本讲主要学习数据分组，使用了<code>GROUP BY</code>和<code>HAVING</code>字段。</p>
+
+<h2 id="section">理解数据分组</h2>
+
+<p>前一讲提到了SQL的统计函数，但那都是对全局数据操作的。如果要统计某个子集的数据，那就需要用到数据分组了。</p>
+
+<h2 id="section-1">创建分组</h2>
+
+<p>使用<code>GROUP BY</code>关键字可以创建分组：</p>
+
+<pre><code class="language-sql">SELECT vend_id, COUNT(*) AS num_prods
+FROM Products
+GROUP BY vend_id;
+</code></pre>
+
+<p>对于创建分组有几条重要的规则：</p>
+
+<ul>
+  <li><code>GROUP BY</code>可以包含多列，嵌套分组。</li>
+  <li>嵌套分组时数据在最后一列统计。</li>
+  <li><code>GROUP BY</code>中的列可以是原始列或者有效表达式（不能是统计函数），不能是别名。</li>
+  <li>除了统计函数，<code>SELECT</code>中的每一列都必须在<code>GROUP BY</code>中。</li>
+  <li><code>NULL</code>会被单独分为一组返回。</li>
+  <li><code>GROUP BY</code>防止在<code>WHERE</code>后，<code>ORDER BY</code>前。</li>
+</ul>
+
+<h2 id="section-2">过滤分组</h2>
+
+<p>对于组还可以过滤，使用<code>HAVING</code>关键字。其与<code>WHERE</code>的区别是过滤行和过滤组的区别，此外，<code>WHERE</code>是在分组前的过滤，<code>HAVING</code>是在分组后的过滤。</p>
+
+<pre><code class="language-sql">SELECT cust_id, COUNT(*) AS orders
+FROM Orders
+GROUP BY cust_id
+HAVING COUNT(*)&gt;=2;
+</code></pre>
+
+<p>此外，<code>WHERE</code>是在分组前的过滤，<code>HAVING</code>是在分组后的过滤。有可能同时会使用两者：</p>
+
+<pre><code class="language-sql">SELECT vend_id, COUNT(*) AS num_prods
+FROM Products
+WHERE prod_price&gt;=4
+GROUP BY vend_id
+HAVING COUNT(*)&gt;=2;
+</code></pre>
+
+<h2 id="section-3">分组和排序</h2>
+<p>注意分组和排序是两回事。下面的例子可以说明：</p>
+
+<pre><code class="language-sql">SELECT order_num, COUNT(*) AS items
+FROM OrderItems
+GROUP BY order_num
+HAVING COUNT(*)&gt;=3
+
+SELECT order_num, COUNT(*) AS items
+FROM OrderItems
+GROUP BY order_num
+HAVING COUNT(*)&gt;=3
+ORDER BY items, order_num;
+</code></pre>
+
+<h2 id="select"><code>SELECT</code>分句次序</h2>
+
+<p>是时候总结一下<code>SELECT</code>分句次序了。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">分句</th>
+      <th style="text-align: left">作用</th>
+      <th style="text-align: left">必要性</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code>SELECT</code></td>
+      <td style="text-align: left">返回列或表达式</td>
+      <td style="text-align: left">必要</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code>FROM</code></td>
+      <td style="text-align: left">指定表</td>
+      <td style="text-align: left">从表中取数据时必要</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code>WHERE</code></td>
+      <td style="text-align: left">行过滤</td>
+      <td style="text-align: left">不必要</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code>GROUP BY</code></td>
+      <td style="text-align: left">分组</td>
+      <td style="text-align: left">分组统计必要</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code>HAVING</code></td>
+      <td style="text-align: left">组过滤</td>
+      <td style="text-align: left">不必要</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code>ORDER BY</code></td>
+      <td style="text-align: left">结果过滤</td>
+      <td style="text-align: left">不必要</td>
+    </tr>
+  </tbody>
+</table>

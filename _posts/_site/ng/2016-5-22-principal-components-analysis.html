@@ -1,0 +1,49 @@
+<p>前一讲因子分析中，将数据投射到k维子空间，它是一个可能性模型，使用EM算法拟合参数。本讲中的主成分分析完成类似的功能，但却简单的多，只需要用到特征向量，不需要借用EM算法。</p>
+
+<p>在实现PCA算法之前，需要先对数据进行预处理：</p>
+
+<ol>
+  <li>令<script type="math/tex">\mu = \frac{1}{m} \sum_{i=1}^m x^{(i)}</script></li>
+  <li>将<script type="math/tex">x^{(i)}</script> 用<script type="math/tex">x^{(i)} - \mu</script>代替</li>
+  <li>计算<script type="math/tex">\sigma_j^2 = \frac{1}{m} \Sigma_i(x_j^{(i)})^2</script></li>
+  <li>将<script type="math/tex">x_j^{(i)}</script>用<script type="math/tex">x_j^{(i)}/\sigma_j</script></li>
+</ol>
+
+<p>如果知道两个特征的范围大小一致，后两步可以省略。</p>
+
+<p>现在我们就是要找出一个方向，使得投射后的数据仍然有高的方差。即最大化下式：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align}
+\frac{1}{m} \sum_{i=1}^m ({x^{(i)}}^T u)^2 &= \frac{1}{m} \sum_{i=1}^m u^T x^{(i)} {x^{(i)}}^T u \\
+&= u^T \left( \frac{1}{m} \sum_{i=1}^m x^{(i)} {x^{(i)}}^T \right) u
+\end{align}
+ %]]></script>
+
+<p>当<script type="math/tex">\|u\|_2 = 1</script>时，很容易得知u取经验协方差矩阵$$\Sigma = \frac{1}{m} \sum_{i=1}^m x^{(i)} {x^{(i)}}^T的特征向量时为最大值。</p>
+
+<p>当想得到一维子空间时，u取首要特征向量。更一般化，要投射到k维子空间时，取头k个特征向量：<script type="math/tex">u_1, \cdots, u_k</script>。</p>
+
+<p>子空间的特征可以用对应的向量表示：</p>
+
+<script type="math/tex; mode=display"> y^{(i)} =
+\begin{bmatrix}
+u_1^T x^{(i)} \\
+u_2^T x^{(i)} \\
+\vdots \\
+u_k^T x^{(i)} \\
+\end{bmatrix}
+\in
+{\mathbb{R}}^k
+</script>
+
+<p>PCA也被称为降维算法。向量<script type="math/tex">u_1, \cdots, u_k</script>被称为k个主成分。</p>
+
+<p>PCA算法有很多应用场景。</p>
+
+<ul>
+  <li>将数据压缩到二或三维可以用作可视化</li>
+  <li>在监督学习前使用PCA来降低数据复杂度，避免过拟合。</li>
+  <li>PCA算法可以用来降噪。</li>
+</ul>

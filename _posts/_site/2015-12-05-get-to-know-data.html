@@ -1,0 +1,266 @@
+<h2 id="data-objects-and-attribute-types">Data Objects and Attribute Types</h2>
+<ul>
+  <li>Nominal Attributes</li>
+  <li>Binary Attributes</li>
+  <li>Ordinal Attributes</li>
+  <li>Numeric Attributes
+    <ul>
+      <li>Interval-Scaled Attributes</li>
+      <li>Ratio-Scaled Attributes</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="basic-statistical-descriptions-of-data">Basic Statistical Descriptions of Data</h2>
+
+<h3 id="measuring-the-central-tendency">Measuring the Central Tendency</h3>
+
+<h4 id="mean">Mean</h4>
+
+<script type="math/tex; mode=display">
+\bar{x} = \frac{\displaystyle\sum_{i=1}^{N} x_i}{N} =\frac{x_1+x_2+\dots+x_N}{N}
+</script>
+
+<h4 id="median">Median</h4>
+
+<script type="math/tex; mode=display">
+median = L_1 + \left(\frac{N/2-(\sum freq)_l}{freq_{median}}\right)width
+</script>
+
+<p><script type="math/tex">L_1</script> is the lower boundary of the median interval.</p>
+
+<p><script type="math/tex">N</script> is the number of values in the entire data set.</p>
+
+<p><script type="math/tex">(\sum freq)_l</script> is the sum of the frequencies of all of the intervals that lower than the median interval.</p>
+
+<p><script type="math/tex">freq_{median}</script> is the frequency of the median interval.
+<script type="math/tex">width</script> is the width of the median interval.</p>
+
+<h4 id="mode">Mode</h4>
+
+<script type="math/tex; mode=display">
+mean - mode \approx 3 \times (mean - median)
+</script>
+
+<p>Applied to unimodal numeric data that are moderately skewed (asymmetrical).</p>
+
+<h4 id="midrange">Midrange</h4>
+
+<script type="math/tex; mode=display">
+midrange = \frac{\max()+\min()}{2}
+</script>
+
+<h3 id="measuring-the-dispersion-of-data">Measuring the Dispersion of Data</h3>
+
+<h4 id="range-quartiles-and-interquartile-range">Range, Quartiles, and Interquartile Range</h4>
+
+<h5 id="range">Range</h5>
+<p>The difference between the largest and smallest values.</p>
+
+<h5 id="quantiles">Quantiles</h5>
+<p>The points taken at regular intervals of a data distribution.</p>
+
+<h5 id="quartiles">quartiles</h5>
+<p>The 4-quantiles</p>
+
+<h5 id="interquartile-range">Interquartile range</h5>
+<p>The distance between the first and third quartiles.</p>
+
+<script type="math/tex; mode=display">
+IQR = Q_3 - Q_1
+</script>
+
+<h4 id="five-number-summary-boxplots-and-outliers">Five-Number Summary, Boxplots, and Outliers</h4>
+
+<h5 id="five-number-summary">Five-Number Summary</h5>
+
+<script type="math/tex; mode=display">
+Minimum, Q_1, Median, Q_3, Maximum
+</script>
+
+<h5 id="boxplots">Boxplots</h5>
+<p>A way of visulizing a distribution using Five-Number Summary.</p>
+
+<h5 id="outliers">Outliers</h5>
+<p>The whiskers are extended to <script type="math/tex">1.5 \times IQR</script> of the quartiles. Others are Outliers and plotted individually.</p>
+
+<h4 id="variance-and-standard-deviation">Variance and Standard Deviation</h4>
+
+<script type="math/tex; mode=display">
+\sigma^2 = \frac{1}{N}\sum_{i=1}^{N} (x_i - \bar{x})^2 =
+\left(\frac{1}{N}\sum_{i=1}^{N} x_i^2\right) - \bar{x}^2
+</script>
+
+<ul>
+  <li><script type="math/tex">\sigma</script> meassures spread about the mean and should be considered onlu when the mean is chosen as the measure of center.</li>
+  <li>Using Chebyshev’s inequality show that at least <script type="math/tex">(1-\frac{1}{k^2}) \times 100\% </script> of the obesrvations are no more than <em>k</em> standard deviations from the mean.</li>
+</ul>
+
+<h3 id="graphic-display-of-basic-statistical-description-of-data">Graphic Display of Basic Statistical Description of Data</h3>
+
+<ul>
+  <li>Quantile plot</li>
+  <li>Quantile-Quantile plot</li>
+  <li>Histograms</li>
+  <li>Scatter plot</li>
+</ul>
+
+<h2 id="data-visualization">Data Visualization</h2>
+
+<ul>
+  <li>Pixel-Oriented Visualization Techniques</li>
+  <li>Geometric Projection Visualization Techniques</li>
+  <li>Icon-Based Visualization Techniques</li>
+  <li>Hierarchical Visualization Techniques</li>
+  <li>Tag cloud and tree-map</li>
+</ul>
+
+<h2 id="measuring-data-similarity-and-dissimilarity">Measuring Data Similarity and Dissimilarity</h2>
+
+<h3 id="data-matrix-versus-dissimilarity-matrix">Data Matrix versus Dissimilarity Matrix</h3>
+
+<p>Data Matrix</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{bmatrix}
+  x_{11} & \dots & x_{1f} & \dots & x_{1p} \\
+  \dots  & \dots & \dots  & \dots & \dots \\
+  x_{i1} & \dots & x_{if} & \dots & x_{ip} \\
+  \dots  & \dots & \dots  & \dots & \dots \\
+  x_{n1} & \dots & x_{nf} & \dots & x_{np}
+\end{bmatrix}
+ %]]></script>
+
+<p>Dissimilarity Matrix</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{bmatrix}
+  0 \\
+  d(2,1) & 0 \\
+  d(3,1) & d(3,2) & 0 \\
+  \vdots & \vdots & \vdots \\
+  d(n,1) & d(n,2) & \dots & \dots & 0
+\end{bmatrix}
+ %]]></script>
+
+<script type="math/tex; mode=display">
+sim(i,j) = 1 - d(i,j)
+</script>
+
+<h3 id="proximity-measures-for-nominal-attributes">Proximity Measures for Nominal Attributes</h3>
+
+<script type="math/tex; mode=display">
+d(i,j) = \frac{p-m}{p}
+</script>
+
+<p><em>m</em> is the number of matches
+<em>p</em> is the total number of attributes</p>
+
+<h3 id="proximity-measures-for-binary-attributes">Proximity Measures for Binary Attributes</h3>
+
+<ul>
+  <li>q: (i,j) = (1,1)</li>
+  <li>r: (i,j) = (1,0)</li>
+  <li>s: (i,j) = (0,1)</li>
+  <li>t: (i,j) = (0,0)</li>
+</ul>
+
+<p>Symmetric Binary Dissimilarity</p>
+
+<script type="math/tex; mode=display">
+d(i,j) = \frac{r+s}{q+r+s+t}
+</script>
+
+<p>Asymmetric Binary Dissimilarity</p>
+
+<script type="math/tex; mode=display">
+d(i,j) = \frac{r+s}{q+r+s}
+</script>
+
+<h3 id="dissimilarity-of-numeric-data">Dissimilarity of Numeric Data</h3>
+
+<h4 id="euclidean-distance">Euclidean distance</h4>
+
+<script type="math/tex; mode=display">
+d(i,j) = \sqrt{(x_{i1} - x_{j1})^2 + (x_{i2}-x_{j2})^2
++ \dots + (x_{ip}-x_{jp})^2}
+</script>
+
+<p>Weighted Euclidean distance</p>
+
+<script type="math/tex; mode=display">
+d(i,j) = \sqrt{\omega_1(x_{i1} - x_{j1})^2 + \omega_2(x_{i2}-x_{j2})^2
++ \dots + \omega_m(x_{ip}-x_{jp})^2}
+</script>
+
+<h4 id="manhattan-distance">Manhattan distance</h4>
+
+<script type="math/tex; mode=display">
+d(i,j) = |x_{i1} - x_{j1}| + |x_{i2} - x_{j2}| + \dots + |x_{ip} - x_{jp}|
+</script>
+
+<ul>
+  <li>Non-negativity: <script type="math/tex"> d(i,j) \geq 0 </script></li>
+  <li>Identity of indiscernibles: <script type="math/tex"> d(i,i) = 0 </script></li>
+  <li>Symmetry: d(i,j) = d(j,i)</li>
+  <li>Triangle inequality: <script type="math/tex">d(i,j) \leq d(i,k) + d(k,j)</script></li>
+</ul>
+
+<h4 id="minkowski-distance">Minkowski distance</h4>
+
+<script type="math/tex; mode=display">
+d(i,j) = \sqrt[h]{|x_{i1} - x_{j1}|^h + |x_{i2}-x_{j2}|^h
++ \dots + |x_{ip}-x_{jp}|^h}
+</script>
+
+<h4 id="supremum-distance">Supremum distance</h4>
+<p>(<script type="math/tex">L_{max}</script>, <script type="math/tex">L_{\infty}</script> norm, Chebyshev distance)</p>
+
+<script type="math/tex; mode=display">
+d(i,j)  = \lim_{h \to \infty} \left( \sum_{f=1}^{p} |x_{if} - x_{jf}|^h \right)^{\frac{1}{h}} = \max_{f}^{p}|x_{if} - x_{jf}|
+</script>
+
+<h3 id="proximity-measures-for-ordinal-attributes">Proximity Measures for Ordinal Attributes</h3>
+
+<script type="math/tex; mode=display">
+z_{if} = \frac{r_{if} - 1}{M_f - 1}
+</script>
+
+<script type="math/tex; mode=display">
+r_{if} \in \{1, \dots, M_f\}
+</script>
+
+<h3 id="dissimilarity-for-attributes-of-mixed-types">Dissimilarity for Attributes of Mixed Types</h3>
+
+<script type="math/tex; mode=display">
+d(i,j) = \frac{\sum_{f=1}^{p} \delta_{ij}^{(f)} d_{ij}^{(f)}}
+{\sum_{f=1}^{p} \delta_{ij}^{(f)}}
+</script>
+
+<ul>
+  <li><em>f</em> is numeric:</li>
+</ul>
+
+<script type="math/tex; mode=display">
+d_{ij}^{(f)} = \frac{|x_{if}-x_{jf}|}{\max_{h} x_{hf} - \min_{h} x_{hf}}
+</script>
+
+<ul>
+  <li><em>f</em> is nominal or binary: <script type="math/tex">d_{ij}^{(f)} = 0</script> if <script type="math/tex">x_{if} = x_{jf}</script>; otherwise, <script type="math/tex">d_{ij}^{(f)} = 1</script></li>
+  <li><em>f</em> is ordinal: <script type="math/tex">
+z_{if} = \frac{r_{if} - 1}{M_f - 1}</script></li>
+</ul>
+
+<h3 id="cosine-similarity">Cosine Similarity</h3>
+
+<script type="math/tex; mode=display">
+sim(x,y) = \frac{x^t \cdot y}{\|x\|\|y\|}
+</script>
+
+<p>A simple variation frequently used in information retrieval and biology taxnomy.</p>
+
+<script type="math/tex; mode=display">
+sim(x,y) = \frac{x \cdot y}{x \cdot x + y \cdot y - x \cdot y}
+</script>
