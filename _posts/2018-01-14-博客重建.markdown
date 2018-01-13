@@ -14,7 +14,14 @@ tags:
 
 先按我另一篇博文[ruby & gem & bundler](/笔记/ruby-gem-bundler/)把bundler装起来，然后**不用gem安装jekyll**，直接搞个空文件夹，gemfile中添加：
 
-`gem "minimal-mistakes-jekyll"`
+```
+gem "github-pages", group: :jekyll_plugins
+gem "minimal-mistakes-jekyll"
+```
+
+注意一定要用gitpage配套的这种方式，在_config.yml配置主题时也要用remote的方式：
+
+`remote_theme: "mmistakes/minimal-mistakes"`
 
 然后用bundle就能安装了，这样装出来的jekyll才是配套的！
 
