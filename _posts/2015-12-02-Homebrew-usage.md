@@ -1,8 +1,7 @@
 ---
-layout: post
-title: "Homebrew basic usage"
-date: 2015-12-2 7:29
-categories: [productivity, system]
+category: 工具
+tags:
+  - brew
 ---
 
 > The missing package manager for OS X
@@ -46,7 +45,7 @@ Just following the script explains.
 ### Diagnose Homebrew
 
     brew doctor
-    
+
 ### Homebrew help
 
     brew help
