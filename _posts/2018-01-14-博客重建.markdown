@@ -1,9 +1,7 @@
 ---
 title: "博客重建"
 category: 工具
-tags:
-  - jekyll
-  - github
+tags: jekyll， github
 ---
 
 今天花了整整一天的时候把我的博客重建起来了，主要是换了一个主题，然后剩下的时候就一直在折腾了。这次用了一个很受欢迎的[minimal-mistakes](https://github.com/mmistakes/minimal-mistakes)，搞下来才发现它为啥叫迷你了，自己要设置的东西太多了！
