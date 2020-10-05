@@ -1,6 +1,6 @@
 ---
 title: 美国纽约摄影学院摄影教材
-tags:
+tags: 摄影
 category: 生活
 ---
 
