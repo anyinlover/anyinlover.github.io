@@ -11,10 +11,10 @@ minimal_mistakes_skin    : "dirt" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "zh-CN"
-title                    : "木公的博客-Anyinlover's Blog"
+title                    : "木公的小屋-Anyinlover's Cabin"
 title_separator          : "-"
 name                     : "Anyinlover"
-description              : "聊点技术，哲学，一切有趣的东西"
+description              : "聊点技术，哲学，和有趣的东西"
 url                      : "http://anyinlover.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : anyinlover/anyinlover.github.io # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
