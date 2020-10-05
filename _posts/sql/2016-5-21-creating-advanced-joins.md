@@ -77,7 +77,7 @@ FROM Customers RIGHT OUTER JOIN Orders
 
 ~~~sql
 SELECT Customers.cust_id, COUNT(Orders.order_num) AS num_ord
-FROM Customers INNER JOIN Orders
+FROM Customers LEFT OUTER JOIN Orders
 	ON Customers.cust_id=Orders.cust_id
 GROUP BY Customers.cust_id;
 ~~~

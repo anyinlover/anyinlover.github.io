@@ -5,13 +5,13 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # `jekyll serve`. If you change this file, please restart the server process.
  
-remote_theme: "mmistakes/minimal-mistakes"
-#theme: minimal-mistakes-jekyll
+# remote_theme: "mmistakes/minimal-mistakes"
+theme: minimal-mistakes-jekyll
 minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "zh-CN"
-title                    : "木公的博客-Anyinlover Blog"
+title                    : "木公的博客-Anyinlover's Blog"
 title_separator          : "-"
 name                     : "Anyinlover"
 description              : "聊点技术，哲学，一切有趣的东西"
@@ -89,7 +89,7 @@ author:
   name             : "Anyinlover"
   avatar           : /img/morning.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "未经审视的人生是不值得过的"
-  location         : "Xi'an"
+  location         : "杭州"
   email            :
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
@@ -195,6 +195,7 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jemoji
+  - jekyll-include-cache
 
 # mimic GitHub Pages with --safe
 whitelist:
