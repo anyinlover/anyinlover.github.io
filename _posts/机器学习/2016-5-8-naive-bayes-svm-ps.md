@@ -112,7 +112,7 @@ plt.xlim(0,1500)
 plt.ylabel('errors')
 ```
 
-![geterror](/img/ps2_3_1.png)
+![geterror](../../img/ps2_3_1.png)
 
 ## 使用 SVM 分类
 
@@ -146,7 +146,7 @@ plt.xlim(0,1500)
 plt.ylabel('errors')
 ```
 
-![svmerror](\img\ps2_3_2.png)
+![svmerror](../../img/ps2_3_2.png)
 
 ## 朴素贝叶斯和 SVM 比较
 

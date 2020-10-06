@@ -74,7 +74,7 @@ If you run Hive as a server (`hive —service hiveserver2`), there are a number 
 
 Hive architecture:
 
-![hive-architecture](/img/hive-architecture.png)
+![hive-architecture](../../img/hive-architecture.png)
 
 ### The Metastore
 
@@ -86,7 +86,7 @@ Local metastore: Use a standalone database to support multiple sessions.
 
 Remote metastore: Metastore servers run in separate processes to the Hive service.
 
-![metastore-configurations](/img/metastore-configurations.png)
+![metastore-configurations](../../img/metastore-configurations.png)
 
 ## Comparison with Traditional Databases
 

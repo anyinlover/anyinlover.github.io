@@ -160,23 +160,23 @@ Git 其实还能支持其他协议，比如`https`，但`https`速度慢，且�
 
 在版本回退中，每次提交 Git 都会串成时间线也就是分支。在 Git 中，默认的那个分支称为主分支，即`master`分支。在前面的单分支情况下，`HEAD`严格来说是指向`master`的，而`master`才是指向提交的，所以`HEAD`指向的就是当前分支。
 
-![git1](\img\git_1.png)
+![git1](../../img/git_1.png)
 
 当新建分支`dev`时，指向与`master`相同的提交，并把`HEAD`指向`dev`，表示当前分支在`dev`上。
 
-![git2](\img\git_2.png)
+![git2](../../img/git_2.png)
 
 现在对工作区的修改和提交发生在了`dev`分支上，提交一次后会变成下面这样：
 
-![git3](\img\git_3.png)
+![git3](../../img/git_3.png)
 
 如果`dev`分支的工作完成了，需要将其合并到`master`上，只需要让`master`指向`dev`对应的提交，合并就完成了：
 
-![git4](\img\git_4.png)
+![git4](../../img/git_4.png)
 
 这个时候删除`dev`分支也没有关系（就是删除一个指针），删完后就变成：
 
-![git5](\img\git_5.png)
+![git5](../../img/git_5.png)
 
 首先创建并切换到新分支`dev`上：
 
@@ -223,7 +223,7 @@ Git 默认会使用`Fast forward`模式，这种模式在删除分支后，会�
 3. 多人协作时每个人在自己分支上干活，时不时合并到 dev 分支。
 
 类似于下图的团队合作：
-![摘自廖雪峰git教程](\img\git_6.png)
+![摘自廖雪峰git教程](../../img/git_6.png)
 
 ### Bug 分支
 

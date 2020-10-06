@@ -20,7 +20,7 @@ A cell's content is an uninterpreted array of bytes.
 
 The HBase data model:
 
-![hbase-model](/img/hbase-model.png)
+![hbase-model](../../img/hbase-model.png)
 
 Table rows are sorted by row key, aka the table's primary key.
 
@@ -42,7 +42,7 @@ Row updates are atomic.
 
 Base is made up of an HBase master node orchestrating a cluster of one or more region server workers.
 
-![hbase-cluster](/img/hbase-cluster.png)
+![hbase-cluster](../../img/hbase-cluster.png)
 
 The HBase master:
 
