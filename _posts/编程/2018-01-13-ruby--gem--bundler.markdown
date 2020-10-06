@@ -3,9 +3,9 @@ layout: single
 title: "ruby & gem & bundler"
 category: 编程
 tags:
-  -- ruby
-  -- bundler
-  -- gem
+  - ruby
+  - bundler
+  - gem
 ---
 
 ## ruby
