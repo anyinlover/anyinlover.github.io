@@ -150,7 +150,7 @@ GEM
     jekyll-titles-from-headings (0.5.3)
       jekyll (>= 3.3, < 5.0)
     jekyll-watch (2.2.1)
-      listen (~> 3.0)
+      listen (~> 3.2.1)
     jemoji (0.12.0)
       gemoji (~> 3.0)
       html-pipeline (~> 2.2)

@@ -108,10 +108,11 @@ Common printf Data Type Specifiers_
 `%[flags][width][.precision]conversion_specification`
 
 printf Conversion Specification Compenents
-| Component  | Description                                                                                                                                                                               |
-| :--------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| flags      | There are five different flags                                                                                                                                                            |
-| width      | A number specifying the minimum field width                                                                                                                                               |
+
+| Component  |Description |
+| :--------- | :------------------------------------------- |
+| flags      | There are five different flags|
+| width      | A number specifying the minimum field width|
 | .precision | For floating point numbers, specify the number of digits of precision to be output after the decimal point. For string conversion, precision specifies the number of characters to output |
 
 Flags

@@ -10,7 +10,7 @@ tags: jekyll github
 
 ## 如何安装和迁移
 
-先按我另一篇博文[ruby & gem & bundler](/笔记/ruby-gem-bundler/)把 bundler 装起来，然后**不用 gem 安装 jekyll**，直接搞个空文件夹，gemfile 中添加：
+先按我另一篇博文[ruby & gem & bundler](/编程/ruby-gem-bundler/)把 bundler 装起来，然后**不用 gem 安装 jekyll**，直接搞个空文件夹，gemfile 中添加：
 
 ```shell
 gem "github-pages", group: :jekyll_plugins
