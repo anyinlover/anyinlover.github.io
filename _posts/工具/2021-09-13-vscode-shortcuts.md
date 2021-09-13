@@ -111,5 +111,5 @@ category: 工具
 
 ## Integrated terminal
 
-1. `Ctrl + \``: 显示集成终端
-2. `Ctrl + Shift + \``: 新建终端
+1. ``Ctrl + ` ``: 显示集成终端
+2. ``Ctrl + Shift + ` ``: 新建终端
