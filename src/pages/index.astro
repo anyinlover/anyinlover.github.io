@@ -1,0 +1,39 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>欢迎来到木公的小屋</h1>
+			<p>
+				欢迎造访木公的小屋，此博客用于记录一个理想主义者探索智能技术和追求精神自由的道路。
+			</p>
+			<p>
+				博文的主题会相对聚焦，重点关注智能化技术及其社会影响。有兴趣的朋友欢迎持续关注。
+			</p>
+			<p>
+				小屋还在完善过程中，当前基于<a href="https://astro.build/">astro</a>的blog模板改造，后续功能会逐渐加入：
+			</p>
+			<ul>
+				<li>✖️数学公式</li>
+				<li>✖️博文目录</li>
+				<li>✖️代码拷贝</li>
+				<li>✖️分类</li>
+				<li>✖️标签</li>
+				<li>✖️评论区</li>
+				<li>✖️站内搜索</li>
+				<li>✔️RSS</li>
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>
