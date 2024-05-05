@@ -2,10 +2,7 @@
 title: 'Vscode快捷键'
 description: 'Vscode快捷键总览'
 pubDate: 'May 05 2024'
-heroImage: '/vscodevim.jpg'
 ---
-
-以下的快捷键都是搭配vim插件使用的，在编辑效率上有极大的提升。注意mac和windows下的按键会有略微区别。
 
 ## General
 
