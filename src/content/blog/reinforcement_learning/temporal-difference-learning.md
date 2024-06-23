@@ -2,6 +2,8 @@
 title: '时序差分学习'
 description: '时序差分学习-强化学习'
 pubDate: 'May 05 2024'
+updateDate: 'June 23 2024'
+heroImage: 'https://s2.loli.net/2024/06/23/c8NZTuiH2r5qmyp.jpg'
 ---
 
 时序差分学习是蒙特卡洛方法和动态规划方法的结合。它既像蒙特卡洛方法那样从经验中学习，又像动态规划方法一样从其他状态中更新评估。时序差分学习是强化学习中最重要的概念。

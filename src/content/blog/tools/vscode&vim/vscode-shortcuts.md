@@ -2,6 +2,8 @@
 title: 'Vscode快捷键'
 description: 'Vscode快捷键总览'
 pubDate: 'May 05 2024'
+updateDate: 'June 23 2024'
+heroImage: 'https://s2.loli.net/2024/06/23/Np21JDeUv7gWBPc.jpg'
 ---
 
 ## General

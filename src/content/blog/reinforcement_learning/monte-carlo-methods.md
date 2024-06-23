@@ -2,6 +2,8 @@
 title: '蒙特卡洛方法'
 description: '蒙特卡洛方法-强化学习'
 pubDate: 'May 05 2024'
+updateDate: 'June 23 2024'
+heroImage: 'https://s2.loli.net/2024/06/23/OkuBHlIX9G8ynqV.jpg'
 ---
 
 对于动态规划方法而言，前提是我们完全掌握环境知识。但很多时候，环境知识是未知的或者非常的复杂。这时候蒙特卡洛方法就非常有用了，因为它只需要从与环境交互中采样，不要求有显式的状态转义函数分布。

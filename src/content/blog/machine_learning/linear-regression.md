@@ -2,6 +2,8 @@
 title: '线性回归'
 description: '线性回归-cs229笔记总结'
 pubDate: 'May 05 2024'
+updateDate: 'June 23 2024'
+heroImage: 'https://s2.loli.net/2024/06/23/udIgHhfbPDWXvLn.jpg'
 ---
 
 几乎所有的机器学习书籍都以线性回归为起点，这是有道理的。第一，线性回归比较容易入门，第二，线性回归是后续很多现代算法的基础，第三，线性回归是一种应用非常广泛的算法。

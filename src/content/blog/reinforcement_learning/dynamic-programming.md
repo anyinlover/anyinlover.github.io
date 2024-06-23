@@ -2,6 +2,8 @@
 title: '动态规划'
 description: '动态规划-强化学习'
 pubDate: 'May 05 2024'
+updateDate: 'June 23 2024'
+heroImage: 'https://s2.loli.net/2024/06/23/pJ7vGyXcQSR8Imq.jpg'
 ---
 
 如果环境模型是完全已知的，我们就可以用动态规划的思想来求解强化学习问题。但是在现实中很少存在环境模型完全已知的情况。
