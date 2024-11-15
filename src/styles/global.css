@@ -8,7 +8,6 @@
   --accent: #2337ff;
   --accent-dark: #000d8a;
   --black: #151825;
-  --black: #9673ff;
   --gray: 96, 115, 159;
   --gray-light: 229, 233, 240;
   --gray-dark: 34, 41, 57;
@@ -135,7 +134,7 @@ pre {
   border-radius: 8px;
 }
 
-pre>code {
+pre > code {
   all: unset;
 }
 

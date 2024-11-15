@@ -1,12 +1,14 @@
 ---
+import type { MarkdownHeading } from "astro";
+
 const { headings } = Astro.props;
 ---
 
 <nav>
-  <ul>
+  <ul class="table-of-contents">
     {
       headings &&
-        headings.map((heading) => (
+        headings.map((heading: MarkdownHeading) => (
           <li>
             <a href={`#${heading.slug}`}>{heading.text}</a>
           </li>

@@ -5,40 +5,74 @@ import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 
-const { title, description, pubDate, updatedDate, headings } = Astro.props;
+const { title, description, pubDate, updatedDate, headings, minutesRead } =
+  Astro.props;
 ---
 
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
+    <style>
+      main {
+        width: calc(100% - 2em);
+        max-width: 100%;
+        margin: 0;
+      }
+      .prose {
+        width: 720px;
+        max-width: calc(100% - 2em);
+        margin: auto;
+        padding: 1em;
+        color: rgb(var(--gray-dark));
+      }
+      .title {
+        margin-bottom: 1em;
+        padding: 1em 0;
+        text-align: center;
+        line-height: 1;
+      }
+      .title h1 {
+        margin: 0 0 0.5em 0;
+      }
+      .date {
+        margin-bottom: 0.5em;
+        color: rgb(var(--gray));
+      }
+      .last-updated-on {
+        font-style: italic;
+      }
+    </style>
   </head>
 
   <body>
     <Header />
-    <aside>
-      <TableOfContents headings={headings} />
-    </aside>
-    <main>
-      <article>
-        <div class="prose m-auto">
-          <div class="m-auto p-4">
-            <div class="mb-2 text-grey">
-              <FormattedDate date={pubDate} />
-              {
-                updatedDate && (
-                  <div class="italic">
-                    Last updated on <FormattedDate date={updatedDate} />
-                  </div>
-                )
-              }
+    <div>
+      <main>
+        <article>
+          <div class="prose">
+            <div class="title">
+              <div class="date">
+                <FormattedDate date={pubDate} />
+                {
+                  updatedDate && (
+                    <div class="last-updated-on">
+                      Last updated on <FormattedDate date={updatedDate} />
+                    </div>
+                  )
+                }
+              </div>
+              <div class="minutes-to-read">
+                {minutesRead}
+              </div>
+              <h1>{title}</h1>
+              <hr />
             </div>
-            <h1 class="mb-0 mb-2">{title}</h1>
-            <hr />
+            <TableOfContents headings={headings} />
+            <slot />
           </div>
-          <slot />
-        </div>
-      </article>
-    </main>
+        </article>
+      </main>
+    </div>
     <Footer />
   </body>
 </html>

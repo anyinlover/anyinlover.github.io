@@ -1,9 +1,10 @@
 ---
-title: '蒙特卡洛方法'
-description: '蒙特卡洛方法-强化学习'
-pubDate: 'May 05 2024'
-updateDate: 'June 23 2024'
-heroImage: 'https://s2.loli.net/2024/06/23/OkuBHlIX9G8ynqV.jpg'
+title: "蒙特卡洛方法"
+description: "蒙特卡洛方法-强化学习"
+pubDate: "May 05 2024"
+updateDate: "June 23 2024"
+series: "sutton-reinforcement-learning"
+tags: ["reinforcement-learning", "monte-carlo-method"]
 ---
 
 对于动态规划方法而言，前提是我们完全掌握环境知识。但很多时候，环境知识是未知的或者非常的复杂。这时候蒙特卡洛方法就非常有用了，因为它只需要从与环境交互中采样，不要求有显式的状态转义函数分布。
@@ -165,15 +166,15 @@ $$\rho_{t:T-1} \doteq \frac{\prod_{k=t}^{T-1} \pi(A_k|S_k) p(S_{k+1}|S_k, A_k)}{
 
 有了重要性采样比，我们可以正确的在行动策略的数据分布下计算目标策略的期望：
 
-$$ \mathbb{E}[\rho_{t:T-1} G_t | S_t = s] = v_\pi(s) $$
+$$ \mathbb{E}[\rho_{t:T-1} G_t | S_t = s] = v\_\pi(s) $$
 
 令$\mathcal{T}(s)$为状态$s$被访问到的集合，$T(t)$是$t$之后第一次幕终止的时间。在普通重要度采样算法下，我们得到：
 
-$$ V(s) \doteq \frac{\sum_{t \in \mathcal{T}(s)} \rho_{t:T-1} G_t}{|\mathcal{T}(s)|}$$
+$$ V(s) \doteq \frac{\sum*{t \in \mathcal{T}(s)} \rho*{t:T-1} G_t}{|\mathcal{T}(s)|}$$
 
 另外一种采样方式是加权重要度采样：
 
-$$ V(s) \doteq \frac{\sum_{t \in \mathcal{T}(s)} \rho_{t:T-1} G_t}{\sum_{t \in \mathcal{T}(s)} \rho_{t:T-1}}$$
+$$ V(s) \doteq \frac{\sum*{t \in \mathcal{T}(s)} \rho*{t:T-1} G*t}{\sum*{t \in \mathcal{T}(s)} \rho\_{t:T-1}}$$
 
 这两种采样方法在数学上的性质不同。对于首次访问下的普通重要度采样方法是无偏的，但其方差很大。相反的，加权重要度采样是有偏的，其偏差收敛到0，但其方差很小，因此在实践中更多的使用后者。
 
