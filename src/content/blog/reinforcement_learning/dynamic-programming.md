@@ -1,10 +1,9 @@
 ---
-title: "动态规划"
-description: "动态规划-强化学习"
-pubDate: "May 05 2024"
-updateDate: "June 23 2024"
-series: "sutton-reinforcement-learning"
-tags: ["reinforcement-learning", "dynamic-programming"]
+title: '动态规划'
+description: '动态规划-强化学习'
+pubDate: 'May 05 2024'
+updateDate: 'June 23 2024'
+heroImage: 'https://s2.loli.net/2024/06/23/pJ7vGyXcQSR8Imq.jpg'
 ---
 
 如果环境模型是完全已知的，我们就可以用动态规划的思想来求解强化学习问题。但是在现实中很少存在环境模型完全已知的情况。
@@ -66,7 +65,7 @@ $$
 
 当新的策略效果和老策略一致时，此时：
 
-$$ \pi'(s) = \argmax*a \sum*{s',r} p(s',r | s,a)[r + \gamma v_{\pi'}(s')] $$
+$$ \pi'(s) = \argmax_a \sum_{s',r} p(s',r | s,a)[r + \gamma v_{\pi'}(s')] $$
 
 这就是贝尔曼最优方程，此时的$\pi'$即$\pi_\ast$。
 
@@ -104,11 +103,11 @@ $$
 
 策略迭代的问题在于每一次迭代都需要经过一次完整的策略评估，非常的耗时。事实上，可以对策略评估算法进行剪枝，只进行一次状态价值函数的更新。即：
 
-$$ v*{k+1}(s) \doteq \max_a \sum*{s',r} p(s',r | s,a)[r + \gamma v_k(s')] $$
+$$ v_{k+1}(s) \doteq \max_a \sum_{s',r} p(s',r | s,a)[r + \gamma v_k(s')] $$
 
 这也能被看作贝尔曼方程的一种应用。可以证明，这种迭代方式最终可以收敛到$v_\ast$。我们定义一个贝尔曼最优算子$\Tau$：
 
-$$ v*{k+1}(s) = \Tau v_k(s) = \max_a \sum*{s',r} p(s',r | s,a)[r + \gamma v_k(s')] $$
+$$ v_{k+1}(s) = \Tau v_k(s) =  \max_a \sum_{s',r} p(s',r | s,a)[r + \gamma v_k(s')] $$
 
 我们引入压缩算子的概念：如果$O$是一个算子，满足$||OV - OV'||_q \le || V - V' ||_q$，则我们称$O$是一个压缩算子。其中$||x||_q$表示$x$的$L_q$范数，无穷范数$||x||_\infty = \max_i|x_i|$。
 
@@ -142,7 +141,7 @@ $$
 & \qquad \bigtriangleup \gets \max(\bigtriangleup, | v - V(s) |) \\
 & until\ \bigtriangleup < \theta \\
 & Output\ a\ deterministic\ policy,\ \pi \approx \pi_\ast,\ such\ that \\
-& \quad \pi(s) = \argmax_a \sum_{s',r} p(s',r|s,a)[r + \gamma v_V(s')]
+& \quad \pi(s) = \argmax_a \sum_{s',r} p(s',r|s,a)[r + \gamma v_V(s')] 
 \end{align*}
 $$
 
