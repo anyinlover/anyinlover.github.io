@@ -1,0 +1,55 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout pageTitle={frontmatter.title}>
+  <div class="formatter">
+    <div class="pubdate">
+      {frontmatter.pubDate.toISOString().split("T")[0]}
+    </div>
+
+    <div class="tags">
+      {
+        frontmatter.tags.map((tag: string) => (
+          <p class="tag">
+            <a href={`/tags/${tag}`}>{tag}</a>
+          </p>
+        ))
+      }
+    </div>
+  </div>
+
+  <slot />
+
+  <style>
+    .formatter {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+    .pubdate {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    a {
+      color: #00539f;
+      text-decoration: none;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      margin: 0.25em;
+      border: solid 1px #a1a1a1;
+      border-radius: 0.5em;
+      padding: 0.2em 0.5em;
+      font-size: 1.15em;
+      background-color: #f8fcfd;
+    }
+  </style>
+</BaseLayout>

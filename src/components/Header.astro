@@ -1,0 +1,40 @@
+---
+import { Image } from "astro:assets";
+import Logo from "/public/favicon.svg";
+---
+
+<header>
+  <a href="/" class="logo">
+    <Image src={Logo} alt="Anyinlover's Cabin" width="48" height="48" />
+    <span>Anyinlover's Cabin</span>
+  </a>
+  <nav class="nav-links">
+    <a href="/tags/">Tags</a>
+    <a href="/about">About</a>
+  </nav>
+</header>
+
+<style>
+  header {
+    background-color: #aeb5c6;
+    padding: 1rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4rem;
+  }
+
+  header a {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: #353e54;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+</style>
