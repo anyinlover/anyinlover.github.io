@@ -1,5 +1,5 @@
 ---
-title: Floating-Point Representation: A Deep Dive
+title: Floating-Point Representation A Deep Dive
 pubDate: 2025-03-14 14:43:00
 tags:
   - float
