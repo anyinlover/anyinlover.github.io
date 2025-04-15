@@ -103,17 +103,40 @@ $$
 
 It is just an experience value without theory support.
 
-## Open Source UseCase
-
-### Models
-
-| Model | Type | Pretrain | Post-pretrain |
-| --- | --- | --- | --- |
-| Deepseek3 | LLM | RoPE | YaRN |
-
-### Frameworks
-
-### Megatron
-
-
 ## Open Source Implementation
+
+### Transformer-Engine
+
+```python
+class FusedRoPEFunc(torch.autograd.Function):
+    def forward(
+        ctx,
+        t: torch.Tensor,
+        freqs: torch.Tensor,
+        tensor_format: str = "sbhd",
+        interleaved: bool = False,
+        cu_seqlens: Union[torch.Tensor, None] = None,
+        cp_size: int = 1,
+        cp_rank: int = 0,
+    ) -> torch.Tensor:
+    def backward(ctx, grad_output: torch.Tensor) -> Tuple[Union[torch.Tensor, None], ...]:
+```
+
+### Flash-Attention
+
+```python
+class ApplyRotaryEmb(torch.autograd.Function):
+    def forward(
+        ctx,
+        x,
+        cos,
+        sin,
+        interleaved=False,
+        inplace=False,
+        seqlen_offsets: Union[int, torch.Tensor] = 0,
+        cu_seqlens: Optional[torch.Tensor] = None,
+        max_seqlen: Optional[int] = None,
+    ):
+
+    def backward(ctx, do):
+```
