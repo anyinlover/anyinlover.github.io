@@ -58,7 +58,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>Q0</string>
+          <string>Q&apos;</string>
         </entry>
       </elementAttributes>
       <pos x="1640" y="760"/>
@@ -76,7 +76,7 @@
     <visualElement>
       <elementName>Data</elementName>
       <elementAttributes/>
-      <pos x="1840" y="260"/>
+      <pos x="1060" y="220"/>
     </visualElement>
   </visualElements>
   <wires>

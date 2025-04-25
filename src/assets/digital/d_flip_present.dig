@@ -106,7 +106,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>PRE0</string>
+          <string>PRE&apos;</string>
         </entry>
       </elementAttributes>
       <pos x="1400" y="580"/>
@@ -116,7 +116,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>CLR0</string>
+          <string>CLR&apos;</string>
         </entry>
       </elementAttributes>
       <pos x="1400" y="820"/>
@@ -146,7 +146,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>Q0</string>
+          <string>Q&apos;</string>
         </entry>
       </elementAttributes>
       <pos x="2240" y="1020"/>
