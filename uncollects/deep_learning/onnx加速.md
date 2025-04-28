@@ -1,0 +1,13 @@
+# ONNX加速
+
+OMP_WAIT_POLICY
+OMP_NUM_THREADS
+KMP_AFFINITY
+OMP_MAX_ACTIVE_LEVELS
+ORT_TENSORRT_FP16_ENABLE
+
+inter_op_num_threads
+intra_op_num_threads
+execution_mode
+graph_optimization_level
+execution_provider
