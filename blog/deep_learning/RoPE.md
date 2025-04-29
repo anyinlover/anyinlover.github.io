@@ -6,8 +6,6 @@ tags:
   - dl
 ---
 
-## Introduction to RoPE
-
 Rope (Rotary Positional Embedding) is a type of relative positional encoding. Currently, most mainstream large models use Rope or its variants. The original paper on Rope can be found in [RoFormer: Enhanced Transformer with Rotary Position Embedding](https://arxiv.org/abs/2104.09864).
 
 Since self-attention computation is position-independent, positional encoding has been added since the invention of the transformer to capture dependencies between different positions. The transformer uses absolute positional encoding.
@@ -20,6 +18,8 @@ p_{k, 2t+1} &= \cos(k / 10000^{2t / d})
 $$
 
 Because absolute positional encoding is directly added to the token embedding, it cannot directly model the relative positions between tokens. The inference performance on sequences exceeding the training data length drops sharply. Relative positional encoding is used to correct this problem, and Rope has become the mainstream approach.
+
+## Introduction to RoPE
 
 The core idea of Rope is to find a positional encoding function such that the following equation holds:
 
