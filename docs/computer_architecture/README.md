@@ -9,4 +9,4 @@ This course is based on following open textbooks:
 - [Basic Computer Architecture](https://www.cse.iitd.ac.in/~srsarangi/archbooksoft.html) under [CC BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0/)
 - [Next-Gen Computer Architecture](https://www.cse.iitd.ac.in/~srsarangi/advbook/index.html) under [CC BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0/)
 
-Thanks for the authers's great work.
+Thanks for the authors' great work.
