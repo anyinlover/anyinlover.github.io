@@ -1,4 +1,5 @@
-from enum import Enum
+from enum import IntEnum
+from collections import defaultdict
 import random  # Added for stochasticity
 import gymnasium as gym
 from gymnasium import spaces
@@ -6,7 +7,7 @@ import pygame
 import numpy as np
 
 
-class Actions(Enum):
+class ACTIONS(IntEnum):
     NORTH = 0
     SOUTH = 1
     EAST = 2
@@ -53,8 +54,8 @@ class StochasticGridWorldEnv(gym.Env):
 
         # Define reward locations and values
         self._reward_locations = {
-            tuple([3, 0]): 10.0,  # Green cell (top-right)
-            tuple([3, 1]): -10.0,  # Red cell (below green)
+            tuple([3, 0]): 10,  # Green cell (top-right)
+            tuple([3, 1]): -10,  # Red cell (below green)
         }
         self._target_location_green = np.array([3, 0], dtype=int)  # For rendering
         self._target_location_red = np.array([3, 1], dtype=int)  # For rendering
@@ -62,18 +63,85 @@ class StochasticGridWorldEnv(gym.Env):
         # Define action space (Discrete: 0=N, 1=S, 2=E, 3=W)
         self.action_space = spaces.Discrete(4)
         self._action_to_direction = {
-            Actions.NORTH.value: np.array([0, -1]),  # North (increase row)
-            Actions.SOUTH.value: np.array([0, 1]),  # South (increase row)
-            Actions.EAST.value: np.array([1, 0]),  # East (increase col)
-            Actions.WEST.value: np.array([-1, 0]),  # West (decrease col)
+            ACTIONS.NORTH: np.array([0, -1]),  # North (increase row)
+            ACTIONS.SOUTH: np.array([0, 1]),  # South (increase row)
+            ACTIONS.EAST: np.array([1, 0]),  # East (increase col)
+            ACTIONS.WEST: np.array([-1, 0]),  # West (decrease col)
         }
 
         # Define observation space: Agent's location (col, row)
         # Use MultiDiscrete for [row, col] representation
-        self.observation_space = spaces.MultiDiscrete(
-            np.array([self.size_cols, self.size_rows]), dtype=int
-        )
+        self.observation_space = spaces.MultiDiscrete(np.array([self.size_cols, self.size_rows]), dtype=int)
 
+        self.P = {
+            (0, 0): {
+                ACTIONS.NORTH: [(0.8, (0, 0), -1, False), (0.1, (1, 0), -1, False), (0.1, (0, 0), -1, False)],
+                ACTIONS.SOUTH: [(1.0, (0, 1), -1, False)],
+                ACTIONS.EAST: [(1.0, (1, 0), -1, False)],
+                ACTIONS.WEST: [(1.0, (0, 0), -1, False)],
+            },
+            (1, 0): {
+                ACTIONS.NORTH: [(0.8, (1, 0), -1, False), (0.1, (2, 0), -1, False), (0.1, (0, 0), -1, False)],
+                ACTIONS.SOUTH: [(1.0, (1, 0), -1, False)],
+                ACTIONS.EAST: [(1.0, (2, 0), -1, False)],
+                ACTIONS.WEST: [(1.0, (0, 0), -1, False)],
+            },
+            (2, 0): {
+                ACTIONS.NORTH: [(0.8, (2, 0), -1, False), (0.1, (3, 0), 10, True), (0.1, (1, 0), -1, False)],
+                ACTIONS.SOUTH: [(1.0, (2, 1), -1, False)],
+                ACTIONS.EAST: [(1.0, (3, 0), 10, True)],
+                ACTIONS.WEST: [(1.0, (1, 0), -1, False)],
+            },
+            (3, 0): {
+                ACTIONS.NORTH: [(1.0, (3, 0), 0, True)],
+                ACTIONS.SOUTH: [(1.0, (3, 0), 0, True)],
+                ACTIONS.EAST: [(1.0, (3, 0), 0, True)],
+                ACTIONS.WEST: [(1.0, (3, 0), 0, True)],
+            },
+            (0, 1): {
+                ACTIONS.NORTH: [(0.8, (0, 0), -1, False), (0.1, (0, 1), -1, False), (0.1, (0, 1), -1, False)],
+                ACTIONS.SOUTH: [(1.0, (0, 2), -1, False)],
+                ACTIONS.EAST: [(1.0, (0, 1), -1, False)],
+                ACTIONS.WEST: [(1.0, (0, 1), -1, False)],
+            },
+            # (1, 1): {ACTIONS.NORTH: [], ACTIONS.SOUTH: [], ACTIONS.EAST: [], ACTIONS.WEST: []},
+            (2, 1): {
+                ACTIONS.NORTH: [(0.8, (2, 0), -1, False), (0.1, (3, 1), -10, True), (0.1, (2, 1), -1, False)],
+                ACTIONS.SOUTH: [(1.0, (2, 2), -1, False)],
+                ACTIONS.EAST: [(1.0, (3, 1), -10, True)],
+                ACTIONS.WEST: [(1.0, (2, 1), -1, False)],
+            },
+            (3, 1): {
+                ACTIONS.NORTH: [(1.0, (3, 1), 0, True)],
+                ACTIONS.SOUTH: [(1.0, (3, 1), 0, True)],
+                ACTIONS.EAST: [(1.0, (3, 1), 0, True)],
+                ACTIONS.WEST: [(1.0, (3, 1), 0, True)],
+            },
+            (0, 2): {
+                ACTIONS.NORTH: [(0.8, (0, 1), -1, False), (0.1, (1, 2), -1, False), (0.1, (0, 2), -1, False)],
+                ACTIONS.SOUTH: [(1.0, (0, 2), -1, False)],
+                ACTIONS.EAST: [(1.0, (1, 2), -1, False)],
+                ACTIONS.WEST: [(1.0, (0, 2), -1, False)],
+            },
+            (1, 2): {
+                ACTIONS.NORTH: [(0.8, (1, 2), -1, False), (0.1, (2, 2), -1, False), (0.1, (0, 2), -1, False)],
+                ACTIONS.SOUTH: [(1.0, (1, 2), -1, False)],
+                ACTIONS.EAST: [(1.0, (2, 2), -1, False)],
+                ACTIONS.WEST: [(1.0, (0, 2), -1, False)],
+            },
+            (2, 2): {
+                ACTIONS.NORTH: [(0.8, (2, 1), -1, False), (0.1, (3, 2), -1, False), (0.1, (1, 2), -1, False)],
+                ACTIONS.SOUTH: [(1.0, (2, 2), -1, False)],
+                ACTIONS.EAST: [(1.0, (3, 2), -1, False)],
+                ACTIONS.WEST: [(1.0, (1, 2), -1, False)],
+            },
+            (3, 2): {
+                ACTIONS.NORTH: [(0.8, (3, 1), -10, True), (0.1, (3, 2), -1, False), (0.1, (2, 2), -1, False)],
+                ACTIONS.SOUTH: [(1.0, (3, 2), -1, False)],
+                ACTIONS.EAST: [(1.0, (3, 2), -1, False)],
+                ACTIONS.WEST: [(1.0, (2, 2), -1, False)],
+            },
+        }
         # Initialize internal state
         self._agent_location = None
 
@@ -127,7 +195,7 @@ class StochasticGridWorldEnv(gym.Env):
         else:  # Other actions are deterministic
             actual_direction_idx = intended_direction_idx
 
-        # Get the change in coordinates for the actual direction
+        # Get the change in coordinates for the actual directitn
         delta = self._action_to_direction[actual_direction_idx]
 
         # Calculate the potential next position
@@ -141,9 +209,7 @@ class StochasticGridWorldEnv(gym.Env):
         valid_move = True
 
         # Check boundaries
-        if not (
-            0 <= next_pos_row < self.size_rows and 0 <= next_pos_col < self.size_cols
-        ):
+        if not (0 <= next_pos_row < self.size_rows and 0 <= next_pos_col < self.size_cols):
             valid_move = False
         # Check wall collision
         elif np.array_equal(potential_next_pos, self._wall_location):
@@ -158,7 +224,7 @@ class StochasticGridWorldEnv(gym.Env):
 
         # --- Calculate Reward ---
         # Reward is based on the state *entered*
-        reward = self._reward_locations.get(tuple(self._agent_location), -1.0)
+        reward = self._reward_locations.get(tuple(self._agent_location), -1)
 
         # --- Check for Termination ---
         # Episode terminates if the agent is in a reward cell
@@ -292,13 +358,13 @@ class StochasticGridWorldEnv(gym.Env):
 def run_pygame_visualization(env, max_episode_steps=100):
     pygame.init()
     pygame.display.set_caption("Stochastic Grid World")
-    CELL_SIZE = 128
+    CELL_SIZE = 256
     GRID_WIDTH = env.size_cols * CELL_SIZE
     GRID_HEIGHT = env.size_rows * CELL_SIZE
     INFO_HEIGHT = 100
-    BUTTON_WIDTH = 80
-    BUTTON_HEIGHT = 30
-    BUTTON_PADDING = 10
+    BUTTON_WIDTH = 160
+    BUTTON_HEIGHT = 60
+    BUTTON_PADDING = 20
     SCREEN_WIDTH = GRID_WIDTH
     SCREEN_HEIGHT = GRID_HEIGHT + INFO_HEIGHT
 
@@ -314,31 +380,27 @@ def run_pygame_visualization(env, max_episode_steps=100):
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
-    font = pygame.font.Font(None, 28)
-    button_font = pygame.font.Font(None, 24)
+    font = pygame.font.Font(None, 42)
+    button_font = pygame.font.Font(None, 40)
     button_y = GRID_HEIGHT + (INFO_HEIGHT - BUTTON_HEIGHT) // 2
-    start_button_rect = pygame.Rect(
-        BUTTON_PADDING, button_y, BUTTON_WIDTH, BUTTON_HEIGHT
-    )
-    stop_button_rect = pygame.Rect(
-        start_button_rect.right + BUTTON_PADDING, button_y, BUTTON_WIDTH, BUTTON_HEIGHT
-    )
-    reset_button_rect = pygame.Rect(
-        stop_button_rect.right + BUTTON_PADDING, button_y, BUTTON_WIDTH, BUTTON_HEIGHT
-    )
+    start_button_rect = pygame.Rect(BUTTON_PADDING, button_y, BUTTON_WIDTH, BUTTON_HEIGHT)
+    stop_button_rect = pygame.Rect(start_button_rect.right + BUTTON_PADDING, button_y, BUTTON_WIDTH, BUTTON_HEIGHT)
+    reset_button_rect = pygame.Rect(stop_button_rect.right + BUTTON_PADDING, button_y, BUTTON_WIDTH, BUTTON_HEIGHT)
 
     running_simulation = False  # Controls if env.step() is called
     game_active = True  # Controls the main loop
-    cumulative_reward = 0.0
+    cumulative_reward = 0
     step_count = 0
-    agent_action_policy = (
-        lambda: env.action_space.sample()
-    )  # Use random actions for now
+    # policy, _ = value_iter(env)
+    policy, _ = policy_iter(env)
+
+    def agent_action_policy(current_pos):
+        return policy[current_pos][0][0]
+
+    # agent_action_policy = env.action_space.sample  # Use random actions for now
 
     # Initialize environment state
-    observation, info = env.reset(
-        seed=random.randint(0, 10000)
-    )  # Use random seed each time
+    observation, info = env.reset(seed=random.randint(0, 10000))  # Use random seed each time
     while game_active:
         # --- Event Handling ---
         for event in pygame.event.get():
@@ -362,7 +424,7 @@ def run_pygame_visualization(env, max_episode_steps=100):
                         print("Reset button clicked")
                         running_simulation = False
                         observation, info = env.reset(seed=random.randint(0, 10000))
-                        cumulative_reward = 0.0
+                        cumulative_reward = 0
                         step_count = 0
 
         # --- Simulation Step ---
@@ -370,37 +432,32 @@ def run_pygame_visualization(env, max_episode_steps=100):
         truncated = step_count >= max_episode_steps
 
         if running_simulation and not terminated and not truncated:
-            action = agent_action_policy()  # Get action (random for now)
-            try:
-                observation, reward, term, trunc, info = env.step(action)
-                cumulative_reward += reward
-                step_count += 1
-                terminated = term  # Update terminated status
-                truncated = trunc  # Update truncated status (though env doesn't set it)
+            action = agent_action_policy(tuple(env._agent_location))  # Get action (random for now)
+            # try:
+            observation, reward, term, trunc, info = env.step(action)
+            cumulative_reward += reward
+            step_count += 1
+            terminated = term  # Update terminated status
+            truncated = trunc  # Update truncated status (though env doesn't set it)
 
-                # Automatically stop if max steps reached or episode terminates
-                if terminated or step_count >= max_episode_steps:
-                    running_simulation = False
-                    print(
-                        f"Simulation stopped. Terminated: {terminated}, Steps: {step_count}"
-                    )
+            # Automatically stop if max steps reached or episode terminates
+            if terminated or step_count >= max_episode_steps:
+                running_simulation = False
+                print(f"Simulation stopped. Terminated: {terminated}, Steps: {step_count}")
 
-            except Exception as e:
-                print(f"Error during env.step: {e}")
-                running_simulation = False  # Stop on error
+            # except Exception as e:
+            #     print(f"Error during env.step: {e}")
+            #     raise e
+            #     running_simulation = False  # Stop on error
 
         # --- Drawing ---
         screen.fill(WHITE)  # Clear screen with white background
 
         # Draw Grid Lines
         for r in range(env.size_rows + 1):
-            pygame.draw.line(
-                screen, GREY, (0, r * CELL_SIZE), (GRID_WIDTH, r * CELL_SIZE)
-            )
+            pygame.draw.line(screen, GREY, (0, r * CELL_SIZE), (GRID_WIDTH, r * CELL_SIZE))
         for c in range(env.size_cols + 1):
-            pygame.draw.line(
-                screen, GREY, (c * CELL_SIZE, 0), (c * CELL_SIZE, GRID_HEIGHT)
-            )
+            pygame.draw.line(screen, GREY, (c * CELL_SIZE, 0), (c * CELL_SIZE, GRID_HEIGHT))
 
         # Draw Cells
         # Wall
@@ -423,9 +480,7 @@ def run_pygame_visualization(env, max_episode_steps=100):
         )
 
         # Agent
-        pygame.draw.circle(
-            screen, BLUE, (env._agent_location + 0.5) * CELL_SIZE, CELL_SIZE // 3
-        )
+        pygame.draw.circle(screen, BLUE, (env._agent_location + 0.5) * CELL_SIZE, CELL_SIZE // 3)
 
         # Draw Info Area Background
         pygame.draw.rect(screen, GREY, (0, GRID_HEIGHT, SCREEN_WIDTH, INFO_HEIGHT))
@@ -442,35 +497,27 @@ def run_pygame_visualization(env, max_episode_steps=100):
         screen.blit(
             start_text,
             (
-                start_button_rect.x
-                + (start_button_rect.width - start_text.get_width()) // 2,
-                start_button_rect.y
-                + (start_button_rect.height - start_text.get_height()) // 2,
+                start_button_rect.x + (start_button_rect.width - start_text.get_width()) // 2,
+                start_button_rect.y + (start_button_rect.height - start_text.get_height()) // 2,
             ),
         )
         screen.blit(
             stop_text,
             (
-                stop_button_rect.x
-                + (stop_button_rect.width - stop_text.get_width()) // 2,
-                stop_button_rect.y
-                + (stop_button_rect.height - stop_text.get_height()) // 2,
+                stop_button_rect.x + (stop_button_rect.width - stop_text.get_width()) // 2,
+                stop_button_rect.y + (stop_button_rect.height - stop_text.get_height()) // 2,
             ),
         )
         screen.blit(
             reset_text,
             (
-                reset_button_rect.x
-                + (reset_button_rect.width - reset_text.get_width()) // 2,
-                reset_button_rect.y
-                + (reset_button_rect.height - reset_text.get_height()) // 2,
+                reset_button_rect.x + (reset_button_rect.width - reset_text.get_width()) // 2,
+                reset_button_rect.y + (reset_button_rect.height - reset_text.get_height()) // 2,
             ),
         )
 
         # Draw Step Count and Reward Text
-        info_text_str = (
-            f"Step: {step_count}/{max_episode_steps}    Reward: {cumulative_reward}"
-        )
+        info_text_str = f"Step: {step_count}/{max_episode_steps}  Reward: {cumulative_reward}"
         info_text = font.render(info_text_str, True, BLACK)
         info_text_rect = info_text.get_rect(
             center=(SCREEN_WIDTH // 2, GRID_HEIGHT + INFO_HEIGHT // 4)
@@ -481,9 +528,7 @@ def run_pygame_visualization(env, max_episode_steps=100):
 
         buttons_total_width = (BUTTON_WIDTH * 3) + (BUTTON_PADDING * 4)
         text_x_start = buttons_total_width
-        info_text_rect = info_text.get_rect(
-            midleft=(text_x_start, button_y + BUTTON_HEIGHT // 2)
-        )
+        info_text_rect = info_text.get_rect(midleft=(text_x_start, button_y + BUTTON_HEIGHT // 2))
 
         screen.blit(info_text, info_text_rect)
 
@@ -497,6 +542,99 @@ def run_pygame_visualization(env, max_episode_steps=100):
     print("Pygame closed.")
 
 
+def value_iter(env, theta=0.001, discount_factor=1.0):
+    def one_step_lookahead(state, V):
+        A = np.zeros(len(env._action_to_direction))
+        for a in env._action_to_direction:
+            for prob, next_state, reward, done in env.P[state][a]:
+                A[a] += prob * (reward + discount_factor * V[next_state])
+        return A
+
+    V = defaultdict(int)
+    while True:
+        delta = 0
+        for s in env.P:
+            A = one_step_lookahead(s, V)
+            best_action_value = np.max(A)
+            delta = max(delta, np.abs(best_action_value - V[s]))
+            V[s] = best_action_value
+
+        if delta < theta:
+            break
+
+    policy = defaultdict(int)
+    for s in env.P:
+        A = one_step_lookahead(s, V)
+        best_action = np.argmax(A)
+        policy[s] = int(best_action)
+
+    return policy, V
+
+
+def policy_eval(policy, env, discount_factor=1.0, theta=0.0001):
+    V = defaultdict(int)
+    while True:
+        delta = 0
+        for s in env.P:
+            v = 0
+            for a, action_prob in policy[s]:
+                for prob, next_state, reward, done in env.P[s][a]:
+                    v += action_prob * prob * (reward + discount_factor * V[next_state])
+
+            delta = max(delta, np.abs(v - V[s]))
+            V[s] = v
+
+        if delta < theta:
+            break
+
+    return V
+
+
+def policy_iter(env, policy_eval_fn=policy_eval, discount_factor=1.0):
+    def one_step_lookahead(state, v):
+        best_action = ACTIONS.NORTH
+        max_value = float("-inf")
+        for a in env._action_to_direction:
+            value = 0
+            for prob, next_state, reward, done in env.P[state][a]:
+                value += prob * (reward + discount_factor * V[next_state])
+            if value > max_value:
+                best_action = a
+                max_value = value
+        return best_action
+
+    policy = {}
+    for x in range(env.size_cols):
+        for y in range(env.size_rows):
+            if x != 1 or y != 1:
+                policy[(x, y)] = [
+                    (ACTIONS.NORTH, 0.25),
+                    (ACTIONS.SOUTH, 0.25),
+                    (ACTIONS.EAST, 0.25),
+                    (ACTIONS.WEST, 0.25),
+                ]
+
+    while True:
+        V = policy_eval_fn(policy, env, discount_factor)
+        policy_stable = True
+        for s in env.P:
+            chosen_a = policy[s][0][0]
+            best_a = one_step_lookahead(s, V)
+
+            if chosen_a != best_a:
+                policy_stable = False
+            policy[s] = [(best_a, 1.0)]
+
+        if policy_stable:
+            return policy, V
+
+
+""" if __name__ == "__main__":
+    env = StochasticGridWorldEnv()
+    policy, V = value_iter(env)
+    print(policy)
+    print(V)
+ """
 if __name__ == "__main__":
     env_instance = StochasticGridWorldEnv()
     run_pygame_visualization(env_instance, max_episode_steps=50)

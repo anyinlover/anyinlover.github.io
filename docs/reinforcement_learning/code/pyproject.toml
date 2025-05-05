@@ -6,5 +6,8 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "gymnasium>=1.1.1",
+    "ipykernel>=6.29.5",
     "pygame>=2.6.1",
+    "torch>=2.7.0",
+    "torchrl>=0.8.0",
 ]

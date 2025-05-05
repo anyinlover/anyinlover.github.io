@@ -10,7 +10,6 @@ In general, RL algorithms iterate over two steps:
 
 2. **Policy improvement**: From the current estimated values $V^\pi(s)$ or $Q^\pi(s, a)$, a new **better** policy $\pi$ is derived.
 
-
 After enough iterations, the policy converges to the **optimal policy** (if the states are Markov).
 
 This alternation between policy evaluation and policy improvement is called **generalized policy iteration** (GPI).

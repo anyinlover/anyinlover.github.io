@@ -6,7 +6,9 @@ sidebar_position: 2
 
 A Markov Decision Process (MDP) is a mathematical abstraction for sequential decision-making. Specifically, a Finite Markov Decision Process effectively characterizes the mathematical properties of reinforcement learning, where "finite" refers to the state, action, and reward sets all being finite. We say a system possesses the Markov property if its next state depends solely on the current state; all historical information is implicitly contained within the current state.
 
-In reinforcement learning, we distinguish between the agent and the environment. The agent is the decision-maker, and everything else constitutes the environment. The agent receives a state from the environment and makes a decision (an action). Consequently, it receives a reward and the next state. 
+![RL Agent and Environment](img/rl_agent_environment.drawio.svg)
+
+In reinforcement learning, we distinguish between the agent and the environment. The agent is the decision-maker, and everything else constitutes the environment. The agent receives a state from the environment and makes a decision (an action). Consequently, it receives a reward and the next state.
 
 ## Definition of Markov Decision Process
 
