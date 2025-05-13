@@ -1,7 +1,10 @@
 from dataclasses import dataclass
+import socket
+from datetime import datetime
 import torch
 from torch import nn
 import torch.nn.functional as F
+from torch.autograd.profiler import record_function
 from typing import Optional
 
 
@@ -14,8 +17,9 @@ class ModelArgs:
     vocab_size: int = 1024
     ffn_hidden_dim: int = 8192
     norm_eps: float = 1e-5
-    rope_theta: float = 500000
+    rope_theta: float = 10000
     max_seq_len: int = 2048
+    max_batch_size: int = 2
 
     def __init__(self, **kwargs):
         if self.n_kv_heads is None:
@@ -32,7 +36,7 @@ class RotaryEmbedding(torch.nn.Module):
         seq = torch.arange(max_seq_len, device=self.inv_freq.device, dtype=self.inv_freq.dtype)
         freqs = torch.outer(seq, self.inv_freq)
         freqs_cis = torch.polar(torch.ones_like(freqs), freqs)
-        return freqs_cis[:, None, None, :]
+        return freqs_cis[None, :, None, :]
 
 
 def apply_rotary_emb(t: torch.Tensor, freqs_cis: torch.Tensor) -> torch.Tensor:
@@ -43,6 +47,7 @@ def apply_rotary_emb(t: torch.Tensor, freqs_cis: torch.Tensor) -> torch.Tensor:
 
 class FeedForward(nn.Module):
     def __init__(self, dim: int, ffn_hidden_dim: int):
+        super().__init__()
         self.w1 = nn.Linear(dim, ffn_hidden_dim, bias=False)
         self.w2 = nn.Linear(ffn_hidden_dim, dim, bias=False)
         self.w3 = nn.Linear(dim, ffn_hidden_dim, bias=False)
@@ -104,5 +109,86 @@ class Llama(nn.Module):
         self.n_layers = params.n_layers
         self.tok_embeddings = nn.Embedding(params.vocab_size, params.dim)
         self.layers = nn.ModuleList(TransformerBlock(params) for _ in range(params.n_layers))
-        self.norm = nn.RMSNorm(params.dim, eps=params.norm_eps)
-        self.output = nn.Linear(params.dim, params.vocab_size, bias=False)
+        self.output_norm = nn.RMSNorm(params.dim, eps=params.norm_eps)
+        self.lm_head = nn.Linear(params.dim, params.vocab_size, bias=False)
+        self.rotary_embeddings = RotaryEmbedding(params.dim // params.n_heads)
+
+    def forward(self, inputs: torch.Tensor):
+        bsz, seqlen = inputs.shape
+        h = self.tok_embeddings(inputs)
+        freqs_cis = self.rotary_embeddings(seqlen)
+        mask = torch.full((seqlen, seqlen), float("-inf"), device=inputs.device)
+        mask = torch.triu(mask, diagonal=1)
+        mask = mask.type_as(h)
+        for layer in self.layers:
+            h = layer(h, freqs_cis, mask)
+        h = self.output_norm(h)
+        logits = self.lm_head(h)
+        return logits
+
+
+if __name__ == "__main__":
+    # torch.cuda.memory._record_memory_history()
+
+    def get_device():
+        if torch.cuda.is_available():
+            return torch.device("cuda")
+        elif torch.backends.mps.is_available():
+            return torch.device("mps")
+        return torch.device("cpu")
+
+    def get_mock_batch(batch_size, seq_len, vocab_size):
+        src = torch.randint(0, vocab_size, (batch_size, seq_len), device=get_device())
+        tgt = torch.cat((src[:, 1:], torch.randint(0, vocab_size, (batch_size, 1), device=get_device())), dim=1)
+        return src, tgt
+
+    def trace_handler(prof: torch.profiler.profile):
+        # Prefix for file names.
+        host_name = socket.gethostname()
+        timestamp = datetime.now().strftime("%b_%d_%H_%M_%S")
+        file_prefix = f"{host_name}_{timestamp}"
+
+        # Construct the trace file.
+        prof.export_chrome_trace(f"{file_prefix}.json.gz")
+
+        # Construct the memory timeline file.
+        prof.export_memory_timeline(f"{file_prefix}.html", device="cuda:0")
+
+    with torch.profiler.profile(
+        activities=[
+            torch.profiler.ProfilerActivity.CPU,
+            torch.profiler.ProfilerActivity.CUDA,
+        ],
+        schedule=torch.profiler.schedule(wait=0, warmup=0, active=3, repeat=1),
+        record_shapes=True,
+        profile_memory=True,
+        with_stack=True,
+        on_trace_ready=trace_handler,
+    ) as prof:
+        args = ModelArgs()
+        num_batches = 3
+        learning_rate = 1e-5
+        model = Llama(args)
+        model.to(device=get_device())
+        optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
+        criterion = nn.CrossEntropyLoss()
+
+        model.train()
+        total_loss = 0
+        for i in range(num_batches):
+            prof.step()
+            src, tgt = get_mock_batch(args.max_batch_size, args.max_seq_len, args.vocab_size)
+            with record_function("## forward ##"):
+                logits = model(src)
+
+            with record_function("## backward ##"):
+                loss = criterion(logits.view(-1, args.vocab_size), tgt.view(-1))
+                loss.backward()
+            with record_function("## optimizer ##"):
+                optimizer.step()
+                optimizer.zero_grad()
+            total_loss += loss.item()
+            print(f"Step {i + 1}, Loss: {loss.item():.4f}")
+
+        prof.export_memory_timeline("llama.html", device="cuda:0")
+    # torch.cuda.memory._dump_snapshot("llama.pickle")
