@@ -21,3 +21,5 @@ yarn-error.log*
 
 __pycache__
 .vscode
+
+.comate
