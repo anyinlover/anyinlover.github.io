@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>2</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>I_1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1440" y="780"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>I_0</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1440" y="820"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>O</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1660" y="800"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NOr</elementName>
+      <elementAttributes>
+        <entry>
+          <string>wideShape</string>
+          <boolean>true</boolean>
+        </entry>
+      </elementAttributes>
+      <pos x="1500" y="780"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="1600" y="800"/>
+      <p2 x="1660" y="800"/>
+    </wire>
+    <wire>
+      <p1 x="1440" y="820"/>
+      <p2 x="1500" y="820"/>
+    </wire>
+    <wire>
+      <p1 x="1440" y="780"/>
+      <p2 x="1500" y="780"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

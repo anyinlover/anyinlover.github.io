@@ -20,50 +20,106 @@ The part of the chip that performs the function is called a logic gate. Just as 
 
 Let's start with the AND gate. As its name implies, it implements the AND function: its output is 1 only when all inputs are 1. If any input is 0, its output is 0. In theory, an AND gate could have any number of inputs, but in practice an AND gate has a relatively small number of inputs, usually 2, 3, or 4. There are some physical limitations inherent to digital circuits that must be accounted for beyond just the Boolean logic. We will discuss these more at the end of this chapter and the end of Chapter 4.
 
-Figure 3.1 (a) shows the standard schematic symbol for a 2-input AND gate. Its truth table is shown in Figure 3.1 (b). For AND gates with more than two inputs, we use the same gate symbol, just with more input lines. Three- and four-input AND gates are shown in Figure 3.1 (c). The development of their truth tables are left as exercises for the reader.
+Figure 3.1 (a) shows the standard schematic symbol for a 2-input AND gate. Its truth table is shown in Figure 3.1 (b). For AND gates with more than two inputs, we use the same gate symbol, just with more input lines.
 
-![](img/_page_81_Figure_4.jpeg)
+![AND](img/AND.svg)
 
-Figure 3.1: AND gates: (a) 2-input AND gate; (b) Truth table; (c) 3- and 4-input AND gates.
+Figure 3.1(a) 2-input AND gate
 
+| $I_1$ | $I_0$ | $O$ |
+| ----- | ----- | --- |
+| 0     | 0     | 0   |
+| 0     | 1     | 0   |
+| 1     | 0     | 0   |
+| 1     | 1     | 1   |
 
-The OR gate, like the AND gate, has two or more inputs and one output. The output is 1 if any input is 1, and is 0 only if all inputs are set to 0. The 2-input OR gate is shown in Figure 3.2 (a). Its truth table is given in Figure 3.2 (b), and 3- and 4-input OR gates are shown in Figure 3.2 (c).
+Figure 3.1(b) Truth table
 
-![](img/_page_81_Figure_5.jpeg)
+The OR gate, like the AND gate, has two or more inputs and one output. The output is 1 if any input is 1, and is 0 only if all inputs are set to 0. The 2-input OR gate is shown in Figure 3.2 (a). Its truth table is given in Figure 3.2 (b).
 
-Figure 3.2: OR gates: (a) 2-input OR gate; (b) Truth table; (c) 3- and 4-input OR gates.
+![OR](img/OR.svg)
 
-The exclusive-or, XOR, gate can have two or more inputs, though it usually has only two. The output is 1 if an odd number of inputs are equal to 1, and it is 0 if the gate has an even number of inputs set to 1. Figure 3.3 shows the symbol for the 2-input XOR gate, its truth table, and the 3- and 4-input XOR gates.
+Figure 3.2(a) 2-input OR gate
 
-![](img/_page_82_Figure_1.jpeg)
+| $I_1$ | $I_0$ | $O$ |
+| ----- | ----- | --- |
+| 0     | 0     | 0   |
+| 0     | 1     | 1   |
+| 1     | 0     | 1   |
+| 1     | 1     | 1   |
 
-Figure 3.3: XOR gates: (a) 2-input XOR gate; (b) Truth table; (c) 3- and 4-input XOR gates.
+Figure 3.2(b) Truth table
 
+The exclusive-or, XOR, gate can have two or more inputs, though it usually has only two. The output is 1 if an odd number of inputs are equal to 1, and it is 0 if the gate has an even number of inputs set to 1. Figure 3.3 shows the symbol for the 2-input XOR gate, its truth table.
+
+![XOR](img/XOR.svg)
+
+Figure 3.3(a) 2-input XOR gate
+
+| $I_1$ | $I_0$ | $O$ |
+| ----- | ----- | --- |
+| 0     | 0     | 0   |
+| 0     | 1     | 1   |
+| 1     | 0     | 1   |
+| 1     | 1     | 0   |
+
+Figure 3.3(b) Truth table.
 
 Unlike the previous gates, the NOT gate can have only one input. Its output is the complement of the input. That is, when the input is 0 the output is 1, and when the input is 1 the output is 0. Figure 3.4 shows the symbol for the NOT gate and its truth table.
 
-![](img/_page_82_Figure_5.jpeg)
+![NOT](img/NOT.svg)
 
-Figure 3.4: NOT gate: (a) Symbol; (b) Truth table.
+Figure 3.4(a) NOT gate
 
+| $I$ | $O$ |
+| --- | --- |
+| 0   | 1   |
+| 1   | 0   |
 
-As we saw in the previous chapter, there are also complementary functions for the AND, OR, and XOR functions. The NAND function is 0 when all its inputs are 1 and 1 if any input is 0. The symbol for the 2-input NAND gate, shown in Figure 3.5 (a), is simply the symbol for the 2 input AND gate with a circle at its output, which indicates that it is followed by an inverter. (Actually, internally these gates are designed the other way around; the AND gate is a NAND gate followed by an inverter.) Figure 3.5 (b) and (c) show the truth table for the 2-input NAND gate and the symbol for the 3- and 4-input NAND gates, respectively.
+Figure 3.4(b) Truth table.
 
-![](img/_page_83_Figure_1.jpeg)
+As we saw in the previous chapter, there are also complementary functions for the AND, OR, and XOR functions. The NAND function is 0 when all its inputs are 1 and 1 if any input is 0. The symbol for the 2-input NAND gate, shown in Figure 3.5 (a), is simply the symbol for the 2 input AND gate with a circle at its output, which indicates that it is followed by an inverter. (Actually, internally these gates are designed the other way around; the AND gate is a NAND gate followed by an inverter.) Figure 3.5 (b) show the truth table for the 2-input NAND gate.
 
-Figure 3.5: NAND gates: (a) 2-input NAND gate; (b) Truth table; (c) 3- and 4-input NAND gates.
+![NAND](img/NAND.svg)
 
+Figure 3.5(a) 2-input NAND gate
+
+| $I_1$ | $I_0$ | $O$ |
+| ----- | ----- | --- |
+| 0     | 0     | 1   |
+| 0     | 1     | 1   |
+| 1     | 0     | 1   |
+| 1     | 1     | 0   |
+
+Figure 3.5(b) Truth table
 
 Continuing on, Figure 3.6 shows the symbols and truth table for the NOR gate, and Figure 3.7 shows this information for the exclusive-NOR (XNOR, not NXOR) gate. Note that the output of the 2-input XNOR gate is 1 when its two inputs are equal. For this reason, it is sometimes referred to as the equivalence function.
 
-![](img/_page_83_Figure_2.jpeg)
+![NOR](img/NOR.svg)
 
-Figure 3.6: NOR gates: (a) 2-input NOR gate; (b) Truth table; (c) 3- and 4-input NOR gates.
+Figure 3.6(a) 2-input NOR gate
 
-![](img/_page_84_Figure_1.jpeg)
+| $I_1$ | $I_0$ | $O$ |
+| ----- | ----- | --- |
+| 0     | 0     | 1   |
+| 0     | 1     | 0   |
+| 1     | 0     | 0   |
+| 1     | 1     | 0   |
 
-Figure 3.7: XNOR gates: (a) 2-input XNOR gate; (b) Truth table; (c) 3- and 4-input XNOR gates.
+Figure 3.6(b) Truth table
 
+![XNOR](img/XNOR.svg)
+
+Figure 3.7(a) 2-input XNOR gate
+
+| $I_1$ | $I_0$ | $O$ |
+| ----- | ----- | --- |
+| 0     | 0     | 1   |
+| 0     | 1     | 0   |
+| 1     | 0     | 0   |
+| 1     | 1     | 1   |
+
+Figure 3.7(b) Truth table
 
 ## 3.2 Implementing Functions
 
@@ -71,12 +127,24 @@ Now that we have seen the fundamental logic gates, we'll spend some time in this
 
 ### 3.2.1 Minimizing Logic
 
-The first steps when designing a digital logic circuit are to determine the value of the output for all possible input values and to create a Boolean equation that generates these outputs. Let's start with an equation we used in Chapter 2, $q = a'bc' + ac$. For your reference, its truth table is shown in Figure 3.8 (a).
+The first steps when designing a digital logic circuit are to determine the value of the output for all possible input values and to create a Boolean equation that generates these outputs. Let's start with an equation we used in Chapter 2, $q = a'bc' + ac$.
 
-![](img/_page_85_Figure_1.jpeg)
+| $a$ | $b$ | $c$ | $a'$ | $c'$ | $a'bc'$ | $ac$ | $q$ |
+| --- | --- | --- | ---- | ---- | ------- | ---- | --- |
+| 0   | 0   | 0   | 1    | 1    | 0       | 0    | 0   |
+| 0   | 0   | 1   | 1    | 0    | 0       | 0    | 0   |
+| 0   | 1   | 0   | 1    | 1    | 1       | 0    | 1   |
+| 0   | 1   | 1   | 1    | 0    | 0       | 0    | 0   |
+| 1   | 0   | 0   | 0    | 1    | 0       | 0    | 0   |
+| 1   | 0   | 1   | 0    | 0    | 0       | 1    | 1   |
+| 1   | 1   | 0   | 0    | 1    | 0       | 0    | 0   |
+| 1   | 1   | 1   | 0    | 0    | 0       | 1    | 1   |
 
-Figure 3.8: Implementing the function $q = a'bc' + ac$: (a) Original truth table; (b) Expanded truth table; (c) Digital logic circuit to implement this function.
+Figure 3.8: Implementing the function $q = a'bc' + ac$: (a)Expanded truth table
 
+![circult](img/3dot8function.svg)
+
+Figure 3.8: Implementing the function $q = a'bc' + ac$: (b) Digital logic circuit to implement this function.
 
 Just by looking at the equation for the function, we can see several of the gates that we will need in our final circuit:
 
@@ -85,28 +153,61 @@ Just by looking at the equation for the function, we can see several of the gate
 - One 2-input AND gate to generate $ac$
 - One 2-input OR gate to combine $a'bc'$ and $ac$ to produce $q$
 
-The expanded truth table in Figure 3.8 (b) shows the values of $a'$, $c'$, $a'bc'$, $ac$, and $q$ for all values of $a$, $b$, and $c$.
+The expanded truth table in Figure 3.8 (a) shows the values of $a'$, $c'$, $a'bc'$, $ac$, and $q$ for all values of $a$, $b$, and $c$.
 
-Finally, we implement all of this in digital logic. The sequence of gates is dependent on the availability of their inputs. For example, the OR gate cannot combine $a'bc'$ and $ac$ until we have generated these functions. In addition, we cannot create $a'bc'$, the output of the 3-input AND gate, until we have generated $a'$ and $c'$. Note that $b$ is an input, so it can be connected directly to one of the inputs of this gate. Similarly, the 2-input AND gate receives inputs $a$ and $c$ directly. The complete circuit is shown in Figure 3.8 (c), animated for all possible input values.
+Finally, we implement all of this in digital logic. The sequence of gates is dependent on the availability of their inputs. For example, the OR gate cannot combine $a'bc'$ and $ac$ until we have generated these functions. In addition, we cannot create $a'bc'$, the output of the 3-input AND gate, until we have generated $a'$ and $c'$. Note that $b$ is an input, so it can be connected directly to one of the inputs of this gate. Similarly, the 2-input AND gate receives inputs $a$ and $c$ directly. The complete circuit is shown in Figure 3.8 (b), animated for all possible input values.
 
 In this example, we were given the final equation for output $q$. Sometimes, however, we may have only the output specified for some or all input values. If this is the case, we will need to develop an equation that generates these outputs and then design a circuit to realize that equation. Consider another function from Chapter 2 with the truth table shown in Figure 3.9 (a)
 
-![](img/_page_86_Figure_1.jpeg)
+| $a$ | $b$ | $c$ | $q$ |
+| --- | --- | --- | --- |
+| 0   | 0   | 0   | 0   |
+| 0   | 0   | 1   | 0   |
+| 0   | 1   | 0   | 1   |
+| 0   | 1   | 1   | 0   |
+| 1   | 0   | 0   | 0   |
+| 1   | 0   | 1   | 1   |
+| 1   | 1   | 0   | 0   |
+| 1   | 1   | 1   | 1   |
 
-Figure 3.9: Another function: (a) Truth table; (b) Karnaugh map; (c) Implementation of $q = ab' + a'b + c'$ and $q = (a \oplus b) + c'$.
+Figure 3.9: Another function: (a) Truth table
+
+![k-map](img/3dot9functionb.png)
+
+Figure 3.9(b) Karnaugh map
+
+![](img/3dot9functionc.svg)
+
+Figure 3.9(c) Implementation of $q = ab' + a'b + c'$
+
+![](img/3dot9functiond.svg)
+
+Figure 3.9(d) Implementation of $q = (a \oplus b) + c'$.
 
 In Chapter 2, we used a Karnaugh map to generate the function $q = ab' + a'b + c'$, as shown in Figure 3.9 (b). We can create a circuit to realize this function using the same procedure we used for the previous function. We will need three NOT gates to generate $a'$, $b'$, and $c'$, two 2-input AND gates to generate $ab'$ and $a'b$, and one 3-input OR gate to combine $ab'$, $a'b$, and $c'$. This is shown in the first circuit in Figure 3.9 (c).
 
-Karnaugh maps are very useful for creating AND/OR-based functions, but sometimes we can reduce the number of gates by going beyond these maps. In this example, $ab' + a'b$ is the same as $a \oplus b$. We could substitute this into our equation, giving us $q = (a \oplus b) + c'$. Then we could replace the two AND gates and the two NOT gates that generate $a'$ and $b'$ with a single XOR gate. In addition, the OR gate would only need two inputs instead of three. A circuit to realize this revised function is also shown in Figure 3.9 (c).
+Karnaugh maps are very useful for creating AND/OR-based functions, but sometimes we can reduce the number of gates by going beyond these maps. In this example, $ab' + a'b$ is the same as $a \oplus b$. We could substitute this into our equation, giving us $q = (a \oplus b) + c'$. Then we could replace the two AND gates and the two NOT gates that generate $a'$ and $b'$ with a single XOR gate. In addition, the OR gate would only need two inputs instead of three. A circuit to realize this revised function is shown in Figure 3.9 (d).
 
 ### 3.2.2 Implementing Functions using Sum of Products
 
 Recall from Chapter 2 that each row of the truth table, or each square in the Karnaugh map, corresponds to one minterm. For each variable, we AND together either the variable or its complement. We AND the variable if its value in the row is 1, or we AND its complement if its value is 0. For example, the minterm for the row with $a = 1$, $b = 0$, and $c = 1$, is $ab'c$. Figure 3.10 (a) shows the truth table for a function we looked at previously, $q = a'bc' + ac$.
 
-![](img/_page_87_Figure_1.jpeg)
+| $a$ | $b$ | $c$ | $q$ | Minterm  |
+| --- | --- | --- | --- | -------- |
+| 0   | 0   | 0   | 0   | $a'b'c'$ |
+| 0   | 0   | 1   | 0   | $a'b'c$  |
+| 0   | 1   | 0   | 1   | $a'bc'$  |
+| 0   | 1   | 1   | 0   | $a'bc$   |
+| 1   | 0   | 0   | 0   | $ab'c'$  |
+| 1   | 0   | 1   | 1   | $ab'c$   |
+| 1   | 1   | 0   | 0   | $abc'$   |
+| 1   | 1   | 1   | 1   | $abc$    |
 
-Figure 3.10: Implementing $q = a'bc' + ac$ using sum of products: (a) Truth table; (b) Circuit to realize $q$ using minterms.
+Figure 3.10: Implementing $q = a'bc' + ac$ using sum of products: (a) Truth table
 
+![](img/3dot10function.svg)
+
+Figure 3.10: Implementing $q = a'bc' + ac$ using sum of products: (b) Circuit to realize $q$ using minterms.
 
 To create a sum of products function, we first generate each minterm that sets $q$ to 1. In this example, we need three NOT gates to output $a'$, $b'$, and $c'$, three 3-input AND gates to generate $a'bc'$, $ab'c$, and $abc$, and finally a 3-input OR gate to combine these three minterms and output a 1 if any of them is 1. A circuit to realize this implementation is shown in Figure 3.10 (b).
 
@@ -114,9 +215,22 @@ Comparing the two circuits to generate $q$, shown in Figures 3.8 (c) and 3.10 (b
 
 Now let's look at the other example from the previous subsection. Figure 3.11 (a) shows the truth table from Figure 3.10 (a) with the addition of the minterms associated with each row. There are six rows that set q to 1, so our sum of products implementation would use six 3-input AND gates to generate these minterms, one 6-input OR gate to combine the minterms, and three NOT gates to produce $a'$, $b'$, and $c'$. The circuit is shown in Figure 3.11 (b).
 
-![](img/_page_88_Figure_2.jpeg)
+| $a$ | $b$ | $c$ | $q$ | Minterm  |
+| --- | --- | --- | --- | -------- |
+| 0   | 0   | 0   | 1   | $a'b'c'$ |
+| 0   | 0   | 1   | 0   | $a'b'c$  |
+| 0   | 1   | 0   | 1   | $a'bc'$  |
+| 0   | 1   | 1   | 1   | $a'bc$   |
+| 1   | 0   | 0   | 1   | $ab'c'$  |
+| 1   | 0   | 1   | 1   | $ab'c$   |
+| 1   | 1   | 0   | 1   | $abc'$   |
+| 1   | 1   | 1   | 0   | $abc$    |
 
-Figure 3.11: Implementing $q = a'b'c' + a'bc' + a'bc + ab'c' + ab'c + abc'$ using sum of products: (a) Truth table; (b) Circuit to realize $q$ using minterms.
+Figure 3.11: Implementing $q = a'b'c' + a'bc' + a'bc + ab'c' + ab'c + abc'$ using sum of products: (a) Truth table
+
+![](img/3dot11function.svg)
+
+Figure 3.11 (b) Circuit to realize $q$ using minterms.
 
 There are a couple of things we can generalize from these two examples. First, each circuit has a column of AND gates followed by a single OR gate. For this reason, a sum of products is said to be implemented by an AND-OR circuit. Each AND gate generates one minterm and the OR gate combines them to produce the final output function. This leads to a second generalization: the number of rows in the truth table that set the output to 1 is also the number of AND gates in the first stage, and also the number of inputs to the OR gate. This is true because each row corresponds to one minterm; each row that outputs a 1 is one minterm
 
@@ -158,9 +272,22 @@ The terms $(a + b + c')$ and $(a' + b' + c')$ are called **maxterms**. Each maxt
 
 From the structure of the equations for $q$, we can see that we will need two 3-input OR gates to generate our maxterms and one 2-input AND gate to combine them, as well as three NOT gates to produce $a'$, $b'$, and $c'$. Figure 3.12 shows the expanded truth table and a circuit to implement the function as a product of sums.
 
-![](img/_page_91_Figure_1.jpeg)
+| $a$ | $b$ | $c$ | $q$ | Maxterm    |
+| --- | --- | --- | --- | ---------- |
+| 0   | 0   | 0   | 1   | $a+b+c$    |
+| 0   | 0   | 1   | 0   | $a+b+c'$   |
+| 0   | 1   | 0   | 1   | $a+b'+c$   |
+| 0   | 1   | 1   | 1   | $a+b'+c'$  |
+| 1   | 0   | 0   | 1   | $a'+b+c$   |
+| 1   | 0   | 1   | 1   | $a'+b+c'$  |
+| 1   | 1   | 0   | 1   | $a'+b'+c$  |
+| 1   | 1   | 1   | 0   | $a'+b'+c'$ |
 
-Figure 3.12: Implementing $q = (a + b + c')(a' + b' + c')$ using Product of Sums: (a) Expanded truth table; (b) Circuit to realize $q$ using maxterms.
+Figure 3.12: Implementing $q = (a + b + c')(a' + b' + c')$ using Product of Sums: (a) Expanded truth table
+
+![](img/3dot12function.svg)
+
+Figure 3.12: Implementing $q = (a + b + c')(a' + b' + c')$ using Product of Sums(b) Circuit to realize $q$ using maxterms.
 
 Just as the minterm implementation produced a two-stage circuit, the maxterm circuit also has two stages. This time, however, the circuit has OR gates in the first stage and an AND gate in the second stage. This is referred to as an OR-AND circuit.
 
@@ -172,15 +299,26 @@ Sometimes it is easier to implement the inverse of a function rather than the fu
 
 To illustrate how this can be done using minterms, let's start with the function given in Figure 3.11. This table, repeated and expanded in Figure 3.13 (a), has six of its eight minterms set $q$ to 1. We have expanded the table to add a column with the value of $q'$, which is only set to 1 by two minterms. First we will create a circuit to realize $q'$; then we will invert its output to generate $q$.
 
+| $a$ | $b$ | $c$ | $q$ | $q'$ | Minterm  |
+| --- | --- | --- | --- | ---- | -------- |
+| 0   | 0   | 0   | 1   | 0    | $a'b'c'$ |
+| 0   | 0   | 1   | 0   | 1    | $a'b'c$  |
+| 0   | 1   | 0   | 1   | 0    | $a'bc'$  |
+| 0   | 1   | 1   | 1   | 0    | $a'bc$   |
+| 1   | 0   | 0   | 1   | 0    | $ab'c'$  |
+| 1   | 0   | 1   | 1   | 0    | $ab'c$   |
+| 1   | 1   | 0   | 1   | 0    | $abc'$   |
+| 1   | 1   | 1   | 0   | 1    | $abc$    |
 
-![](img/_page_91_Figure_1.jpeg)
+Figure 3.13: Implementing $q = (a'b'c + abc)'$ using Sum of Products for inverse functions: (a) Truth table
 
-Figure 3.13: Implementing $q = (a'b'c + abc)'$ using Sum of Products for inverse functions: (a) Truth table; (b) Circuit to realize $q'$; (c) Inverting the output to realize $q$.
+![](img/3dot13function.svg)
 
+Figure 3.13: Implementing $q = (a'b'c + abc)'$ using Sum of Products for inverse functions: (b) Inverting the output to realize $q$.
 
-Using only minterms, $q'$ is only equal to 1 when either $a'b'c$ or $abc$ is 1. Just as we did previously, we can use AND gates to generate the minterms and an OR gate to combine them to produce the overall function. This circuit is shown in Figure 3.13 (b).
+Using only minterms, $q'$ is only equal to 1 when either $a'b'c$ or $abc$ is 1. Just as we did previously, we can use AND gates to generate the minterms and an OR gate to combine them to produce the overall function.
 
-But we're not quite done. Remember that this circuit generates the inverse of our function, $q'$, and we still need to invert that value to generate our final function, $q$. We could accomplish this by placing a NOT gate at the output of the OR gate. A simpler method is to replace the OR gate with a NOR gate. The final circuit is shown in Figure 3.13 (c).
+But we're not quite done. Remember that this circuit generates the inverse of our function, $q'$, and we still need to invert that value to generate our final function, $q$. We could accomplish this by placing a NOT gate at the output of the OR gate. A simpler method is to replace the OR gate with a NOR gate. The final circuit is shown in Figure 3.13 (b).
 
 In general, realizing inverse functions using minterms can reduce the hardware needed when the number of minterms is large. In the truth table, this occurs when more than half the entries set the function to 1.
 
@@ -188,16 +326,28 @@ In general, realizing inverse functions using minterms can reduce the hardware n
 
 Just as inverse functions can be created more efficiently when the number of minterms is large, inverse functions can also be created using less hardware when the number of maxterms is large. Let's return to another function from the previous section, $q = a'bc' + ac$. Its truth table, with corresponding maxterms, is shown in Figure 3.14 (a).
 
-![](img/_page_92_Figure_1.jpeg)
+| $a$ | $b$ | $c$ | $q$ | $q'$ | Minterm    |
+| --- | --- | --- | --- | ---- | ---------- |
+| 0   | 0   | 0   | 0   | 1    | $a+b+c$    |
+| 0   | 0   | 1   | 0   | 1    | $a+b+c'$   |
+| 0   | 1   | 0   | 1   | 0    | $a+b'+c$   |
+| 0   | 1   | 1   | 0   | 1    | $a+b'+c'$  |
+| 1   | 0   | 0   | 0   | 1    | $a'+b+c$   |
+| 1   | 0   | 1   | 1   | 0    | $a'+b+c'$  |
+| 1   | 1   | 0   | 0   | 1    | $a'+b'+c$  |
+| 1   | 1   | 1   | 1   | 0    | $a'+b'+c'$ |
 
-Figure 3.14: Implementing $q = ((a+b'+c)(a'+b+c')(a'+b'+c'))'$ using product of sums for inverse functions: (a) Truth table; (b) Circuit to realize $q'$; (c) Inverting the output to realize $q$.
+Figure 3.14: Implementing $q = ((a+b'+c)(a'+b+c')(a'+b'+c'))'$ using product of sums for inverse functions: (a) Truth table
 
+![](img/3dot14function.svg)
+
+Figure 3.14(b) Inverting the output to realize $q$.
 
 If we wanted to realize $q$ directly as a product of sums, we would generate each minterm that sets $q$ to 0 and logically AND them together. For this function, we would need five 3-input OR gates and one 5-input AND gate. In this case, generating the inverse function and then inverting its output produces a simpler design.
 
-Consider how we could generate $q'$ as a product of sums. Function $q'$ has only three maxterms equal to zero, so our circuit would need only three 3-input NOR gates and one 3 input AND gate. This circuit is shown in Figure 3.14 (b).
+Consider how we could generate $q'$ as a product of sums. Function $q'$ has only three maxterms equal to zero, so our circuit would need only three 3-input NOR gates and one 3 input AND gate.
 
-Finally, since this circuit generates $q'$, not $q$, we need to invert its output. We can do this by replacing the AND gate with a NAND gate. The final circuit is shown in Figure 3.14 (c).
+Finally, since this circuit generates $q'$, not $q$, we need to invert its output. We can do this by replacing the AND gate with a NAND gate. The final circuit is shown in Figure 3.14 (b).
 
 Just as inverse functions can be used to reduce hardware when the number of minterms is large, they can also reduce hardware when the number of maxterms is large. Unlike minterms, however, this is the case when more than half the entries in the truth table set the function to 0.
 
@@ -299,16 +449,16 @@ Some functions are used frequently in digital logic design. Engineers have devel
 
 7. Develop a minimal function for the truth table shown below and design a circuit to realize this function.
 
-| a | b | c | q |
-|---|---|---|---|
-| 0 | 0 | 0 | 0 |
-| 0 | 0 | 1 | 0 |
-| 0 | 1 | 0 | 1 |
-| 0 | 1 | 1 | 1 |
-| 1 | 0 | 0 | 0 |
-| 1 | 0 | 1 | 0 |
-| 1 | 1 | 0 | 1 |
-| 1 | 1 | 1 | 0 |
+| a   | b   | c   | q   |
+| --- | --- | --- | --- |
+| 0   | 0   | 0   | 0   |
+| 0   | 0   | 1   | 0   |
+| 0   | 1   | 0   | 1   |
+| 0   | 1   | 1   | 1   |
+| 1   | 0   | 0   | 0   |
+| 1   | 0   | 1   | 0   |
+| 1   | 1   | 0   | 1   |
+| 1   | 1   | 1   | 0   |
 
 8. For the truth table in Problem 7, develop a function consisting solely of minterms and design a circuit to realize this function.
 
@@ -318,16 +468,16 @@ Some functions are used frequently in digital logic design. Engineers have devel
 
 11. Develop a minimal function for the truth table shown below and design a circuit to realize this function.
 
-| a | b | c | q |
-|---|---|---|---|
-| 0 | 0 | 0 | 1 |
-| 0 | 0 | 1 | 0 |
-| 0 | 1 | 0 | 1 |
-| 0 | 1 | 1 | 1 |
-| 1 | 0 | 0 | 0 |
-| 1 | 0 | 1 | 1 |
-| 1 | 1 | 0 | 1 |
-| 1 | 1 | 1 | 0 |
+| a   | b   | c   | q   |
+| --- | --- | --- | --- |
+| 0   | 0   | 0   | 1   |
+| 0   | 0   | 1   | 0   |
+| 0   | 1   | 0   | 1   |
+| 0   | 1   | 1   | 1   |
+| 1   | 0   | 0   | 0   |
+| 1   | 0   | 1   | 1   |
+| 1   | 1   | 0   | 1   |
+| 1   | 1   | 1   | 0   |
 
 12. For the truth table in Problem 11, develop a function consisting solely of minterms and design a circuit to realize this nction.
 
@@ -343,7 +493,7 @@ Some functions are used frequently in digital logic design. Engineers have devel
 
 
 | Gate              | TTL IC #         | Maximum propagation delay |
-|-------------------|------------------|---------------------------|
+| ----------------- | ---------------- | ------------------------- |
 | 2-input AND gate  | 74LS08           | 20ns                      |
 | 3-input AND gate  | 74LS11           | 20ns                      |
 | 3-input NAND gate | 74LS10           | 15ns                      |

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Digital by H.Neemann -->
+<!-- created: Thu May 15 07:23:59 CST 2025 -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="43.5mm"
+   height="10.2mm"
+   viewBox="1643 806 290 68">
+<g stroke-linecap="square">
+<path d="M 1680,820 L 1740,820 L 1754,820" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 1840,840 L 1900,840" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 1680,860 L 1740,860 L 1754,860" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<g>
+</g>
+<g>
+<path d="M 1770,870 L 1750,870 C 1760,854 1760,826 1750,810 L 1770,810 C 1790,810 1810,820 1820,840 C 1810,860 1790,870 1770,870 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<path d="M 1740,870 C 1750,860 1750,820 1740,810" stroke="#000000" stroke-width="4.0" fill="none"/>
+<circle cx="1830.0" cy="840.0" r="9.0" stroke="#000000" stroke-width="4.0" fill="none" />
+</g>
+<g>
+<circle cx="1676.0" cy="820.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="1666.0" y="829.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">1</tspan></tspan></text>
+</g>
+<g>
+<circle cx="1676.0" cy="860.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="1666.0" y="869.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">0</tspan></tspan></text>
+</g>
+<g>
+<circle cx="1904.0" cy="840.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="1914.0" y="849.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">O</tspan></text>
+</g>
+</g>
+</svg>

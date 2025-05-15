@@ -12,5 +12,8 @@ The course also based on following softwares:
 
 - [Digital](https://github.com/hneemann/Digital)
 - [Verilator](https://github.com/verilator/verilator)
+- [Yosys](https://github.com/YosysHQ/yosys)
+- [gtkwave](https://github.com/gtkwave/gtkwave)
+- [cocotb](https://github.com/cocotb/cocotb)
 
 Thanks for the authors' great work.

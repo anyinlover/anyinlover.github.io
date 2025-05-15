@@ -13,5 +13,10 @@ This course is based on following open textbooks:
 The course also based on following softwares:
 
 - [Gem5](https://github.com/gem5/gem5)
+- [GPGPU-Sim](https://github.com/gpgpu-sim/gpgpu-sim_distribution)
+- [Ramulator](https://github.com/CMU-SAFARI/ramulator2)
+- [QEMU](https://www.qemu.org/)
+- [Spike](https://github.com/riscv-software-src/riscv-isa-sim)
+- [Ibex](https://github.com/lowRISC/ibex)
 
 Thanks for the authors' great work.

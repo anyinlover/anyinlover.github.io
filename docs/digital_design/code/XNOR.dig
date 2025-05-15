@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>2</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>XNOr</elementName>
+      <elementAttributes>
+        <entry>
+          <string>wideShape</string>
+          <boolean>true</boolean>
+        </entry>
+      </elementAttributes>
+      <pos x="1740" y="820"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>I_1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1680" y="820"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>I_0</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1680" y="860"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>O</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1900" y="840"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="1680" y="820"/>
+      <p2 x="1740" y="820"/>
+    </wire>
+    <wire>
+      <p1 x="1840" y="840"/>
+      <p2 x="1900" y="840"/>
+    </wire>
+    <wire>
+      <p1 x="1680" y="860"/>
+      <p2 x="1740" y="860"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>
