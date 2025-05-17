@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Digital by H.Neemann -->
+<!-- created: Sat May 17 09:25:51 CST 2025 -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="60.0mm"
+   height="30.9mm"
+   viewBox="-130 -34 400 206">
+<g stroke-linecap="square">
+<path d="M -40,60 L -40,160 L 100,160 L 114,160" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M -100,-20 L 20,-20 L 60,-20 L 60,0 L 100,0" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 180,20 L 240,20" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 20,-20 L 20,120 L 100,120 L 114,120" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 180,140 L 240,140" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M -100,60 L -40,60 L 60,60 L 60,40 L 100,40" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<g>
+<circle cx="20.0" cy="-20.0" r="4.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+<circle cx="-40.0" cy="60.0" r="4.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+</g>
+<g>
+<circle cx="244.0" cy="20.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="254.0" y="29.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">C</tspan></text>
+</g>
+<g>
+<path d="M 150,50 L 101,50 L 101,-10 L 150,-10 C 160,-10 180,0 179,20 C 179,40 160,50 150,50 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+</g>
+<g>
+<circle cx="244.0" cy="140.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="254.0" y="149.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">S</tspan></text>
+</g>
+<g>
+<circle cx="-104.0" cy="-20.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="-114.0" y="-11.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">A</tspan></text>
+</g>
+<g>
+<circle cx="-104.0" cy="60.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="-114.0" y="69.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">B</tspan></text>
+</g>
+<g>
+<path d="M 130,170 L 110,170 C 120,154 120,126 110,110 L 130,110 C 150,110 170,120 180,140 C 170,160 150,170 130,170 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<path d="M 100,170 C 110,160 110,120 100,110" stroke="#000000" stroke-width="4.0" fill="none"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Digital by H.Neemann -->
+<!-- created: Fri May 16 08:20:16 CST 2025 -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="160.2mm"
+   height="30.15mm"
+   viewBox="229 77 1068 201">
+<g stroke-linecap="square">
+<path d="M 240,210 L 240,190" stroke="#000000" stroke-width="6.0" fill="none"/>
+<path d="M 234,240 L 240,240" stroke="#000000" stroke-width="4.0" fill="none"/>
+<path d="M 460,160 L 520,160 L 520,200 L 640,200" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 700,160 L 760,160 L 760,200 L 880,200" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 940,160 L 1000,160 L 1000,200 L 1120,200" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 600,120 L 600,160 L 640,160" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 840,120 L 840,160 L 880,160" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 1080,120 L 1080,160 L 1120,160" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 340,120 L 340,160 L 400,160" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 1180,160 L 1220,160 L 1220,140 L 1240,140" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 300,200 L 300,240 L 400,240" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 240,240 L 280,240 L 280,220 L 400,220" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 460,180 L 500,180 L 500,220 L 640,220" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 700,180 L 740,180 L 740,220 L 880,220" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 940,180 L 980,180 L 980,220 L 1120,220" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 560,120 L 560,180 L 640,180" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 800,120 L 800,180 L 880,180" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 1040,120 L 1040,180 L 1120,180" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 300,120 L 300,180 L 400,180" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 1180,180 L 1240,180" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 460,200 L 480,200 L 480,240 L 640,240" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 700,200 L 720,200 L 720,240 L 880,240" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 940,200 L 960,200 L 960,240 L 1120,240" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 1180,200 L 1220,200 L 1220,220 L 1240,220" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 240,200 L 300,200 L 400,200" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<g>
+<circle cx="300.0" cy="200.0" r="4.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+</g>
+<g>
+<circle cx="560.0" cy="116.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="560.0" y="115.0" fill="#000000" style="font-size:24px" transform="rotate(-90,560.0,106.0)" ><tspan style="font-style:italic;">B<tspan style="font-size:80%;baseline-shift:sub;">2</tspan></tspan></text>
+</g>
+<g>
+<path d="M 401,146 L 459,146 L 459,254 L 401,254 Z" stroke="#ffffb4" stroke-width="0.0" fill="#ffffb4" fill-opacity="0.7843137254901961"/>
+<path d="M 401,146 L 459,146 L 459,254 L 401,254 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<text text-anchor="start" x="404.0" y="166.75" fill="#808080" style="font-size:18px">A</text>
+<text text-anchor="start" x="404.0" y="186.75" fill="#808080" style="font-size:18px">B</text>
+<text text-anchor="start" x="404.0" y="206.75" fill="#808080" style="font-size:18px">A&gt;B<tspan style="font-size:80%;baseline-shift:sub;">in</tspan></text>
+<text text-anchor="start" x="404.0" y="226.75" fill="#808080" style="font-size:18px">A=B<tspan style="font-size:80%;baseline-shift:sub;">in</tspan></text>
+<text text-anchor="start" x="404.0" y="246.75" fill="#808080" style="font-size:18px">A&lt;B<tspan style="font-size:80%;baseline-shift:sub;">in</tspan></text>
+<text text-anchor="end" x="456.0" y="166.75" fill="#808080" style="font-size:18px">A&gt;B<tspan style="font-size:80%;baseline-shift:sub;">out</tspan></text>
+<text text-anchor="end" x="456.0" y="186.75" fill="#808080" style="font-size:18px">A=B<tspan style="font-size:80%;baseline-shift:sub;">out</tspan></text>
+<text text-anchor="end" x="456.0" y="206.75" fill="#808080" style="font-size:18px">A&lt;B<tspan style="font-size:80%;baseline-shift:sub;">out</tspan></text>
+<text text-anchor="middle" x="430.0" y="271.5" fill="#808080" style="font-size:18px">enhanced1bitcomparator</text>
+</g>
+<g>
+<path d="M 641,146 L 699,146 L 699,254 L 641,254 Z" stroke="#ffffb4" stroke-width="0.0" fill="#ffffb4" fill-opacity="0.7843137254901961"/>
+<path d="M 641,146 L 699,146 L 699,254 L 641,254 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<text text-anchor="start" x="644.0" y="166.75" fill="#808080" style="font-size:18px">A</text>
+<text text-anchor="start" x="644.0" y="186.75" fill="#808080" style="font-size:18px">B</text>
+<text text-anchor="start" x="644.0" y="206.75" fill="#808080" style="font-size:18px">A&gt;B<tspan style="font-size:80%;baseline-shift:sub;">in</tspan></text>
+<text text-anchor="start" x="644.0" y="226.75" fill="#808080" style="font-size:18px">A=B<tspan style="font-size:80%;baseline-shift:sub;">in</tspan></text>
+<text text-anchor="start" x="644.0" y="246.75" fill="#808080" style="font-size:18px">A&lt;B<tspan style="font-size:80%;baseline-shift:sub;">in</tspan></text>
+<text text-anchor="end" x="696.0" y="166.75" fill="#808080" style="font-size:18px">A&gt;B<tspan style="font-size:80%;baseline-shift:sub;">out</tspan></text>
+<text text-anchor="end" x="696.0" y="186.75" fill="#808080" style="font-size:18px">A=B<tspan style="font-size:80%;baseline-shift:sub;">out</tspan></text>
+<text text-anchor="end" x="696.0" y="206.75" fill="#808080" style="font-size:18px">A&lt;B<tspan style="font-size:80%;baseline-shift:sub;">out</tspan></text>
+<text text-anchor="middle" x="670.0" y="271.5" fill="#808080" style="font-size:18px">enhanced1bitcomparator</text>
+</g>
+<g>
+<path d="M 881,146 L 939,146 L 939,254 L 881,254 Z" stroke="#ffffb4" stroke-width="0.0" fill="#ffffb4" fill-opacity="0.7843137254901961"/>
+<path d="M 881,146 L 939,146 L 939,254 L 881,254 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<text text-anchor="start" x="884.0" y="166.75" fill="#808080" style="font-size:18px">A</text>
+<text text-anchor="start" x="884.0" y="186.75" fill="#808080" style="font-size:18px">B</text>
+<text text-anchor="start" x="884.0" y="206.75" fill="#808080" style="font-size:18px">A&gt;B<tspan style="font-size:80%;baseline-shift:sub;">in</tspan></text>
+<text text-anchor="start" x="884.0" y="226.75" fill="#808080" style="font-size:18px">A=B<tspan style="font-size:80%;baseline-shift:sub;">in</tspan></text>
+<text text-anchor="start" x="884.0" y="246.75" fill="#808080" style="font-size:18px">A&lt;B<tspan style="font-size:80%;baseline-shift:sub;">in</tspan></text>
+<text text-anchor="end" x="936.0" y="166.75" fill="#808080" style="font-size:18px">A&gt;B<tspan style="font-size:80%;baseline-shift:sub;">out</tspan></text>
+<text text-anchor="end" x="936.0" y="186.75" fill="#808080" style="font-size:18px">A=B<tspan style="font-size:80%;baseline-shift:sub;">out</tspan></text>
+<text text-anchor="end" x="936.0" y="206.75" fill="#808080" style="font-size:18px">A&lt;B<tspan style="font-size:80%;baseline-shift:sub;">out</tspan></text>
+<text text-anchor="middle" x="910.0" y="271.5" fill="#808080" style="font-size:18px">enhanced1bitcomparator</text>
+</g>
+<g>
+<path d="M 1121,146 L 1179,146 L 1179,254 L 1121,254 Z" stroke="#ffffb4" stroke-width="0.0" fill="#ffffb4" fill-opacity="0.7843137254901961"/>
+<path d="M 1121,146 L 1179,146 L 1179,254 L 1121,254 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<text text-anchor="start" x="1124.0" y="166.75" fill="#808080" style="font-size:18px">A</text>
+<text text-anchor="start" x="1124.0" y="186.75" fill="#808080" style="font-size:18px">B</text>
+<text text-anchor="start" x="1124.0" y="206.75" fill="#808080" style="font-size:18px">A&gt;B<tspan style="font-size:80%;baseline-shift:sub;">in</tspan></text>
+<text text-anchor="start" x="1124.0" y="226.75" fill="#808080" style="font-size:18px">A=B<tspan style="font-size:80%;baseline-shift:sub;">in</tspan></text>
+<text text-anchor="start" x="1124.0" y="246.75" fill="#808080" style="font-size:18px">A&lt;B<tspan style="font-size:80%;baseline-shift:sub;">in</tspan></text>
+<text text-anchor="end" x="1176.0" y="166.75" fill="#808080" style="font-size:18px">A&gt;B<tspan style="font-size:80%;baseline-shift:sub;">out</tspan></text>
+<text text-anchor="end" x="1176.0" y="186.75" fill="#808080" style="font-size:18px">A=B<tspan style="font-size:80%;baseline-shift:sub;">out</tspan></text>
+<text text-anchor="end" x="1176.0" y="206.75" fill="#808080" style="font-size:18px">A&lt;B<tspan style="font-size:80%;baseline-shift:sub;">out</tspan></text>
+<text text-anchor="middle" x="1150.0" y="271.5" fill="#808080" style="font-size:18px">enhanced1bitcomparator</text>
+</g>
+<g>
+<circle cx="600.0" cy="116.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="600.0" y="115.0" fill="#000000" style="font-size:24px" transform="rotate(-90,600.0,106.0)" ><tspan style="font-style:italic;">A<tspan style="font-size:80%;baseline-shift:sub;">2</tspan></tspan></text>
+</g>
+<g>
+<circle cx="800.0" cy="116.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="800.0" y="115.0" fill="#000000" style="font-size:24px" transform="rotate(-90,800.0,106.0)" ><tspan style="font-style:italic;">B<tspan style="font-size:80%;baseline-shift:sub;">1</tspan></tspan></text>
+</g>
+<g>
+<circle cx="840.0" cy="116.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="840.0" y="115.0" fill="#000000" style="font-size:24px" transform="rotate(-90,840.0,106.0)" ><tspan style="font-style:italic;">A<tspan style="font-size:80%;baseline-shift:sub;">1</tspan></tspan></text>
+</g>
+<g>
+<circle cx="1040.0" cy="116.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="1040.0" y="115.0" fill="#000000" style="font-size:24px" transform="rotate(-90,1040.0,106.0)" ><tspan style="font-style:italic;">B<tspan style="font-size:80%;baseline-shift:sub;">0</tspan></tspan></text>
+</g>
+<g>
+<circle cx="1080.0" cy="116.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="1080.0" y="115.0" fill="#000000" style="font-size:24px" transform="rotate(-90,1080.0,106.0)" ><tspan style="font-style:italic;">A<tspan style="font-size:80%;baseline-shift:sub;">0</tspan></tspan></text>
+</g>
+<g>
+<circle cx="300.0" cy="116.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="300.0" y="115.0" fill="#000000" style="font-size:24px" transform="rotate(-90,300.0,106.0)" ><tspan style="font-style:italic;">B<tspan style="font-size:80%;baseline-shift:sub;">3</tspan></tspan></text>
+</g>
+<g>
+<circle cx="340.0" cy="116.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="340.0" y="115.0" fill="#000000" style="font-size:24px" transform="rotate(-90,340.0,106.0)" ><tspan style="font-style:italic;">A<tspan style="font-size:80%;baseline-shift:sub;">3</tspan></tspan></text>
+</g>
+<g>
+<circle cx="1244.0" cy="180.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="1254.0" y="189.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">A=B</tspan></text>
+</g>
+<g>
+<circle cx="1244.0" cy="220.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="1254.0" y="229.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">A&lt;B</tspan></text>
+</g>
+<g>
+<circle cx="1244.0" cy="140.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="1254.0" y="149.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">A&gt;B</tspan></text>
+</g>
+<g>
+<path d="M 244,250 L 231,240 L 244,230" stroke="#000000" stroke-width="4.0" fill="none"/>
+</g>
+<g>
+</g>
+</g>
+</svg>

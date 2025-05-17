@@ -8,7 +8,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>O0</string>
+          <string>O_2</string>
         </entry>
       </elementAttributes>
       <pos x="940" y="240"/>
@@ -28,7 +28,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>O1</string>
+          <string>O_1</string>
         </entry>
       </elementAttributes>
       <pos x="940" y="360"/>
@@ -38,7 +38,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>O2</string>
+          <string>O_0</string>
         </entry>
       </elementAttributes>
       <pos x="940" y="480"/>
@@ -98,7 +98,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>O3</string>
+          <string>O_3</string>
         </entry>
       </elementAttributes>
       <pos x="940" y="700"/>
@@ -108,7 +108,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>I0</string>
+          <string>I_0</string>
         </entry>
       </elementAttributes>
       <pos x="500" y="140"/>
@@ -118,7 +118,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>I1</string>
+          <string>I_1</string>
         </entry>
       </elementAttributes>
       <pos x="500" y="200"/>
@@ -128,7 +128,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>I2</string>
+          <string>I_2</string>
         </entry>
       </elementAttributes>
       <pos x="500" y="260"/>
@@ -138,7 +138,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>I3</string>
+          <string>I_3</string>
         </entry>
       </elementAttributes>
       <pos x="500" y="320"/>
@@ -148,7 +148,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>I4</string>
+          <string>I_4</string>
         </entry>
       </elementAttributes>
       <pos x="500" y="380"/>
@@ -158,7 +158,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>I5</string>
+          <string>I_5</string>
         </entry>
       </elementAttributes>
       <pos x="500" y="440"/>
@@ -168,7 +168,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>I6</string>
+          <string>I_6</string>
         </entry>
       </elementAttributes>
       <pos x="500" y="500"/>
@@ -178,7 +178,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>I7</string>
+          <string>I_7</string>
         </entry>
       </elementAttributes>
       <pos x="500" y="560"/>
@@ -188,7 +188,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>I8</string>
+          <string>I_8</string>
         </entry>
       </elementAttributes>
       <pos x="500" y="620"/>
@@ -198,7 +198,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>I9</string>
+          <string>I_9</string>
         </entry>
       </elementAttributes>
       <pos x="500" y="680"/>
@@ -208,7 +208,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>I10</string>
+          <string>I_{10}</string>
         </entry>
       </elementAttributes>
       <pos x="500" y="740"/>
@@ -218,7 +218,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>I11</string>
+          <string>I_{11}</string>
         </entry>
       </elementAttributes>
       <pos x="500" y="800"/>
@@ -228,7 +228,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>I12</string>
+          <string>I_{12}</string>
         </entry>
       </elementAttributes>
       <pos x="500" y="860"/>
@@ -238,7 +238,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>I13</string>
+          <string>I_{13}</string>
         </entry>
       </elementAttributes>
       <pos x="500" y="920"/>
@@ -248,7 +248,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>I14</string>
+          <string>I_{14}</string>
         </entry>
       </elementAttributes>
       <pos x="500" y="980"/>
@@ -258,7 +258,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>I15</string>
+          <string>I_{15}</string>
         </entry>
       </elementAttributes>
       <pos x="500" y="1040"/>

@@ -18,16 +18,15 @@ As its name implies, the primary function of a decoder is to, well, decode. It t
 
 A decoder has $n$ inputs. Together, these bits represent a single $n$-bit value. The $n$ bits can represent any of $2^n$ values, ranging from 0 to $2^n – 1$. For example, two bits can represent any of four (22) values: 00, 01, 10, 11, or 0, 1, 2, 3, or 0 to 3 (0 to $2^2 – 1$). Three bits can represent any value from 0 (000) to 7 (111), and so on for any value of $n$. The decoder also has $2^n$ outputs, each representing one of the $2^n$ possible values of the inputs. We typically refer to this as an $n$ to $2^n$ decoder.
 
-Figure 4.1 shows a generic 3 to 8 decoder. Inputs $I_2$, $I_1$, and $I_0$ represent a 3-bit value. $I_2$ is the most significant bit and $I_0$ is the least significant bit. For example, $I_2=1$, $I_1=0$ and $I_0=0$ represents the binary value 100, or 4. Outputs $O_0$ to $O_7$ correspond to the eight (23) possible values represented by these bits. The output corresponding to the input value is set to 1 and the other outputs are set to 0. For input value 100, the decoder sets $O_4$ to 1 and the other seven outputs to 0. The animation in the figure shows the outputs for each possible input value.
+Figure 4.1 shows a generic 3 to 8 decoder. Inputs $I_2$, $I_1$, and $I_0$ represent a 3-bit value. $I_2$ is the most significant bit and $I_0$ is the least significant bit. For example, $I_2=1$, $I_1=0$ and $I_0=0$ represents the binary value 100, or 4. Outputs $O_0$ to $O_7$ correspond to the eight ($2^3$) possible values represented by these bits. The output corresponding to the input value is set to 1 and the other outputs are set to 0. For input value 100, the decoder sets $O_4$ to 1 and the other seven outputs to 0. The animation in the figure shows the outputs for each possible input value.
 
-![](img/_page_104_Figure_1.jpeg)
+![](img/3to8decoder.svg)
 
 Figure 4.1: Generic 3 to 8 decoder with values shown.
 
-
 The decoder just presented, however, is not completely accurate. Whatever value is input to this decoder always generates one specific output. But sometimes we don't want any of the outputs to be active. (Why? We'll get to that shortly.) To do this, a decoder may have an *enable* input. When the enable signal is active (usually 1), the decoder works exactly as described previously. It sets the output corresponding to the inputs to 1 and the remaining outputs to 0. However, if the enable input is 0, all the outputs are set to 0, even the output corresponding to the input value. This is shown in Figure 4.2.
 
-![](img/_page_104_Figure_5.jpeg)
+![](img/3to8decoderwithenable.svg)
 
 Figure 4.2: Generic 3 to 8 decoder with enable and values shown.
 
@@ -35,13 +34,13 @@ Now, back to our previous question. Why would we sometimes not want any decoder 
 
 You can use the enable signal to combine two or more decoders and make them act like a single, larger decoder. To see how this works, consider the circuit shown in Figure 4.3. We combine two 3 to 8 decoders to create a 4 to 16 decoder. We have a 4-bit value, but each decoder only has three inputs. We take the three lowest order bits and connect them to the three inputs of both decoders. Then we use the remaining bits, only one bit in this case, to generate the values for the enable signals. In this figure, we take the most significant bit of the 4-bit value and use it to generate the enable signals. We pass it through a NOT gate to enable the upper decoder, and we also send it directly to the enable of the lower decoder. When this bit is 0, the NOT gate outputs a 1, the upper decoder is enabled, and the three lower bits cause one of the decoder's outputs to be active. Since it is input directly to the enable of the lower decoder, that decoder is disabled, or not enabled, and all its outputs are set to 0. Conversely, when the most significant bit is 1, the upper decoder is disabled and the lower decoder is enabled. As shown in the figure, the outputs of the upper decoder correspond to input values 0000 (0) to 0111 (7) and those of the lower decoder are activated by input values 1000 (8) to 1111 (15).
 
-![](img/_page_105_Figure_2.jpeg)
+![](img/4to16from3to8decoder.svg)
 
 Figure 4.3: 4 to 16 decoder constructed using two 3 to 8 decoders.
 
-There are other ways to combine decoders. Consider the circuit shown in Figure 4.4. Here, we use four 2 to 4 decoders to generate the outputs of a 4 to 16 decoder. These decoders input the two low-order bits of the input value, and the two remaining bits are used to generate the enable signals. We could use combinatorial logic gates, but instead we use another 2 to 4 decoder. The animation in this figure shows how each of the values generates its corresponding output.
+There are other ways to combine decoders. Consider the circuit shown in Figure 4.4. Here, we use four 2 to 4 decoders to generate the outputs of a 4 to 16 decoder. These decoders input the two low-order bits of the input value, and the two remaining bits are used to generate the enable signals. We could use combinatorial logic gates, but instead we use another 2 to 4 decoder.
 
-![](img/_page_106_Figure_2.jpeg)
+![](img/4to16from2to4decoder.svg)
 
 Figure 4.4: 4 to 16 decoder constructed using 2 to 4 decoders.
 
@@ -51,11 +50,28 @@ Now that we've seen how decoders work from the outside, the next question is how
 
 One way to do this is to determine the function for each output, and then implement these functions in digital logic, much as we did in the previous chapter.
 
-Consider, for example, a 2 to 4 decoder with an enable signal. Its truth table is shown in Figure 4.5 (a). Now consider output $O_0$. It should only be set to 1 when $I_1 = 0$, $I_0 = 0$, and enable input $E = 1$. Figure 4.5 (b) shows one circuit to realize this function. Repeating this process for the other outputs produce the final circuit shown in Figure 4.5 (c).
+Consider, for example, a 2 to 4 decoder with an enable signal. Its truth table is shown in Figure 4.5 (a). Now consider output $O_0$. It should only be set to 1 when $I_1 = 0$, $I_0 = 0$, and enable input $E = 1$. Figure 4.5 (c) shows complete circuit to realize this function.
 
-![](img/_page_107_Figure_5.jpeg)
+| $E$ | $I_1$ | $I_0$ | $O_0$ | $O_1$ | $O_2$ | $O_3$ |
+| --- | ----- | ----- | ----- | ----- | ----- | ----- |
+| 0   | X     | X     | 0     | 0     | 0     | 0     |
+| 1   | 0     | 0     | 1     | 0     | 0     | 0     |
+| 1   | 0     | 1     | 0     | 1     | 0     | 0     |
+| 1   | 1     | 0     | 0     | 0     | 1     | 0     |
+| 1   | 1     | 1     | 0     | 0     | 0     | 1     |
 
-Figure 4.5: 2 to 4 decoder: (a) Truth table; (b) Circuit to realize output $O_0$; (c) Complete circuit.
+$$
+\begin{aligned}
+O_0 &= EI'_0I'_1 \\
+O_1 &= EI_0I'_1 \\
+O_2 &= EI'_0I_1 \\
+O_3 &= EI_0I_1
+\end{aligned}
+$$
+
+![](img/2to4decoder.svg)
+
+Figure 4.5: 2 to 4 decoder: (a) Truth table (b) Representation (c) Complete circuit.
 
 ### 4.1.3 BCD to 7-segment Decoder
 
@@ -63,7 +79,7 @@ Although you could design a chip to implement any function, it is only economica
 
 A BCD to 7-segment decoder has a 4-bit input that has the value of a decimal digit ranging from 0 to 9, or 0000 to 1001. These decoders generally assume that they do not receive an invalid input, 1010 to 1111. When designing the decoder, the outputs associated with these inputs are treated as don't care values, which simplifies the design of the chip. This decoder has seven outputs, labeled $a$, $b$, $c$, $d$, $e$, $f$, and $g$, which are connected to the display and cause the segments to light up or remain unlit.
 
-![](img/_page_108_Figure_1.jpeg)
+![](img/bcdto7decoder.svg)
 
 Figure 4.6 (a) Generic BCD to 7-segment decoder; (b) 7-segment display with segments labeled.
 
@@ -71,11 +87,37 @@ There are two types of 7-segment displays: common anode and common cathode. In c
 
 To design a BCD to 7-segment decoder, we will use the same procedure we've been using all along. First, we create a truth table with four inputs (corresponding to the BCD digit) and seven outputs (one for each segment). We will design a common cathode decoder, so we want each segment's value to be 1 when it should be lit. Figure 4.7 (a) shows the truth table for our decoder.
 
-![](img/_page_109_Figure_1.jpeg)
+| $I_3$ | $I_2$ | $I_1$ | $I_0$ | $a$ | $b$ | $c$ | $d$ | $e$ | $f$ | $g$ |
+| ----- | ----- | ----- | ----- | --- | --- | --- | --- | --- | --- | --- |
+| 0     | 0     | 0     | 0     | 1   | 1   | 1   | 1   | 1   | 1   | 0   |
+| 0     | 0     | 0     | 1     | 0   | 1   | 1   | 0   | 0   | 0   | 0   |
+| 0     | 0     | 1     | 0     | 1   | 1   | 0   | 1   | 1   | 0   | 1   |
+| 0     | 0     | 1     | 1     | 1   | 1   | 1   | 1   | 0   | 0   | 1   |
+| 0     | 1     | 0     | 0     | 0   | 1   | 1   | 0   | 0   | 1   | 1   |
+| 0     | 1     | 0     | 1     | 1   | 0   | 1   | 1   | 0   | 1   | 1   |
+| 0     | 1     | 1     | 0     | 1   | 0   | 1   | 1   | 1   | 1   | 1   |
+| 0     | 1     | 1     | 1     | 1   | 1   | 1   | 0   | 0   | 0   | 0   |
+| 1     | 0     | 0     | 0     | 1   | 1   | 1   | 1   | 1   | 1   | 1   |
+| 1     | 0     | 0     | 1     | 1   | 1   | 1   | 1   | 0   | 1   | 1   |
+| x     | x     | x     | x     | x   | x   | x   | x   | x   | x   | x   |
 
-Figure 4.7 BCD to 7-segment decoder: (a) Truth table; (b) Karnaugh Map for segment $a$; (c) Circuit for segment $a$.
+$$
+\begin{aligned}
+a &= I'_0I'_2 + I_0I_2 + I1 + I3 \\
+b &= I'_0I'_1 + I_0I_1 + I'_2 \\
+c &= I_0 + I'_1 + I_2 \\
+d &= I'_0I'_2 + I_0I'_1I_2 + I'_0I_1 + I_1I'_2 + I3 \\
+e &= I'_0I'_2 + I'0I_1 \\
+f &= I'_0I'_1 + I'_0I_2 + I'_1I_2 + I_3 \\
+g &= I'_0I_1 + I_1I'_2 + I'_1I_2 + I_3
+\end{aligned}
+$$
 
-Next, we create the function for each segment individually. Figure 4.7 (b) shows the Karnaugh Map and function for segment $a$. Finally, we design a circuit to realize the function. One possible circuit is shown in Figure 4.7 (c). The design of the circuits for the remaining segments and for the common anode decoder are left as exercises for the reader.
+![](img/bcd7decoder.svg)
+
+Figure 4.7 BCD to 7-segment decoder: (a) Truth table; (b) Representation (c) Complete Circuit.
+
+Next, we create the function for each segment individually. Finally, we design the complete circuit to realize the function. One possible circuit is shown in Figure 4.7 (c).
 
 ## 4.2 Encoders
 
@@ -87,37 +129,95 @@ Whereas a decoder takes an $n$-bit input and sets one of its $2^n$ outputs to 1,
 
 Consider the generic 8 to 3 encoder shown in Figure 4.8. If one of the eight inputs is set to 1, the three output bits indicate which input is set. For example, if input $I_6$ is 1, the output would be set to $O_2 = 1$, $O_1 = 1$, and $O_0 = 0$, or 110.
 
-![](img/_page_110_Figure_1.jpeg)
+![](img/generic8to3encoder.svg)
 
 Figure 4.8: Generic 8 to 3 encoder with values shown.
 
 As long as one input is active, the encoder functions as described. But what does the encoder do if none of the inputs is active? Since the encoder outputs binary values, the $O_2$, $O_1$, $O_0$, will always be set to a value corresponding to one of the inputs, even though that input isn't active. This is the reason this encoder includes another output, $V$. $V$ is the *valid* output. The encoder sets $V$ to 1 if any of the inputs is equal to 1, or 0 if none of the inputs is 1. When using an encoder, there are two things we need to check. One is the encoded output bits and the other is the valid bit. If $V$ = 1, then the output bits indicate which input is active. However, if $V$ = 0, then no input is active, regardless of the value of the output bits. Figure 4.9 shows the truth table for the generic 8 to 3 encoder. For this encoder, $O_2$, $O_1$, $O_0$ is set to 000 when there is no active input.
 
-| $I_7I_6I_5I_4I_3I_2I_1I_0$ | $O_2$ | $O_1$ | $O_0$ | $V$ |
-|------------------|----|----|----|---|
-| 00000000         | 0  | 0  | 0  | 0 |
-| 00000001         | 0  | 0  | 0  | 1 |
-| 00000010         | 0  | 0  | 1  | 1 |
-| 00000100         | 0  | 1  | 0  | 1 |
-| 00001000         | 0  | 1  | 1  | 1 |
-| 00010000         | 1  | 0  | 0  | 1 |
-| 00100000         | 1  | 0  | 1  | 1 |
-| 01000000         | 1  | 1  | 0  | 1 |
-| 10000000         | 1  | 1  | 1  | 1 |
+| $I_7$ | $I_6$ | $I_5$ | $I_4$ | $I_3$ | $I_2$ | $I_1$ | $I_0$ | $O_2$ | $O_1$ | $O_0$ | $V$ |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | --- |
+| 0     | 0     | 0     | 0     | 0     | 0     | 0     | 0     | 0     | 0     | 0     | 0   |
+| 0     | 0     | 0     | 0     | 0     | 0     | 0     | 1     | 0     | 0     | 0     | 1   |
+| 0     | 0     | 0     | 0     | 0     | 0     | 1     | 0     | 0     | 0     | 1     | 1   |
+| 0     | 0     | 0     | 0     | 0     | 1     | 0     | 0     | 0     | 1     | 0     | 1   |
+| 0     | 0     | 0     | 0     | 1     | 0     | 0     | 0     | 0     | 1     | 1     | 1   |
+| 0     | 0     | 0     | 1     | 0     | 0     | 0     | 0     | 1     | 0     | 0     | 1   |
+| 0     | 0     | 1     | 0     | 0     | 0     | 0     | 0     | 1     | 0     | 1     | 1   |
+| 0     | 1     | 0     | 0     | 0     | 0     | 0     | 0     | 1     | 1     | 0     | 1   |
+| 1     | 0     | 0     | 0     | 0     | 0     | 0     | 0     | 1     | 1     | 1     | 1   |
 
 Figure 4.9: Truth table for the generic 8 to 3 encoder.
 
 As with decoders, it is possible to combine encoders to handle more inputs. Figure 4.10 shows a 16 to 4 encoder constructed using two 8 to 3 encoders. Let's look at each part of this circuit in more detail.
 
-![](img/_page_111_Figure_1.jpeg)
+![](img/16to4from8to3encoder.svg)
 
 Figure 4.10: 16 to 4 encoder constructed using 8 to 3 encoders.
 
 The encoder system has 16 inputs. This circuit allocates inputs 0 to 7 (0000 to 0111) to the upper encoder and 8 to 15 (1000 to 1111) to the lower encoder. This becomes important when we generate the data outputs shortly.
 
-If any input from $I_0$ to $I_7$ is active, the upper encoder sets its $V$ output to 1 and its $O$ outputs to the value of the active input, 000 to 111. The same is true for inputs $I_8$ to $I_15$ for the lower decoder. Figure 4.11 (a) shows a partial truth table for this system as it generates outputs $O_2$, $O_1$, and $O_0$. From this table, we can verify that logically ORing together the corresponding outputs (the two $O_2$s, the two $O_1$s, and the two $O_0$s) produces the correct three low-order bits of the encoder output.
+If any input from $I_0$ to $I_7$ is active, the upper encoder sets its $V$ output to 1 and its $O$ outputs to the value of the active input, 000 to 111. The same is true for inputs $I_8$ to $I_{15}$ for the lower decoder. Figure 4.11 (a) shows a partial truth table for this system as it generates outputs $O_2$, $O_1$, and $O_0$. From this table, we can verify that logically ORing together the corresponding outputs (the two $O_2$s, the two $O_1$s, and the two $O_0$s) produces the correct three low-order bits of the encoder output.
 
-![](img/_page_112_Figure_1.jpeg)
+| Active Input | Upper Encoder $O_2$ | Upper Encoder $O_1$ | Upper Encoder $O_0$ | Lower Encoder $O_2$ | Lower Encoder $O_1$ | Lower Encoder $O_0$ | Overall $O_2$ | Overall $O_1$ | Overall $O_0$ |
+| ------------ | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- | ------------- | ------------- | ------------- |
+| None         | 0                   | 0                   | 0                   | 0                   | 0                   | 0                   | 0             | 0             | 0             |
+| $I_0$        | 0                   | 0                   | 0                   | 0                   | 0                   | 0                   | 0             | 0             | 0             |
+| $I_1$        | 0                   | 0                   | 1                   | 0                   | 0                   | 0                   | 0             | 0             | 1             |
+| $I_2$        | 0                   | 1                   | 0                   | 0                   | 0                   | 0                   | 0             | 1             | 0             |
+| $I_3$        | 0                   | 1                   | 1                   | 0                   | 0                   | 0                   | 0             | 1             | 1             |
+| $I_4$        | 1                   | 0                   | 0                   | 0                   | 0                   | 0                   | 1             | 0             | 0             |
+| $I_5$        | 1                   | 0                   | 1                   | 0                   | 0                   | 0                   | 1             | 0             | 1             |
+| $I_6$        | 1                   | 1                   | 0                   | 0                   | 0                   | 0                   | 1             | 1             | 0             |
+| $I_7$        | 1                   | 1                   | 1                   | 0                   | 0                   | 0                   | 1             | 1             | 1             |
+| $I_8$        | 0                   | 0                   | 0                   | 0                   | 0                   | 1                   | 0             | 0             | 0             |
+| $I_9$        | 0                   | 0                   | 0                   | 0                   | 0                   | 1                   | 0             | 0             | 1             |
+| $I_{10}$     | 0                   | 0                   | 0                   | 0                   | 1                   | 0                   | 0             | 1             | 0             |
+| $I_{11}$     | 0                   | 0                   | 0                   | 0                   | 1                   | 0                   | 0             | 1             | 1             |
+| $I_{12}$     | 0                   | 0                   | 0                   | 1                   | 0                   | 0                   | 1             | 0             | 0             |
+| $I_{13}$     | 0                   | 0                   | 0                   | 1                   | 0                   | 0                   | 1             | 0             | 1             |
+| $I_{14}$     | 0                   | 0                   | 0                   | 1                   | 1                   | 0                   | 1             | 1             | 0             |
+| $I_{15}$     | 0                   | 0                   | 0                   | 1                   | 1                   | 0                   | 1             | 1             | 1             |
+
+| Active Input | Upper Encoder $V$ | Lower Encoder $V$ | Overall V | Overall $O_3$ |
+| ------------ | ----------------- | ----------------- | --------- | ------------- |
+| None         | 0                 | 0                 | 0         | 0             |
+| $I_0$        | 1                 | 0                 | 1         | 0             |
+| $I_1$        | 1                 | 0                 | 1         | 0             |
+| $I_2$        | 1                 | 0                 | 1         | 0             |
+| $I_3$        | 1                 | 0                 | 1         | 0             |
+| $I_4$        | 1                 | 0                 | 1         | 0             |
+| $I_5$        | 1                 | 0                 | 1         | 0             |
+| $I_6$        | 1                 | 0                 | 1         | 0             |
+| $I_7$        | 1                 | 0                 | 1         | 0             |
+| $I_8$        | 0                 | 1                 | 1         | 1             |
+| $I_9$        | 0                 | 1                 | 1         | 1             |
+| $I_{10}$     | 0                 | 1                 | 1         | 1             |
+| $I_{11}$     | 0                 | 1                 | 1         | 1             |
+| $I_{12}$     | 0                 | 1                 | 1         | 1             |
+| $I_{13}$     | 0                 | 1                 | 1         | 1             |
+| $I_{14}$     | 0                 | 1                 | 1         | 1             |
+| $I_{15}$     | 0                 | 1                 | 1         | 1             |
+
+| Active Input | $O_3$ | $O_2$ | $O_1$ | $O_0$ | $V$ |
+| ------------ | ----- | ----- | ----- | ----- | --- |
+| None         | 0     | 0     | 0     | 0     | 0   |
+| $I_0$        | 0     | 0     | 0     | 0     | 1   |
+| $I_1$        | 0     | 0     | 0     | 1     | 1   |
+| $I_2$        | 0     | 0     | 1     | 0     | 1   |
+| $I_3$        | 0     | 0     | 1     | 1     | 1   |
+| $I_4$        | 0     | 1     | 0     | 0     | 1   |
+| $I_5$        | 0     | 1     | 0     | 1     | 1   |
+| $I_6$        | 0     | 1     | 1     | 0     | 1   |
+| $I_7$        | 0     | 1     | 1     | 1     | 1   |
+| $I_8$        | 1     | 0     | 0     | 0     | 1   |
+| $I_9$        | 1     | 0     | 0     | 1     | 1   |
+| $I_{10}$     | 1     | 0     | 1     | 0     | 1   |
+| $I_{11}$     | 1     | 0     | 1     | 1     | 1   |
+| $I_{12}$     | 1     | 1     | 0     | 0     | 1   |
+| $I_{13}$     | 1     | 1     | 0     | 1     | 1   |
+| $I_{14}$     | 1     | 1     | 1     | 0     | 1   |
+| $I_{15}$     | 1     | 1     | 1     | 1     | 1   |
 
 Figure 4.11: Truth tables for the 16 to 4 encoder: (a) O_utputs $O_2$, $O_1$, and $O_0$; (b) $O_3$ and $V$; (c) Final truth table.
 
@@ -144,7 +244,7 @@ $$
 
 Figure 4.12 shows a circuit to realize these functions.
 
-![](img/_page_113_Figure_9.jpeg)
+![](img/8to3encoder.svg)
 
 Figure 4.12: Internal design of an 8 to 3 encoder.
 
@@ -158,11 +258,32 @@ A priority encoder acts just like a normal encoder, with one exception. When mor
 
 Figure 4.13 (a) shows the truth table for the 8 to 3 priority encoder. Unlike the regular encoder, which requires that no more than one input is set to 1, the priority encoder has no restrictions on its input values. It simply encodes the highest numbered active input and ignores those below it.
 
-![](img/_page_114_Figure_8.jpeg)
+| $I_7$ | $I_6$ | $I_5$ | $I_4$ | $I_3$ | $I_2$ | $I_1$ | $I_0$ | $O_2$ | $O_1$ | $O_0$ | $V$ |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | --- |
+| 0     | 0     | 0     | 0     | 0     | 0     | 0     | 0     | 0     | 0     | 0     | 0   |
+| 0     | 0     | 0     | 0     | 0     | 0     | 0     | 1     | 0     | 0     | 0     | 1   |
+| 0     | 0     | 0     | 0     | 0     | 0     | 1     | x     | 0     | 0     | 1     | 1   |
+| 0     | 0     | 0     | 0     | 0     | 1     | x     | x     | 0     | 1     | 0     | 1   |
+| 0     | 0     | 0     | 0     | 1     | x     | x     | x     | 0     | 1     | 1     | 1   |
+| 0     | 0     | 0     | 1     | x     | x     | x     | x     | 1     | 0     | 0     | 1   |
+| 0     | 0     | 1     | x     | x     | x     | x     | x     | 1     | 0     | 1     | 1   |
+| 0     | 1     | x     | x     | x     | x     | x     | x     | 1     | 1     | 0     | 1   |
+| 1     | x     | x     | x     | x     | x     | x     | x     | 1     | 1     | 1     | 1   |
 
-Figure 4.13: 8 to 3 priority encoder: (a) Truth table; (b) Circuit design.
+$$
+\begin{aligned}
+O_2 &= I_4 + I_5 + I_6 + I_7 \\
+O_1 &= I_2I'_4I'_5 + I_3I'_4I'_5 + I_6 + I_7 \\
+O_0 &= I_1I'_2I'_4I'_6 + I_3I'_4I'_6 + I_5I'_6 + I_7 \\
+V &= I_0 + I_1 + I_2 + I_3 + I_4 + I_5 + I_5 + I_7
+\end{aligned}
+$$
 
-Naturally, implementing prioritization increases the complexity of the design for a priority encoder as compared to a normal encoder, at least for parts of the circuit. As shown in the circuit for the 8 to 3 priority encoder in Figure 4.13 (b), the circuitry to generate $O_2$ and $V$ is the same as for the normal encoder. However, this is not the case for the other outputs.
+![](img/8to3priorityencoder.svg)
+
+Figure 4.13: 8 to 3 priority encoder: (a) Truth table; (b) Representation (c) Circuit design.
+
+Naturally, implementing prioritization increases the complexity of the design for a priority encoder as compared to a normal encoder, at least for parts of the circuit. As shown in the circuit for the 8 to 3 priority encoder in Figure 4.13 (c), the circuitry to generate $O_2$ and $V$ is the same as for the normal encoder. However, this is not the case for the other outputs.
 
 Consider output $O_1$. The normal priority encoder sets this output to 1 if we are encoding input $I_2$, $I_3$, $I_6$, or $I_7$. These inputs would be encoded as 010, 011, 110, and 111, respectively, all of which have the middle bit set to 1. This would also be the case for the priority encoder, but only if we are encoding one of these inputs. This will always be the case for $I_6$ and $I_7$, but not necessarily for $I_2$ and $I_3$. For example, if $I_2$ and $I_5$ are both active, the priority encoder outputs 101, the value for $I_5$. Here, $O_1$ should be 0, not 1.
 
@@ -188,7 +309,19 @@ Although different from a decoder, the multiplexer and decoder employ the same d
 
 To start, consider the generic 8-input multiplexer and its truth table, both shown in Figure 4.14. The eight data inputs are labeled $I_0$ to $I_7$. In a circuit, each input will have a logical 0 or 1 connected to it, usually generated by some other digital logic in the circuit. In many circuits, these input values may change over time.
 
-![](img/_page_116_Figure_1.jpeg)
+| E   | $S_2$ | $S_1$ | $S_0$ | $O$   |
+| --- | ----- | ----- | ----- | ----- |
+| 0   | X     | X     | X     | 0     |
+| 1   | 0     | 0     | 0     | $I_0$ |
+| 1   | 0     | 0     | 1     | $I_1$ |
+| 1   | 0     | 1     | 0     | $I_2$ |
+| 1   | 0     | 1     | 1     | $I_3$ |
+| 1   | 1     | 0     | 0     | $I_4$ |
+| 1   | 1     | 0     | 1     | $I_5$ |
+| 1   | 1     | 1     | 0     | $I_6$ |
+| 1   | 1     | 1     | 1     | $I_7$ |
+
+![](img/generic8to1multiplexer.svg)
 
 Figure 4.14: 8 to 1 multiplexer: (a) Truth table; (b) Generic representation with values shown.
 
@@ -199,7 +332,26 @@ Also, as is the case for decoders, we can combine two or more multiplexers to ac
 Figure 4.15 (a) shows two 8-input multiplexers combined to act like a single 16-input
 multiplexer.
 
-![](img/_page_117_Figure_2.jpeg)
+![](img/16to1from8to1multiplexer.svg)
+
+| $S_3$ | $S_2$ | $S_1$ | $S_0$ | $O_A$ | $O_B$    | $O$      |
+| ----- | ----- | ----- | ----- | ----- | -------- | -------- |
+| 0     | 0     | 0     | 0     | $I_0$ | 0        | $I_0$    |
+| 0     | 0     | 0     | 1     | $I_1$ | 0        | $I_1$    |
+| 0     | 0     | 1     | 0     | $I_2$ | 0        | $I_2$    |
+| 0     | 0     | 1     | 1     | $I_3$ | 0        | $I_3$    |
+| 0     | 1     | 0     | 0     | $I_4$ | 0        | $I_4$    |
+| 0     | 1     | 0     | 1     | $I_5$ | 0        | $I_5$    |
+| 0     | 1     | 1     | 0     | $I_6$ | 0        | $I_6$    |
+| 0     | 1     | 1     | 1     | $I_7$ | 0        | $I_7$    |
+| 1     | 0     | 0     | 0     | 0     | $I_8$    | $I_8$    |
+| 1     | 0     | 0     | 1     | 0     | $I_9$    | $I_9$    |
+| 1     | 0     | 1     | 0     | 0     | $I_{10}$ | $I_{10}$ |
+| 1     | 0     | 1     | 1     | 0     | $I_{11}$ | $I_{11}$ |
+| 1     | 1     | 0     | 0     | 0     | $I_{12}$ | $I_{12}$ |
+| 1     | 1     | 0     | 1     | 0     | $I_{13}$ | $I_{13}$ |
+| 1     | 1     | 1     | 0     | 0     | $I_{14}$ | $I_{14}$ |
+| 1     | 1     | 1     | 1     | 0     | $I_{15}$ | $I_{15}$ |
 
 Figure 4.15: (a) 16 to 1 multiplexer constructed using two 8 to 1 multiplexers; (b) Truth table.
 
@@ -209,7 +361,27 @@ Notice from the truth table in Figure 4.15 (b) that only one multiplexer is enab
 
 Now that we've seen what a multiplexer looks like from the outside, we need to design the internal logic circuit to make it perform its desired functions. As usual, we'll start with a truth table. Figure 4.16 (a) shows the truth table for the multiplexer, but we've expanded it to include the different data input values.
 
-![](img/_page_118_Figure_2.jpeg)
+| E   | $I_0$ | $I_1$ | $I_2$ | $I_3$ | $I_4$ | $I_5$ | $I_6$ | $I_7$ | $S_2$ | $S_1$ | $S_0$ | $O$ |
+| --- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | --- |
+| 0   | X     | X     | X     | X     | X     | X     | X     | X     | X     | X     | X     | 0   |
+| 1   | 0     | X     | X     | X     | X     | X     | X     | X     | 0     | 0     | 0     | 0   |
+| 1   | 1     | X     | X     | X     | X     | X     | X     | X     | 0     | 0     | 0     | 1   |
+| 1   | X     | 0     | X     | X     | X     | X     | X     | X     | 0     | 0     | 1     | 0   |
+| 1   | X     | 1     | X     | X     | X     | X     | X     | X     | 0     | 0     | 1     | 1   |
+| 1   | X     | X     | 0     | X     | X     | X     | X     | X     | 0     | 1     | 0     | 0   |
+| 1   | X     | X     | 1     | X     | X     | X     | X     | X     | 0     | 1     | 0     | 1   |
+| 1   | X     | X     | X     | 0     | X     | X     | X     | X     | 0     | 1     | 1     | 0   |
+| 1   | X     | X     | X     | 1     | X     | X     | X     | X     | 0     | 1     | 1     | 1   |
+| 1   | X     | X     | X     | X     | 0     | X     | X     | X     | 1     | 0     | 0     | 0   |
+| 1   | X     | X     | X     | X     | 1     | X     | X     | X     | 1     | 0     | 0     | 1   |
+| 1   | X     | X     | X     | X     | X     | 0     | X     | X     | 1     | 0     | 1     | 0   |
+| 1   | X     | X     | X     | X     | X     | 1     | X     | X     | 1     | 0     | 1     | 1   |
+| 1   | X     | X     | X     | X     | X     | X     | 0     | X     | 1     | 1     | 0     | 0   |
+| 1   | X     | X     | X     | X     | X     | X     | 1     | X     | 1     | 1     | 0     | 1   |
+| 1   | X     | X     | X     | X     | X     | X     | X     | 0     | 1     | 1     | 1     | 0   |
+| 1   | X     | X     | X     | X     | X     | X     | X     | 1     | 1     | 1     | 1     | 1   |
+
+![](img/8to1multiplexer.svg)
 
 Figure 4.16: 8 to 1 multiplexer (a) Truth table; (b) Internal design.
 
@@ -219,7 +391,7 @@ Consider the case $S_2S_1S_0 = 000$ and $E = 1$. In the first column of AND gate
 
 Much of this design may look familiar to you. Everything from the first column of AND gates to the left edge of the circuit is just a 3 to 8 decoder with an enable input. This is highlighted in the animation in Figure 4.17, where the circuit is transformed to one using a decoder to replace these components.
 
-![](img/_page_119_Figure_2.jpeg)
+![](img/8to1multiplexerfrom3to8decoder.svg)
 
 Figure 4.17: 8 to 1 multiplexer constructed using a 3 to 8 decoder.
 
@@ -229,15 +401,27 @@ The term demultiplexer has two different meanings. In many cases, demultiplexer 
 
 A demultiplexer, like the decoder, has $n$ select inputs and $2^n$ outputs, numbered $0$ to $2^n – 1$, and an enable input. In addition, it has a single data input. A generic 1 to 8 demultiplexer is shown in Figure 4.18 (a). As indicated in the truth table in Figure 4.18 (b), when the demultiplexer is enabled, the input value is sent to the output specified by the select bits. For example, when $S_2S_1S_0 = 110$, output $O_6$ gets the value on the demultiplexer input.
 
-![](img/_page_120_Figure_2.jpeg)
+![](img/generic1to8demultiplexer.svg)
+
+| E   | $S_2$ | $S_1$ | $S_0$ | $O_0$ | $O_1$ | $O_2$ | $O_3$ | $O_4$ | $O_5$ | $O_6$ | $O_7$ |
+| --- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| 0   | X     | X     | X     | 0     | 0     | 0     | 0     | 0     | 0     | 0     | 0     |
+| 1   | 0     | 0     | 0     | $I$   | 0     | 0     | 0     | 0     | 0     | 0     | 0     |
+| 1   | 0     | 0     | 1     | 0     | $I$   | 0     | 0     | 0     | 0     | 0     | 0     |
+| 1   | 0     | 1     | 0     | 0     | 0     | $I$   | 0     | 0     | 0     | 0     | 0     |
+| 1   | 0     | 1     | 1     | 0     | 0     | 0     | $I$   | 0     | 0     | 0     | 0     |
+| 1   | 1     | 0     | 0     | 0     | 0     | 0     | 0     | $I$   | 0     | 0     | 0     |
+| 1   | 1     | 0     | 1     | 0     | 0     | 0     | 0     | 0     | $I$   | 0     | 0     |
+| 1   | 1     | 1     | 0     | 0     | 0     | 0     | 0     | 0     | 0     | $I$   | 0     |
+| 1   | 1     | 1     | 1     | 0     | 0     | 0     | 0     | 0     | 0     | 0     | $I$   |
 
 Figure 4.18: (a) Generic 1 to 8 demultiplexer (b) Truth table.
 
-To help you understand how a demultiplexer works, visualize the demultiplexer as a decoder with a data input. The demultiplexer decodes the select bits as usual, but then we logically AND the data input with each individual decoder output. This is shown in Figure 4.19 (a). The selected output of the decoder (if enabled) is 1 and all other outputs are 0. $I ^ 1 = I$, which is output on the selected output. All other outputs have the value $I ^ 0 = 0$.
+To help you understand how a demultiplexer works, visualize the demultiplexer as a decoder with a data input. The demultiplexer decodes the select bits as usual, but then we logically AND the data input with each individual decoder output. This is shown in Figure 4.19. The selected output of the decoder (if enabled) is 1 and all other outputs are 0. $I ^ 1 = I$, which is output on the selected output. All other outputs have the value $I ^ 0 = 0$.
 
-![](img/_page_121_Figure_1.jpeg)
+![](img/1to8demultiplexerfrom3to8decoder.svg)
 
-Figure 4.19: 1 to 8 demultiplexer constructed using a 3 to 8 decoder: (a) Circuit diagram; (b)  Truth table.
+Figure 4.19: 1 to 8 demultiplexer constructed using a 3 to 8 decoder: Circuit diagram
 
 ## 4.5 Comparators
 
@@ -245,7 +429,7 @@ Computers can perform numerous arithmetic operations on numeric data, such as ad
 
 A comparator does not add or subtract two values, nor does it perform any other arithmetic or logical operation. Rather, it inputs two numbers, let's call them $A$ and $B$, and determines which is larger, or if they are equal. Figure 4.20 shows a generic 4-bit comparator.
 
-![](img/_page_122_Figure_3.jpeg)
+![](img/generic4bitcomparator.svg)
 
 Figure 4.20: Generic 4-bit comparator.
 
@@ -270,9 +454,7 @@ $$
 \end{aligned}
 $$
 
-Before you look at the circuit I've created in Figure 4.21, try to design your own circuit to realize these functions.
-
-![](img/_page_123_Figure_3.jpeg)
+![](img/1bitcomparator.svg)
 
 Figure 4.21: A 1-bit comparator.
 
@@ -290,7 +472,9 @@ $$
 
 We can modify the circuit from Figure 4.21 as shown in Figure 4.22 (a) to incorporate these functions. Figure 4.22 (b) shows how this circuit can be replicated and configured to create a 4-bit comparator.
 
-![](img/_page_123_Figure_9.jpeg)
+![](img/enhanced1bitcomparator.svg)
+
+![](img/4bitcomparator.svg)
 
 Figure 4.22: (a) An enhanced 1-bit comparator; (b) Four-bit comparator.
 
@@ -304,7 +488,16 @@ So far we have examined components that perform logical functions on binary valu
 
 The half adder is the most fundamental arithmetic circuit there is. It inputs two 1-bit values, arithmetically adds them, and outputs the sum. As shown in Figure 4.23 (a), the output can have a value of 0 (0 + 0), 1 (0 + 1 or 1 + 0), or 2 (1 + 1). The last value is represented as 10 in binary, so the half adder must output two bits. The least significant bit is called the *sum*, usually denoted $S$, and the most significant bit is the carry, or $C$. The truth table for the half adder is shown in Figure 4.23 (b).
 
-![](img/_page_124_Figure_6.jpeg)
+![](img/generichalfadder.drawio.svg)
+
+| A   | B   | C   | S   |
+| --- | --- | --- | --- |
+| 0   | 0   | 0   | 0   |
+| 0   | 1   | 0   | 1   |
+| 1   | 0   | 0   | 1   |
+| 1   | 1   | 1   | 0   |
+
+![](img/halfadder.svg)
 
 Figure 4.23: Half adder: (a) Inputs and outputs; (b) Truth table; (c) Internal design.
 
@@ -314,17 +507,15 @@ Carry output $C$ is relatively straightforward. It is only set to 1 when $A = B 
 
 There are other ways you could design the half adder. Everyone is going to come up with the same design for $C$, but there are a few different ways to generate $S$. Looking at the truth table, you may have noticed that $S$ is the exclusive OR of $A$ and $B$. We could have used an XOR gate to generate $S$, as shown in Figure 4.24 (a). Less obvious, but still valid, we can find all values that set $S$ to 0 and NOR them together. That is, if we look at all the combinations that set $S$ = 0, and none of them are met, then $S$ must be set to 1. One circuit to do this is shown in Figure 4.24 (b). Note that we reduce the size of our circuit by reusing the AND gate that generates $C$. Now it both generates $C$ and provides one of the inputs to the NOR gate that generates $S$.
 
-![](img/_page_125_Figure_3.jpeg)
+![](img/halfadder_xor.svg)
+
+![](img/halfadder_nor.svg)
 
 Figure 4.24: Additional implementations of the half adder: (a) Using an XOR gate; (b) Using $C$ to generate $S$.
 
 ### 4.6.2 Full adders
 
-Half adders work perfectly when adding numbers that are only one bit each, but they have a problem when adding numbers that are more than one bit. To illustrate this, look at the circuit in Figure 4.25. We want to add two numbers, 3 and 1, and generate the correct result, 4. In binary, this could be expressed as 11 + 01 = 100. We use subscripts to indicate the individual bits of each number as usual, starting with bit 0 as the least significant bit. Here, $A = 11$, so $A_1 = 1$ and $A_0 = 1$. Similarly, $B = 01$, or $B_1 = 0$ and $B_0 = 1$. We input $A_0$ and $B_0$ into the first half adder and $A_1$ and $B_1$ into another. The final sum should be $C$ of the most significant adder followed by all the sum bits, $C_1S_1S_0$ in this case.
-
-![](img/_page_126_Figure_1.jpeg)
-
-Figure 4.25: Unsuccessful addition using half adders.
+Half adders work perfectly when adding numbers that are only one bit each, but they have a problem when adding numbers that are more than one bit. To illustrate this, We want to add two numbers, 3 and 1, and generate the correct result, 4. In binary, this could be expressed as 11 + 01 = 100. We use subscripts to indicate the individual bits of each number as usual, starting with bit 0 as the least significant bit. Here, $A = 11$, so $A_1 = 1$ and $A_0 = 1$. Similarly, $B = 01$, or $B_1 = 0$ and $B_0 = 1$. We input $A_0$ and $B_0$ into the first half adder and $A_1$ and $B_1$ into another. The final sum should be $C$ of the most significant adder followed by all the sum bits, $C_1S_1S_0$ in this case.
 
 For these values, this circuit does not work. It has $C_1 = 0$, $S_1 = 1$, and $S_0 = 0$, generating the result 010, or 2. Clearly, $3 + 1 \neq 2$.
 
@@ -334,7 +525,20 @@ The full adder has three inputs. Typically two are used for data, just as we did
 
 Figure 4.26 (a) shows the full adder and Figure 4.26 (b) shows its truth table. As before, we can design a circuit by treating each output as a separate function and creating a circuit for each function. Figure 4.26 (c) shows one possible circuit; other designs are left as exercises for the reader.
 
-![](img/_page_126_Figure_7.jpeg)
+![](img/genericfulladder.drawio.svg)
+
+| A   | B   | $C_{IN}$ | $C_{OUT}$ | S   |
+| --- | --- | -------- | --------- | --- |
+| 0   | 0   | 0        | 0         | 0   |
+| 0   | 0   | 1        | 0         | 1   |
+| 0   | 1   | 0        | 0         | 1   |
+| 0   | 1   | 1        | 1         | 0   |
+| 1   | 0   | 0        | 0         | 1   |
+| 1   | 0   | 1        | 1         | 0   |
+| 1   | 1   | 0        | 1         | 0   |
+| 1   | 1   | 1        | 1         | 1   |
+
+![](img/fulladder.svg)
 
 Figure 4.26: Full adders: (a) Inputs and outputs; (b) Truth table; (c) Internal design.
 
@@ -342,7 +546,7 @@ Figure 4.26: Full adders: (a) Inputs and outputs; (b) Truth table; (c) Internal 
 
 Now that we have the full adder, we can create a circuit to add numbers that have more than one bit. The easiest way to do this is to create a ripple adder. This is just a series of full adders with each full adder's carry out bit connected to the carry in of the next higher adder. Figure 4.27 shows how this works when adding 11 + 01. By making use of all the carry bits, this circuit successfully adds these two numbers producing the output 100, or 4.
 
-![](img/_page_127_Figure_3.jpeg)
+![](img/rippleadder.svg)
 
 Figure 4.27: Successful addition using full adders.
 
@@ -350,11 +554,7 @@ There are two things I want to point out about this circuit. First, you can crea
 
 ### 4.6.4 Carry-lookahead Adders
 
-Although ripple adders function properly, they are relatively slow. To see why this is, consider the 4-bit ripple adder shown in Figure 4.28. The animation shows how the signals change their values as it adds 111 + 0001. Initially, each adder adds its two data inputs. The least significant adder generates a carry out value of 1. This is connected to the carry in bit of the next full adder. Its inputs change from $A = 1$, $B = 0$, $C_{in} = 0$ to $A = 1$, $B = 0$, $C_{in} = 1$, and its outputs change from $C_{out} = 0$, $S = 1$ to $C_{out} = 1$, $S = 0$. The same process is repeated for each full adder in sequence. Each adder has to wait for the previous adder to update its carry value before it can generate its final result. Logic gates are fast, but they do take time to output their results. As the number of bits to be added increases, these delays add up.
-
-![](img/_page_128_Figure_1.jpeg)
-
-Figure 4.28: 4-bit ripple adder.
+Although ripple adders function properly, they are relatively slow. To see why this is, consider the 4-bit ripple adder adds 111 + 0001. Initially, each adder adds its two data inputs. The least significant adder generates a carry out value of 1. This is connected to the carry in bit of the next full adder. Its inputs change from $A = 1$, $B = 0$, $C_{in} = 0$ to $A = 1$, $B = 0$, $C_{in} = 1$, and its outputs change from $C_{out} = 0$, $S = 1$ to $C_{out} = 1$, $S = 0$. The same process is repeated for each full adder in sequence. Each adder has to wait for the previous adder to update its carry value before it can generate its final result. Logic gates are fast, but they do take time to output their results. As the number of bits to be added increases, these delays add up.
 
 To speed this up, designers developed **carry-lookahead adders**. Like ripple adders, they add two binary numbers. Unlike ripple adders, however, they do not need to wait for carry values to propagate from bit to bit through the adder. Instead, they include additional circuitry that "looks ahead" to see if a carry input will be generated and calculates its results accordingly. As with the ripple adder, carry-lookahead adders incorporate full adders to add two values. The difference lies in how they generate carry output values.
 
@@ -417,16 +617,27 @@ $$
 
 Before we get to the sum outputs, let's go back to why we use the OR function instead of the exclusive OR to implement the propagate functions. OR gates are faster than XOR gates and require less hardware in their internal designs. That alone makes the OR gate a better choice, *but only if the circuit still functions properly.* In this case, it does. Figure 4.29 shows two truth tables. The first (a) generates the carry out using the exclusive OR function. The second (b) uses the OR function. As the tables demonstrate, both produce the same value for the carry out for all possible input values.
 
-| $A$ | $B$ | $C_{IN}$ | $g=AB$ | (a)$p=A \oplus $ | (b)$p=A+B$ | $COUT=g+pCIN$ |
-|---|---|-----|------|---------------|-------------|---|
-| 0 | 0 | 0   | 0    | 0             | 0           | 0 |
-| 0 | 0 | 1   | 0    | 0             | 0           | 0 |
-| 0 | 1 | 0   | 0    | 1             | 1           | 0 |
-| 0 | 1 | 1   | 0    | 1             | 1           | 1 |
-| 1 | 0 | 0   | 0    | 1             | 1           | 0 |
-| 1 | 0 | 1   | 0    | 1             | 1           | 1 |
-| 1 | 1 | 0   | 1    | 0             | 1           | 1 |
-| 1 | 1 | 1   | 1    | 0             | 1           | 1 |
+| A   | B   | $C_{IN}$ | $g = AB$ | $p = A \oplus B$ | $C_{OUT} = g + pC_{IN}$ |
+| --- | --- | -------- | -------- | ---------------- | ----------------------- |
+| 0   | 0   | 0        | 0        | 0                | 0                       |
+| 0   | 0   | 1        | 0        | 0                | 0                       |
+| 0   | 1   | 0        | 0        | 1                | 0                       |
+| 0   | 1   | 1        | 0        | 1                | 1                       |
+| 1   | 0   | 0        | 0        | 1                | 0                       |
+| 1   | 0   | 1        | 0        | 1                | 1                       |
+| 1   | 1   | 0        | 1        | 0                | 1                       |
+| 1   | 1   | 1        | 1        | 0                | 1                       |
+
+| A   | B   | $C_{IN}$ | $g = AB$ | $p = A + B$ | $C_{OUT} = g + pC_{IN}$ |
+| --- | --- | -------- | -------- | ----------- | ----------------------- |
+| 0   | 0   | 0        | 0        | 0           | 0                       |
+| 0   | 0   | 1        | 0        | 0           | 0                       |
+| 0   | 1   | 0        | 0        | 1           | 0                       |
+| 0   | 1   | 1        | 0        | 1           | 1                       |
+| 1   | 0   | 0        | 0        | 1           | 0                       |
+| 1   | 0   | 1        | 0        | 1           | 1                       |
+| 1   | 1   | 0        | 1        | 1           | 1                       |
+| 1   | 1   | 1        | 1        | 1           | 1                       |
 
 Figure 4.29: Carry out functions: (a) Using XOR to set $p$; (b) Using OR to set $p$;
 
@@ -434,22 +645,33 @@ The only time $p$ is different in the two functions occurs when $A = B = 1$. The
 
 Finally, we need to set the sum bits. We can do this as we did before, by exclusive ORing the two data bits and the carry input bit. As an alternative, we can exclusive OR the full adder's $g$, $p$, and carry in bits. Figure 4.30 shows the truth tables for both functions, which verify that both produce the same output for all possible input values.
 
-| $A$ | $B$ | $C_{IN}$ | (a)$S=A \oplus B \oplus C_{IN}$ | $g=AB$ | $p=A+B$ | (b)$S=g \oplus p \oplus C_{IN}$ |
-|---|---|-----|-----------|---|---|-----|
-| 0 | 0 | 0   | 0         | 0    | 0     | 0         |
-| 0 | 0 | 1   | 1         | 0    | 0     | 1         |
-| 0 | 1 | 0   | 1         | 0    | 1     | 1         |
-| 0 | 1 | 1   | 0         | 0    | 1     | 0         |
-| 1 | 0 | 0   | 1         | 0    | 1     | 1         |
-| 1 | 0 | 1   | 0         | 0    | 1     | 0         |
-| 1 | 1 | 0   | 0         | 1    | 1     | 0         |
-| 1 | 1 | 1   | 1         | 1    | 1     | 1         |
+| A   | B   | $C_{IN}$ | $S = A \oplus B \oplus C_{IN}$ |
+| --- | --- | -------- | ------------------------------ |
+| 0   | 0   | 0        | 0                              |
+| 0   | 0   | 1        | 1                              |
+| 0   | 1   | 0        | 1                              |
+| 0   | 1   | 1        | 0                              |
+| 1   | 0   | 0        | 1                              |
+| 1   | 0   | 1        | 0                              |
+| 1   | 1   | 0        | 0                              |
+| 1   | 1   | 1        | 1                              |
+
+| A   | B   | $C_{IN}$ | $g = AB$ | $p = A + B$ | $S = g \oplus p \oplus C_{IN}$ |
+| --- | --- | -------- | -------- | ----------- | ------------------------------ |
+| 0   | 0   | 0        | 0        | 0           | 0                              |
+| 0   | 0   | 1        | 0        | 0           | 1                              |
+| 0   | 1   | 0        | 0        | 1           | 1                              |
+| 0   | 1   | 1        | 0        | 1           | 0                              |
+| 1   | 0   | 0        | 0        | 1           | 1                              |
+| 1   | 0   | 1        | 0        | 1           | 0                              |
+| 1   | 1   | 0        | 1        | 1           | 0                              |
+| 1   | 1   | 1        | 1        | 1           | 1                              |
 
 Figure 4.30: Sum functions: (a) Using data and carry in; (b) Using $g$, $p$, and carry in.
 
 The complete design is shown in Figure 4.31. For simplicity, we used the non-expanded functions for the carry bits when designing this circuit.
 
-![](img/_page_131_Figure_1.jpeg)
+![](img/4bitcarry_lookahead_adder.svg)
 
 Figure 4.31: 4-bit carry-lookahead adder.
 
@@ -467,7 +689,13 @@ To connect components to a bus, you can't just connect, say, the output of an AN
 
 The tri-state buffer and its truth table are shown in Figure 4.32. In addition to its data input, the tri-state buffer has an enable signal. When enabled, the tri-state buffer acts just like a traditional buffer. When it is not enabled, its output is the high-impedance state, denoted as Hi-Z.
 
-![](img/_page_132_Figure_4.jpeg)
+| E   | I   | O   |
+| --- | --- | --- |
+| 0   | X   | Z   |
+| 1   | 0   | 0   |
+| 1   | 1   | 1   |
+
+![](img/tristate_buffer.svg)
 
 Figure 4.32: Tri-state buffer logic symbol and truth table.
 
@@ -480,60 +708,3 @@ When a tri-state buffer is disabled, it has a very high impedance. As $Z$ increa
 In this chapter, we have examined several types of logical functions that are commonly used in digital circuit design. Decoders enable one of their outputs based on the value that is selected, and encoders set an output based on which of its inputs is active. Multiplexers pass the selected input's value through to its output, and demultiplexers send a single input value to its selected output. Comparators and adders treat their inputs as numeric data. Comparators examine the data and set an output to indicate which input value is greater, or if both are the same. Adders output the arithmetic sum of their two inputs. Buffers do not modify their inputs, but can be used to overcome physical limitations inherent to digital electronics.
 
 In the next chapter, we will use some of these components to implement more complex functions than those we saw in Chapter 3. We will also introduce two new components: the lookup ROM and the Programmable Logic Device.
-
-## Exercises
-
-1. Design a 3 to 8 decoder based on the design of the 2 to 4 decoder presented in Figure 4.5(c).
-
-2. The 74138 is a TTL chip that is a 3 to 8 decoder. Unlike the designs presented in this chapter, its outputs are active low. That is, the activated output is 0 and all the other outputs are 1. Modify your design for problem 1 so that it functions like the 74138.
-
-3. Design a 5 to 32 decoder using one 2 to 4 decoder and four 3 to 8 decoders.
-
-4. Design a 5 to 32 decoder using one 3 to 8 decoder and as many 2 to 4 decoders as are necessary. How many 2 to 4 decoders are needed?
-
-5. Design the circuit to generate outputs $b$, $c$, $d$, $e$, $f$, and $g$ of the BCD to 7-segment decoder.
-
-6. Design a 16 to 4 encoder based on the design of the 8 to 1 encoder presented in Figure 4.12.
-
-7. Design a 16 to 4 encoder using five 4 to 2 encoders.
-
-8. Design a 32 to 5 encoder using four 8 to 3 encoders and combinatorial logic gates.
-
-9. Design a 32 to 5 encoder using four 8 to 3 encoders and one 4 to 2 encoder.
-
-10. Design a 16 to 4 priority encoder.
-
-11. Design a 16 to 1 multiplexer based on the design of the 8 to 1 multiplexer presented in Figure 4.16.
-
-12. Design a 32 to 1 multiplexer using four 8 to 1 multiplexers and one 4 to 1 multiplexer.
-
-13. Design a 16 to 1 multiplexer using a 4 to 16 decoder.
-
-14. Design a 1 to 8 demultiplexer using only basic logic gates.
-
-15. Design a 1 to 16 demultiplexer using two 1 to 8 demultiplexers.
-
-16. Show the value of each signal in the 4-bit comparator in Figure 4.22(b) as it compares $A=1011$ and $B=1100$.
-
-17. Design a circuit that directly compares two 2-bit values.
-
-18. Show the value of each gate input and output for the half adders in Figure 4.24(a) and (b) as they add $A=1$ and $B=1$.
-
-19. Show the values of each gate input and output for the full adder circuit in Figure 4.26(c) as it adds $A=1$, $B=0$, and $C_{in}=1$.
-
-20. Show the input and output values of each full adder in Figure 4.27 as it adds $A=11$ and $B=10$.
-
-21. For an 8-bit carry-lookahead adder, give the equations for $g_4$, $g_5$, $g_6$, and $g_7$; $p_4$, $p_5$, $p_6$, and $p_7$; and $c_4$, $c_5$, $c_6$, and $c_7$.
-
-22. If the maximum propagation delays for 2-input AND gates, 3-input OR gates, and 2-input XOR gates are 20ns, 44ns, and 30ns, respectively, what is the maximum propagation delay for the full adder circuit in Figure 4.26(c)?
-
-23. Design a circuit to meet the following specification. The circuit has four data inputs labeled $A$, $B$, $C$, and $D$. Each of these is input to a tri-state buffer. The outputs are connected together to generate output $O$. There are two control signals, $E$ and $F$, which determine the input value that is sent to output $O$, as follows.
-
-| E | F | O |
-| -- | -- | -- |
-| 0 | 0 | A |
-| 0 | 1 | B |
-| 1 | 0 | C |
-| 1 | 1 | D |
-
-Use one of the components introduced in this chapter to generate the enable signals for the tri-state buffers.

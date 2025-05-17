@@ -76,7 +76,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>A&gt;Bout</string>
+          <string>A&gt;B_{out}</string>
         </entry>
       </elementAttributes>
       <pos x="840" y="140"/>
@@ -86,7 +86,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>A=Bout</string>
+          <string>A=B_{out}</string>
         </entry>
       </elementAttributes>
       <pos x="840" y="240"/>
@@ -96,7 +96,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>A&lt;Bout</string>
+          <string>A&lt;B_{out}</string>
         </entry>
       </elementAttributes>
       <pos x="840" y="340"/>
@@ -106,7 +106,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>A&gt;Bin</string>
+          <string>A&gt;B_{in}</string>
         </entry>
       </elementAttributes>
       <pos x="60" y="100"/>
@@ -116,7 +116,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>A=Bin</string>
+          <string>A=B_{in}</string>
         </entry>
       </elementAttributes>
       <pos x="60" y="240"/>
@@ -126,7 +126,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>A&lt;Bin</string>
+          <string>A&lt;B_{in}</string>
         </entry>
       </elementAttributes>
       <pos x="60" y="380"/>

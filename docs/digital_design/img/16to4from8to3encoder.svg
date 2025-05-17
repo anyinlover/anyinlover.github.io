@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Digital by H.Neemann -->
+<!-- created: Sat May 17 06:55:23 CST 2025 -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="80.4mm"
+   height="139.2mm"
+   viewBox="450 126 536 928">
+<g stroke-linecap="square">
+<path d="M 500,320 L 520,320 L 520,280 L 620,280" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 680,260 L 720,260 L 720,460 L 820,460 L 824,460" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 500,260 L 620,260" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 500,200 L 580,200 L 580,240 L 620,240" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 500,140 L 600,140 L 600,220 L 620,220" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 680,780 L 720,780 L 720,500 L 820,500 L 824,500" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 500,1040 L 600,1040 L 600,880 L 620,880" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 500,980 L 580,980 L 580,860 L 620,860" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 900,600 L 940,600" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 680,280 L 780,280 L 780,580 L 820,580 L 824,580" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 500,920 L 560,920 L 560,840 L 620,840" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 680,220 L 820,220 L 824,220" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 500,860 L 540,860 L 540,820 L 620,820" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 900,480 L 940,480" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 680,800 L 760,800 L 760,700" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 500,800 L 620,800" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 680,740 L 700,740 L 700,320 L 760,320 L 760,260 L 820,260 L 824,260" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 500,740 L 560,740 L 560,780 L 620,780" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 900,360 L 940,360" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 500,680 L 580,680 L 580,760 L 620,760" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 500,620 L 600,620 L 600,740 L 620,740" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 900,240 L 940,240" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 680,240 L 740,240 L 740,340 L 820,340 L 824,340" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 500,560 L 600,560 L 600,360 L 620,360" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 500,500 L 580,500 L 580,340 L 620,340" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 680,760 L 740,760 L 740,380 L 820,380 L 824,380" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 500,440 L 560,440 L 560,320 L 620,320" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 500,380 L 540,380 L 540,300 L 620,300" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 824,620 L 820,620 L 760,620 L 760,700 L 940,700" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<g>
+<circle cx="760.0" cy="700.0" r="4.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+</g>
+<g>
+<circle cx="944.0" cy="240.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="954.0" y="249.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">O<tspan style="font-size:80%;baseline-shift:sub;">2</tspan></tspan></text>
+</g>
+<g>
+<path d="M 621,206 L 679,206 L 679,374 L 621,374 Z" stroke="#ffffb4" stroke-width="0.0" fill="#ffffb4" fill-opacity="0.7843137254901961"/>
+<path d="M 621,206 L 679,206 L 679,374 L 621,374 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<text text-anchor="start" x="624.0" y="226.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">0</tspan></text>
+<text text-anchor="start" x="624.0" y="246.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">2</tspan></text>
+<text text-anchor="start" x="624.0" y="266.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">3</tspan></text>
+<text text-anchor="start" x="624.0" y="286.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">4</tspan></text>
+<text text-anchor="start" x="624.0" y="306.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">5</tspan></text>
+<text text-anchor="start" x="624.0" y="326.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">6</tspan></text>
+<text text-anchor="start" x="624.0" y="346.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">7</tspan></text>
+<text text-anchor="start" x="624.0" y="366.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">1</tspan></text>
+<text text-anchor="end" x="676.0" y="226.75" fill="#808080" style="font-size:18px">O<tspan style="font-size:80%;baseline-shift:sub;">2</tspan></text>
+<text text-anchor="end" x="676.0" y="246.75" fill="#808080" style="font-size:18px">O<tspan style="font-size:80%;baseline-shift:sub;">1</tspan></text>
+<text text-anchor="end" x="676.0" y="266.75" fill="#808080" style="font-size:18px">O<tspan style="font-size:80%;baseline-shift:sub;">0</tspan></text>
+<text text-anchor="end" x="676.0" y="286.75" fill="#808080" style="font-size:18px">V</text>
+<text text-anchor="middle" x="650.0" y="391.5" fill="#808080" style="font-size:18px">8to3encoder</text>
+</g>
+<g>
+<path d="M 621,726 L 679,726 L 679,894 L 621,894 Z" stroke="#ffffb4" stroke-width="0.0" fill="#ffffb4" fill-opacity="0.7843137254901961"/>
+<path d="M 621,726 L 679,726 L 679,894 L 621,894 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<text text-anchor="start" x="624.0" y="746.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">0</tspan></text>
+<text text-anchor="start" x="624.0" y="766.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">2</tspan></text>
+<text text-anchor="start" x="624.0" y="786.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">3</tspan></text>
+<text text-anchor="start" x="624.0" y="806.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">4</tspan></text>
+<text text-anchor="start" x="624.0" y="826.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">5</tspan></text>
+<text text-anchor="start" x="624.0" y="846.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">6</tspan></text>
+<text text-anchor="start" x="624.0" y="866.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">7</tspan></text>
+<text text-anchor="start" x="624.0" y="886.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">1</tspan></text>
+<text text-anchor="end" x="676.0" y="746.75" fill="#808080" style="font-size:18px">O<tspan style="font-size:80%;baseline-shift:sub;">2</tspan></text>
+<text text-anchor="end" x="676.0" y="766.75" fill="#808080" style="font-size:18px">O<tspan style="font-size:80%;baseline-shift:sub;">1</tspan></text>
+<text text-anchor="end" x="676.0" y="786.75" fill="#808080" style="font-size:18px">O<tspan style="font-size:80%;baseline-shift:sub;">0</tspan></text>
+<text text-anchor="end" x="676.0" y="806.75" fill="#808080" style="font-size:18px">V</text>
+<text text-anchor="middle" x="650.0" y="911.5" fill="#808080" style="font-size:18px">8to3encoder</text>
+</g>
+<g>
+<circle cx="944.0" cy="360.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="954.0" y="369.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">O<tspan style="font-size:80%;baseline-shift:sub;">1</tspan></tspan></text>
+</g>
+<g>
+<circle cx="944.0" cy="480.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="954.0" y="489.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">O<tspan style="font-size:80%;baseline-shift:sub;">0</tspan></tspan></text>
+</g>
+<g>
+<circle cx="944.0" cy="600.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="954.0" y="609.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">V</tspan></text>
+</g>
+<g>
+<path d="M 850,270 L 820,270 C 830,254 830,226 820,210 L 840,210 C 870,210 890,220 900,240 C 890,260 870,270 850,270 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+</g>
+<g>
+<path d="M 850,390 L 820,390 C 830,374 830,346 820,330 L 840,330 C 870,330 890,340 900,360 C 890,380 870,390 850,390 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+</g>
+<g>
+<path d="M 850,510 L 820,510 C 830,494 830,466 820,450 L 840,450 C 870,450 890,460 900,480 C 890,500 870,510 850,510 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+</g>
+<g>
+<path d="M 850,630 L 820,630 C 830,614 830,586 820,570 L 840,570 C 870,570 890,580 900,600 C 890,620 870,630 850,630 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+</g>
+<g>
+<circle cx="944.0" cy="700.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="954.0" y="709.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">O<tspan style="font-size:80%;baseline-shift:sub;">3</tspan></tspan></text>
+</g>
+<g>
+<circle cx="496.0" cy="140.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="486.0" y="149.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">0</tspan></tspan></text>
+</g>
+<g>
+<circle cx="496.0" cy="200.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="486.0" y="209.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">1</tspan></tspan></text>
+</g>
+<g>
+<circle cx="496.0" cy="260.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="486.0" y="269.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">2</tspan></tspan></text>
+</g>
+<g>
+<circle cx="496.0" cy="320.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="486.0" y="329.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">3</tspan></tspan></text>
+</g>
+<g>
+<circle cx="496.0" cy="380.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="486.0" y="389.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">4</tspan></tspan></text>
+</g>
+<g>
+<circle cx="496.0" cy="440.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="486.0" y="449.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">5</tspan></tspan></text>
+</g>
+<g>
+<circle cx="496.0" cy="500.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="486.0" y="509.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">6</tspan></tspan></text>
+</g>
+<g>
+<circle cx="496.0" cy="560.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="486.0" y="569.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">7</tspan></tspan></text>
+</g>
+<g>
+<circle cx="496.0" cy="620.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="486.0" y="629.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">8</tspan></tspan></text>
+</g>
+<g>
+<circle cx="496.0" cy="680.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="486.0" y="689.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">9</tspan></tspan></text>
+</g>
+<g>
+<circle cx="496.0" cy="740.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="486.0" y="749.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">10</tspan></tspan></text>
+</g>
+<g>
+<circle cx="496.0" cy="800.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="486.0" y="809.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">11</tspan></tspan></text>
+</g>
+<g>
+<circle cx="496.0" cy="860.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="486.0" y="869.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">12</tspan></tspan></text>
+</g>
+<g>
+<circle cx="496.0" cy="920.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="486.0" y="929.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">13</tspan></tspan></text>
+</g>
+<g>
+<circle cx="496.0" cy="980.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="486.0" y="989.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">14</tspan></tspan></text>
+</g>
+<g>
+<circle cx="496.0" cy="1040.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="486.0" y="1049.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">I<tspan style="font-size:80%;baseline-shift:sub;">15</tspan></tspan></text>
+</g>
+</g>
+</svg>

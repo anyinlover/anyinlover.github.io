@@ -378,7 +378,7 @@
         </entry>
         <entry>
           <string>Label</string>
-          <string>I3</string>
+          <string>I_3</string>
         </entry>
       </elementAttributes>
       <pos x="-220" y="-100"/>
@@ -392,7 +392,7 @@
         </entry>
         <entry>
           <string>Label</string>
-          <string>I2</string>
+          <string>I_2</string>
         </entry>
       </elementAttributes>
       <pos x="-160" y="-100"/>
@@ -416,7 +416,7 @@
         </entry>
         <entry>
           <string>Label</string>
-          <string>I1</string>
+          <string>I_1</string>
         </entry>
       </elementAttributes>
       <pos x="-100" y="-100"/>
@@ -440,7 +440,7 @@
         </entry>
         <entry>
           <string>Label</string>
-          <string>I0</string>
+          <string>I_0</string>
         </entry>
       </elementAttributes>
       <pos x="-40" y="-100"/>
@@ -1114,4 +1114,5 @@
       <p2 x="-80" y="1280"/>
     </wire>
   </wires>
+  <measurementOrdering/>
 </circuit>

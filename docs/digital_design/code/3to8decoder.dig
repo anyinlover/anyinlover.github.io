@@ -8,7 +8,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>O0</string>
+          <string>O_0</string>
         </entry>
         <entry>
           <string>Inputs</string>
@@ -36,7 +36,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>O1</string>
+          <string>O_1</string>
         </entry>
         <entry>
           <string>Inputs</string>
@@ -64,7 +64,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>O2</string>
+          <string>O_2</string>
         </entry>
         <entry>
           <string>Inputs</string>
@@ -92,7 +92,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>O3</string>
+          <string>O_3</string>
         </entry>
         <entry>
           <string>Inputs</string>
@@ -120,7 +120,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>O4</string>
+          <string>O_4</string>
         </entry>
         <entry>
           <string>Inputs</string>
@@ -148,7 +148,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>O5</string>
+          <string>O_5</string>
         </entry>
         <entry>
           <string>Inputs</string>
@@ -176,7 +176,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>O6</string>
+          <string>O_6</string>
         </entry>
         <entry>
           <string>Inputs</string>
@@ -204,7 +204,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>O7</string>
+          <string>O_7</string>
         </entry>
         <entry>
           <string>Inputs</string>
@@ -250,7 +250,7 @@
         </entry>
         <entry>
           <string>Label</string>
-          <string>I2</string>
+          <string>I_2</string>
         </entry>
       </elementAttributes>
       <pos x="-160" y="-100"/>
@@ -274,7 +274,7 @@
         </entry>
         <entry>
           <string>Label</string>
-          <string>I1</string>
+          <string>I_1</string>
         </entry>
       </elementAttributes>
       <pos x="-100" y="-100"/>
@@ -298,7 +298,7 @@
         </entry>
         <entry>
           <string>Label</string>
-          <string>I0</string>
+          <string>I_0</string>
         </entry>
       </elementAttributes>
       <pos x="-40" y="-100"/>
@@ -668,4 +668,5 @@
       <p2 x="-80" y="540"/>
     </wire>
   </wires>
+  <measurementOrdering/>
 </circuit>

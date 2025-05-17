@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Digital by H.Neemann -->
+<!-- created: Fri May 16 08:42:03 CST 2025 -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="16.65mm"
+   height="29.1mm"
+   viewBox="1414 684 111 194">
+<g stroke-linecap="square">
+<g>
+</g>
+<g>
+<path d="M 1441,686 L 1499,686 L 1499,854 L 1441,854 Z" stroke="#ffffb4" stroke-width="0.0" fill="#ffffb4" fill-opacity="0.7843137254901961"/>
+<path d="M 1441,686 L 1499,686 L 1499,854 L 1441,854 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<text text-anchor="start" x="1444.0" y="706.75" fill="#808080" style="font-size:18px">E</text>
+<text text-anchor="start" x="1444.0" y="726.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">2</tspan></text>
+<text text-anchor="start" x="1444.0" y="746.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">1</tspan></text>
+<text text-anchor="start" x="1444.0" y="766.75" fill="#808080" style="font-size:18px">I<tspan style="font-size:80%;baseline-shift:sub;">0</tspan></text>
+<text text-anchor="end" x="1496.0" y="706.75" fill="#808080" style="font-size:18px">O<tspan style="font-size:80%;baseline-shift:sub;">0</tspan></text>
+<text text-anchor="end" x="1496.0" y="726.75" fill="#808080" style="font-size:18px">O<tspan style="font-size:80%;baseline-shift:sub;">1</tspan></text>
+<text text-anchor="end" x="1496.0" y="746.75" fill="#808080" style="font-size:18px">O<tspan style="font-size:80%;baseline-shift:sub;">2</tspan></text>
+<text text-anchor="end" x="1496.0" y="766.75" fill="#808080" style="font-size:18px">O<tspan style="font-size:80%;baseline-shift:sub;">3</tspan></text>
+<text text-anchor="end" x="1496.0" y="786.75" fill="#808080" style="font-size:18px">O<tspan style="font-size:80%;baseline-shift:sub;">4</tspan></text>
+<text text-anchor="end" x="1496.0" y="806.75" fill="#808080" style="font-size:18px">O<tspan style="font-size:80%;baseline-shift:sub;">5</tspan></text>
+<text text-anchor="end" x="1496.0" y="826.75" fill="#808080" style="font-size:18px">O<tspan style="font-size:80%;baseline-shift:sub;">6</tspan></text>
+<text text-anchor="end" x="1496.0" y="846.75" fill="#808080" style="font-size:18px">O<tspan style="font-size:80%;baseline-shift:sub;">7</tspan></text>
+<text text-anchor="middle" x="1470.0" y="871.5" fill="#808080" style="font-size:18px">3to8decoder</text>
+</g>
+</g>
+</svg>

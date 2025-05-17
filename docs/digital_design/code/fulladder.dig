@@ -65,12 +65,12 @@
       <elementName>In</elementName>
       <elementAttributes>
         <entry>
-          <string>Label</string>
-          <string>A</string>
-        </entry>
-        <entry>
           <string>rotation</string>
           <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>A</string>
         </entry>
       </elementAttributes>
       <pos x="320" y="140"/>
@@ -98,7 +98,7 @@
         </entry>
         <entry>
           <string>Label</string>
-          <string>Cin</string>
+          <string>C_{in}</string>
         </entry>
       </elementAttributes>
       <pos x="520" y="140"/>
@@ -108,7 +108,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>Cout</string>
+          <string>C_{out}</string>
         </entry>
       </elementAttributes>
       <pos x="960" y="360"/>

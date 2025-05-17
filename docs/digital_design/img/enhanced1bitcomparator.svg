@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Digital by H.Neemann -->
+<!-- created: Fri May 16 08:13:06 CST 2025 -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="142.5mm"
+   height="46.2mm"
+   viewBox="-17 86 950 308">
+<g stroke-linecap="square">
+<path d="M 180,160 L 200,160 L 400,160" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 480,160 L 560,160 L 564,160" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 180,320 L 200,320 L 400,320" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 480,320 L 560,320 L 564,320" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 680,340 L 680,260 L 720,260 L 724,260" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 60,100 L 520,100 L 520,120 L 560,120 L 564,120" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 100,240 L 100,360 L 340,360 L 340,340 L 400,340" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 200,320 L 200,300 L 220,300" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 260,300 L 340,300 L 340,180 L 400,180" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 640,140 L 680,140 L 840,140" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 820,240 L 840,240" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 60,240 L 100,240 L 100,120 L 340,120 L 340,140 L 400,140" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 200,160 L 200,180 L 220,180" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 260,180 L 320,180 L 320,260 L 380,260 L 380,300 L 400,300" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 640,340 L 680,340 L 840,340" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 680,140 L 680,220 L 720,220 L 724,220" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 60,380 L 520,380 L 520,360 L 560,360 L 564,360" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<g>
+<circle cx="200.0" cy="160.0" r="4.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+<circle cx="200.0" cy="320.0" r="4.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+<circle cx="680.0" cy="140.0" r="4.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+<circle cx="100.0" cy="240.0" r="4.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+<circle cx="680.0" cy="340.0" r="4.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+</g>
+<g>
+<path d="M 450,190 L 401,190 L 401,130 L 450,130 C 460,130 480,140 479,160 C 479,180 460,190 450,190 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+</g>
+<g>
+<path d="M 450,350 L 401,350 L 401,290 L 450,290 C 460,290 480,300 479,320 C 479,340 460,350 450,350 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+</g>
+<g>
+<circle cx="176.0" cy="160.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="166.0" y="169.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">A</tspan></text>
+</g>
+<g>
+<circle cx="176.0" cy="320.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="166.0" y="329.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">B</tspan></text>
+</g>
+<g>
+<path d="M 221,168 L 239,180 L 221,192 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<circle cx="250.0" cy="180.0" r="9.0" stroke="#000000" stroke-width="4.0" fill="none" />
+</g>
+<g>
+<path d="M 221,288 L 239,300 L 221,312 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<circle cx="250.0" cy="300.0" r="9.0" stroke="#000000" stroke-width="4.0" fill="none" />
+</g>
+<g>
+<path d="M 750,270 L 720,270 C 730,254 730,226 720,210 L 740,210 C 770,210 790,220 800,240 C 790,260 770,270 750,270 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<circle cx="810.0" cy="240.0" r="9.0" stroke="#000000" stroke-width="4.0" fill="none" />
+</g>
+<g>
+<circle cx="844.0" cy="140.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="854.0" y="149.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">A&gt;B<tspan style="font-size:80%;baseline-shift:sub;">out</tspan></tspan></text>
+</g>
+<g>
+<circle cx="844.0" cy="240.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="854.0" y="249.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">A=B<tspan style="font-size:80%;baseline-shift:sub;">out</tspan></tspan></text>
+</g>
+<g>
+<circle cx="844.0" cy="340.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="854.0" y="349.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">A&lt;B<tspan style="font-size:80%;baseline-shift:sub;">out</tspan></tspan></text>
+</g>
+<g>
+<circle cx="56.0" cy="100.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="46.0" y="109.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">A&gt;B<tspan style="font-size:80%;baseline-shift:sub;">in</tspan></tspan></text>
+</g>
+<g>
+<circle cx="56.0" cy="240.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="46.0" y="249.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">A=B<tspan style="font-size:80%;baseline-shift:sub;">in</tspan></tspan></text>
+</g>
+<g>
+<circle cx="56.0" cy="380.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="46.0" y="389.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">A&lt;B<tspan style="font-size:80%;baseline-shift:sub;">in</tspan></tspan></text>
+</g>
+<g>
+<path d="M 590,170 L 560,170 C 570,154 570,126 560,110 L 580,110 C 610,110 630,120 640,140 C 630,160 610,170 590,170 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+</g>
+<g>
+<path d="M 590,370 L 560,370 C 570,354 570,326 560,310 L 580,310 C 610,310 630,320 640,340 C 630,360 610,370 590,370 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+</g>
+</g>
+</svg>
