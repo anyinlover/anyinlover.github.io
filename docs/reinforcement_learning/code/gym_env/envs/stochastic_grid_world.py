@@ -18,12 +18,12 @@ class StochasticGridWorldEnv(gym.Env):
     """
     Custom Environment for a 3x4 Stochastic Grid World.
 
-    The agent starts at (0,0) and needs to navigate to maximize reward.
+    The agent starts at (0, 2) and needs to navigate to maximize reward.
     - Grid Size: 3 rows, 4 columns (indexed 0-2 for rows, 0-3 for columns)
-    - Start State: (0, 0) - Bottom Left
+    - Start State: (0, 2) - Bottom Left
     - Wall: (1, 1) - Agent cannot enter this cell
     - Rewards:
-        - +1.0 at (3, 2) - Top Right (Green)
+        - +1.0 at (3, 0) - Top Right (Green)
         - -1.0 at (3, 1) - Cell below Green (Red)
     - Actions: 0: North, 1: South, 2: East, 3: West
     - Stochasticity (North Action):

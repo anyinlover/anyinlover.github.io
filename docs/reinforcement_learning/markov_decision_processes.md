@@ -91,7 +91,8 @@ $$
  v_\pi(s) &\doteq \mathbb{E}_\pi[G_t | S_t = s] \\
  &= \mathbb{E}_\pi[R_{t+1} + \gamma G_{t+1} | S_t = s] \\
  &= \sum_a \pi(a|s)\sum_{s'}\sum_r p(s',r|s,a)[r + \gamma \mathbb{E}_\pi[G_{t+1}|S_{t+1}=s']] \\
- &= \sum_a \pi(a|s)\sum_{s',r} p(s',r|s,a)[r + \gamma v_\pi(s')]
+ &= \sum_a \pi(a|s)\sum_{s',r} p(s',r|s,a)[r + \gamma v_\pi(s')] \\
+ &= \sum_a \pi(a|s)\left[\sum_rp(r|s,a)r + \gamma\sum_{s'}p(s'|s,a)v_\pi(s')\right]
 \end{aligned}
 $$
 
@@ -102,9 +103,36 @@ $$
 q_\pi(s,a) &\doteq \mathbb{E}_\pi[G_t | S_t = s, A_t = a] \\
 &= \mathbb{E}_\pi[R_{t+1} + \gamma G_{t+1} | S_t = s, A_t = a] \\
 &= \sum_{s'}\sum_r p(s',r|s,a)[r + \gamma \sum_{a'}\pi(a'|s')\mathbb{E}_\pi[G_{t+1}|S_{t+1}=s', A_{t+1}=a']] \\
-&= \sum_{s',r} p(s',r|s,a)[r + \gamma \sum_{a'}\pi(a'|s')q_\pi(s',a')]
+&= \sum_{s',r} p(s',r|s,a)[r + \gamma \sum_{a'}\pi(a'|s')q_\pi(s',a')] \\
+&= \sum_r p(r|s,a)r + \gamma\sum_{s'}p(s'|s,a) \sum_{a'}\pi(a'|s')q_\pi(s',a')]
 \end{aligned}
 $$
+
+## Matrix-vector Form
+
+If we define,
+$$
+\begin{aligned}
+r_{\pi}(s) &\doteq \sum_a \pi(a|s) \sum_r p(r|s, a)r \\
+p_{\pi}(s'|s) &\doteq \sum_a \pi(a|s)p(s'|s, a)
+\end{aligned}
+$$
+
+then we have:
+
+$$
+v_{\pi}(s) = r_{\pi}(s) + \gamma \sum_{s'} p_{\pi}(s'|s)v_{\pi}(s')
+$$
+
+Suppose that the states are indexed as $s_i$ with $i = 1, \ldots, n$, where $n = |\mathcal{S}|$.
+
+Let $v_{\pi} = [v_{\pi}(s_1), \ldots, v_{\pi}(s_n)]^T \in \mathbb{R}^n$, $r_{\pi} = [r_{\pi}(s_1), \ldots, r_{\pi}(s_n)]^T \in \mathbb{R}^n$, and $P_{\pi} \in \mathbb{R}^{n \times n}$ with $[P_{\pi}]_{ij} = p_{\pi}(s_j|s_i)$. We get the following matrix-vector form:
+
+$$
+v_{\pi} = r_{\pi} + \gamma P_{\pi} v_{\pi}
+$$
+
+where $v_{\pi}$ is the unknown to be solved, and $r_{\pi}, P_{\pi}$ are known.
 
 ## Optimal Policy and Optimal Value Function
 

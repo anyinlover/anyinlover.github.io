@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Digital by H.Neemann -->
+<!-- created: Sun May 18 19:16:30 CST 2025 -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="34.95mm"
+   height="46.95mm"
+   viewBox="1442 749 233 313">
+<g stroke-linecap="square">
+<path d="M 1520,900 L 1520,980 L 1560,980" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 1480,900 L 1520,900 L 1520,820 L 1560,820" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 1580,860 L 1580,900 L 1620,900" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 1580,760 L 1580,820" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 1580,980 L 1580,1060" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 1580,900 L 1580,940" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 1570,1060 L 1590,1060" stroke="#000000" stroke-width="6.0" fill="none"/>
+<path d="M 1568,835 L 1568,845" stroke="#000000" stroke-width="4.0" fill="none"/>
+<path d="M 1561,820 L 1561,860" stroke="#000000" stroke-width="4.0" fill="none"/>
+<path d="M 1568,955 L 1568,965" stroke="#000000" stroke-width="4.0" fill="none"/>
+<path d="M 1561,940 L 1561,980" stroke="#000000" stroke-width="4.0" fill="none"/>
+<path d="M 1580,754 L 1580,760" stroke="#000000" stroke-width="4.0" fill="none"/>
+<path d="M 1568,840 L 1574,840" stroke="#000000" stroke-width="2.0" fill="none"/>
+<path d="M 1575,960 L 1580,960" stroke="#000000" stroke-width="2.0" fill="none"/>
+<g>
+<circle cx="1520.0" cy="900.0" r="4.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+<circle cx="1580.0" cy="900.0" r="4.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+</g>
+<g>
+<path d="M 1580,820 L 1568,820 L 1568,825" stroke="#000000" stroke-width="4.0" fill="none"/>
+<path d="M 1580,860 L 1568,860 L 1568,855" stroke="#000000" stroke-width="4.0" fill="none"/>
+<text text-anchor="start" x="1590.0" y="860.0" fill="#808080" style="font-size:18px">M2</text>
+<path d="M 1579,840 L 1574,838 L 1574,842 Z" stroke="#000000" stroke-width="2.0" fill="#000000" fill-opacity="1.0"/>
+</g>
+<g>
+<path d="M 1580,940 L 1568,940 L 1568,945" stroke="#000000" stroke-width="4.0" fill="none"/>
+<path d="M 1580,980 L 1568,980 L 1568,975" stroke="#000000" stroke-width="4.0" fill="none"/>
+<text text-anchor="start" x="1590.0" y="980.0" fill="#808080" style="font-size:18px">M1</text>
+<path d="M 1572,960 L 1577,958 L 1577,962 Z" stroke="#000000" stroke-width="2.0" fill="#000000" fill-opacity="1.0"/>
+</g>
+<g>
+</g>
+<g>
+<path d="M 1570,764 L 1580,751 L 1590,764" stroke="#000000" stroke-width="4.0" fill="none"/>
+</g>
+<g>
+<circle cx="1476.0" cy="900.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="end" x="1466.0" y="909.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">In</tspan></text>
+</g>
+<g>
+<circle cx="1624.0" cy="900.0" r="4.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="1634.0" y="909.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">Out</tspan></text>
+</g>
+</g>
+</svg>
